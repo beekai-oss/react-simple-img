@@ -3,13 +3,11 @@
     "flow",
     "react",
     "stage-0",
-    [
-      "env": {
-        "targets": {
-          "chrome": "60"
-        }
+    ["env", {
+      "targets": {
+        "chrome": "60"
       }
-    ]
+    }]
   ],
   "plugins": ["babel-plugin-transform-flow-strip-types"]
 }
