@@ -1,8 +1,56 @@
 {
-  "name": "react-lazyload-image",
+  "name": "react-lazyload-images",
   "version": "1.0.0",
-  "main": "index.js",
-  "repository": "https://github.com/bluebill1049/react-lazyload-image.git",
-  "author": "billluo <bluebill1049@hotmail.com>",
-  "license": "MIT"
+  "description": "react lazyload images",
+  "main": "lib/index.js",
+  "keywords": [
+    "react",
+    "lazyload",
+    "images"
+  ],
+  "scripts": {
+    "clean": "rimraf lib/",
+    "release": "npm version",
+    "postrelease": "yarn publish && git push --follow-tags",
+    "test": "jest",
+    "testw": "yarn test -- --watchAll",
+    "build": "babel src/ -d lib/",
+    "lint": "eslint ./src",
+    "prepublish": "yarn test && yarn flow && yarn lint && yarn run clean && yarn build",
+    "flow": "flow"
+  },
+  "repository": "https://github.com/bluebill1049/react-lazyload-images.git",
+  "author": "beier luo",
+  "license": "Mit",
+  "bugs": {
+    "url": "https://github.com/bluebill1049/react-lazyload-images/issues"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-eslint": "^7.2.3",
+    "babel-plugin-transform-flow-strip-types": "^6.22.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "enzyme": "^2.9.1",
+    "eslint": "^3.4.0",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-babel": "^4.1.2",
+    "eslint-plugin-flowtype": "^2.35.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.1.0",
+    "flow-bin": "^0.53.0",
+    "flow-typed": "^2.1.5",
+    "jest": "^20.0.4",
+    "react": "15.6.1",
+    "react-dom": "15.6.1",
+    "react-test-renderer": "^15.6.1",
+    "rimraf": "^2.6.1"
+  },
+  "peerDependencies": {
+    "react": ">= 15.6.1",
+    "react-dom": ">= 15.6.1"
+  }
 }
