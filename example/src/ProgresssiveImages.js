@@ -74,8 +74,7 @@ export default function ProgresssiveImages(WrappedComponent, config) {
       });
     }
 
-    applyImage = (target, src) => {
-      target.src = src;
+    applyImage = (target) => {
       this.setState({
         loadedImages: [...this.state.loadedImages, target],
       });
