@@ -1,0 +1,10 @@
+[ignore]
+.*/example
+
+[include]
+
+[libs]
+
+[options]
+
+[lints]

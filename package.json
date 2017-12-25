@@ -1,0 +1,8 @@
+{
+  "name": "react-lazyload-image",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/bluebill1049/react-lazyload-image.git",
+  "author": "billluo <bluebill1049@hotmail.com>",
+  "license": "MIT"
+}
