@@ -7,6 +7,16 @@
   height: 80px;
 }
 
+.App-container {
+  max-width: 800px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.App-images{
+  width: 100%;
+}
+
 .App-header {
   background-color: #222;
   height: 150px;

@@ -20,7 +20,6 @@ type Props = {
   alt: string,
   srcSet: string,
   animateDisappearInSecond: number,
-  animateAppearInSecond: number,
   animateStartStyle: { [string]: number | string },
   animateEndStyle: { [string]: number | string },
 };
@@ -64,7 +63,7 @@ export default class ProgressiveImage extends React.Component<Props, State> {
         this.setState({
           startAnimation: true,
         }),
-      nextProps.animateDisappearInSecond * 1000 || 100,
+      nextProps.animateDisappearInSecond * 1000 || 500,
     );
   }
 
@@ -88,31 +87,50 @@ export default class ProgressiveImage extends React.Component<Props, State> {
       alt,
       srcSet,
       animateDisappearInSecond,
-      animateAppearInSecond,
       animateStartStyle,
       animateEndStyle,
     } = this.props;
     const { startAnimation, loaded } = this.state;
-    const appearInSecond = animateAppearInSecond || 0.3;
-    const disappearInSecond = animateDisappearInSecond || 0.1;
+    const disappearInSecond = animateDisappearInSecond || 0.5;
 
     return (
-      <Animate
-        {...{ className, startAnimation }}
-        durationSeconds={startAnimation ? appearInSecond : disappearInSecond}
-        startStyle={animateStartStyle || { opacity: 0 }}
-        endStyle={animateEndStyle || { opacity: 1 }}
+      <span
+        style={{
+          position: 'relative',
+        }}
+        className={className}
       >
         <img
           {...{ width, height, style, srcSet }}
           alt={alt}
-          ref={(element) => {
+          ref={element => {
             this.element = element;
           }}
           src={loaded ? src : placeHolderSrc}
           data-src={src}
         />
-      </Animate>
+        <Animate
+          startAnimation={startAnimation}
+          durationSeconds={disappearInSecond}
+          startStyle={animateStartStyle || { opacity: 1 }}
+          endStyle={animateEndStyle || { opacity: 0 }}
+        >
+          <img
+            {...{ width, height, srcSet }}
+            alt={alt}
+            ref={element => {
+              this.element = element;
+            }}
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+            }}
+            src={placeHolderSrc}
+            data-src={src}
+          />
+        </Animate>
+      </span>
     );
   }
 }
