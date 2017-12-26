@@ -1,0 +1,128 @@
+// @flow
+import React from 'react';
+import PropTypes from 'prop-types';
+import Animate from 'react-simple-animate';
+import { APPEND_IMAGE_REF, IMAGES_LOADED, REMOVE_IMAGE_REF } from './withLazyLoadImages';
+
+type State = {
+  loaded: boolean,
+};
+
+type Props = {
+  src: string,
+  placeHolderSrc: string,
+  className: string,
+  width: number,
+  height: number,
+  alt: string,
+  srcSet: string,
+  placeHolderBackgroundColor: string,
+  animateDisappearInSecond: number,
+  animateDisappearStyle: { [string]: number | string },
+};
+
+export type Context = {
+  __ProgresssiveImagesAppendImageRef__: (HTMLElement) => void,
+  __ProgresssiveImagesRemoveImageRef__: (HTMLElement) => void,
+  __ProgresssiveImagesLoaded__: Array<HTMLElement>,
+};
+
+const commonStyle = {
+  position: 'absolute',
+  top: 0,
+  left: 0,
+};
+const rootStyle = {
+  position: 'relative',
+  overflow: 'hidden',
+};
+const defaultDisappearStyle = { opacity: 0 };
+const defaultDisappearInSecond = 0.5;
+const onCompleteStyle = { display: 'none' };
+
+export default class Image extends React.Component<Props, State> {
+  static contextTypes = {
+    [APPEND_IMAGE_REF]: PropTypes.func,
+    [IMAGES_LOADED]: PropTypes.array,
+    [REMOVE_IMAGE_REF]: PropTypes.func,
+  };
+
+  state: State = {
+    loaded: false,
+  };
+
+  componentDidMount() {
+    if (this.element) this.context[APPEND_IMAGE_REF](this.element);
+  }
+
+  componentWillReceiveProps(nextProps: Props, nextContext: Context) {
+    if (!this.element || this.state.loaded || !nextContext[IMAGES_LOADED].find(element => this.element === element)) {
+      return;
+    }
+
+    this.setState({
+      loaded: true,
+    });
+
+    nextContext[REMOVE_IMAGE_REF](this.element);
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.timer);
+    this.timer = null;
+  }
+
+  element = null;
+  timer = null;
+
+  render() {
+    const {
+      src,
+      placeHolderSrc,
+      className,
+      style,
+      width,
+      height,
+      alt,
+      srcSet,
+      animateDisappearInSecond,
+      animateEndStyle,
+      backGroundColor,
+    } = this.props;
+    const { loaded } = this.state;
+    const disappearInSecond = animateDisappearInSecond || defaultDisappearInSecond;
+    const inlineStyle = {
+      ...commonStyle,
+      background: backGroundColor,
+    };
+
+    return (
+      <span
+        style={rootStyle}
+        className={className}
+      >
+        <img
+          {...{ width, height, style, srcSet }}
+          alt={alt}
+          ref={element => {
+            this.element = element;
+          }}
+          src={loaded ? src : placeHolderSrc}
+          data-src={src}
+        />
+        <Animate
+          startAnimation={loaded}
+          durationSeconds={disappearInSecond}
+          endStyle={animateEndStyle || defaultDisappearStyle}
+          onCompleteStyle={onCompleteStyle}
+        >
+          {placeHolderSrc ? (
+            <img {...{ width, height }} style={inlineStyle} alt={alt} src={placeHolderSrc} />
+          ) : (
+            <span style={inlineStyle} />
+          )}
+        </Animate>
+      </span>
+    );
+  }
+}

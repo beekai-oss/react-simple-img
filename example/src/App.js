@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import ProgresssiveImages from './lazyLoadImages';
+
 
 import svg1 from './wallpapers/Isles.svg';
 import svg2 from './wallpapers/Lake.svg';
@@ -14,7 +14,7 @@ import image3 from './wallpapers/Mountain-Range.jpg';
 import image4 from './wallpapers/Pink-Forest.jpg';
 import image5 from './wallpapers/Snow.jpg';
 
-import Image from './progressiveImage';
+import { Image, withLazyLoadImages } from './lazyLoadImages/index';
 import './App.css';
 
 class App extends Component {
@@ -46,6 +46,7 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React Lazy Load Images</h1>
+          <p><span role="img" aria-label="glass">🍸</span> Scroll slowly to view the transition and image lazy load</p>
         </header>
         <div className="App-container">
           {images.map((image, i) => <Image
@@ -53,7 +54,7 @@ class App extends Component {
             key={i}
             className="App-images"
             placeHolderSrc={image.svg}
-            animateDisappearInSecond={1}
+            animateDisappearInSecond={2.5}
             src={image.img}
             style={{ display: 'block' }}
             height={500}
@@ -64,7 +65,7 @@ class App extends Component {
   }
 }
 
-export default ProgresssiveImages(App, {
-  rootMargin: '100px 0px',
-  threshold: 0.01,
+export default withLazyLoadImages(App, {
+  rootMargin: '10px 0px',
+  threshold:  [0.5],
 });
