@@ -5,7 +5,7 @@
     "stage-0",
     ["env", {
       "targets": {
-        "chrome": "60"
+        "edge": "16"
       }
     }]
   ],

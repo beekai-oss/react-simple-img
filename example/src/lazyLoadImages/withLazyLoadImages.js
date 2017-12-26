@@ -6,9 +6,15 @@ import type { Context } from './image';
 export const APPEND_IMAGE_REF = '__ProgresssiveImagesAppendImageRef__';
 export const REMOVE_IMAGE_REF = '__ProgresssiveImagesRemoveImageRef__';
 export const IMAGES_LOADED = '__ProgresssiveImagesLoaded__';
+export const contextTypes = {
+  [APPEND_IMAGE_REF]: PropTypes.func,
+  [REMOVE_IMAGE_REF]: PropTypes.func,
+  [IMAGES_LOADED]: PropTypes.array,
+};
 
 type State = {
-  loadedImages: Array<any>,
+  mountedImages: Array<any>,
+  willMountImages: Array<any>,
 };
 
 type Config = {
@@ -19,50 +25,58 @@ type Config = {
 
 export default function withLazyLoadImages(WrappedComponent: any, config: Config) {
   return class extends React.Component<{}, State> {
-    static childContextTypes: Context = {
-      [APPEND_IMAGE_REF]: PropTypes.func,
-      [REMOVE_IMAGE_REF]: PropTypes.func,
-      [IMAGES_LOADED]: PropTypes.array,
-    };
+    static childContextTypes: Context = contextTypes;
 
     state: State = {
-      loadedImages: [],
+      mountedImages: [],
+      willMountImages: [],
     };
+
+    constructor(props) {
+      super(props);
+      // $FlowIgnoreLine:
+      this.observer = new IntersectionObserver(this.onIntersection, config);
+    }
 
     getChildContext() {
       return {
         [APPEND_IMAGE_REF]: this.appendImageRef,
         [REMOVE_IMAGE_REF]: this.removeImageRef,
-        [IMAGES_LOADED]: this.state.loadedImages,
+        [IMAGES_LOADED]: this.state.mountedImages,
       };
     }
 
     componentDidMount() {
       /* eslint-disable */
       if (!window.IntersectionObserver) require('intersection-observer');
-      // $FlowIgnoreLine:
-      this.observer = new IntersectionObserver(this.onIntersection, config);
       /* eslint-enable */
-      this.images.forEach(image => this.observer.observe(image));
     }
 
     onIntersection = (entries: Array<{ intersectionRatio: number, target: HTMLElement }>) =>
       entries.forEach(({ intersectionRatio, target }) => {
         if (intersectionRatio > 0) {
-          this.preloadImage(target);
+          return this.preloadImage(target);
         }
       });
 
-    appendImageRef = (image: any) => this.images.push(image);
+    appendImageRef = (image: HTMLElement) => {
+      this.observer.observe(image);
+      this.setState(previousState => ({
+        willMountImages: [...previousState.willMountImages, image],
+      }));
+    };
 
-    removeImageRef = (image: any) =>
-      this.setState({
-        loadedImages: this.state.loadedImages.filter(loadedImage => loadedImage !== image) || [],
+    removeImageRef = (image: HTMLElement) => {
+      this.setState(previousState => {
+        const willMountImages = previousState.willMountImages.filter(loadedImage => loadedImage !== image);
+        return {
+          ...(!willMountImages.length ? { mountedImages: [] } : null),
+          willMountImages,
+        };
       });
+    };
 
     observer = {};
-
-    images: Array<any> = [];
 
     preloadImage = async (target: HTMLElement) => {
       try {
@@ -90,11 +104,10 @@ export default function withLazyLoadImages(WrappedComponent: any, config: Config
         image.onerror = error;
       });
 
-    applyImage = (target: HTMLElement) => {
-      this.setState({
-        loadedImages: [...this.state.loadedImages, target],
-      });
-    };
+    applyImage = (target: HTMLElement) =>
+      this.setState(previousState => ({
+        mountedImages: [...previousState.mountedImages, target],
+      }));
 
     render() {
       return <WrappedComponent {...this.props} />;

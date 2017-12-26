@@ -1,8 +1,7 @@
 // @flow
 import React from 'react';
-import PropTypes from 'prop-types';
 import Animate from 'react-simple-animate';
-import { APPEND_IMAGE_REF, IMAGES_LOADED, REMOVE_IMAGE_REF } from './withLazyLoadImages';
+import { APPEND_IMAGE_REF, IMAGES_LOADED, REMOVE_IMAGE_REF, contextTypes } from './withLazyLoadImages';
 
 type State = {
   loaded: boolean,
@@ -41,11 +40,7 @@ const defaultDisappearInSecond = 0.5;
 const onCompleteStyle = { display: 'none' };
 
 export default class Image extends React.Component<Props, State> {
-  static contextTypes = {
-    [APPEND_IMAGE_REF]: PropTypes.func,
-    [IMAGES_LOADED]: PropTypes.array,
-    [REMOVE_IMAGE_REF]: PropTypes.func,
-  };
+  static contextTypes = contextTypes;
 
   state: State = {
     loaded: false,
