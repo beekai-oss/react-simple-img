@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import Animate from 'react-simple-animate';
-import { APPEND_IMAGE_REF, IMAGES_LOADED, REMOVE_IMAGE_REF, contextTypes } from './withLazyLoadImages';
+import { APPEND_IMAGE_REF, IMAGES_LOADED, REMOVE_IMAGE_REF, contextTypes } from './withImagesObserved';
 
 type State = {
   loaded: boolean,

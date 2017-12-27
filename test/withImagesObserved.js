@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
-import withLazyLoadImages from '../src/withLazyLoadImages';
+import withImagesObserved from '../src/withImagesObserved';
 
 const TestComponent = () => <div>Test</div>;
 const IntersectionObserverSpy = jest.fn();
@@ -11,14 +11,14 @@ let IntersectionObserver;
 let Component;
 let tree;
 
-describe('withLazyLoadImages', () => {
+describe('withImagesObserved', () => {
   beforeEach(() => {
     jest.resetAllMocks();
     IntersectionObserver = global.IntersectionObserver;
     global.IntersectionObserver = IntersectionObserverSpy;
     global.IntersectionObserver.prototype.observe = observeSpy;
     global.IntersectionObserver.prototype.unobserve = unobserveSpy;
-    Component = withLazyLoadImages(TestComponent);
+    Component = withImagesObserved(TestComponent);
     tree = shallow(<Component />);
   });
 

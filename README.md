@@ -32,7 +32,7 @@ Screenshots of the example app below
 
 ## Quick start
     import react from 'react';
-    import { Image, withLazyLoadImages } from './react-lazyLoad-images';
+    import { Image, withImagesObserved } from './react-lazyLoad-images';
 
     function SexyComponent(props) {
 	    return <div>
@@ -44,11 +44,11 @@ Screenshots of the example app below
         </div>;
     }
 
-    export default withLazyLoadImages(SexyComponent);
+    export default withImagesObserved(SexyComponent);
 
 ## API
 
-#### `withLazyLoadImages([Component], [config])`
+#### `withImagesObserved([Component], [config])`
 
 This high order component will connect all your Image component to observe images to be loaded.
 
@@ -83,13 +83,13 @@ Arguments
 | Prop | Type | Required | Description |
 | :--- | :--- | :---: | :--- |
 | `src` | string | ✓ | The large image source |
-| `placeHolderSrc` | string | ✓ | Placeholder image source (svg, jpg, png...) |
-| `width` | number | ✓ | image width apply to original image and placeholder |
-| `height` | number | ✓ | image height apply to original image and placeholder |
-| `style` | object | ✓ | only applied to large image |
-| `placeHolderBackgroundColor` | string | ✓ | apply color style to the placeholder  |
-| `animateDisappearInSecond` | string | ✓ | animation duration for placeholder to disappear  |
-| `animateDisappearStyle` | object | ✓ | style applied to make placeholder disappear (default to fade out as `{opacity: 0}`)  |
-| `className` | string | ✓ |  |
-| `alt` | string | ✓ | |
-| `srcSet` | string | ✓ | |
+| `placeHolderSrc` | string |  | Placeholder image source (svg, jpg, png...) |
+| `width` | number |  | image width apply to original image and placeholder |
+| `height` | number |  | image height apply to original image and placeholder |
+| `style` | object |  | only applied to large image |
+| `placeHolderBackgroundColor` | string |  | apply color style to the placeholder  |
+| `animateDisappearInSecond` | string |  | animation duration for placeholder to disappear  |
+| `animateDisappearStyle` | object |  | style applied to make placeholder disappear (default to fade out as `{opacity: 0}`)  |
+| `className` | string |  |  |
+| `alt` | string |  | |
+| `srcSet` | string |  | |

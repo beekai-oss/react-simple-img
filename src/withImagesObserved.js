@@ -28,7 +28,7 @@ const defaultConfig = {
   threshold:  [0.5],
 };
 
-export default function withLazyLoadImages(WrappedComponent: any, config: Config = defaultConfig) {
+export default function withImagesObserved(WrappedComponent: any, config: Config = defaultConfig) {
   return class extends React.Component<{}, State> {
     static childContextTypes: Context = contextTypes;
 

@@ -1,7 +1,7 @@
 import renderer from 'react-test-renderer';
 import Image from '../src/image';
 import { shallow, mount } from 'enzyme';
-import { APPEND_IMAGE_REF, IMAGES_LOADED, REMOVE_IMAGE_REF } from '../src/withLazyLoadImages';
+import { APPEND_IMAGE_REF, IMAGES_LOADED, REMOVE_IMAGE_REF } from '../src/withImagesObserved';
 import React from 'react';
 
 jest.mock('react-simple-animate', () => 'Animate');
