@@ -65,7 +65,4 @@ class App extends Component {
   }
 }
 
-export default withLazyLoadImages(App, {
-  rootMargin: '10px 0px',
-  threshold:  [0.5],
-});
+export default withLazyLoadImages(App);

@@ -18,12 +18,17 @@ type State = {
 };
 
 type Config = {
-  root: HTMLElement,
-  rootMargin: string,
-  threshold: number | Array<number>,
+  root?: HTMLElement,
+  rootMargin?: string,
+  threshold?: number | Array<number>,
 };
 
-export default function withLazyLoadImages(WrappedComponent: any, config: Config) {
+const defaultConfig = {
+  rootMargin: '20px 0px',
+  threshold:  [0.5],
+};
+
+export default function withLazyLoadImages(WrappedComponent: any, config: Config = defaultConfig) {
   return class extends React.Component<{}, State> {
     static childContextTypes: Context = contextTypes;
 
