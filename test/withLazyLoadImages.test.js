@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
-import withLazyLoadImages from '../lazyLoadImages/withLazyLoadImages';
+import withLazyLoadImages from '../src/withLazyLoadImages';
 
 const TestComponent = () => <div>Test</div>;
 const IntersectionObserverSpy = jest.fn();
