@@ -1,7 +1,8 @@
 // @flow
 import React from 'react';
 import Animate from 'react-simple-animate';
-import { APPEND_IMAGE_REF, IMAGES_LOADED, REMOVE_IMAGE_REF, contextTypes } from './withImagesObserved';
+// import parseSrcset from './utils/parseSrcset';
+import { APPEND_IMAGE_REF, IMAGES_LOADED, REMOVE_IMAGE_REF, contextTypes } from './simpleImageProvider';
 
 type State = {
   loaded: boolean,
@@ -24,8 +25,8 @@ type Props = {
 };
 
 export type Context = {
-  __ProgresssiveImagesAppendImageRef__: (HTMLElement) => void,
-  __ProgresssiveImagesRemoveImageRef__: (HTMLElement) => void,
+  __ProgresssiveImagesAppendImageRef__: HTMLElement => void,
+  __ProgresssiveImagesRemoveImageRef__: HTMLElement => void,
   __ProgresssiveImagesLoaded__: Array<HTMLElement>,
 };
 
@@ -50,6 +51,28 @@ export default class Image extends React.Component<Props, State> {
   };
 
   componentDidMount() {
+    // if (srcSet) {
+    //   try {
+    //     const srcs = parseSrcset(srcSet);
+    //     const width = document.documentElement.clientWidth || window.innerWidth;
+    //
+    //     const srcWithDpr = srcs.map(src => ({
+    //       ...src,
+    //       ...(!src.dpr ? { dpr: src.width / width } : null),
+    //     }));
+    //
+    //     const exactSrc = srcWithDpr.find(({dpr}) => window.devicePixelRatio === dpr);
+    //
+    //     if (!exactSrc) {
+    //       const last = srcWithDpr.reduce(function(prev, curr) {
+    //         return (Math.abs(curr.dpr - window.devicePixelRatio) < Math.abs(prev.dpr - window.devicePixelRatio) ? curr : prev);
+    //       });
+    //       console.log(last);
+    //     }
+    //   } catch (e) {
+    //     console.log('fucked');
+    //   }
+    // }
     if (this.element) this.context[APPEND_IMAGE_REF](this.element);
   }
 
