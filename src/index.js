@@ -1,7 +1,7 @@
-import withLazyLoadImages from './withImagesObserved';
+import withImagesObserved from './withImagesObserved';
 import Image from './image';
 
 export {
-  withLazyLoadImages,
+  withImagesObserved,
   Image,
 };

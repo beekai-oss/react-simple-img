@@ -39,7 +39,7 @@ exports[`Image should render correctly 1`] = `
       src="placeHolderSrc"
       style={
         Object {
-          "background": undefined,
+          "background": "red",
           "left": 0,
           "position": "absolute",
           "top": 0,
@@ -87,7 +87,7 @@ exports[`Image should render only span when place holder src is not supplied 1`]
     <span
       style={
         Object {
-          "background": undefined,
+          "background": "red",
           "left": 0,
           "position": "absolute",
           "top": 0,

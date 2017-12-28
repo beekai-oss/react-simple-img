@@ -1,6 +1,6 @@
 {
   "name": "react-lazyload-images",
-  "version": "1.0.1",
+  "version": "1.0.1-beta-2",
   "description": "react lazyload images",
   "main": "lib/index.js",
   "keywords": [

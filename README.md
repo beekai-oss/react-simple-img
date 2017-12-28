@@ -1,5 +1,7 @@
 # React Lazy Load Images
 ### Still under development
+`yarn add react-lazyload-images@1.0.1-beta-2`
+`npm i react-lazyload-images@1.0.1-beta-2`
 
 [![npm version](https://img.shields.io/npm/v/react-lazyload-images.svg?style=flat-square)](https://www.npmjs.com/package/react-lazyload-images) [![npm downloads](https://img.shields.io/npm/dm/react-lazyload-images.svg?style=flat-square)](https://www.npmjs.com/package/react-lazyload-images) [![npm](https://img.shields.io/npm/dt/react-lazyload-images.svg?style=flat-square)](https://www.npmjs.com/package/react-lazyload-images) [![npm](https://img.shields.io/npm/l/react-lazyload-images.svg?style=flat-square)](https://www.npmjs.com/package/react-lazyload-image)
 

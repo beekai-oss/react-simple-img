@@ -25,7 +25,7 @@ type Config = {
 
 const defaultConfig = {
   rootMargin: '20px 0px',
-  threshold:  [0.5],
+  threshold: [0.5],
 };
 
 export default function withImagesObserved(WrappedComponent: any, config: Config = defaultConfig) {

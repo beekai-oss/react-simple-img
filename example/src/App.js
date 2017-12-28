@@ -14,7 +14,7 @@ import image3 from './wallpapers/Mountain-Range.jpg';
 import image4 from './wallpapers/Pink-Forest.jpg';
 import image5 from './wallpapers/Snow.jpg';
 
-import { Image, withLazyLoadImages } from './lazyLoadImages/index';
+import { Image, withLazyLoadImages } from 'react-lazyload-images';
 import './App.css';
 
 class App extends Component {
