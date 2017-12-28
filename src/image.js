@@ -66,6 +66,7 @@ export default class Image extends React.Component<Props, State> {
   }
 
   componentWillUnmount() {
+    if (this.element) this.context[REMOVE_IMAGE_REF](this.element);
     clearTimeout(this.timer);
     this.timer = null;
   }

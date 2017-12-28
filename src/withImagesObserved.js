@@ -25,16 +25,17 @@ type Config = {
 
 const defaultConfig = {
   rootMargin: '20px 0px',
-  threshold: [0.5],
+  threshold: [0.25, 0.5, 0.75],
 };
 
-export default function withImagesObserved(WrappedComponent: any, config: Config = defaultConfig) {
+export default function ObserverProvider(WrappedComponent: any, config: Config = defaultConfig) {
   return class extends React.Component<{}, State> {
     static childContextTypes: Context = contextTypes;
 
     constructor(props: any) {
       super(props);
       /* eslint-disable */
+      if (!window.IntersectionObserver) require('intersection-observer');
       // $FlowIgnoreLine:
       this.observer = new IntersectionObserver(this.onIntersection, config);
       /* eslint-enable */
@@ -53,12 +54,6 @@ export default function withImagesObserved(WrappedComponent: any, config: Config
       };
     }
 
-    componentDidMount() {
-      /* eslint-disable */
-      if (!window.IntersectionObserver) require('intersection-observer');
-      /* eslint-enable */
-    }
-
     onIntersection = (entries: Array<{ intersectionRatio: number, target: HTMLElement }>) =>
       entries.forEach(({ intersectionRatio, target }) => intersectionRatio > 0 && this.preloadImage(target));
 
@@ -71,9 +66,12 @@ export default function withImagesObserved(WrappedComponent: any, config: Config
 
     removeImageRef = (image: HTMLElement) =>
       this.setState((previousState) => {
-        const willMountImages = previousState.willMountImages.filter(loadedImage => loadedImage !== image);
+        const filterImages = images => images.filter(loadedImage => loadedImage !== image);
+        const willMountImages = filterImages(previousState.willMountImages);
+        const mountedImages = filterImages(this.state.willMountImages);
+
         return {
-          ...(!willMountImages.length ? { mountedImages: [] } : null),
+          mountedImages,
           willMountImages,
         };
       });
