@@ -4,7 +4,9 @@
     "flowtype/define-flow-type": 2,
     "react/prop-types": 0,
     "react/no-unused-prop-types": 0,
-    "react/jsx-filename-extension": 0
+    "react/jsx-filename-extension": 0,
+    "global-require": 0,
+    "max-len": 0
   },
   "parser": "babel-eslint",
   "plugins": ["flowtype"]

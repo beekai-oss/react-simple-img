@@ -1,4 +1,13 @@
 {
-  "presets": ["flow", "es2015", "react", "stage-0"],
+  "presets": [
+    "flow",
+    "react",
+    "stage-0",
+    ["env", {
+      "targets": {
+        "edge": "16"
+      }
+    }]
+  ],
   "plugins": ["babel-plugin-transform-flow-strip-types"]
 }
