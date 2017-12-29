@@ -35,6 +35,10 @@ Navigate into `example` folder and install
 
 Screenshots of the example app below
 
+<p align="center">
+    <img width="675" src="https://raw.githubusercontent.com/bluebill1049/react-simple-img/feature/include-example-gif/example/src/example.gif" alt="Logo" />
+</p>
+
 ## Quick start
     import react from 'react';
     import { SimpleImg, SimpleImgProvider } from './react-lazyLoad-images';
