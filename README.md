@@ -1,6 +1,8 @@
-<img src="https://raw.githubusercontent.com/bluebill1049/react-simple-img/master/example/logo.png" alt="Screenshots" />
+<p align="center">
+    <img src="https://raw.githubusercontent.com/bluebill1049/react-simple-img/master/example/logo.png" alt="Screenshots" />
+</p>
+
 # React Lazy Load Images
->>>>>>> Stashed changes
 ### Still under development
 `yarn add react-simple-img@0.0.1-beta.1`
 `npm i react-simple-img@0.0.1-beta.1`
