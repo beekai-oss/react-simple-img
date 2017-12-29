@@ -98,7 +98,9 @@ export default function SimpleImageProvider(WrappedComponent: any, config: Confi
 
     fetchImage = (imageSrc: string) =>
       new Promise((resolve, error) => {
-        const image = new Image(); // eslint-disable-line no-undef
+        /* eslint-disable */
+        const image = new Image();
+        /* eslint-enable */
         image.src = imageSrc;
         image.onload = resolve;
         image.onerror = error;

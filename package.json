@@ -19,11 +19,11 @@
     "prepublish": "yarn test && yarn flow && yarn lint && yarn run clean && yarn build",
     "flow": "flow"
   },
-  "repository": "https://github.com/bluebill1049/react-lazyload-images.git",
+  "repository": "https://github.com/bluebill1049/react-simple-img.git",
   "author": "beier luo",
   "license": "Mit",
   "bugs": {
-    "url": "https://github.com/bluebill1049/react-lazyload-images/issues"
+    "url": "https://github.com/bluebill1049/react-simple-img/issues"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",

@@ -61,7 +61,7 @@ export default class Image extends React.Component<Props, State> {
         loaded: true,
       });
 
-      if (this.element) nextContext[REMOVE_IMAGE_REF](this.element);
+      nextContext[REMOVE_IMAGE_REF](this.element);
     }
   }
 
@@ -133,7 +133,7 @@ export default class Image extends React.Component<Props, State> {
         <img
           {...{ width, height, style, srcSet }}
           alt={alt}
-          ref={(element) => {
+          ref={element => {
             this.element = element;
           }}
           src={loaded ? src : placeHolderSrc}

@@ -1,11 +1,8 @@
-// @flow
-export default function parseSrcset(srcset: string) {
-  const sSources = srcset.match(/\s*(?:[\S]*)(?:\s+(?:-?(?:\d+(?:\.(?:\d+)?)?|\.\d+)[a-zA-Z]))?(?:\s*,)?/g);
-  if (!Array.isArray(sSources)) throw new Error(`💩 srcset is invalid ${JSON.stringify(sSources, null, 2)}`);
-
+export default function parseSrcset(s) {
+  const sSources = s.match(/\s*(?:[\S]*)(?:\s+(?:-?(?:\d+(?:\.(?:\d+)?)?|\.\d+)[a-zA-Z]))?(?:\s*,)?/g);
   const sources = [];
 
-  for (let i = 0; i < sSources.length; i += 1) {
+  for (let i = 0; i < sSources.length; i++) {
     let sSource = sSources[i].trim();
 
     if (sSource.substr(-1) === ',') {
@@ -15,7 +12,7 @@ export default function parseSrcset(srcset: string) {
     const parts = sSource.split(/\s+/, 2);
 
     if (parts.length === 0 || (parts.length === 1 && !parts[0]) || (parts.length === 2 && !parts[0] && !parts[1])) {
-      continue; // eslint-disable-line no-continue
+      continue;
     }
 
     const url = parts[0];

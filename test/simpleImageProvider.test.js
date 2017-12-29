@@ -55,10 +55,10 @@ describe('SimpleImageProvider', () => {
   describe('when all will mount images removed', () => {
     it('should remove image and reset mounted images', () => {
       tree.setState({
-        willMountImages: ['image'],
+        willMountImages: ['image1'],
         mountedImages: ['image1'],
       });
-      tree.instance().removeImageRef('image');
+      tree.instance().removeImageRef('image1');
       expect(tree.state('willMountImages')).toEqual([]);
       expect(tree.state('mountedImages')).toEqual([]);
     });

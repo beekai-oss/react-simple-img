@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`parseSrcset should parse src set correctly 1`] = `
+Array [
+  Object {
+    "dpr": undefined,
+    "url": "medium.jpg",
+    "width": 1000,
+  },
+  Object {
+    "dpr": undefined,
+    "url": "large.jpg",
+    "width": 2000,
+  },
+]
+`;
+
+exports[`parseSrcset should parse src set correctly 2`] = `
+Array [
+  Object {
+    "dpr": 3,
+    "url": "large.jpg",
+    "width": undefined,
+  },
+  Object {
+    "dpr": 2,
+    "url": "medium.jpg",
+    "width": undefined,
+  },
+  Object {
+    "dpr": 1,
+    "url": "large.jpg",
+    "width": undefined,
+  },
+]
+`;
+
+exports[`parseSrcset should throw error when invalid srcset is passed 1`] = `[TypeError: srcset.match is not a function]`;

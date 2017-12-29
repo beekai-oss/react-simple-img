@@ -7,11 +7,3 @@ exports[`SimpleImageProvider should render correctly 1`] = `
 `;
 
 exports[`SimpleImageProvider when preloadImage called should catch error failed 1`] = `[Error: 💩 Fetch image failed with target {} and error message TypeError: Cannot read property 'src' of undefined]`;
-
-exports[`withImagesObserved should render correctly 1`] = `
-<div>
-  Test
-</div>
-`;
-
-exports[`withImagesObserved when preloadImage called should catch error failed 1`] = `[Error: 💩 Fetch image failed with target {} and error message TypeError: Cannot read property 'src' of undefined]`;
