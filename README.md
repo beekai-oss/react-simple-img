@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/bluebill1049/react-simple-img/master/example/logo.png" alt="Screenshots" />
+    <img src="https://raw.githubusercontent.com/bluebill1049/react-simple-img/feature/rename-refact-components/example/logo.jpg" alt="Logo" />
 </p>
 
 ### Still under development
