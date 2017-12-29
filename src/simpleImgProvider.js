@@ -1,7 +1,8 @@
 // @flow
 import React from 'react';
 import PropTypes from 'prop-types';
-import type { Context } from './image';
+import type { Context } from './simpleImg';
+import filterImgSrc from './logic/filterSrcset';
 
 export const APPEND_IMAGE_REF = '__ProgresssiveImagesAppendImageRef__';
 export const REMOVE_IMAGE_REF = '__ProgresssiveImagesRemoveImageRef__';
@@ -25,16 +26,17 @@ type Config = {
 
 const defaultConfig = {
   rootMargin: '20px 0px',
-  threshold: [0.5],
+  threshold: [0.25, 0.5, 0.75],
 };
 
-export default function withImagesObserved(WrappedComponent: any, config: Config = defaultConfig) {
+export default function SimpleImgProvider(WrappedComponent: any, config: Config = defaultConfig) {
   return class extends React.Component<{}, State> {
     static childContextTypes: Context = contextTypes;
 
     constructor(props: any) {
       super(props);
       /* eslint-disable */
+      if (!window.IntersectionObserver) require('intersection-observer');
       // $FlowIgnoreLine:
       this.observer = new IntersectionObserver(this.onIntersection, config);
       /* eslint-enable */
@@ -53,14 +55,12 @@ export default function withImagesObserved(WrappedComponent: any, config: Config
       };
     }
 
-    componentDidMount() {
-      /* eslint-disable */
-      if (!window.IntersectionObserver) require('intersection-observer');
-      /* eslint-enable */
-    }
-
     onIntersection = (entries: Array<{ intersectionRatio: number, target: HTMLElement }>) =>
-      entries.forEach(({ intersectionRatio, target }) => intersectionRatio > 0 && this.preloadImage(target));
+      entries.forEach(({ intersectionRatio, target }) => {
+        if (intersectionRatio > 0) {
+          this.preloadImage(target);
+        }
+      });
 
     appendImageRef = (image: HTMLElement) => {
       this.observer.observe(image);
@@ -71,9 +71,12 @@ export default function withImagesObserved(WrappedComponent: any, config: Config
 
     removeImageRef = (image: HTMLElement) =>
       this.setState((previousState) => {
-        const willMountImages = previousState.willMountImages.filter(loadedImage => loadedImage !== image);
+        const filterImages = images => images.filter(loadedImage => loadedImage !== image);
+        const willMountImages = filterImages(previousState.willMountImages);
+        const mountedImages = filterImages(this.state.mountedImages);
+
         return {
-          ...(!willMountImages.length ? { mountedImages: [] } : null),
+          mountedImages,
           willMountImages,
         };
       });
@@ -82,13 +85,10 @@ export default function withImagesObserved(WrappedComponent: any, config: Config
 
     preloadImage = async (target: HTMLElement) => {
       try {
-        const imageSrc = target.dataset.src;
-
         // Stop watching and load the image
         // $FlowIgnoreLine:
         this.observer.unobserve(target);
-
-        await this.fetchImage(imageSrc);
+        await this.fetchImage(filterImgSrc(target));
       } catch (e) {
         throw new Error(`💩 Fetch image failed with target ${JSON.stringify(target, null, 2)} and error message ${e}`);
       }
@@ -98,9 +98,7 @@ export default function withImagesObserved(WrappedComponent: any, config: Config
 
     fetchImage = (imageSrc: string) =>
       new Promise((resolve, error) => {
-        /* eslint-disable */
-        const image = new Image();
-        /* eslint-enable */
+        const image = new Image(); // eslint-disable-line no-undef
         image.src = imageSrc;
         image.onload = resolve;
         image.onerror = error;

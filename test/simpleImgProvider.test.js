@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
-import withImagesObserved from '../src/withImagesObserved';
+import SimpleImgProvider from '../src/simpleImgProvider';
 
 const TestComponent = () => <div>Test</div>;
 const IntersectionObserverSpy = jest.fn();
@@ -11,14 +11,14 @@ let IntersectionObserver;
 let Component;
 let tree;
 
-describe('withImagesObserved', () => {
+describe('SimpleImgProvider', () => {
   beforeEach(() => {
     jest.resetAllMocks();
     IntersectionObserver = global.IntersectionObserver;
     global.IntersectionObserver = IntersectionObserverSpy;
     global.IntersectionObserver.prototype.observe = observeSpy;
     global.IntersectionObserver.prototype.unobserve = unobserveSpy;
-    Component = withImagesObserved(TestComponent);
+    Component = SimpleImgProvider(TestComponent);
     tree = shallow(<Component />);
   });
 
@@ -55,10 +55,10 @@ describe('withImagesObserved', () => {
   describe('when all will mount images removed', () => {
     it('should remove image and reset mounted images', () => {
       tree.setState({
-        willMountImages: ['image'],
+        willMountImages: ['image1'],
         mountedImages: ['image1'],
       });
-      tree.instance().removeImageRef('image');
+      tree.instance().removeImageRef('image1');
       expect(tree.state('willMountImages')).toEqual([]);
       expect(tree.state('mountedImages')).toEqual([]);
     });

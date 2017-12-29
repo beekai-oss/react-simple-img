@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import Animate from 'react-simple-animate';
-import { APPEND_IMAGE_REF, IMAGES_LOADED, REMOVE_IMAGE_REF, contextTypes } from './withImagesObserved';
+import { APPEND_IMAGE_REF, IMAGES_LOADED, REMOVE_IMAGE_REF, contextTypes } from './simpleImgProvider';
 
 type State = {
   loaded: boolean,
@@ -18,14 +18,14 @@ type Props = {
   alt: string,
   srcSet: string,
   style: Style,
-  placeHolderBackgroundColor: string,
-  animateDisappearInSecond: number,
-  animateDisappearStyle: Style,
+  backgroundColor: string,
+  disappearInSecond: number,
+  disappearStyle: Style,
 };
 
 export type Context = {
-  __ProgresssiveImagesAppendImageRef__: (HTMLElement) => void,
-  __ProgresssiveImagesRemoveImageRef__: (HTMLElement) => void,
+  __ProgresssiveImagesAppendImageRef__: HTMLElement => void,
+  __ProgresssiveImagesRemoveImageRef__: HTMLElement => void,
   __ProgresssiveImagesLoaded__: Array<HTMLElement>,
 };
 
@@ -42,7 +42,7 @@ const defaultDisappearStyle = { opacity: 0 };
 const defaultDisappearInSecond = 0.5;
 const onCompleteStyle = { display: 'none' };
 
-export default class Image extends React.Component<Props, State> {
+export default class SimpleImg extends React.Component<Props, State> {
   static contextTypes = contextTypes;
 
   state: State = {
@@ -54,18 +54,50 @@ export default class Image extends React.Component<Props, State> {
   }
 
   componentWillReceiveProps(nextProps: Props, nextContext: Context) {
-    if (!this.element || this.state.loaded || !nextContext[IMAGES_LOADED].find(element => this.element === element)) {
-      return;
+    if (!this.element || this.state.loaded) return;
+
+    if (nextContext[IMAGES_LOADED].find(element => this.element === element)) {
+      this.setState({
+        loaded: true,
+      });
+
+      if (this.element) nextContext[REMOVE_IMAGE_REF](this.element);
     }
+  }
 
-    this.setState({
-      loaded: true,
-    });
-
-    if (this.element) nextContext[REMOVE_IMAGE_REF](this.element);
+  shouldComponentUpdate(
+    {
+      src,
+      placeHolderSrc,
+      className,
+      width,
+      height,
+      alt,
+      srcSet,
+      style,
+      placeHolderBackgroundColor,
+      animateDisappearInSecond,
+      animateDisappearStyle,
+    }: Props,
+    { loaded }: State,
+  ) {
+    return (
+      this.state.loaded !== loaded || this.props.src !== src ||
+      this.props.placeHolderSrc !== placeHolderSrc ||
+      this.props.className !== className ||
+      this.props.width !== width ||
+      this.props.height !== height ||
+      this.props.alt !== alt ||
+      this.props.srcSet !== srcSet ||
+      this.props.style !== style ||
+      this.props.backgroundColor !== placeHolderBackgroundColor ||
+      this.props.disappearInSecond !== animateDisappearInSecond ||
+      this.props.disappearStyle !== animateDisappearStyle
+    );
   }
 
   componentWillUnmount() {
+    if (this.element) this.context[REMOVE_IMAGE_REF](this.element);
     clearTimeout(this.timer);
     this.timer = null;
   }
@@ -95,10 +127,7 @@ export default class Image extends React.Component<Props, State> {
     };
 
     return (
-      <span
-        style={rootStyle}
-        className={className}
-      >
+      <span style={rootStyle} className={className}>
         <img
           {...{ width, height, style, srcSet }}
           alt={alt}

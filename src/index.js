@@ -1,7 +1,7 @@
-import withImagesObserved from './withImagesObserved';
-import Image from './image';
+import SimpleImgProvider from './simpleImgProvider';
+import SimpleImg from './simpleImg';
 
 export {
-  withImagesObserved,
-  Image,
+  SimpleImgProvider,
+  SimpleImg,
 };

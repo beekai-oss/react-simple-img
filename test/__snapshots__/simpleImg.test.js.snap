@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Image should render correctly 1`] = `
+exports[`SimpleImg should render correctly 1`] = `
 <span
   className="className"
   style={
@@ -51,7 +51,7 @@ exports[`Image should render correctly 1`] = `
 </span>
 `;
 
-exports[`Image should render only span when place holder src is not supplied 1`] = `
+exports[`SimpleImg should render only span when place holder src is not supplied 1`] = `
 <span
   className="className"
   style={

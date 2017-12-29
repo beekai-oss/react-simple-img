@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`filterImgSrc should produce the correct image path 1`] = `"test.jpg"`;
+
+exports[`findClosestDpr should find the closest dpr 1`] = `
+Object {
+  "dpr": 1.8,
+}
+`;
