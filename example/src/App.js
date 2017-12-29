@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Logo from './logo.jpg';
 import svg1 from './wallpapers/Isles.svg';
 import svg2 from './wallpapers/Lake.svg';
 import svg3 from './wallpapers/Mountain-Range.svg';
@@ -41,9 +41,8 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React Lazy Load Images</h1>
-          <p><span role="img" aria-label="glass">🍸</span> Scroll slowly to view the transition and image lazy load</p>
+          <SimpleImg src={Logo} className="App-logo" alt="logo" backgroundColor="white" />
+          <p style={{margin: '0 20px', fontSize: '12.5px'}}><span role="img" aria-label="glass">🍸</span> Scroll to view image lazy load with transition</p>
         </header>
         <div className="App-container">
           {images.map((image, i) => <SimpleImg
@@ -51,7 +50,7 @@ class App extends Component {
             key={i}
             className="App-images"
             placeHolderSrc={image.svg}
-            animateDisappearInSecond={2.5}
+            disappearInSecond={2.5}
             src={image.img}
             style={{ display: 'block' }}
             height={500}

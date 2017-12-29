@@ -1,10 +1,10 @@
 <p align="center">
-    <img width="675" src="https://raw.githubusercontent.com/bluebill1049/react-simple-img/master/example/logo.jpg" alt="Logo" />
+    <img width="675" src="https://raw.githubusercontent.com/bluebill1049/react-simple-img/master/example/src/logo.jpg" alt="Logo" />
 </p>
 - Still under development
 
-`yarn add react-simple-img@0.0.1-beta.1`
-`npm i react-simple-img@0.0.1-beta.1`
+`yarn add react-simple-img@0.0.1-beta.8`
+`npm i react-simple-img@0.0.1-beta.8`
 
 [![npm version](https://img.shields.io/npm/v/react-simple-img.svg?style=flat-square)](https://www.npmjs.com/package/react-simple-img) [![npm downloads](https://img.shields.io/npm/dm/react-simple-img.svg?style=flat-square)](https://www.npmjs.com/package/react-simple-img) [![npm](https://img.shields.io/npm/dt/react-simple-img.svg?style=flat-square)](https://www.npmjs.com/package/react-simple-img) [![npm](https://img.shields.io/npm/l/react-simple-img.svg?style=flat-square)](https://www.npmjs.com/package/react-lazyload-image)
 
@@ -100,7 +100,6 @@ This React component working similar with standard `img` tag and with the follow
 | `placeHolderSrc` | string |  | Placeholder image source (svg, jpg, png...) |
 | `width` | number |  | image width apply to original image and placeholder |
 | `height` | number |  | image height apply to original image and placeholder |
-| `style` | object |  | only applied to large image |
 | `backgroundColor` | string |  | apply color style to the placeholder  |
 | `disappearInSecond` | string |  | animation duration for placeholder to disappear  |
 | `disappearStyle` | object |  | style applied to make placeholder disappear (default to fade out as `{opacity: 0}`)  |

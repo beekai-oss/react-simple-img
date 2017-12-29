@@ -17,7 +17,6 @@ type Props = {
   height: number,
   alt: string,
   srcSet: string,
-  style: Style,
   backgroundColor: string,
   disappearInSecond: number,
   disappearStyle: Style,
@@ -33,10 +32,12 @@ const commonStyle = {
   position: 'absolute',
   top: 0,
   left: 0,
+  height: '100%',
 };
 const rootStyle = {
   position: 'relative',
   overflow: 'hidden',
+  display: 'flex',
 };
 const defaultDisappearStyle = { opacity: 0 };
 const defaultDisappearInSecond = 0.5;
@@ -74,25 +75,24 @@ export default class SimpleImg extends React.Component<Props, State> {
       height,
       alt,
       srcSet,
-      style,
-      placeHolderBackgroundColor,
-      animateDisappearInSecond,
-      animateDisappearStyle,
+      backgroundColor,
+      disappearInSecond,
+      disappearStyle,
     }: Props,
     { loaded }: State,
   ) {
     return (
-      this.state.loaded !== loaded || this.props.src !== src ||
+      this.state.loaded !== loaded ||
+      this.props.src !== src ||
       this.props.placeHolderSrc !== placeHolderSrc ||
       this.props.className !== className ||
       this.props.width !== width ||
       this.props.height !== height ||
       this.props.alt !== alt ||
       this.props.srcSet !== srcSet ||
-      this.props.style !== style ||
-      this.props.backgroundColor !== placeHolderBackgroundColor ||
-      this.props.disappearInSecond !== animateDisappearInSecond ||
-      this.props.disappearStyle !== animateDisappearStyle
+      this.props.backgroundColor !== backgroundColor ||
+      this.props.disappearInSecond !== disappearInSecond ||
+      this.props.disappearStyle !== disappearStyle
     );
   }
 
@@ -110,44 +110,57 @@ export default class SimpleImg extends React.Component<Props, State> {
       src,
       placeHolderSrc,
       className,
-      style,
       width,
       height,
       alt,
       srcSet,
-      animateDisappearInSecond,
-      animateDisappearStyle,
-      placeHolderBackgroundColor,
+      disappearInSecond,
+      disappearStyle,
+      backgroundColor,
     } = this.props;
     const { loaded } = this.state;
-    const disappearInSecond = animateDisappearInSecond || defaultDisappearInSecond;
+    const durationSeconds = disappearInSecond || defaultDisappearInSecond;
     const inlineStyle = {
       ...commonStyle,
-      background: placeHolderBackgroundColor,
+      background: backgroundColor,
     };
+    const endStyle = disappearStyle || defaultDisappearStyle;
 
     return (
       <span style={rootStyle} className={className}>
         <img
-          {...{ width, height, style, srcSet }}
+          {...{ width, height, srcSet }}
           alt={alt}
           ref={(element) => {
             this.element = element;
           }}
           src={loaded ? src : placeHolderSrc}
           data-src={src}
+          style={{
+            ...(!placeHolderSrc && !loaded ? { visibility: 'hidden' } : null),
+          }}
         />
         <Animate
           startAnimation={loaded}
-          durationSeconds={disappearInSecond}
-          endStyle={animateDisappearStyle || defaultDisappearStyle}
+          durationSeconds={durationSeconds}
+          endStyle={{
+            ...inlineStyle,
+            ...endStyle,
+            ...(backgroundColor
+              ? {
+                width: '100%',
+              }
+              : null),
+          }}
           onCompleteStyle={onCompleteStyle}
+          {...(backgroundColor
+            ? {
+              startStyle: inlineStyle,
+              width: '100%',
+            }
+            : null)}
         >
-          {placeHolderSrc ? (
-            <img {...{ width, height }} style={inlineStyle} alt={alt} src={placeHolderSrc} />
-          ) : (
-            <span style={inlineStyle} />
-          )}
+          {placeHolderSrc && <img {...{ width, height }} style={inlineStyle} alt={alt} src={placeHolderSrc} />}
         </Animate>
       </span>
     );

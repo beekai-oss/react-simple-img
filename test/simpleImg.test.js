@@ -14,9 +14,9 @@ const props = {
   height: 1000,
   alt: 'alt',
   srcSet: 'srcSet',
-  placeHolderBackgroundColor: 'red',
-  animateDisappearInSecond: 1,
-  animateDisappearStyle: { opacity: 0 },
+  backgroundColor: 'red',
+  disappearInSecond: 1,
+  disappearStyle: { opacity: 0 },
 };
 const appendImage = jest.fn();
 const imageLoaded = jest.fn();

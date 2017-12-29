@@ -5,6 +5,7 @@ exports[`SimpleImg should render correctly 1`] = `
   className="className"
   style={
     Object {
+      "display": "flex",
       "overflow": "hidden",
       "position": "relative",
     }
@@ -16,14 +17,20 @@ exports[`SimpleImg should render correctly 1`] = `
     height={1000}
     src="placeHolderSrc"
     srcSet="srcSet"
-    style={undefined}
+    style={Object {}}
     width={100}
   />
   <Animate
     durationSeconds={1}
     endStyle={
       Object {
+        "background": "red",
+        "height": "100%",
+        "left": 0,
         "opacity": 0,
+        "position": "absolute",
+        "top": 0,
+        "width": "100%",
       }
     }
     onCompleteStyle={
@@ -32,6 +39,16 @@ exports[`SimpleImg should render correctly 1`] = `
       }
     }
     startAnimation={false}
+    startStyle={
+      Object {
+        "background": "red",
+        "height": "100%",
+        "left": 0,
+        "position": "absolute",
+        "top": 0,
+      }
+    }
+    width="100%"
   >
     <img
       alt="alt"
@@ -40,6 +57,7 @@ exports[`SimpleImg should render correctly 1`] = `
       style={
         Object {
           "background": "red",
+          "height": "100%",
           "left": 0,
           "position": "absolute",
           "top": 0,
@@ -56,6 +74,7 @@ exports[`SimpleImg should render only span when place holder src is not supplied
   className="className"
   style={
     Object {
+      "display": "flex",
       "overflow": "hidden",
       "position": "relative",
     }
@@ -67,14 +86,24 @@ exports[`SimpleImg should render only span when place holder src is not supplied
     height={1000}
     src={undefined}
     srcSet="srcSet"
-    style={undefined}
+    style={
+      Object {
+        "visibility": "hidden",
+      }
+    }
     width={100}
   />
   <Animate
     durationSeconds={1}
     endStyle={
       Object {
+        "background": "red",
+        "height": "100%",
+        "left": 0,
         "opacity": 0,
+        "position": "absolute",
+        "top": 0,
+        "width": "100%",
       }
     }
     onCompleteStyle={
@@ -83,17 +112,16 @@ exports[`SimpleImg should render only span when place holder src is not supplied
       }
     }
     startAnimation={false}
-  >
-    <span
-      style={
-        Object {
-          "background": "red",
-          "left": 0,
-          "position": "absolute",
-          "top": 0,
-        }
+    startStyle={
+      Object {
+        "background": "red",
+        "height": "100%",
+        "left": 0,
+        "position": "absolute",
+        "top": 0,
       }
-    />
-  </Animate>
+    }
+    width="100%"
+  />
 </span>
 `;
