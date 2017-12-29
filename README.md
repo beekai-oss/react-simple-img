@@ -1,7 +1,8 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/bluebill1049/react-simple-img/feature/rename-refact-components/example/logo.jpg" alt="Logo" />
+    <img width="675" src="https://raw.githubusercontent.com/bluebill1049/react-simple-img/feature/rename-refact-components/example/logo.jpg" alt="Logo" />
 </p>
-### Still under development
+- Still under development
+
 `yarn add react-simple-img@0.0.1-beta.1`
 `npm i react-simple-img@0.0.1-beta.1`
 
