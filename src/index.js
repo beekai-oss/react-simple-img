@@ -1,7 +1,7 @@
-import SimpleImageProvider from './simpleImageProvider';
-import SimpleImage from './simpleImage';
+import SimpleImgProvider from './simpleImgProvider';
+import SimpleImg from './simpleImg';
 
 export {
-  SimpleImageProvider,
-  SimpleImage,
+  SimpleImgProvider,
+  SimpleImg,
 };

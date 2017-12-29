@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import PropTypes from 'prop-types';
-import type { Context } from './simpleImage';
+import type { Context } from './simpleImg';
 import filterImgSrc from './logic/filterSrcset';
 
 export const APPEND_IMAGE_REF = '__ProgresssiveImagesAppendImageRef__';
@@ -29,7 +29,7 @@ const defaultConfig = {
   threshold: [0.25, 0.5, 0.75],
 };
 
-export default function SimpleImageProvider(WrappedComponent: any, config: Config = defaultConfig) {
+export default function SimpleImgProvider(WrappedComponent: any, config: Config = defaultConfig) {
   return class extends React.Component<{}, State> {
     static childContextTypes: Context = contextTypes;
 

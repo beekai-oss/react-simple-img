@@ -1,7 +1,7 @@
 import renderer from 'react-test-renderer';
-import SimpleImage from '../src/simpleImage';
+import SimpleImg from '../src/simpleImg';
 import { shallow, mount } from 'enzyme';
-import { APPEND_IMAGE_REF, IMAGES_LOADED, REMOVE_IMAGE_REF } from '../src/simpleImageProvider';
+import { APPEND_IMAGE_REF, IMAGES_LOADED, REMOVE_IMAGE_REF } from '../src/simpleImgProvider';
 import React from 'react';
 
 jest.mock('react-simple-animate', () => 'Animate');
@@ -27,30 +27,30 @@ const context = {
   [REMOVE_IMAGE_REF]: removeImage,
 };
 
-describe('SimpleImage', () => {
+describe('SimpleImg', () => {
   beforeEach(() => {
     jest.resetAllMocks();
   });
 
   it('should render correctly', () => {
-    const tree = renderer.create(<SimpleImage {...props} />);
+    const tree = renderer.create(<SimpleImg {...props} />);
     expect(tree).toMatchSnapshot();
   });
 
   it('should render only span when place holder src is not supplied', () => {
     const { placeHolderSrc, ...omitProps } = props;
-    const tree = renderer.create(<SimpleImage {...omitProps} />);
+    const tree = renderer.create(<SimpleImg {...omitProps} />);
     expect(tree).toMatchSnapshot();
   });
 
   it('should append image ref when image mounted', () => {
-    mount(<SimpleImage {...props} />, { context });
+    mount(<SimpleImg {...props} />, { context });
     expect(appendImage).toHaveBeenCalled();
   });
 
   describe('when first time image is loaded', () => {
     it('should set state as loaded and remove the image from the stack', () => {
-      const tree = shallow(<SimpleImage {...props} />, { context: { ...context, [IMAGES_LOADED]: ['test'] } });
+      const tree = shallow(<SimpleImg {...props} />, { context: { ...context, [IMAGES_LOADED]: ['test'] } });
       tree.instance().element = 'test';
       tree.setProps({});
       expect(tree.state('loaded')).toBeTruthy();

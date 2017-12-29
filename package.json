@@ -1,6 +1,6 @@
 {
   "name": "react-simple-img",
-  "version": "0.0.1",
+  "version": "0.0.1-beta.3",
   "description": "react simple img",
   "main": "lib/index.js",
   "keywords": [

@@ -1,11 +1,11 @@
-# React Lazy Load Images
+# React Simple Img
 ### Still under development
-`yarn add react-lazyload-images@1.0.1-beta-2`
-`npm i react-lazyload-images@1.0.1-beta-2`
+`yarn add react-simple-img@0.0.1-beta.1`
+`npm i react-simple-img@0.0.1-beta.1`
 
-[![npm version](https://img.shields.io/npm/v/react-lazyload-images.svg?style=flat-square)](https://www.npmjs.com/package/react-lazyload-images) [![npm downloads](https://img.shields.io/npm/dm/react-lazyload-images.svg?style=flat-square)](https://www.npmjs.com/package/react-lazyload-images) [![npm](https://img.shields.io/npm/dt/react-lazyload-images.svg?style=flat-square)](https://www.npmjs.com/package/react-lazyload-images) [![npm](https://img.shields.io/npm/l/react-lazyload-images.svg?style=flat-square)](https://www.npmjs.com/package/react-lazyload-image)
+[![npm version](https://img.shields.io/npm/v/react-simple-img.svg?style=flat-square)](https://www.npmjs.com/package/react-simple-img) [![npm downloads](https://img.shields.io/npm/dm/react-simple-img.svg?style=flat-square)](https://www.npmjs.com/package/react-simple-img) [![npm](https://img.shields.io/npm/dt/react-simple-img.svg?style=flat-square)](https://www.npmjs.com/package/react-simple-img) [![npm](https://img.shields.io/npm/l/react-simple-img.svg?style=flat-square)](https://www.npmjs.com/package/react-lazyload-image)
 
-> **Make image load simple and web page load faster** :clap:
+> **Make image lazy load simple and faster page load** :clap:
 
 Features:
 
@@ -18,9 +18,9 @@ Features:
 
 ## Install
 
-    $ yarn add react-lazyload-images
+    $ yarn add react-simple-img
     or
-    $ npm install react-lazyload-images -S
+    $ npm install react-simple-img -S
 
 ## Example
 
@@ -34,19 +34,23 @@ Screenshots of the example app below
 
 ## Quick start
     import react from 'react';
-    import { Image, withImagesObserved } from './react-lazyLoad-images';
+    import { SimpleImg, SimpleImgProvider } from './react-lazyLoad-images';
 
-    function YourComponent(props) {
-	    return <div>
-            <Image
-                className="class"
-                placeHolderSrc="http://svg.com"
-                src="http://image.com"
-                />
-        </div>;
-    }
+    // example with svg or bitmap placeholder example
+    const App = () => <div>
+        <SimpleImg
+            placeHolderSrc="your placeholder svg or image path"
+            src="your image path"
+            />
+    </div>;
 
-    export default withImagesObserved(YourComponent);
+    // place holder background color example
+    const BackgroundColor = () => <SimpleImg
+       backgroundColor="linear-gradient(rgb(30, 87, 153) 0%, rgb(125, 185, 232) 100%)"
+       src="your image path"
+    />;
+
+    export default SimpleImgProvider(App); // only need to apply once at your root
 
 ## API
 
@@ -93,9 +97,9 @@ This React component working similar with standard `img` tag and with the follow
 | `width` | number |  | image width apply to original image and placeholder |
 | `height` | number |  | image height apply to original image and placeholder |
 | `style` | object |  | only applied to large image |
-| `placeHolderBackgroundColor` | string |  | apply color style to the placeholder  |
-| `animateDisappearInSecond` | string |  | animation duration for placeholder to disappear  |
-| `animateDisappearStyle` | object |  | style applied to make placeholder disappear (default to fade out as `{opacity: 0}`)  |
+| `backgroundColor` | string |  | apply color style to the placeholder  |
+| `disappearInSecond` | string |  | animation duration for placeholder to disappear  |
+| `disappearStyle` | object |  | style applied to make placeholder disappear (default to fade out as `{opacity: 0}`)  |
 | `className` | string |  |  |
 | `alt` | string |  | |
 | `srcSet` | string |  | |

@@ -10,7 +10,7 @@ import image2 from './wallpapers/Lake.jpg';
 import image3 from './wallpapers/Mountain-Range.jpg';
 import image4 from './wallpapers/Pink-Forest.jpg';
 import image5 from './wallpapers/Snow.jpg';
-import { SimpleImage, SimpleImageProvider } from './src/index';
+import { SimpleImg, SimpleImgProvider } from 'react-simple-img';
 import './App.css';
 
 const images = [
@@ -46,7 +46,7 @@ class App extends Component {
           <p><span role="img" aria-label="glass">🍸</span> Scroll slowly to view the transition and image lazy load</p>
         </header>
         <div className="App-container">
-          {images.map((image, i) => <SimpleImage
+          {images.map((image, i) => <SimpleImg
             alt="whatever"
             key={i}
             className="App-images"
@@ -62,7 +62,7 @@ class App extends Component {
   }
 }
 
-export default SimpleImageProvider(App, {
+export default SimpleImgProvider(App, {
   rootMargin: '20px 0px',
   threshold: [0.25, 0.5, 0.75],
 });

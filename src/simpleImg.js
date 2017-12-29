@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import Animate from 'react-simple-animate';
-import { APPEND_IMAGE_REF, IMAGES_LOADED, REMOVE_IMAGE_REF, contextTypes } from './simpleImageProvider';
+import { APPEND_IMAGE_REF, IMAGES_LOADED, REMOVE_IMAGE_REF, contextTypes } from './simpleImgProvider';
 
 type State = {
   loaded: boolean,
@@ -18,9 +18,9 @@ type Props = {
   alt: string,
   srcSet: string,
   style: Style,
-  placeHolderBackgroundColor: string,
-  animateDisappearInSecond: number,
-  animateDisappearStyle: Style,
+  backgroundColor: string,
+  disappearInSecond: number,
+  disappearStyle: Style,
 };
 
 export type Context = {
@@ -42,7 +42,7 @@ const defaultDisappearStyle = { opacity: 0 };
 const defaultDisappearInSecond = 0.5;
 const onCompleteStyle = { display: 'none' };
 
-export default class Image extends React.Component<Props, State> {
+export default class SimpleImg extends React.Component<Props, State> {
   static contextTypes = contextTypes;
 
   state: State = {
@@ -61,7 +61,7 @@ export default class Image extends React.Component<Props, State> {
         loaded: true,
       });
 
-      nextContext[REMOVE_IMAGE_REF](this.element);
+      if (this.element) nextContext[REMOVE_IMAGE_REF](this.element);
     }
   }
 
@@ -90,9 +90,9 @@ export default class Image extends React.Component<Props, State> {
       this.props.alt !== alt ||
       this.props.srcSet !== srcSet ||
       this.props.style !== style ||
-      this.props.placeHolderBackgroundColor !== placeHolderBackgroundColor ||
-      this.props.animateDisappearInSecond !== animateDisappearInSecond ||
-      this.props.animateDisappearStyle !== animateDisappearStyle
+      this.props.backgroundColor !== placeHolderBackgroundColor ||
+      this.props.disappearInSecond !== animateDisappearInSecond ||
+      this.props.disappearStyle !== animateDisappearStyle
     );
   }
 
@@ -125,15 +125,13 @@ export default class Image extends React.Component<Props, State> {
       ...commonStyle,
       background: placeHolderBackgroundColor,
     };
-    // console.log('rendering...', loaded);
-    // console.log('src...', src);
 
     return (
       <span style={rootStyle} className={className}>
         <img
           {...{ width, height, style, srcSet }}
           alt={alt}
-          ref={element => {
+          ref={(element) => {
             this.element = element;
           }}
           src={loaded ? src : placeHolderSrc}
