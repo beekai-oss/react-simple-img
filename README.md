@@ -1,4 +1,4 @@
-# React Simple Img
+# 🏞 React Simple Img
 ### Still under development
 `yarn add react-simple-img@0.0.1-beta.1`
 `npm i react-simple-img@0.0.1-beta.1`
@@ -41,6 +41,7 @@ Screenshots of the example app below
         <SimpleImg
             placeHolderSrc="your placeholder svg or image path"
             src="your image path"
+            srcset="your image srcset"
             />
     </div>;
 
