@@ -33,10 +33,8 @@ Navigate into `example` folder and install
     or
     $ npm install && npm run start
 
-Screenshots of the example app below
-
 <p align="center">
-    <img width="300" src="https://raw.githubusercontent.com/bluebill1049/react-simple-img/feature/include-example-gif/example/src/example.gif" alt="Logo" />
+    <img width="300" src="https://raw.githubusercontent.com/bluebill1049/react-simple-img/master/example/src/example.gif" alt="Logo" />
 </p>
 
 ## Quick start
