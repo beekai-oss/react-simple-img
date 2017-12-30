@@ -71,11 +71,13 @@ To generate svg placeholder, please install https://github.com/technopagan/sqip 
 
 This high order component will connect all your Image component to observe images to be loaded.
 
+**IMPORTANT**: you should apply this to your root component and only once, this will enable globally for all `SimpleImg`
+
 Arguments
 
-* [`Component`]: react component
+* [Component]: react component
 
-* [`config`](`Object`): this argument is optional
+* [config](`Object`): this argument is optional
 
 
      - [root]: The element that is used as the viewport for checking
