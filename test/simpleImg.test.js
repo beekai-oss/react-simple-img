@@ -9,7 +9,8 @@ jest.mock('react-simple-animate', () => 'Animate');
 const props = {
   src: 'src',
   placeHolderSrc: 'placeHolderSrc',
-  className: 'className',
+  imgClassName: 'img className',
+  wrapperClassName: 'wrapper className',
   width: 100,
   height: 1000,
   alt: 'alt',

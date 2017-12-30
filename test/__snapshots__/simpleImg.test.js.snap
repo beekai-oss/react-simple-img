@@ -2,7 +2,7 @@
 
 exports[`SimpleImg should render correctly 1`] = `
 <span
-  className="className"
+  className="wrapper className"
   style={
     Object {
       "display": "flex",
@@ -13,6 +13,7 @@ exports[`SimpleImg should render correctly 1`] = `
 >
   <img
     alt="alt"
+    className="img className"
     data-src="src"
     height={1000}
     src="placeHolderSrc"
@@ -46,12 +47,13 @@ exports[`SimpleImg should render correctly 1`] = `
         "left": 0,
         "position": "absolute",
         "top": 0,
+        "width": "100%",
       }
     }
-    width="100%"
   >
     <img
       alt="alt"
+      className="img className"
       height={1000}
       src="placeHolderSrc"
       style={
@@ -71,7 +73,7 @@ exports[`SimpleImg should render correctly 1`] = `
 
 exports[`SimpleImg should render only span when place holder src is not supplied 1`] = `
 <span
-  className="className"
+  className="wrapper className"
   style={
     Object {
       "display": "flex",
@@ -82,6 +84,7 @@ exports[`SimpleImg should render only span when place holder src is not supplied
 >
   <img
     alt="alt"
+    className="img className"
     data-src="src"
     height={1000}
     src={undefined}
@@ -119,9 +122,9 @@ exports[`SimpleImg should render only span when place holder src is not supplied
         "left": 0,
         "position": "absolute",
         "top": 0,
+        "width": "100%",
       }
     }
-    width="100%"
   />
 </span>
 `;
