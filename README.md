@@ -75,9 +75,9 @@ This high order component will connect all your Image component to observe image
 
 Arguments
 
-* [Component]: react component
+* [Component]: (React Component) react component
 
-* [config](`Object`): this argument is optional
+* [config]: (Object) this argument is optional
 
 
      - [root]: The element that is used as the viewport for checking
