@@ -34,7 +34,7 @@ Navigate into `example` folder and install
     or
     $ npm install && npm run start
 
-### Tip for the following effect
+**Tip for the following effect**
 
 To generate svg placeholder, please install https://github.com/technopagan/sqip to generate placeholders.
 
