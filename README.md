@@ -1,9 +1,6 @@
 <p align="center">
     <img width="675" src="https://raw.githubusercontent.com/bluebill1049/react-simple-img/master/example/src/logo.jpg" alt="Logo" />
 </p>
-- Still under development
-
-`yarn add react-simple-img@0.0.1-beta.8` `npm i react-simple-img@0.0.1-beta.8`
 
 [![npm version](https://img.shields.io/npm/v/react-simple-img.svg?style=flat-square)](https://www.npmjs.com/package/react-simple-img)
 [![npm downloads](https://img.shields.io/npm/dm/react-simple-img.svg?style=flat-square)](https://www.npmjs.com/package/react-simple-img)
@@ -14,18 +11,20 @@
 
 Features:
 
-* Boost your web app performance due to large images
-* Make image lazy load easy
-* Use `IntersectionObserver` API to welcome the future web
+* Boost your web pages performance due to large images
+* Make images lazy load easy
+* Support responsive images with `srcset`
+* Use `IntersectionObserver` API
+* Support place holder for elegant image transition
 * Support old browsers
 * Super easy to use
 * Tiny size
 
 ## Install
 
-    $ yarn add react-simple-img
+    $ yarn add react-simple-img@0.0.1-beta.8
     or
-    $ npm install react-simple-img -S
+    $ npm install react-simple-img@0.0.1-beta.8 -S
 
 ## Example
 
