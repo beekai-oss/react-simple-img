@@ -12,7 +12,8 @@ type Style = { [string]: number | string };
 type Props = {
   src: string,
   placeHolderSrc: string,
-  className: string,
+  wrapperClassName: string,
+  imgClassName: string,
   width: number,
   height: number,
   alt: string,
@@ -42,6 +43,8 @@ const rootStyle = {
 const defaultDisappearStyle = { opacity: 0 };
 const defaultDisappearInSecond = 0.5;
 const onCompleteStyle = { display: 'none' };
+const fullWidthStyle = { width: '100%' };
+const hiddenStyle = { visibility: 'hidden' };
 
 export default class SimpleImg extends React.Component<Props, State> {
   static contextTypes = contextTypes;
@@ -70,11 +73,12 @@ export default class SimpleImg extends React.Component<Props, State> {
     {
       src,
       placeHolderSrc,
-      className,
       width,
       height,
       alt,
       srcSet,
+      wrapperClassName,
+      imgClassName,
       backgroundColor,
       disappearInSecond,
       disappearStyle,
@@ -85,7 +89,8 @@ export default class SimpleImg extends React.Component<Props, State> {
       this.state.loaded !== loaded ||
       this.props.src !== src ||
       this.props.placeHolderSrc !== placeHolderSrc ||
-      this.props.className !== className ||
+      this.props.wrapperClassName !== wrapperClassName ||
+      this.props.imgClassName !== imgClassName ||
       this.props.width !== width ||
       this.props.height !== height ||
       this.props.alt !== alt ||
@@ -109,7 +114,8 @@ export default class SimpleImg extends React.Component<Props, State> {
     const {
       src,
       placeHolderSrc,
-      className,
+      imgClassName,
+      wrapperClassName,
       width,
       height,
       alt,
@@ -127,17 +133,18 @@ export default class SimpleImg extends React.Component<Props, State> {
     const endStyle = disappearStyle || defaultDisappearStyle;
 
     return (
-      <span style={rootStyle} className={className}>
+      <span style={rootStyle} className={wrapperClassName}>
         <img
           {...{ width, height, srcSet }}
           alt={alt}
           ref={(element) => {
             this.element = element;
           }}
+          className={imgClassName}
           src={loaded ? src : placeHolderSrc}
           data-src={src}
           style={{
-            ...(!placeHolderSrc && !loaded ? { visibility: 'hidden' } : null),
+            ...(!placeHolderSrc && !loaded ? hiddenStyle : null),
           }}
         />
         <Animate
@@ -147,20 +154,20 @@ export default class SimpleImg extends React.Component<Props, State> {
             ...inlineStyle,
             ...endStyle,
             ...(backgroundColor
-              ? {
-                width: '100%',
-              }
+              ? fullWidthStyle
               : null),
           }}
           onCompleteStyle={onCompleteStyle}
           {...(backgroundColor
             ? {
-              startStyle: inlineStyle,
-              width: '100%',
+              startStyle: {
+                ...inlineStyle,
+                ...fullWidthStyle,
+              },
             }
             : null)}
         >
-          {placeHolderSrc && <img {...{ width, height }} style={inlineStyle} alt={alt} src={placeHolderSrc} />}
+          {placeHolderSrc && <img {...{ width, height }} style={inlineStyle} className={imgClassName} alt={alt} src={placeHolderSrc} />}
         </Animate>
       </span>
     );

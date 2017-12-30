@@ -5112,9 +5112,9 @@ react-simple-animate@^1.7.4:
   version "1.7.4"
   resolved "https://registry.yarnpkg.com/react-simple-animate/-/react-simple-animate-1.7.4.tgz#40389bb7530930a93a658581559a3db7f7fad5ad"
 
-react-simple-img@0.0.1-beta.8:
-  version "0.0.1-beta.8"
-  resolved "https://registry.yarnpkg.com/react-simple-img/-/react-simple-img-0.0.1-beta.8.tgz#4af2a063345f548fce1ff11474a193b78de8df67"
+react-simple-img@0.0.1-beta.9:
+  version "0.0.1-beta.9"
+  resolved "https://registry.yarnpkg.com/react-simple-img/-/react-simple-img-0.0.1-beta.9.tgz#452c0de7d7a81b718720c8b4887e5253f0d81c21"
   dependencies:
     intersection-observer "^0.5.0"
     prop-types "^15.6.0"
