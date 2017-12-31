@@ -67,7 +67,7 @@ To generate svg placeholder, please install https://github.com/technopagan/sqip 
 
 ## API
 
-#### 🔗 `withImagesObserved([Component], [config])`
+#### 🔗 `SimpleImgProvider([Component], [config])`
 
 This high order component will connect all your Image component to observe images to be loaded.
 
@@ -101,7 +101,7 @@ Arguments
        run). A value of 1.0 means that the threshold isn't considered passed
        until every pixel is visible.
 
-### 🔗 `Image`
+### 🔗 `SimpleImg`
 
 Image component working similar with standard `img` tag and with the following props.
 
