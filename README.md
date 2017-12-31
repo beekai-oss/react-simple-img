@@ -22,9 +22,9 @@ Features:
 
 ## Install
 
-    $ yarn add react-simple-img@0.0.1-beta.9
+    $ yarn add react-simple-img@0.0.1-beta.10
     or
-    $ npm install react-simple-img@0.0.1-beta.9 -S
+    $ npm install react-simple-img@0.0.1-beta.10 -S
 
 ## Example
 
@@ -34,9 +34,12 @@ Navigate into `example` folder and install
     or
     $ npm install && npm run start
 
+    
+[Check out the interactive demo.](https://react-simple-img.herokuapp.com/) 😍
+
 **Tip for the following effect**
 
-To generate svg placeholder, please install https://github.com/technopagan/sqip to generate placeholders.
+To generate svg placeholder, please install [SQIP](https://github.com/technopagan/sqip/) to generate placeholders.
 
 <p align="center">
     <img width="300" src="https://raw.githubusercontent.com/bluebill1049/react-simple-img/master/example/src/example.gif" alt="Logo" />

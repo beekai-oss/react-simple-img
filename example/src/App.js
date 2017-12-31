@@ -42,7 +42,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <SimpleImg src={Logo} wrapperClassName="App-logo" alt="logo" backgroundColor="white" />
-          <p style={{margin: '0 20px', fontSize: '12.5px'}}><span role="img" aria-label="glass">🍸</span> Scroll to view image lazy load with transition</p>
+          <p style={{ margin: '0 20px', fontSize: '12.5px' }}><span role="img" aria-label="glass">🍸</span> Scroll to view image lazy load with transition</p>
         </header>
         <div className="App-container">
           {images.map((image, i) => <SimpleImg
