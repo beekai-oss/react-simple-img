@@ -135,14 +135,16 @@ export default class SimpleImg extends React.Component<Props, State> {
     return (
       <span style={rootStyle} className={wrapperClassName}>
         <img
-          {...{ width, height, srcSet }}
+          {...{ width, height }}
           alt={alt}
           ref={(element) => {
             this.element = element;
           }}
           className={imgClassName}
           src={loaded ? src : placeHolderSrc}
+          srcSet={loaded ? srcSet : ''}
           data-src={src}
+          data-srcset={srcSet}
           style={{
             ...(!placeHolderSrc && !loaded ? hiddenStyle : null),
           }}

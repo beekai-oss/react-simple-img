@@ -32,6 +32,7 @@ const defaultConfig = {
 export default function SimpleImgProvider(WrappedComponent: any, config: Config = defaultConfig) {
   return class extends React.Component<{}, State> {
     static childContextTypes: Context = contextTypes;
+    static displayName = `SimpleImgProvider(${WrappedComponent.displayName || WrappedComponent.name || 'Component'})`;
 
     constructor(props: any) {
       super(props);

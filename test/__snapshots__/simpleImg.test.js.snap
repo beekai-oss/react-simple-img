@@ -15,9 +15,10 @@ exports[`SimpleImg should render correctly 1`] = `
     alt="alt"
     className="img className"
     data-src="src"
+    data-srcset="srcSet"
     height={1000}
     src="placeHolderSrc"
-    srcSet="srcSet"
+    srcSet=""
     style={Object {}}
     width={100}
   />
@@ -86,9 +87,10 @@ exports[`SimpleImg should render only span when place holder src is not supplied
     alt="alt"
     className="img className"
     data-src="src"
+    data-srcset="srcSet"
     height={1000}
     src={undefined}
-    srcSet="srcSet"
+    srcSet=""
     style={
       Object {
         "visibility": "hidden",
