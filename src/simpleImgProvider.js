@@ -73,15 +73,11 @@ export default function SimpleImgProvider(
     };
 
     removeImageRef = (image: HTMLElement) =>
-      this.setState(previousState => {
-        const filterImages = images =>
-          images.filter(loadedImage => loadedImage !== image);
-        const mountedImages = filterImages(this.state.mountedImages);
-
-        return {
-          mountedImages,
-        };
-      });
+      this.setState(previousState => ({
+        mountedImages: this.state.mountedImages.filter(
+          loadedImage => loadedImage !== image,
+        ),
+      }));
 
     observer = {};
 
