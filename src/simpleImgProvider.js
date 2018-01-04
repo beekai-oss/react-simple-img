@@ -28,15 +28,10 @@ const defaultConfig = {
   threshold: [0.25, 0.5, 0.75],
 };
 
-export default function SimpleImgProvider(
-  WrappedComponent: any,
-  config: Config = defaultConfig,
-) {
+export default function SimpleImgProvider(WrappedComponent: any, config: Config = defaultConfig) {
   return class extends React.Component<any, State> {
     static childContextTypes: Context = contextTypes;
-    static displayName = `SimpleImgProvider(${WrappedComponent.displayName ||
-      WrappedComponent.name ||
-      'Component'})`;
+    static displayName = `SimpleImgProvider(${WrappedComponent.displayName || WrappedComponent.name || 'Component'})`;
 
     constructor(props: any) {
       super(props);
@@ -59,9 +54,7 @@ export default function SimpleImgProvider(
       };
     }
 
-    onIntersection = (
-      entries: Array<{ intersectionRatio: number, target: HTMLElement }>,
-    ) =>
+    onIntersection = (entries: Array<{ intersectionRatio: number, target: HTMLElement }>) =>
       entries.forEach(({ intersectionRatio, target }) => {
         if (intersectionRatio > 0) {
           this.preloadImage(target);
@@ -74,9 +67,7 @@ export default function SimpleImgProvider(
 
     removeImageRef = (image: HTMLElement) =>
       this.setState({
-        mountedImages: this.state.mountedImages.filter(
-          loadedImage => loadedImage !== image,
-        ),
+        mountedImages: this.state.mountedImages.filter(loadedImage => loadedImage !== image),
       });
 
     observer = {};
@@ -88,13 +79,7 @@ export default function SimpleImgProvider(
         this.observer.unobserve(target);
         await this.fetchImage(filterImgSrc(target));
       } catch (e) {
-        throw new Error(
-          `💩 Fetch image failed with target ${JSON.stringify(
-            target,
-            null,
-            2,
-          )} and error message ${e}`,
-        );
+        throw new Error(`💩 Fetch image failed with target ${JSON.stringify(target, null, 2)} and error message ${e}`);
       }
 
       this.applyImage(target);
