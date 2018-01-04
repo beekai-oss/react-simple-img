@@ -38,8 +38,7 @@ Navigate into `example` folder and install
 
 **Tip for the following effect**
 
-To generate svg placeholder, please install
-[SQIP](https://github.com/technopagan/sqip/) to generate placeholders.
+To generate svg placeholder, please install [SQIP](https://github.com/technopagan/sqip/) to generate placeholders.
 
 <p align="center">
     <img width="300" src="https://raw.githubusercontent.com/bluebill1049/react-simple-img/master/example/src/example.gif" alt="Logo" />
@@ -72,8 +71,7 @@ To generate svg placeholder, please install
 
 #### 🔗 `SimpleImgProvider([Component], [config])`
 
-This high order component will connect all your Image component to observe
-images to be loaded.
+This high order component will connect all your Image component to observe images to be loaded.
 
 Arguments
 
@@ -105,8 +103,7 @@ Arguments
 
 ### 🔗 `SimpleImg`
 
-Image component working similar with standard `img` tag and with the following
-props.
+Image component working similar with standard `img` tag and with the following props.
 
 | Prop                | Type   | Required | Description                                                                         |
 | :------------------ | :----- | :------: | :---------------------------------------------------------------------------------- |
