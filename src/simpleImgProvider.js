@@ -15,7 +15,6 @@ export const contextTypes = {
 
 type State = {
   mountedImages: Array<any>,
-  willMountImages: Array<any>,
 };
 
 type Config = {
@@ -29,10 +28,15 @@ const defaultConfig = {
   threshold: [0.25, 0.5, 0.75],
 };
 
-export default function SimpleImgProvider(WrappedComponent: any, config: Config = defaultConfig) {
-  return class extends React.Component<{}, State> {
+export default function SimpleImgProvider(
+  WrappedComponent: any,
+  config: Config = defaultConfig,
+) {
+  return class extends React.Component<any, State> {
     static childContextTypes: Context = contextTypes;
-    static displayName = `SimpleImgProvider(${WrappedComponent.displayName || WrappedComponent.name || 'Component'})`;
+    static displayName = `SimpleImgProvider(${WrappedComponent.displayName ||
+      WrappedComponent.name ||
+      'Component'})`;
 
     constructor(props: any) {
       super(props);
@@ -45,7 +49,6 @@ export default function SimpleImgProvider(WrappedComponent: any, config: Config 
 
     state: State = {
       mountedImages: [],
-      willMountImages: [],
     };
 
     getChildContext() {
@@ -56,7 +59,9 @@ export default function SimpleImgProvider(WrappedComponent: any, config: Config 
       };
     }
 
-    onIntersection = (entries: Array<{ intersectionRatio: number, target: HTMLElement }>) =>
+    onIntersection = (
+      entries: Array<{ intersectionRatio: number, target: HTMLElement }>,
+    ) =>
       entries.forEach(({ intersectionRatio, target }) => {
         if (intersectionRatio > 0) {
           this.preloadImage(target);
@@ -65,20 +70,16 @@ export default function SimpleImgProvider(WrappedComponent: any, config: Config 
 
     appendImageRef = (image: HTMLElement) => {
       this.observer.observe(image);
-      this.setState(previousState => ({
-        willMountImages: [...previousState.willMountImages, image],
-      }));
     };
 
     removeImageRef = (image: HTMLElement) =>
-      this.setState((previousState) => {
-        const filterImages = images => images.filter(loadedImage => loadedImage !== image);
-        const willMountImages = filterImages(previousState.willMountImages);
+      this.setState(previousState => {
+        const filterImages = images =>
+          images.filter(loadedImage => loadedImage !== image);
         const mountedImages = filterImages(this.state.mountedImages);
 
         return {
           mountedImages,
-          willMountImages,
         };
       });
 
@@ -91,7 +92,13 @@ export default function SimpleImgProvider(WrappedComponent: any, config: Config 
         this.observer.unobserve(target);
         await this.fetchImage(filterImgSrc(target));
       } catch (e) {
-        throw new Error(`💩 Fetch image failed with target ${JSON.stringify(target, null, 2)} and error message ${e}`);
+        throw new Error(
+          `💩 Fetch image failed with target ${JSON.stringify(
+            target,
+            null,
+            2,
+          )} and error message ${e}`,
+        );
       }
 
       this.applyImage(target);

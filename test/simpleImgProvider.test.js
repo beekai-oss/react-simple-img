@@ -40,26 +40,23 @@ describe('SimpleImgProvider', () => {
     tree.instance().observer = null;
     tree.update();
 
-    expect(tree.state('willMountImages')).toEqual(['image']);
     expect(observeSpy).toHaveBeenCalled();
   });
 
   it('should remove image from will mount images and update state', () => {
     tree.setState({
-      willMountImages: ['image', 'image1'],
+      mountedImages: ['image', 'image1'],
     });
     tree.instance().removeImageRef('image');
-    expect(tree.state('willMountImages')).toEqual(['image1']);
+    expect(tree.state('mountedImages')).toEqual(['image1']);
   });
 
   describe('when all will mount images removed', () => {
     it('should remove image and reset mounted images', () => {
       tree.setState({
-        willMountImages: ['image1'],
         mountedImages: ['image1'],
       });
       tree.instance().removeImageRef('image1');
-      expect(tree.state('willMountImages')).toEqual([]);
       expect(tree.state('mountedImages')).toEqual([]);
     });
   });
