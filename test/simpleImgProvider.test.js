@@ -45,19 +45,19 @@ describe('SimpleImgProvider', () => {
 
   it('should remove image from will mount images and update state', () => {
     tree.setState({
-      mountedImages: ['image', 'image1'],
+      mountedImages: new Set(['image', 'image1']),
     });
     tree.instance().removeImageRef('image');
-    expect(tree.state('mountedImages')).toEqual(['image1']);
+    expect(tree.state('mountedImages')).toEqual(new Set(['image1']));
   });
 
   describe('when all will mount images removed', () => {
     it('should remove image and reset mounted images', () => {
       tree.setState({
-        mountedImages: ['image1'],
+        mountedImages: new Set(['image1']),
       });
       tree.instance().removeImageRef('image1');
-      expect(tree.state('mountedImages')).toEqual([]);
+      expect(tree.state('mountedImages')).toEqual(new Set());
     });
   });
 
@@ -119,6 +119,6 @@ describe('SimpleImgProvider', () => {
 
   it('should update mount images state when applyImage is called', () => {
     tree.instance().applyImage('target');
-    expect(tree.state('mountedImages')).toEqual(['target']);
+    expect(tree.state('mountedImages')).toEqual(new Set(['target']));
   });
 });

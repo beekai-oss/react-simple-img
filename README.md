@@ -22,9 +22,9 @@ Features:
 
 ## Install
 
-    $ yarn add react-simple-img@0.0.1-beta.11
+    $ yarn add react-simple-img@0.0.1-beta.17
     or
-    $ npm install react-simple-img@0.0.1-beta.11 -S
+    $ npm install react-simple-img@0.0.1-beta.17 -S
 
 ## Example
 

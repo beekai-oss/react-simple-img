@@ -51,7 +51,7 @@ describe('SimpleImg', () => {
 
   describe('when first time image is loaded', () => {
     it('should set state as loaded and remove the image from the stack', () => {
-      const tree = shallow(<SimpleImg {...props} />, { context: { ...context, [IMAGES_LOADED]: ['test'] } });
+      const tree = shallow(<SimpleImg {...props} />, { context: { ...context, [IMAGES_LOADED]: new Set(['test']) } });
       tree.instance().element = 'test';
       tree.setProps({});
       expect(tree.state('loaded')).toBeTruthy();

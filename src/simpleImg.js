@@ -26,7 +26,7 @@ type Props = {
 export type Context = {
   __ProgresssiveImagesAppendImageRef__: HTMLElement => void,
   __ProgresssiveImagesRemoveImageRef__: HTMLElement => void,
-  __ProgresssiveImagesLoaded__: Array<HTMLElement>,
+  __ProgresssiveImagesLoaded__: Set<HTMLElement>,
 };
 
 const commonStyle = {
@@ -60,7 +60,7 @@ export default class SimpleImg extends React.Component<Props, State> {
   componentWillReceiveProps(nextProps: Props, nextContext: Context) {
     if (!this.element || this.state.loaded) return;
 
-    if (nextContext[IMAGES_LOADED].find(element => this.element === element)) {
+    if (nextContext[IMAGES_LOADED].has(this.element)) {
       this.setState({
         loaded: true,
       });

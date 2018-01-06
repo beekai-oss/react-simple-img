@@ -10,11 +10,11 @@ export const IMAGES_LOADED = '__ProgresssiveImagesLoaded__';
 export const contextTypes = {
   [APPEND_IMAGE_REF]: PropTypes.func,
   [REMOVE_IMAGE_REF]: PropTypes.func,
-  [IMAGES_LOADED]: PropTypes.array,
+  [IMAGES_LOADED]: PropTypes.object,
 };
 
 type State = {
-  mountedImages: Array<any>,
+  mountedImages: Set<HTMLElement>,
 };
 
 type Config = {
@@ -43,7 +43,7 @@ export default function SimpleImgProvider(WrappedComponent: any, config: Config 
     }
 
     state: State = {
-      mountedImages: [],
+      mountedImages: new Set(),
     };
 
     getChildContext() {
@@ -56,18 +56,17 @@ export default function SimpleImgProvider(WrappedComponent: any, config: Config 
 
     onIntersection = (entries: Array<{ intersectionRatio: number, target: HTMLElement }>) =>
       entries.forEach(({ intersectionRatio, target }) => {
-        if (intersectionRatio > 0) {
-          this.preloadImage(target);
-        }
+        if (intersectionRatio > 0) this.preloadImage(target);
       });
 
-    appendImageRef = (image: HTMLElement) => {
-      this.observer.observe(image);
-    };
+    appendImageRef = (image: HTMLElement) => this.observer.observe(image);
 
     removeImageRef = (image: HTMLElement) =>
-      this.setState({
-        mountedImages: this.state.mountedImages.filter(loadedImage => loadedImage !== image),
+      this.setState(({ mountedImages }) => {
+        mountedImages.delete(image);
+        return {
+          mountedImages,
+        };
       });
 
     observer = {};
@@ -95,7 +94,7 @@ export default function SimpleImgProvider(WrappedComponent: any, config: Config 
 
     applyImage = (target: HTMLElement) =>
       this.setState(previousState => ({
-        mountedImages: [...previousState.mountedImages, target],
+        mountedImages: new Set(previousState.mountedImages.add(target)),
       }));
 
     render() {
