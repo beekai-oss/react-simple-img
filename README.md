@@ -22,9 +22,9 @@ Features:
 
 ## Install
 
-    $ yarn add react-simple-img@0.0.1-beta.11
+    $ yarn add react-simple-img@0.0.1-beta.17
     or
-    $ npm install react-simple-img@0.0.1-beta.11 -S
+    $ npm install react-simple-img@0.0.1-beta.17 -S
 
 ## Example
 
@@ -34,7 +34,6 @@ Navigate into `example` folder and install
     or
     $ npm install && npm run start
 
-    
 [Check out the interactive demo.](https://react-simple-img.herokuapp.com/) 😍
 
 **Tip for the following effect**
@@ -66,15 +65,13 @@ To generate svg placeholder, please install [SQIP](https://github.com/technopaga
        src="your image path"
     />;
 
-    export default SimpleImgProvider(App); // only need to apply once at your root
+    export default SimpleImgProvider(App);
 
 ## API
 
 #### 🔗 `SimpleImgProvider([Component], [config])`
 
 This high order component will connect all your Image component to observe images to be loaded.
-
-**IMPORTANT**: you should apply this to your root component and only once, this will enable globally for all `SimpleImg`
 
 Arguments
 

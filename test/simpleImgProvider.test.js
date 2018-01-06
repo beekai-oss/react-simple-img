@@ -40,27 +40,24 @@ describe('SimpleImgProvider', () => {
     tree.instance().observer = null;
     tree.update();
 
-    expect(tree.state('willMountImages')).toEqual(['image']);
     expect(observeSpy).toHaveBeenCalled();
   });
 
   it('should remove image from will mount images and update state', () => {
     tree.setState({
-      willMountImages: ['image', 'image1'],
+      mountedImages: new Set(['image', 'image1']),
     });
     tree.instance().removeImageRef('image');
-    expect(tree.state('willMountImages')).toEqual(['image1']);
+    expect(tree.state('mountedImages')).toEqual(new Set(['image1']));
   });
 
   describe('when all will mount images removed', () => {
     it('should remove image and reset mounted images', () => {
       tree.setState({
-        willMountImages: ['image1'],
-        mountedImages: ['image1'],
+        mountedImages: new Set(['image1']),
       });
       tree.instance().removeImageRef('image1');
-      expect(tree.state('willMountImages')).toEqual([]);
-      expect(tree.state('mountedImages')).toEqual([]);
+      expect(tree.state('mountedImages')).toEqual(new Set());
     });
   });
 
@@ -122,6 +119,6 @@ describe('SimpleImgProvider', () => {
 
   it('should update mount images state when applyImage is called', () => {
     tree.instance().applyImage('target');
-    expect(tree.state('mountedImages')).toEqual(['target']);
+    expect(tree.state('mountedImages')).toEqual(new Set(['target']));
   });
 });

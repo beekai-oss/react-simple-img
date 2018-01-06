@@ -10,12 +10,11 @@ export const IMAGES_LOADED = '__ProgresssiveImagesLoaded__';
 export const contextTypes = {
   [APPEND_IMAGE_REF]: PropTypes.func,
   [REMOVE_IMAGE_REF]: PropTypes.func,
-  [IMAGES_LOADED]: PropTypes.array,
+  [IMAGES_LOADED]: PropTypes.object,
 };
 
 type State = {
-  mountedImages: Array<any>,
-  willMountImages: Array<any>,
+  mountedImages: Set<HTMLElement>,
 };
 
 type Config = {
@@ -30,7 +29,7 @@ const defaultConfig = {
 };
 
 export default function SimpleImgProvider(WrappedComponent: any, config: Config = defaultConfig) {
-  return class extends React.Component<{}, State> {
+  return class extends React.Component<any, State> {
     static childContextTypes: Context = contextTypes;
     static displayName = `SimpleImgProvider(${WrappedComponent.displayName || WrappedComponent.name || 'Component'})`;
 
@@ -44,8 +43,7 @@ export default function SimpleImgProvider(WrappedComponent: any, config: Config 
     }
 
     state: State = {
-      mountedImages: [],
-      willMountImages: [],
+      mountedImages: new Set(),
     };
 
     getChildContext() {
@@ -58,27 +56,16 @@ export default function SimpleImgProvider(WrappedComponent: any, config: Config 
 
     onIntersection = (entries: Array<{ intersectionRatio: number, target: HTMLElement }>) =>
       entries.forEach(({ intersectionRatio, target }) => {
-        if (intersectionRatio > 0) {
-          this.preloadImage(target);
-        }
+        if (intersectionRatio > 0) this.preloadImage(target);
       });
 
-    appendImageRef = (image: HTMLElement) => {
-      this.observer.observe(image);
-      this.setState(previousState => ({
-        willMountImages: [...previousState.willMountImages, image],
-      }));
-    };
+    appendImageRef = (image: HTMLElement) => this.observer.observe(image);
 
     removeImageRef = (image: HTMLElement) =>
-      this.setState((previousState) => {
-        const filterImages = images => images.filter(loadedImage => loadedImage !== image);
-        const willMountImages = filterImages(previousState.willMountImages);
-        const mountedImages = filterImages(this.state.mountedImages);
-
+      this.setState(({ mountedImages }) => {
+        mountedImages.delete(image);
         return {
           mountedImages,
-          willMountImages,
         };
       });
 
@@ -107,7 +94,7 @@ export default function SimpleImgProvider(WrappedComponent: any, config: Config 
 
     applyImage = (target: HTMLElement) =>
       this.setState(previousState => ({
-        mountedImages: [...previousState.mountedImages, target],
+        mountedImages: new Set(previousState.mountedImages.add(target)),
       }));
 
     render() {
