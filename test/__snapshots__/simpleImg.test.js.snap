@@ -17,6 +17,7 @@ exports[`SimpleImg should render correctly 1`] = `
     data-src="src"
     data-srcset="srcSet"
     height={1000}
+    sizes="sizes"
     src="placeHolderSrc"
     srcSet=""
     style={Object {}}
@@ -89,6 +90,7 @@ exports[`SimpleImg should render only span when place holder src is not supplied
     data-src="src"
     data-srcset="srcSet"
     height={1000}
+    sizes="sizes"
     src={undefined}
     srcSet=""
     style={

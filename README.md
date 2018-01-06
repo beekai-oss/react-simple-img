@@ -15,10 +15,8 @@ Features:
 * Make images lazy load easy
 * Support responsive images with `srcset`
 * Use `IntersectionObserver` API
-* Support place holder for elegant image transition
-* Support old browsers
-* Super easy to use
-* Tiny size
+* Support placeholder (image/backgroundColor) for transition
+* Super easy to use and small size
 
 ## Install
 
@@ -117,4 +115,5 @@ Image component working similar with standard `img` tag and with the following p
 | `height`            | number |          | image height apply to original image and placeholder                                |
 | `wrapperClassName`  | string |          | class for the wrapper for the image                                                 |
 | `imgClassName`      | string |          | class for the image itself, which also applied to the placeholder                   |
+| `sizes`             | string |          |                                                                                     |
 | `alt`               | string |          |                                                                                     |

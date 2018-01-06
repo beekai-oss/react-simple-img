@@ -14,6 +14,7 @@ const props = {
   width: 100,
   height: 1000,
   alt: 'alt',
+  sizes: 'sizes',
   srcSet: 'srcSet',
   backgroundColor: 'red',
   disappearInSecond: 1,

@@ -17,6 +17,7 @@ type Props = {
   width: number,
   height: number,
   alt: string,
+  sizes: string,
   srcSet: string,
   backgroundColor: string,
   disappearInSecond: number,
@@ -114,12 +115,13 @@ export default class SimpleImg extends React.Component<Props, State> {
     const {
       src,
       placeHolderSrc,
-      imgClassName,
+      imgClassName: className,
       wrapperClassName,
       width,
       height,
       alt,
       srcSet,
+      sizes,
       disappearInSecond,
       disappearStyle,
       backgroundColor,
@@ -135,12 +137,11 @@ export default class SimpleImg extends React.Component<Props, State> {
     return (
       <span style={rootStyle} className={wrapperClassName}>
         <img
-          {...{ width, height }}
+          {...{ width, height, sizes, className }}
           alt={alt}
           ref={(element) => {
             this.element = element;
           }}
-          className={imgClassName}
           src={loaded ? src : placeHolderSrc}
           srcSet={loaded ? srcSet : ''}
           data-src={src}
@@ -169,7 +170,7 @@ export default class SimpleImg extends React.Component<Props, State> {
             }
             : null)}
         >
-          {placeHolderSrc && <img {...{ width, height }} style={inlineStyle} className={imgClassName} alt={alt} src={placeHolderSrc} />}
+          {placeHolderSrc && <img {...{ width, height, className }} style={inlineStyle} alt={alt} src={placeHolderSrc} />}
         </Animate>
       </span>
     );
