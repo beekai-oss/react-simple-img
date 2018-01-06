@@ -47,21 +47,19 @@ To generate svg placeholder, please install [SQIP](https://github.com/technopaga
     import react from 'react';
     import { SimpleImg, SimpleImgProvider } from './react-lazyLoad-images';
 
-    // example with svg or bitmap placeholder example
-    const App = () => <div>
-        <SimpleImg
-            placeHolderSrc="your placeholder svg or image path"
-            src="your image path"
-            srcset="your image srcset"
-            />
-        <BackgroundColor />
-    </div>;
-
     // place holder background color example
     const BackgroundColor = () => <SimpleImg
        backgroundColor="linear-gradient(rgb(30, 87, 153) 0%, rgb(125, 185, 232) 100%)"
        src="your image path"
     />;
+
+    // example with svg or bitmap placeholder example
+    const App = () => <div>
+        <SimpleImg
+            placeHolderSrc="your placeholder svg or image path"
+            src="your image path" />
+        <BackgroundColor />
+    </div>;
 
     export default SimpleImgProvider(App);
 
