@@ -21,6 +21,9 @@ Why this package?
 yarn add react-simple-img
 ```
 
+## Demo
+Check it out [here](https://react-simple-img.herokuapp.com/) 😍
+
 ## Basic usage
 ```js
 import react from 'react';
@@ -33,8 +36,6 @@ const App = () => <div>
 // Wrap your app once with the provider 
 export default SimpleImgProvider(App);
 ```
-
-[Check out the interactive demo.](https://react-simple-img.herokuapp.com/) 😍
 
 ## Usage with placeholder and animation
 TODO
@@ -81,10 +82,10 @@ Image component working similar with standard `img` tag and with the following p
 | :------------------ | :----- | :------: | :---------------------------------------------------------------------------------- |
 | `src`               | string |    ✓     | The large image source                                                              |
 | `srcSet`            | string |          | For responsive images eg: `large.jpg 2x, small.jpg`                                 |
-| `placeHolderSrc`    | string |          | Placeholder image source (svg, jpg, png...)                                         |
+| `placeholderSrc`    | string |          | Placeholder image source (svg, jpg, png...)                                         |
 | `backgroundColor`   | string |          | apply color style to the placeholder                                                |
-| `disappearInSecond` | string |          | animation duration for placeholder to disappear                                     |
-| `disappearStyle`    | object |          | style applied to make placeholder disappear (default to fade out as `{opacity: 0}`) |
+| `animationDuration` | string |          | animation duration for placeholder to disappear                                     |
+| `animationStyle`    | object |          | style applied to make placeholder disappear (default to fade out as `{opacity: 0}`) |
 | `width`             | number |          | image width apply to original image and placeholder                                 |
 | `height`            | number |          | image height apply to original image and placeholder                                |
 | `wrapperClassName`  | string |          | class for the wrapper for the image                                                 |
