@@ -16,7 +16,7 @@ const props = {
   alt: 'alt',
   sizes: 'sizes',
   srcSet: 'srcSet',
-  backgroundColor: 'red',
+  placeholderColor: 'red',
   animationDuration: 1,
   animationEndStyle: { opacity: 0 },
 };
