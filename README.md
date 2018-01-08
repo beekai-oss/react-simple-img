@@ -78,17 +78,13 @@ Arguments
 
 Image component working similar with standard `img` tag and with the following props.
 
-| Prop                | Type   | Required | Description                                                                         |
-| :------------------ | :----- | :------: | :---------------------------------------------------------------------------------- |
-| `src`               | string |    ✓     | The large image source                                                              |
-| `srcSet`            | string |          | For responsive images eg: `large.jpg 2x, small.jpg`                                 |
-| `placeholderSrc`    | string |          | Placeholder image source (svg, jpg, png...)                                         |
-| `backgroundColor`   | string |          | apply color style to the placeholder                                                |
-| `animationDuration` | string |          | animation duration for placeholder to disappear                                     |
-| `animationStyle`    | object |          | style applied to make placeholder disappear (default to fade out as `{opacity: 0}`) |
-| `width`             | number |          | image width apply to original image and placeholder                                 |
-| `height`            | number |          | image height apply to original image and placeholder                                |
-| `wrapperClassName`  | string |          | class for the wrapper for the image                                                 |
-| `imgClassName`      | string |          | class for the image itself, which also applied to the placeholder                   |
-| `sizes`             | string |          |                                                                                     |
-| `alt`               | string |          |                                                                                     |
+| Prop                | Type   | Required | Description                                                               |
+| :------------------ | :----- | :------: | :-------------------------------------------------------------------------|
+| `src`               | string |    ✓     | The large image source                                                    |
+| `srcSet`            | string |          | Responsive images eg: `large.jpg 2x, small.jpg`                           |
+| `placeholder`       | string |          | Placeholder image (svg, jpg, png, ...) or color (white, red, blue, ...)   |
+| `width`             | number |          | Width of image. Also applies to placeholder.                              |
+| `height`            | number |          | Height of image. Also applies to placeholder.                             |
+| `imgClassName`      | string |          | Class of image. Also applies to placeholder.                              |
+| `sizes`             | string |          |                                                                           |
+| `alt`               | string |          |                                                                           |
