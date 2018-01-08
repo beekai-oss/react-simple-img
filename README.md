@@ -32,14 +32,16 @@ Navigate into `example` folder and install
     or
     $ npm install && npm run start
 
-[Check out the interactive demo.](https://react-simple-img.herokuapp.com/) 😍
+<a href="https://react-simple-img.herokuapp.com/" target="_blank">Check out the interactive demo.</a> 😍
 
 **Tip for the following effect**
 
 To generate svg placeholder, please install [SQIP](https://github.com/technopagan/sqip/) to generate placeholders.
 
 <p align="center">
-    <img width="300" src="https://raw.githubusercontent.com/bluebill1049/react-simple-img/master/example/src/example.gif" alt="Logo" />
+    <a href="https://react-simple-img.herokuapp.com/" target="_blank">
+        <img width="300" src="https://raw.githubusercontent.com/bluebill1049/react-simple-img/master/example/src/example.gif" alt="Logo" />
+    </a>
 </p>
 
 ## Quick start
@@ -99,19 +101,19 @@ Arguments
 
 ### 🔗 `SimpleImg`
 
-This component allow the usage of common the following `img` attributes
+Image component working similar with standard `img` tag and with the following props.
 
 | Prop                | Type   | Required | Description                                                                         |
 | :------------------ | :----- | :------: | :---------------------------------------------------------------------------------- |
 | `src`               | string |    ✓     | The large image source                                                              |
 | `srcSet`            | string |          | For responsive images eg: `large.jpg 2x, small.jpg`                                 |
-| `width`             | number |          | image width apply to original image and placeholder                                 |
-| `height`            | number |          | image height apply to original image and placeholder                                |
-| `sizes`             | string |          |                                                                                     |
-| `alt`               | string |          |                                                                                     |
 | `placeHolderSrc`    | string |          | Placeholder image source (svg, jpg, png...)                                         |
 | `backgroundColor`   | string |          | apply color style to the placeholder                                                |
 | `animationDuration` | string |          | animation duration for placeholder to disappear                                     |
-| `animationStyle`    | object |          | style applied to make placeholder disappear (default to fade out as `{opacity: 0}`) |
+| `animationEndStyle`    | object |          | style applied to make placeholder disappear (default to fade out as `{opacity: 0}`) |
+| `width`             | number |          | image width apply to original image and placeholder                                 |
+| `height`            | number |          | image height apply to original image and placeholder                                |
 | `wrapperClassName`  | string |          | class for the wrapper for the image                                                 |
 | `imgClassName`      | string |          | class for the image itself, which also applied to the placeholder                   |
+| `sizes`             | string |          |                                                                                     |
+| `alt`               | string |          |                                                                                     |

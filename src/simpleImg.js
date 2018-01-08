@@ -21,7 +21,7 @@ type Props = {
   srcSet: string,
   backgroundColor: string,
   animationDuration: number,
-  animationStyle: Style,
+  animationEndStyle: Style,
 };
 
 export type Context = {
@@ -82,7 +82,7 @@ export default class SimpleImg extends React.Component<Props, State> {
       imgClassName,
       backgroundColor,
       animationDuration,
-      animationStyle,
+      animationEndStyle,
     }: Props,
     { loaded }: State,
   ) {
@@ -98,7 +98,7 @@ export default class SimpleImg extends React.Component<Props, State> {
       this.props.srcSet !== srcSet ||
       this.props.backgroundColor !== backgroundColor ||
       this.props.animationDuration !== animationDuration ||
-      this.props.animationStyle !== animationStyle
+      this.props.animationEndStyle !== animationEndStyle
     );
   }
 
@@ -123,7 +123,7 @@ export default class SimpleImg extends React.Component<Props, State> {
       srcSet,
       sizes,
       animationDuration,
-      animationStyle,
+      animationEndStyle,
       backgroundColor,
     } = this.props;
     const { loaded } = this.state;
@@ -132,7 +132,7 @@ export default class SimpleImg extends React.Component<Props, State> {
       ...commonStyle,
       background: backgroundColor,
     };
-    const endStyle = animationStyle || defaultDisappearStyle;
+    const endStyle = animationEndStyle || defaultDisappearStyle;
 
     return (
       <span style={rootStyle} className={wrapperClassName}>
