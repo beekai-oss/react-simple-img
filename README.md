@@ -7,7 +7,7 @@
 [![npm](https://img.shields.io/npm/dt/react-simple-img.svg?style=flat-square)](https://www.npmjs.com/package/react-simple-img)
 [![npm](https://img.shields.io/npm/l/react-simple-img.svg?style=flat-square)](https://www.npmjs.com/package/react-lazyload-image)
 
-> **Make image lazy load simple and faster page load** :clap:
+> **Make responsive image lazy load simple and faster page load** :clap:
 
 Features:
 
@@ -15,14 +15,14 @@ Features:
 * Make images lazy load easy
 * Support responsive images with `srcset`
 * Use `IntersectionObserver` API
-* Support placeholder (image/backgroundColor) for transition
+* Support placeholder (image/placeholder color) for transition
 * Super easy to use and small size
 
 ## Install
 
-    $ yarn add react-simple-img@0.0.1-beta.17
+    $ yarn add react-simple-img@0.0.1-beta.18
     or
-    $ npm install react-simple-img@0.0.1-beta.17 -S
+    $ npm install react-simple-img@0.0.1-beta.18 -S
 
 ## Example
 
@@ -32,14 +32,16 @@ Navigate into `example` folder and install
     or
     $ npm install && npm run start
 
-[Check out the interactive demo.](https://react-simple-img.herokuapp.com/) 😍
+<a href="https://react-simple-img.herokuapp.com/" target="_blank">Check out the interactive demo.</a> 😍
 
 **Tip for the following effect**
 
 To generate svg placeholder, please install [SQIP](https://github.com/technopagan/sqip/) to generate placeholders.
 
 <p align="center">
-    <img width="300" src="https://raw.githubusercontent.com/bluebill1049/react-simple-img/master/example/src/example.gif" alt="Logo" />
+    <a href="https://react-simple-img.herokuapp.com/" target="_blank">
+        <img width="300" src="https://raw.githubusercontent.com/bluebill1049/react-simple-img/master/example/src/example.gif" alt="Logo" />
+    </a>
 </p>
 
 ## Quick start
@@ -47,18 +49,24 @@ To generate svg placeholder, please install [SQIP](https://github.com/technopaga
     import react from 'react';
     import { SimpleImg, SimpleImgProvider } from './react-lazyLoad-images';
 
-    // place holder background color example
-    const BackgroundColor = () => <SimpleImg
-       backgroundColor="linear-gradient(rgb(30, 87, 153) 0%, rgb(125, 185, 232) 100%)"
-       src="your image path"
-    />;
-
-    // example with svg or bitmap placeholder example
     const App = () => <div>
         <SimpleImg
+            height={500}
+            src="your image path"
+        />
+
+        // placeholder background color example
+        <SimpleImg
+            height={500}
+            placeholderColor="linear-gradient(rgb(30, 87, 153) 0%, rgb(125, 185, 232) 100%)"
+            src="your image path"
+        />
+
+        // placeholder background image example
+        <SimpleImg
+            height={500}
             placeHolderSrc="your placeholder svg or image path"
             src="your image path" />
-        <BackgroundColor />
     </div>;
 
     export default SimpleImgProvider(App);
@@ -101,17 +109,17 @@ Arguments
 
 Image component working similar with standard `img` tag and with the following props.
 
-| Prop                | Type   | Required | Description                                                                         |
-| :------------------ | :----- | :------: | :---------------------------------------------------------------------------------- |
-| `src`               | string |    ✓     | The large image source                                                              |
-| `srcSet`            | string |          | For responsive images eg: `large.jpg 2x, small.jpg`                                 |
-| `placeHolderSrc`    | string |          | Placeholder image source (svg, jpg, png...)                                         |
-| `backgroundColor`   | string |          | apply color style to the placeholder                                                |
-| `disappearInSecond` | string |          | animation duration for placeholder to disappear                                     |
-| `disappearStyle`    | object |          | style applied to make placeholder disappear (default to fade out as `{opacity: 0}`) |
-| `width`             | number |          | image width apply to original image and placeholder                                 |
-| `height`            | number |          | image height apply to original image and placeholder                                |
-| `wrapperClassName`  | string |          | class for the wrapper for the image                                                 |
-| `imgClassName`      | string |          | class for the image itself, which also applied to the placeholder                   |
-| `sizes`             | string |          |                                                                                     |
-| `alt`               | string |          |                                                                                     |
+| Prop                | Type   | Required | Description                                                                                                                                                                                                        |
+| :------------------ | :----- | :------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `src`               | string |    ✓     | The large image source                                                                                                                                                                                             |
+| `srcSet`            | string |          | eg: `large.jpg 2x, small.jpg` <br /><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images" target="_blank">Reference for examples</a>                            |
+| `sizes`             | string |          | eg: `(max-width: 320px) 280px, (max-width: 480px) 440px` <br /><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images" target="_blank">Reference for examples</a> |
+| `placeHolderSrc`    | string |          | Placeholder image source (svg, jpg, png...)                                                                                                                                                                        |
+| `placeholderColor`   | string |          | apply color style to the placeholder                                                                                                                                                                               |
+| `animationDuration` | string |          | animation duration for placeholder to disappear in **seconds**                                                                                                                                                     |
+| `animationEndStyle` | object |          | style applied to make placeholder disappear (default to fade out as `{opacity: 0}`)                                                                                                                                |
+| `wrapperClassName`  | string |          | class for the wrapper for the image                                                                                                                                                                                |
+| `imgClassName`      | string |          | class for the image itself, which also applied to the placeholder                                                                                                                                                  |
+| `width`             | number |          | image width apply to original image and placeholder                                                                                                                                                                |
+| `height`            | number |          | image height apply to original image and placeholder                                                                                                                                                               |
+| `alt`               | string |          |                                                                                                                                                                                                                    |

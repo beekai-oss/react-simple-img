@@ -53,11 +53,9 @@ class App extends Component {
           {images.map((image, i) => <SimpleImg
             alt="whatever"
             key={i}
-            wrapperClassName="App-images"
             placeHolderSrc={image.svg}
-            disappearInSecond={2.5}
+            animationDuration={3}
             src={image.img}
-            style={{ display: 'block' }}
             height={500}
           />)}
         </div>

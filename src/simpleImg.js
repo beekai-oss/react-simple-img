@@ -19,9 +19,9 @@ type Props = {
   alt: string,
   sizes: string,
   srcSet: string,
-  backgroundColor: string,
-  disappearInSecond: number,
-  disappearStyle: Style,
+  placeholderColor: string,
+  animationDuration: number,
+  animationEndStyle: Style,
 };
 
 export type Context = {
@@ -80,9 +80,9 @@ export default class SimpleImg extends React.Component<Props, State> {
       srcSet,
       wrapperClassName,
       imgClassName,
-      backgroundColor,
-      disappearInSecond,
-      disappearStyle,
+      placeholderColor,
+      animationDuration,
+      animationEndStyle,
     }: Props,
     { loaded }: State,
   ) {
@@ -96,9 +96,9 @@ export default class SimpleImg extends React.Component<Props, State> {
       this.props.height !== height ||
       this.props.alt !== alt ||
       this.props.srcSet !== srcSet ||
-      this.props.backgroundColor !== backgroundColor ||
-      this.props.disappearInSecond !== disappearInSecond ||
-      this.props.disappearStyle !== disappearStyle
+      this.props.placeholderColor !== placeholderColor ||
+      this.props.animationDuration !== animationDuration ||
+      this.props.animationEndStyle !== animationEndStyle
     );
   }
 
@@ -122,17 +122,17 @@ export default class SimpleImg extends React.Component<Props, State> {
       alt,
       srcSet,
       sizes,
-      disappearInSecond,
-      disappearStyle,
-      backgroundColor,
+      animationDuration,
+      animationEndStyle,
+      placeholderColor,
     } = this.props;
     const { loaded } = this.state;
-    const durationSeconds = disappearInSecond || defaultDisappearInSecond;
+    const durationSeconds = animationDuration || defaultDisappearInSecond;
     const inlineStyle = {
       ...commonStyle,
-      background: backgroundColor,
+      background: placeholderColor,
     };
-    const endStyle = disappearStyle || defaultDisappearStyle;
+    const endStyle = animationEndStyle || defaultDisappearStyle;
 
     return (
       <span style={rootStyle} className={wrapperClassName}>
@@ -156,12 +156,12 @@ export default class SimpleImg extends React.Component<Props, State> {
           endStyle={{
             ...inlineStyle,
             ...endStyle,
-            ...(backgroundColor
+            ...(placeholderColor
               ? fullWidthStyle
               : null),
           }}
           onCompleteStyle={onCompleteStyle}
-          {...(backgroundColor
+          {...(placeholderColor
             ? {
               startStyle: {
                 ...inlineStyle,
