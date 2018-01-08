@@ -25,7 +25,7 @@ type Config = {
 
 const defaultConfig = {
   rootMargin: '20px 0px',
-  threshold: [0.25, 0.5, 0.75],
+  threshold: [0, 0.25, 0.5, 0.75, 1],
 };
 
 export default function SimpleImgProvider(WrappedComponent: any, config: Config = defaultConfig) {
