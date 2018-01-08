@@ -32,7 +32,7 @@ Navigate into `example` folder and install
     or
     $ npm install && npm run start
 
-[Check out the interactive demo.](https://react-simple-img.herokuapp.com/){:target="_blank"}😍
+<a href="https://react-simple-img.herokuapp.com/" target="_blank">Check out the interactive demo.</a> 😍
 
 **Tip for the following effect**
 
