@@ -9,7 +9,7 @@
 
 > **Smart react image with IntersectionObserver API and animations** :clap:
 
-Features:
+Why this package?
 
 * Speed up initial page loads by loading only images above the fold 
 * Responsive images
