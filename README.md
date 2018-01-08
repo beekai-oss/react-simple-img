@@ -1,5 +1,5 @@
 <p align="center">
-    <img width="675" src="https://raw.githubusercontent.com/bluebill1049/react-simple-img/master/example/src/logo.jpg" alt="Logo" />
+    <img width="675" src="https://raw.githubusercontent.com/bluebill1049/react-simple-img/master/assets/logo.jpg" alt="Logo" />
 </p>
 
 [![npm version](https://img.shields.io/npm/v/react-simple-img.svg?style=flat-square)](https://www.npmjs.com/package/react-simple-img)
@@ -7,61 +7,44 @@
 [![npm](https://img.shields.io/npm/dt/react-simple-img.svg?style=flat-square)](https://www.npmjs.com/package/react-simple-img)
 [![npm](https://img.shields.io/npm/l/react-simple-img.svg?style=flat-square)](https://www.npmjs.com/package/react-lazyload-image)
 
-> **Make image lazy load simple and faster page load** :clap:
+> **Simple lazy loaded images with beautiful animation** :clap:
 
 Features:
 
-* Boost your web pages performance due to large images
-* Make images lazy load easy
-* Support responsive images with `srcset`
-* Use `IntersectionObserver` API
-* Support placeholder (image/backgroundColor) for transition
-* Super easy to use and small size
+* Speed up initial page loads by loading only images above the fold 
+* Responsive images
+* Smart download logic using `IntersectionObserver`
+* Supports placeholders and animation 
+* Simple and small
 
-## Install
+## Installation
+```bash
+yarn add react-simple-img
+```
 
-    $ yarn add react-simple-img@0.0.1-beta.17
-    or
-    $ npm install react-simple-img@0.0.1-beta.17 -S
+## Usage
+```js
+import react from 'react';
+import { SimpleImg, SimpleImgProvider } from 'react-simple-img';
 
-## Example
+// placeholder background color example
+const BackgroundColor = () => <SimpleImg
+   backgroundColor="linear-gradient(rgb(30, 87, 153) 0%, rgb(125, 185, 232) 100%)"
+   src="your image path"
+/>;
 
-Navigate into `example` folder and install
+// example with svg or bitmap placeholder example
+const App = () => <div>
+    <SimpleImg
+        placeHolderSrc="your placeholder svg or image path"
+        src="your image path" />
+    <BackgroundColor />
+</div>;
 
-    $ yarn && yarn start
-    or
-    $ npm install && npm run start
+export default SimpleImgProvider(App);
+```
 
 [Check out the interactive demo.](https://react-simple-img.herokuapp.com/) 😍
-
-**Tip for the following effect**
-
-To generate svg placeholder, please install [SQIP](https://github.com/technopagan/sqip/) to generate placeholders.
-
-<p align="center">
-    <img width="300" src="https://raw.githubusercontent.com/bluebill1049/react-simple-img/master/example/src/example.gif" alt="Logo" />
-</p>
-
-## Quick start
-
-    import react from 'react';
-    import { SimpleImg, SimpleImgProvider } from './react-lazyLoad-images';
-
-    // place holder background color example
-    const BackgroundColor = () => <SimpleImg
-       backgroundColor="linear-gradient(rgb(30, 87, 153) 0%, rgb(125, 185, 232) 100%)"
-       src="your image path"
-    />;
-
-    // example with svg or bitmap placeholder example
-    const App = () => <div>
-        <SimpleImg
-            placeHolderSrc="your placeholder svg or image path"
-            src="your image path" />
-        <BackgroundColor />
-    </div>;
-
-    export default SimpleImgProvider(App);
 
 ## API
 
