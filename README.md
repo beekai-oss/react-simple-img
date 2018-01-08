@@ -7,7 +7,7 @@
 [![npm](https://img.shields.io/npm/dt/react-simple-img.svg?style=flat-square)](https://www.npmjs.com/package/react-simple-img)
 [![npm](https://img.shields.io/npm/l/react-simple-img.svg?style=flat-square)](https://www.npmjs.com/package/react-lazyload-image)
 
-> **Make image lazy load simple and faster page load** :clap:
+> **Make responsive image lazy load simple and faster page load** :clap:
 
 Features:
 
@@ -50,17 +50,21 @@ To generate svg placeholder, please install [SQIP](https://github.com/technopaga
     import { SimpleImg, SimpleImgProvider } from './react-lazyLoad-images';
 
     // place holder background color example
-    const BackgroundColor = () => <SimpleImg
+    const ColorPlaceHolder = () => <SimpleImg
        backgroundColor="linear-gradient(rgb(30, 87, 153) 0%, rgb(125, 185, 232) 100%)"
        src="your image path"
     />;
 
+    // place holder background image example
+    const ImgPlaceHolder = () => <SimpleImg
+        placeHolderSrc="your placeholder svg or image path"
+        src="your image path" />
+    <BackgroundColor />;
+
     // example with svg or bitmap placeholder example
     const App = () => <div>
-        <SimpleImg
-            placeHolderSrc="your placeholder svg or image path"
-            src="your image path" />
-        <BackgroundColor />
+        <ImgPlaceHolder />
+        <ColorPlaceHolder />
     </div>;
 
     export default SimpleImgProvider(App);
@@ -103,17 +107,17 @@ Arguments
 
 Image component working similar with standard `img` tag and with the following props.
 
-| Prop                | Type   | Required | Description                                                                         |
-| :------------------ | :----- | :------: | :---------------------------------------------------------------------------------- |
-| `src`               | string |    ✓     | The large image source                                                              |
-| `srcSet`            | string |          | For responsive images eg: `large.jpg 2x, small.jpg`                                 |
-| `placeHolderSrc`    | string |          | Placeholder image source (svg, jpg, png...)                                         |
-| `backgroundColor`   | string |          | apply color style to the placeholder                                                |
-| `animationDuration` | string |          | animation duration for placeholder to disappear                                     |
-| `animationEndStyle`    | object |          | style applied to make placeholder disappear (default to fade out as `{opacity: 0}`) |
-| `width`             | number |          | image width apply to original image and placeholder                                 |
-| `height`            | number |          | image height apply to original image and placeholder                                |
-| `wrapperClassName`  | string |          | class for the wrapper for the image                                                 |
-| `imgClassName`      | string |          | class for the image itself, which also applied to the placeholder                   |
-| `sizes`             | string |          |                                                                                     |
-| `alt`               | string |          |                                                                                     |
+| Prop                | Type   | Required | Description                                                                                                                                                                                                   |
+| :------------------ | :----- | :------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `src`               | string |    ✓     | The large image source                                                                                                                                                                                        |
+| `srcSet`            | string |          | eg: `large.jpg 2x, small.jpg` <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images" target="_blank">Reference for examples.</a>                            |
+| `placeHolderSrc`    | string |          | Placeholder image source (svg, jpg, png...)                                                                                                                                                                   |
+| `backgroundColor`   | string |          | apply color style to the placeholder                                                                                                                                                                          |
+| `animationDuration` | string |          | animation duration for placeholder to disappear                                                                                                                                                               |
+| `animationEndStyle` | object |          | style applied to make placeholder disappear (default to fade out as `{opacity: 0}`)                                                                                                                           |
+| `width`             | number |          | image width apply to original image and placeholder                                                                                                                                                           |
+| `height`            | number |          | image height apply to original image and placeholder                                                                                                                                                          |
+| `wrapperClassName`  | string |          | class for the wrapper for the image                                                                                                                                                                           |
+| `imgClassName`      | string |          | class for the image itself, which also applied to the placeholder                                                                                                                                             |
+| `sizes`             | string |          | eg: `(max-width: 320px) 280px, (max-width: 480px) 440px` <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images" target="_blank">Reference for examples.</a> |
+| `alt`               | string |          |                                                                                                                                                                                                               |
