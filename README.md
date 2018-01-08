@@ -7,7 +7,7 @@
 [![npm](https://img.shields.io/npm/dt/react-simple-img.svg?style=flat-square)](https://www.npmjs.com/package/react-simple-img)
 [![npm](https://img.shields.io/npm/l/react-simple-img.svg?style=flat-square)](https://www.npmjs.com/package/react-lazyload-image)
 
-> **Simple lazy loaded images with beautiful animation** :clap:
+> **Smart react image component with IntersectionObserver API and animations** :clap:
 
 Features:
 
