@@ -7,15 +7,15 @@
 [![npm](https://img.shields.io/npm/dt/react-simple-img.svg?style=flat-square)](https://www.npmjs.com/package/react-simple-img)
 [![npm](https://img.shields.io/npm/l/react-simple-img.svg?style=flat-square)](https://www.npmjs.com/package/react-lazyload-image)
 
-> **Smart react image component with IntersectionObserver API and animations** :clap:
+> **Smart react image with IntersectionObserver API and animations** :clap:
 
 Features:
 
 * Speed up initial page loads by loading only images above the fold 
 * Responsive images
-* Smart download logic using `IntersectionObserver`
-* Supports placeholders and animation 
-* Simple and small
+* Smart download logic using [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)
+* Supports placeholders and animations
+* Simple and small in size
 
 ## Installation
 ```bash
