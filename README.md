@@ -27,9 +27,7 @@ import react from 'react';
 import { SimpleImg, SimpleImgProvider } from 'react-simple-img';
 
 const App = () => <div>
-    <SimpleImg
-        placeHolderSrc="your placeholder svg or image path"
-        src="your image path" />
+  <SimpleImg src="/path/to/image" />
 </div>;
 
 // Wrap your app once with the provider 
