@@ -19,7 +19,7 @@ type Props = {
   alt: string,
   sizes: string,
   srcSet: string,
-  backgroundColor: string,
+  placeholderColor: string,
   animationDuration: number,
   animationEndStyle: Style,
 };
@@ -80,7 +80,7 @@ export default class SimpleImg extends React.Component<Props, State> {
       srcSet,
       wrapperClassName,
       imgClassName,
-      backgroundColor,
+      placeholderColor,
       animationDuration,
       animationEndStyle,
     }: Props,
@@ -96,7 +96,7 @@ export default class SimpleImg extends React.Component<Props, State> {
       this.props.height !== height ||
       this.props.alt !== alt ||
       this.props.srcSet !== srcSet ||
-      this.props.backgroundColor !== backgroundColor ||
+      this.props.placeholderColor !== placeholderColor ||
       this.props.animationDuration !== animationDuration ||
       this.props.animationEndStyle !== animationEndStyle
     );
@@ -124,13 +124,13 @@ export default class SimpleImg extends React.Component<Props, State> {
       sizes,
       animationDuration,
       animationEndStyle,
-      backgroundColor,
+      placeholderColor,
     } = this.props;
     const { loaded } = this.state;
     const durationSeconds = animationDuration || defaultDisappearInSecond;
     const inlineStyle = {
       ...commonStyle,
-      background: backgroundColor,
+      background: placeholderColor,
     };
     const endStyle = animationEndStyle || defaultDisappearStyle;
 
@@ -156,12 +156,12 @@ export default class SimpleImg extends React.Component<Props, State> {
           endStyle={{
             ...inlineStyle,
             ...endStyle,
-            ...(backgroundColor
+            ...(placeholderColor
               ? fullWidthStyle
               : null),
           }}
           onCompleteStyle={onCompleteStyle}
-          {...(backgroundColor
+          {...(placeholderColor
             ? {
               startStyle: {
                 ...inlineStyle,

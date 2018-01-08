@@ -15,7 +15,7 @@ Features:
 * Make images lazy load easy
 * Support responsive images with `srcset`
 * Use `IntersectionObserver` API
-* Support placeholder (image/backgroundColor) for transition
+* Support placeholder (image/placeholder color) for transition
 * Super easy to use and small size
 
 ## Install
@@ -58,7 +58,7 @@ To generate svg placeholder, please install [SQIP](https://github.com/technopaga
         // placeholder background color example
         <SimpleImg
             height={500}
-            backgroundColor="linear-gradient(rgb(30, 87, 153) 0%, rgb(125, 185, 232) 100%)"
+            placeholderColor="linear-gradient(rgb(30, 87, 153) 0%, rgb(125, 185, 232) 100%)"
             src="your image path"
         />
 
@@ -115,7 +115,7 @@ Image component working similar with standard `img` tag and with the following p
 | `srcSet`            | string |          | eg: `large.jpg 2x, small.jpg` <br /><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images" target="_blank">Reference for examples</a>                            |
 | `sizes`             | string |          | eg: `(max-width: 320px) 280px, (max-width: 480px) 440px` <br /><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images" target="_blank">Reference for examples</a> |
 | `placeHolderSrc`    | string |          | Placeholder image source (svg, jpg, png...)                                                                                                                                                                        |
-| `backgroundColor`   | string |          | apply color style to the placeholder                                                                                                                                                                               |
+| `placeholderColor`   | string |          | apply color style to the placeholder                                                                                                                                                                               |
 | `animationDuration` | string |          | animation duration for placeholder to disappear in **seconds**                                                                                                                                                     |
 | `animationEndStyle` | object |          | style applied to make placeholder disappear (default to fade out as `{opacity: 0}`)                                                                                                                                |
 | `wrapperClassName`  | string |          | class for the wrapper for the image                                                                                                                                                                                |
