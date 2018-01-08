@@ -1,5 +1,5 @@
 <p align="center">
-    <img width="675" src="https://raw.githubusercontent.com/bluebill1049/react-simple-img/master/assets/logo.jpg" alt="Logo" />
+    <img width="675" src="https://raw.githubusercontent.com/yusinto/react-simple-img/master/assets/logo.jpg" alt="Logo" />
 </p>
 
 [![npm version](https://img.shields.io/npm/v/react-simple-img.svg?style=flat-square)](https://www.npmjs.com/package/react-simple-img)
