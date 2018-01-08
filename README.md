@@ -110,6 +110,7 @@ This component allow the usage of common the following `img` attributes
 | `sizes`             | string |          |                                                                                     |
 | `alt`               | string |          |                                                                                     |
 
+| Prop                | Type   | Required | Description                                                                         |
 | :------------------ | :----- | :------: | :---------------------------------------------------------------------------------- |
 | `placeHolderSrc`    | string |          | Placeholder image source (svg, jpg, png...)                                         |
 | `backgroundColor`   | string |          | apply color style to the placeholder                                                |
