@@ -20,8 +20,8 @@ type Props = {
   sizes: string,
   srcSet: string,
   backgroundColor: string,
-  disappearInSecond: number,
-  disappearStyle: Style,
+  animationDuration: number,
+  animationStyle: Style,
 };
 
 export type Context = {
@@ -81,8 +81,8 @@ export default class SimpleImg extends React.Component<Props, State> {
       wrapperClassName,
       imgClassName,
       backgroundColor,
-      disappearInSecond,
-      disappearStyle,
+      animationDuration,
+      animationStyle,
     }: Props,
     { loaded }: State,
   ) {
@@ -97,8 +97,8 @@ export default class SimpleImg extends React.Component<Props, State> {
       this.props.alt !== alt ||
       this.props.srcSet !== srcSet ||
       this.props.backgroundColor !== backgroundColor ||
-      this.props.disappearInSecond !== disappearInSecond ||
-      this.props.disappearStyle !== disappearStyle
+      this.props.animationDuration !== animationDuration ||
+      this.props.animationStyle !== animationStyle
     );
   }
 
@@ -122,17 +122,17 @@ export default class SimpleImg extends React.Component<Props, State> {
       alt,
       srcSet,
       sizes,
-      disappearInSecond,
-      disappearStyle,
+      animationDuration,
+      animationStyle,
       backgroundColor,
     } = this.props;
     const { loaded } = this.state;
-    const durationSeconds = disappearInSecond || defaultDisappearInSecond;
+    const durationSeconds = animationDuration || defaultDisappearInSecond;
     const inlineStyle = {
       ...commonStyle,
       background: backgroundColor,
     };
-    const endStyle = disappearStyle || defaultDisappearStyle;
+    const endStyle = animationStyle || defaultDisappearStyle;
 
     return (
       <span style={rootStyle} className={wrapperClassName}>

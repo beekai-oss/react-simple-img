@@ -99,19 +99,21 @@ Arguments
 
 ### 🔗 `SimpleImg`
 
-Image component working similar with standard `img` tag and with the following props.
+This component allow the usage of common the following `img` attributes
 
 | Prop                | Type   | Required | Description                                                                         |
 | :------------------ | :----- | :------: | :---------------------------------------------------------------------------------- |
 | `src`               | string |    ✓     | The large image source                                                              |
 | `srcSet`            | string |          | For responsive images eg: `large.jpg 2x, small.jpg`                                 |
-| `placeHolderSrc`    | string |          | Placeholder image source (svg, jpg, png...)                                         |
-| `backgroundColor`   | string |          | apply color style to the placeholder                                                |
-| `disappearInSecond` | string |          | animation duration for placeholder to disappear                                     |
-| `disappearStyle`    | object |          | style applied to make placeholder disappear (default to fade out as `{opacity: 0}`) |
 | `width`             | number |          | image width apply to original image and placeholder                                 |
 | `height`            | number |          | image height apply to original image and placeholder                                |
-| `wrapperClassName`  | string |          | class for the wrapper for the image                                                 |
-| `imgClassName`      | string |          | class for the image itself, which also applied to the placeholder                   |
 | `sizes`             | string |          |                                                                                     |
 | `alt`               | string |          |                                                                                     |
+
+| :------------------ | :----- | :------: | :---------------------------------------------------------------------------------- |
+| `placeHolderSrc`    | string |          | Placeholder image source (svg, jpg, png...)                                         |
+| `backgroundColor`   | string |          | apply color style to the placeholder                                                |
+| `animationDuration` | string |          | animation duration for placeholder to disappear                                     |
+| `animationStyle`    | object |          | style applied to make placeholder disappear (default to fade out as `{opacity: 0}`) |
+| `wrapperClassName`  | string |          | class for the wrapper for the image                                                 |
+| `imgClassName`      | string |          | class for the image itself, which also applied to the placeholder                   |

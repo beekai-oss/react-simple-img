@@ -57,7 +57,6 @@ class App extends Component {
             placeHolderSrc={image.svg}
             disappearInSecond={2.5}
             src={image.img}
-            style={{ display: 'block' }}
             height={500}
           />)}
         </div>
