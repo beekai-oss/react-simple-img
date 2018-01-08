@@ -12,10 +12,9 @@
 Why this package?
 
 * Speed up initial page loads by loading only images above the fold 
-* Responsive images
+* Responsive with placeholders and animations
 * Smart download logic using [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)
-* Supports placeholders and animations
-* Simple and small in size
+* Simple usage and tiny size
 
 ## Installation
 ```bash
