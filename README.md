@@ -21,29 +21,25 @@ Why this package?
 yarn add react-simple-img
 ```
 
-## Usage
+## Basic usage
 ```js
 import react from 'react';
 import { SimpleImg, SimpleImgProvider } from 'react-simple-img';
 
-// placeholder background color example
-const BackgroundColor = () => <SimpleImg
-   backgroundColor="linear-gradient(rgb(30, 87, 153) 0%, rgb(125, 185, 232) 100%)"
-   src="your image path"
-/>;
-
-// example with svg or bitmap placeholder example
 const App = () => <div>
     <SimpleImg
         placeHolderSrc="your placeholder svg or image path"
         src="your image path" />
-    <BackgroundColor />
 </div>;
 
+// Wrap your app once with the provider 
 export default SimpleImgProvider(App);
 ```
 
 [Check out the interactive demo.](https://react-simple-img.herokuapp.com/) 😍
+
+## Usage with placeholder and animation
+TODO
 
 ## API
 
