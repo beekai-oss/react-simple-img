@@ -43,7 +43,8 @@ const rootStyle = {
 };
 const defaultDisappearStyle = { opacity: 0 };
 const defaultDisappearInSecond = 0.3;
-const defaultPlaceholder = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
+const defaultImgPlaceholder = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
+const defaultPlaceholderColor = 'white';
 const onCompleteStyle = { display: 'none' };
 const fullWidthStyle = { width: '100%' };
 const hiddenStyle = { visibility: 'hidden' };
@@ -122,7 +123,7 @@ export default class SimpleImg extends React.Component<Props, State> {
       sizes,
       animationDuration = defaultDisappearInSecond,
       animationEndStyle = defaultDisappearStyle,
-      placeholder = 'white',
+      placeholder = defaultPlaceholderColor,
     } = this.props;
     const { loaded } = this.state;
     const isValidImgSrc = validImgSrc(placeholder);
@@ -130,7 +131,7 @@ export default class SimpleImg extends React.Component<Props, State> {
       ...commonStyle,
       ...(!isValidImgSrc ? { background: placeholder } : null),
     };
-    const imgPlaceholder = isValidImgSrc ? placeholder : defaultPlaceholder;
+    const imgPlaceholder = isValidImgSrc ? placeholder : defaultImgPlaceholder;
 
     return (
       <span style={rootStyle} className={wrapperClassName}>
