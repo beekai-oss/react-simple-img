@@ -8,7 +8,6 @@ jest.mock('react-simple-animate', () => 'Animate');
 
 const props = {
   src: 'src',
-  placeHolderSrc: 'placeHolderSrc',
   imgClassName: 'img className',
   wrapperClassName: 'wrapper className',
   width: 100,
@@ -16,7 +15,6 @@ const props = {
   alt: 'alt',
   sizes: 'sizes',
   srcSet: 'srcSet',
-  placeholderColor: 'red',
   animationDuration: 1,
   animationEndStyle: { opacity: 0 },
 };
@@ -39,8 +37,23 @@ describe('SimpleImg', () => {
     expect(tree).toMatchSnapshot();
   });
 
+  it('should render background color', () => {
+    const tree = renderer.create(<SimpleImg {...{...props, placeholder: 'red'}} />);
+    expect(tree).toMatchSnapshot();
+  });
+
+  it('should render out placeholder as image', () => {
+    const tree = renderer.create(<SimpleImg {...{...props, placeholder: '/test/image.jpg'}} />);
+    expect(tree).toMatchSnapshot();
+  });
+
+  it('should render out as image data', () => {
+    const tree = renderer.create(<SimpleImg {...{...props, placeholder: 'data:image//test'}} />);
+    expect(tree).toMatchSnapshot();
+  });
+
   it('should render only span when place holder src is not supplied', () => {
-    const { placeHolderSrc, ...omitProps } = props;
+    const { placeholder, ...omitProps } = props;
     const tree = renderer.create(<SimpleImg {...omitProps} />);
     expect(tree).toMatchSnapshot();
   });

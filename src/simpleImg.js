@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import Animate from 'react-simple-animate';
+import validImgSrc from './utils/validImgSrc';
 import { APPEND_IMAGE_REF, IMAGES_LOADED, REMOVE_IMAGE_REF, contextTypes } from './simpleImgProvider';
 
 type State = {
@@ -11,7 +12,7 @@ type Style = { [string]: number | string };
 
 type Props = {
   src: string,
-  placeHolderSrc: string,
+  placeholder: string,
   wrapperClassName: string,
   imgClassName: string,
   width: number,
@@ -19,7 +20,6 @@ type Props = {
   alt: string,
   sizes: string,
   srcSet: string,
-  placeholderColor: string,
   animationDuration: number,
   animationEndStyle: Style,
 };
@@ -42,7 +42,9 @@ const rootStyle = {
   display: 'flex',
 };
 const defaultDisappearStyle = { opacity: 0 };
-const defaultDisappearInSecond = 0.5;
+const defaultDisappearInSecond = 0.3;
+const defaultImgPlaceholder = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
+const defaultPlaceholderColor = 'white';
 const onCompleteStyle = { display: 'none' };
 const fullWidthStyle = { width: '100%' };
 const hiddenStyle = { visibility: 'hidden' };
@@ -73,14 +75,13 @@ export default class SimpleImg extends React.Component<Props, State> {
   shouldComponentUpdate(
     {
       src,
-      placeHolderSrc,
+      placeholder,
       width,
       height,
       alt,
       srcSet,
       wrapperClassName,
       imgClassName,
-      placeholderColor,
       animationDuration,
       animationEndStyle,
     }: Props,
@@ -89,14 +90,13 @@ export default class SimpleImg extends React.Component<Props, State> {
     return (
       this.state.loaded !== loaded ||
       this.props.src !== src ||
-      this.props.placeHolderSrc !== placeHolderSrc ||
+      this.props.placeholder !== placeholder ||
       this.props.wrapperClassName !== wrapperClassName ||
       this.props.imgClassName !== imgClassName ||
       this.props.width !== width ||
       this.props.height !== height ||
       this.props.alt !== alt ||
       this.props.srcSet !== srcSet ||
-      this.props.placeholderColor !== placeholderColor ||
       this.props.animationDuration !== animationDuration ||
       this.props.animationEndStyle !== animationEndStyle
     );
@@ -114,7 +114,6 @@ export default class SimpleImg extends React.Component<Props, State> {
   render() {
     const {
       src,
-      placeHolderSrc,
       imgClassName: className,
       wrapperClassName,
       width,
@@ -122,17 +121,17 @@ export default class SimpleImg extends React.Component<Props, State> {
       alt,
       srcSet,
       sizes,
-      animationDuration,
-      animationEndStyle,
-      placeholderColor,
+      animationDuration = defaultDisappearInSecond,
+      animationEndStyle = defaultDisappearStyle,
+      placeholder = defaultPlaceholderColor,
     } = this.props;
     const { loaded } = this.state;
-    const durationSeconds = animationDuration || defaultDisappearInSecond;
+    const isValidImgSrc = validImgSrc(placeholder);
     const inlineStyle = {
       ...commonStyle,
-      background: placeholderColor,
+      ...(!isValidImgSrc ? { background: placeholder } : null),
     };
-    const endStyle = animationEndStyle || defaultDisappearStyle;
+    const imgPlaceholder = isValidImgSrc ? placeholder : defaultImgPlaceholder;
 
     return (
       <span style={rootStyle} className={wrapperClassName}>
@@ -142,26 +141,24 @@ export default class SimpleImg extends React.Component<Props, State> {
           ref={(element) => {
             this.element = element;
           }}
-          src={loaded ? src : placeHolderSrc}
+          src={loaded ? src : imgPlaceholder}
           srcSet={loaded ? srcSet : ''}
           data-src={src}
           data-srcset={srcSet}
           style={{
-            ...(!placeHolderSrc && !loaded ? hiddenStyle : null),
+            ...(!isValidImgSrc && !loaded ? hiddenStyle : null),
           }}
         />
         <Animate
           startAnimation={loaded}
-          durationSeconds={durationSeconds}
+          durationSeconds={animationDuration}
           endStyle={{
             ...inlineStyle,
-            ...endStyle,
-            ...(placeholderColor
-              ? fullWidthStyle
-              : null),
+            ...animationEndStyle,
+            ...(!isValidImgSrc ? fullWidthStyle : null),
           }}
           onCompleteStyle={onCompleteStyle}
-          {...(placeholderColor
+          {...(!isValidImgSrc
             ? {
               startStyle: {
                 ...inlineStyle,
@@ -170,7 +167,7 @@ export default class SimpleImg extends React.Component<Props, State> {
             }
             : null)}
         >
-          {placeHolderSrc && <img {...{ width, height, className }} style={inlineStyle} alt={alt} src={placeHolderSrc} />}
+          {isValidImgSrc && <img {...{ width, height, className }} style={inlineStyle} alt={alt} src={placeholder} />}
         </Animate>
       </span>
     );

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SimpleImg should render correctly 1`] = `
+exports[`SimpleImg should render background color 1`] = `
 <span
   className="wrapper className"
   style={
@@ -18,80 +18,7 @@ exports[`SimpleImg should render correctly 1`] = `
     data-srcset="srcSet"
     height={1000}
     sizes="sizes"
-    src="placeHolderSrc"
-    srcSet=""
-    style={Object {}}
-    width={100}
-  />
-  <Animate
-    durationSeconds={1}
-    endStyle={
-      Object {
-        "background": "red",
-        "height": "100%",
-        "left": 0,
-        "opacity": 0,
-        "position": "absolute",
-        "top": 0,
-        "width": "100%",
-      }
-    }
-    onCompleteStyle={
-      Object {
-        "display": "none",
-      }
-    }
-    startAnimation={false}
-    startStyle={
-      Object {
-        "background": "red",
-        "height": "100%",
-        "left": 0,
-        "position": "absolute",
-        "top": 0,
-        "width": "100%",
-      }
-    }
-  >
-    <img
-      alt="alt"
-      className="img className"
-      height={1000}
-      src="placeHolderSrc"
-      style={
-        Object {
-          "background": "red",
-          "height": "100%",
-          "left": 0,
-          "position": "absolute",
-          "top": 0,
-        }
-      }
-      width={100}
-    />
-  </Animate>
-</span>
-`;
-
-exports[`SimpleImg should render only span when place holder src is not supplied 1`] = `
-<span
-  className="wrapper className"
-  style={
-    Object {
-      "display": "flex",
-      "overflow": "hidden",
-      "position": "relative",
-    }
-  }
->
-  <img
-    alt="alt"
-    className="img className"
-    data-src="src"
-    data-srcset="srcSet"
-    height={1000}
-    sizes="sizes"
-    src={undefined}
+    src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
     srcSet=""
     style={
       Object {
@@ -130,5 +57,245 @@ exports[`SimpleImg should render only span when place holder src is not supplied
       }
     }
   />
+</span>
+`;
+
+exports[`SimpleImg should render correctly 1`] = `
+<span
+  className="wrapper className"
+  style={
+    Object {
+      "display": "flex",
+      "overflow": "hidden",
+      "position": "relative",
+    }
+  }
+>
+  <img
+    alt="alt"
+    className="img className"
+    data-src="src"
+    data-srcset="srcSet"
+    height={1000}
+    sizes="sizes"
+    src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+    srcSet=""
+    style={
+      Object {
+        "visibility": "hidden",
+      }
+    }
+    width={100}
+  />
+  <Animate
+    durationSeconds={1}
+    endStyle={
+      Object {
+        "background": "white",
+        "height": "100%",
+        "left": 0,
+        "opacity": 0,
+        "position": "absolute",
+        "top": 0,
+        "width": "100%",
+      }
+    }
+    onCompleteStyle={
+      Object {
+        "display": "none",
+      }
+    }
+    startAnimation={false}
+    startStyle={
+      Object {
+        "background": "white",
+        "height": "100%",
+        "left": 0,
+        "position": "absolute",
+        "top": 0,
+        "width": "100%",
+      }
+    }
+  />
+</span>
+`;
+
+exports[`SimpleImg should render only span when place holder src is not supplied 1`] = `
+<span
+  className="wrapper className"
+  style={
+    Object {
+      "display": "flex",
+      "overflow": "hidden",
+      "position": "relative",
+    }
+  }
+>
+  <img
+    alt="alt"
+    className="img className"
+    data-src="src"
+    data-srcset="srcSet"
+    height={1000}
+    sizes="sizes"
+    src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+    srcSet=""
+    style={
+      Object {
+        "visibility": "hidden",
+      }
+    }
+    width={100}
+  />
+  <Animate
+    durationSeconds={1}
+    endStyle={
+      Object {
+        "background": "white",
+        "height": "100%",
+        "left": 0,
+        "opacity": 0,
+        "position": "absolute",
+        "top": 0,
+        "width": "100%",
+      }
+    }
+    onCompleteStyle={
+      Object {
+        "display": "none",
+      }
+    }
+    startAnimation={false}
+    startStyle={
+      Object {
+        "background": "white",
+        "height": "100%",
+        "left": 0,
+        "position": "absolute",
+        "top": 0,
+        "width": "100%",
+      }
+    }
+  />
+</span>
+`;
+
+exports[`SimpleImg should render out as image data 1`] = `
+<span
+  className="wrapper className"
+  style={
+    Object {
+      "display": "flex",
+      "overflow": "hidden",
+      "position": "relative",
+    }
+  }
+>
+  <img
+    alt="alt"
+    className="img className"
+    data-src="src"
+    data-srcset="srcSet"
+    height={1000}
+    sizes="sizes"
+    src="data:image//test"
+    srcSet=""
+    style={Object {}}
+    width={100}
+  />
+  <Animate
+    durationSeconds={1}
+    endStyle={
+      Object {
+        "height": "100%",
+        "left": 0,
+        "opacity": 0,
+        "position": "absolute",
+        "top": 0,
+      }
+    }
+    onCompleteStyle={
+      Object {
+        "display": "none",
+      }
+    }
+    startAnimation={false}
+  >
+    <img
+      alt="alt"
+      className="img className"
+      height={1000}
+      src="data:image//test"
+      style={
+        Object {
+          "height": "100%",
+          "left": 0,
+          "position": "absolute",
+          "top": 0,
+        }
+      }
+      width={100}
+    />
+  </Animate>
+</span>
+`;
+
+exports[`SimpleImg should render out placeholder as image 1`] = `
+<span
+  className="wrapper className"
+  style={
+    Object {
+      "display": "flex",
+      "overflow": "hidden",
+      "position": "relative",
+    }
+  }
+>
+  <img
+    alt="alt"
+    className="img className"
+    data-src="src"
+    data-srcset="srcSet"
+    height={1000}
+    sizes="sizes"
+    src="/test/image.jpg"
+    srcSet=""
+    style={Object {}}
+    width={100}
+  />
+  <Animate
+    durationSeconds={1}
+    endStyle={
+      Object {
+        "height": "100%",
+        "left": 0,
+        "opacity": 0,
+        "position": "absolute",
+        "top": 0,
+      }
+    }
+    onCompleteStyle={
+      Object {
+        "display": "none",
+      }
+    }
+    startAnimation={false}
+  >
+    <img
+      alt="alt"
+      className="img className"
+      height={1000}
+      src="/test/image.jpg"
+      style={
+        Object {
+          "height": "100%",
+          "left": 0,
+          "position": "absolute",
+          "top": 0,
+        }
+      }
+      width={100}
+    />
+  </Animate>
 </span>
 `;
