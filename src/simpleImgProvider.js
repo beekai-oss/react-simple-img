@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import type { Context } from './simpleImg';
-import filterImgSrc from './logic/filterSrcset';
+import init from './init';
 
 export const APPEND_IMAGE_REF = '__ProgresssiveImagesAppendImageRef__';
 export const REMOVE_IMAGE_REF = '__ProgresssiveImagesRemoveImageRef__';
@@ -17,7 +17,7 @@ type State = {
   mountedImages: Set<HTMLElement>,
 };
 
-type Config = {
+export type Config = {
   root?: HTMLElement,
   rootMargin?: string,
   threshold?: number | Array<number>,
@@ -35,11 +35,7 @@ export default function SimpleImgProvider(WrappedComponent: any, config: Config 
 
     constructor(props: any) {
       super(props);
-      /* eslint-disable */
-      if (!window.IntersectionObserver) require('intersection-observer');
-      // $FlowIgnoreLine:
-      this.observer = new IntersectionObserver(this.onIntersection, config);
-      /* eslint-enable */
+      this.observer = init.call(this, config);
     }
 
     state: State = {
@@ -54,12 +50,7 @@ export default function SimpleImgProvider(WrappedComponent: any, config: Config 
       };
     }
 
-    onIntersection = (entries: Array<{ intersectionRatio: number, target: HTMLElement }>) =>
-      entries.forEach(({ intersectionRatio, target }) => {
-        if (intersectionRatio > 0) this.preloadImage(target);
-      });
-
-    appendImageRef = (image: HTMLElement) => this.observer.observe(image);
+    appendImageRef = (image: HTMLElement) => this.observer && this.observer.observe(image);
 
     removeImageRef = (image: HTMLElement) =>
       this.setState(({ mountedImages }) => {
@@ -70,32 +61,6 @@ export default function SimpleImgProvider(WrappedComponent: any, config: Config 
       });
 
     observer = {};
-
-    preloadImage = async (target: HTMLElement) => {
-      try {
-        // Stop watching and load the image
-        // $FlowIgnoreLine:
-        this.observer.unobserve(target);
-        await this.fetchImage(filterImgSrc(target));
-      } catch (e) {
-        throw new Error(`💩 Fetch image failed with target ${JSON.stringify(target, null, 2)} and error message ${e}`);
-      }
-
-      this.applyImage(target);
-    };
-
-    fetchImage = (imageSrc: string) =>
-      new Promise((resolve, error) => {
-        const image = new Image(); // eslint-disable-line no-undef
-        image.src = imageSrc;
-        image.onload = resolve;
-        image.onerror = error;
-      });
-
-    applyImage = (target: HTMLElement) =>
-      this.setState(previousState => ({
-        mountedImages: new Set(previousState.mountedImages.add(target)),
-      }));
 
     render() {
       return <WrappedComponent {...this.props} />;

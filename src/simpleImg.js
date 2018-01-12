@@ -52,16 +52,30 @@ const hiddenStyle = { visibility: 'hidden' };
 export default class SimpleImg extends React.Component<Props, State> {
   static contextTypes = contextTypes;
 
+  constructor(props: Props, context: Context) {
+    super(props);
+
+    this.state = {
+      loaded: false,
+      useContext: !!context[IMAGES_LOADED],
+    };
+  }
+
   state: State = {
     loaded: false,
   };
 
   componentDidMount() {
-    if (this.element) this.context[APPEND_IMAGE_REF](this.element);
+    if (!this.element) return;
+    if (this.state.useContext) {
+      this.context[APPEND_IMAGE_REF](this.element);
+    } else {
+      window.reactSimpleImgobserver.observe(this.element); // eslint-disable-line no-undef
+    }
   }
 
   componentWillReceiveProps(nextProps: Props, nextContext: Context) {
-    if (!this.element || this.state.loaded) return;
+    if (!this.element || this.state.loaded || !this.state.useContext) return;
 
     if (nextContext[IMAGES_LOADED].has(this.element)) {
       this.setState({
@@ -165,7 +179,7 @@ export default class SimpleImg extends React.Component<Props, State> {
                 ...fullWidthStyle,
               },
             }
-            : null)}
+          : null)}
         >
           {isValidImgSrc && <img {...{ width, height, className }} style={inlineStyle} alt={alt} src={placeholder} />}
         </Animate>

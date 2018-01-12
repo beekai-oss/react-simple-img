@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Logo from './logo.jpg';
+import Logo from './logo.png';
 import svg1 from './wallpapers/Isles.svg';
 import svg2 from './wallpapers/Lake.svg';
 import svg3 from './wallpapers/Mountain-Range.svg';
@@ -12,8 +12,10 @@ import image3 from './wallpapers/Mountain-Range.jpg';
 import image4 from './wallpapers/Pink-Forest.jpg';
 import image5 from './wallpapers/Snow.jpg';
 import image6 from './wallpapers/Lion.jpg';
-import { SimpleImg, SimpleImgProvider } from 'react-simple-img';
+import { SimpleImg, SimpleImgProvider, init  } from './src/index';
 import './App.css';
+
+// init();
 
 const images = [
   {
@@ -53,7 +55,7 @@ class App extends Component {
           {images.map((image, i) => <SimpleImg
             alt="whatever"
             key={i}
-            placeHolderSrc={image.svg}
+            placeholder={image.svg}
             animationDuration={3}
             src={image.img}
             height={500}
