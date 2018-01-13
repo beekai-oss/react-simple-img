@@ -82,8 +82,9 @@ export default class SimpleImg extends React.Component<Props, State> {
       this.setState({
         loaded: true,
       });
+
+      nextContext[REMOVE_IMAGE_REF](this.element);
     }
-    this.removeItemFromObserver();
   }
 
   shouldComponentUpdate(
