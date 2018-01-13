@@ -117,7 +117,7 @@ Image component working similar with standard `img` tag and with the following p
 
 Set up React Simple Img per page, you can use the following example without `init()`😘
 
-    import { SimpleImg, SimpleImgProvider } from './react-lazyLoad-images';
+    import { SimpleImg, SimpleImgProvider } from './react-simple-img';
 
     const Home = () => <div>
         // placeholder background color example

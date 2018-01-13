@@ -12,5 +12,11 @@ export default function init(config: Config) {
 }
 
 export function onIntersection(entries: Array<{ intersectionRatio: number, target: any }>) {
-  entries.forEach(({ intersectionRatio, target }) => (intersectionRatio > 0) && imageLoader.call(this, target));
+  for (let i = 0, len = entries.length; i < len; i++) { // eslint-disable-line no-plusplus
+    const { intersectionRatio, target } = entries[i];
+    if (intersectionRatio > 0) {
+      imageLoader.call(this, target);
+      break;
+    }
+  }
 }

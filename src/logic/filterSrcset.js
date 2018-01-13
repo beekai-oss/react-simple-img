@@ -1,8 +1,6 @@
 // @flow
 import parseSrcset from '../utils/parseSrcset';
-
-export const findClosestDpr = (result: Array<Object>, target: number) =>
-  result.reduce((prev, curr) => (Math.abs(curr.dpr - target) < Math.abs(prev.dpr - target) ? curr : prev));
+import findClosestDpr from '../utils/findClosestDpr';
 
 export default function filterImgSrc({ dataset: { src, srcset } }: any) {
   if (!srcset) return src;

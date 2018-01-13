@@ -12,10 +12,8 @@ import image3 from './wallpapers/Mountain-Range.jpg';
 import image4 from './wallpapers/Pink-Forest.jpg';
 import image5 from './wallpapers/Snow.jpg';
 import image6 from './wallpapers/Lion.jpg';
-import { SimpleImg, init  } from './src/index';
+import { SimpleImg  } from './src/index';
 import './App.css';
-
-init();
 
 const images = [
   {
