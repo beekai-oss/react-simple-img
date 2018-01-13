@@ -16,7 +16,6 @@ export function onIntersection(entries: Array<{ intersectionRatio: number, targe
     const { intersectionRatio, target } = entries[i];
     if (intersectionRatio > 0) {
       imageLoader.call(this, target);
-      break;
     }
   }
 }

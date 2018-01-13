@@ -22,7 +22,7 @@ export default async function imageLoader(target: any) {
     if (this) {
       this.observer.unobserve(target);
     } else {
-      window.reactSimpleImgobserver.unobserve(target); // eslint-disable-line no-undef
+      window.reactSimpleImgObserver.unobserve(target); // eslint-disable-line no-undef
     }
 
     const src = filterImgSrc(target);

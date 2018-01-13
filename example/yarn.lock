@@ -5120,9 +5120,9 @@ react-simple-animate@^1.7.4:
   version "1.7.4"
   resolved "https://registry.yarnpkg.com/react-simple-animate/-/react-simple-animate-1.7.4.tgz#40389bb7530930a93a658581559a3db7f7fad5ad"
 
-react-simple-img@0.0.1-beta.18:
-  version "0.0.1-beta.18"
-  resolved "https://registry.yarnpkg.com/react-simple-img/-/react-simple-img-0.0.1-beta.18.tgz#7547f53ffb1e1aed221080832493a27e77624795"
+react-simple-img@0.0.1-beta.20:
+  version "0.0.1-beta.20"
+  resolved "https://registry.yarnpkg.com/react-simple-img/-/react-simple-img-0.0.1-beta.20.tgz#c6cf6682c709de1aee7eceea676eb4f67896ce30"
   dependencies:
     babel-polyfill "^6.26.0"
     intersection-observer "^0.5.0"
