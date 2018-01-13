@@ -5,5 +5,3 @@ exports[`SimpleImgProvider should render correctly 1`] = `
   Test
 </div>
 `;
-
-exports[`SimpleImgProvider when preloadImage called should catch error failed 1`] = `[Error: 💩 Fetch image failed with target {} and error message TypeError: Cannot read property 'src' of undefined]`;
