@@ -45,9 +45,9 @@ To generate svg placeholder, please install [SQIP](https://github.com/technopaga
 
 ## Quick start
 
-    import { SimpleImg, init } from 'react-lazyLoad-images';
+    import { SimpleImg, initSimpleImg } from 'react-lazyLoad-images';
 
-    init();
+    initSimpleImg();
 
     export const App = () => <div>
         <SimpleImg height={500} src="your image path" />
@@ -55,7 +55,7 @@ To generate svg placeholder, please install [SQIP](https://github.com/technopaga
 
 ## API
 
-#### 🔗 `init([config])` optional
+#### 🔗 `initSimpleImg([config])` optional
 
 This function will set up global intersection observer and watch all `<SimpleImg />` appear in the viewport through your
 app
@@ -89,13 +89,13 @@ Arguments
 #### 🔗 `SimpleImgProvider([Component], [config])`
 
 This high order component will connect all your `SimpleImg` to be observed per section, and **overwrite global config by
-`init()`**.
+`initSimpleImg()`**.
 
 Arguments
 
 * [Component]: (React Component) react component
 
-* [config]: (Object) this argument is optional (same as `init` config argument)
+* [config]: (Object) this argument is optional (same as `initSimpleImg` config argument)
 
 ### 🔗 `SimpleImg`
 
@@ -114,7 +114,7 @@ Image component working similar with standard `img` tag and with the following p
 
 ## Advance Example
 
-Set up React Simple Img per page, you can use the following example without `init()`😘
+Set up React Simple Img per page, you can use the following example without `initSimpleImg()`😘
 
     import { SimpleImg, SimpleImgProvider } from 'react-simple-img';
 
