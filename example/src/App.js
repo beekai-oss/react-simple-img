@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Logo from './logo.jpg';
+import Logo from './logo.png';
 import svg1 from './wallpapers/Isles.svg';
 import svg2 from './wallpapers/Lake.svg';
 import svg3 from './wallpapers/Mountain-Range.svg';
@@ -12,7 +12,7 @@ import image3 from './wallpapers/Mountain-Range.jpg';
 import image4 from './wallpapers/Pink-Forest.jpg';
 import image5 from './wallpapers/Snow.jpg';
 import image6 from './wallpapers/Lion.jpg';
-import { SimpleImg, SimpleImgProvider } from 'react-simple-img';
+import { SimpleImg } from 'react-simple-img';
 import './App.css';
 
 const images = [
@@ -50,21 +50,20 @@ class App extends Component {
           <SimpleImg src={Logo} wrapperClassName="App-logo" alt="logo" backgroundColor="white" />
         </header>
         <div className="App-container">
-          {images.map((image, i) => <SimpleImg
-            alt="whatever"
-            key={i}
-            placeHolderSrc={image.svg}
-            animationDuration={3}
-            src={image.img}
-            height={500}
-          />)}
+          {images.map((image, i) => (
+            <SimpleImg
+              alt="whatever"
+              key={i}
+              placeholder={image.svg}
+              animationDuration={3}
+              src={image.img}
+              height={500}
+            />
+          ))}
         </div>
       </div>
     );
   }
 }
 
-export default SimpleImgProvider(App, {
-  rootMargin: '20px 0px',
-  threshold: [0.25, 0.5, 0.75],
-});
+export default App;

@@ -52,18 +52,33 @@ const hiddenStyle = { visibility: 'hidden' };
 export default class SimpleImg extends React.Component<Props, State> {
   static contextTypes = contextTypes;
 
+  constructor(props: Props, context: Context) {
+    super(props);
+
+    this.state = {
+      loaded: false,
+      useContext: !!context[IMAGES_LOADED],
+    };
+  }
+
   state: State = {
     loaded: false,
   };
 
   componentDidMount() {
-    if (this.element) this.context[APPEND_IMAGE_REF](this.element);
+    if (!this.element) return;
+
+    if (this.state.useContext) {
+      this.context[APPEND_IMAGE_REF](this.element);
+    } else {
+      window.reactSimpleImgObserver.observe(this.element); // eslint-disable-line no-undef
+    }
   }
 
   componentWillReceiveProps(nextProps: Props, nextContext: Context) {
     if (!this.element || this.state.loaded) return;
 
-    if (nextContext[IMAGES_LOADED].has(this.element)) {
+    if (this.state.useContext && nextContext[IMAGES_LOADED].has(this.element)) {
       this.setState({
         loaded: true,
       });
@@ -103,13 +118,20 @@ export default class SimpleImg extends React.Component<Props, State> {
   }
 
   componentWillUnmount() {
-    if (this.element) this.context[REMOVE_IMAGE_REF](this.element);
-    clearTimeout(this.timer);
-    this.timer = null;
+    this.removeItemFromObserver();
   }
 
+  removeItemFromObserver = () => {
+    if (!this.element) return;
+
+    if (this.state.useContext) {
+      this.context[REMOVE_IMAGE_REF](this.element);
+    } else {
+      window.reactSimpleImgObserver.unobserve(this.element); // eslint-disable-line no-undef
+    }
+  };
+
   element = null;
-  timer = null;
 
   render() {
     const {
@@ -165,7 +187,7 @@ export default class SimpleImg extends React.Component<Props, State> {
                 ...fullWidthStyle,
               },
             }
-            : null)}
+          : null)}
         >
           {isValidImgSrc && <img {...{ width, height, className }} style={inlineStyle} alt={alt} src={placeholder} />}
         </Animate>
