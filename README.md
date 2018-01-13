@@ -19,9 +19,9 @@ Features:
 
 ## Install
 
-    $ yarn add react-simple-img@0.0.1-beta.18
+    $ yarn add react-simple-img
     or
-    $ npm install react-simple-img@0.0.1-beta.18 -S
+    $ npm install react-simple-img
 
 ## Example
 
