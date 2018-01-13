@@ -2,7 +2,7 @@
 import imageLoader from './utils/imageLoader';
 import type { Config } from './simpleImgProvider';
 
-export default function init(config: Config) {
+export default function initSimpleImg(config: Config) {
   /* eslint-disable */
   if (!window.IntersectionObserver) require('intersection-observer');
   // $FlowIgnoreLine:

@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import type { Context } from './simpleImg';
-import init from './init';
+import init from './initSimpleImg';
 
 export const APPEND_IMAGE_REF = '__ProgresssiveImagesAppendImageRef__';
 export const REMOVE_IMAGE_REF = '__ProgresssiveImagesRemoveImageRef__';

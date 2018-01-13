@@ -1,10 +1,10 @@
 import 'babel-polyfill';
 import SimpleImgProvider from './simpleImgProvider';
 import SimpleImg from './simpleImg';
-import init from './init';
+import initSimpleImg from './initSimpleImg';
 
 export {
-  init,
+  initSimpleImg,
   SimpleImgProvider,
   SimpleImg,
 };
