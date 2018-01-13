@@ -1,3 +1,5 @@
+// @flow
+
 const fetchImage = (imageSrc: string) =>
   new Promise((resolve, error) => {
     const image = new Image(); // eslint-disable-line no-undef
