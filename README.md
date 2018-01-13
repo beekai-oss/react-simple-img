@@ -46,7 +46,7 @@ To generate svg placeholder, please install [SQIP](https://github.com/technopaga
 
 ## Quick start
 
-    import { SimpleImg, init } from './react-lazyLoad-images';
+    import { SimpleImg, init } from 'react-lazyLoad-images';
 
     init();
 
@@ -117,7 +117,7 @@ Image component working similar with standard `img` tag and with the following p
 
 Set up React Simple Img per page, you can use the following example without `init()`😘
 
-    import { SimpleImg, SimpleImgProvider } from './react-simple-img';
+    import { SimpleImg, SimpleImgProvider } from 'react-simple-img';
 
     const Home = () => <div>
         // placeholder background color example
