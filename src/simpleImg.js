@@ -83,7 +83,7 @@ export default class SimpleImg extends React.Component<Props, State> {
         loaded: true,
       });
 
-      nextContext[REMOVE_IMAGE_REF](this.element);
+      if (this.element) nextContext[REMOVE_IMAGE_REF](this.element);
     }
   }
 
