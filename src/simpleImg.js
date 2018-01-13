@@ -67,6 +67,7 @@ export default class SimpleImg extends React.Component<Props, State> {
 
   componentDidMount() {
     if (!this.element) return;
+
     if (this.state.useContext) {
       this.context[APPEND_IMAGE_REF](this.element);
     } else {
@@ -75,15 +76,14 @@ export default class SimpleImg extends React.Component<Props, State> {
   }
 
   componentWillReceiveProps(nextProps: Props, nextContext: Context) {
-    if (!this.element || this.state.loaded || !this.state.useContext) return;
+    if (!this.element || this.state.loaded) return;
 
-    if (nextContext[IMAGES_LOADED].has(this.element)) {
+    if (this.state.useContext && nextContext[IMAGES_LOADED].has(this.element)) {
       this.setState({
         loaded: true,
       });
-
-      if (this.element) nextContext[REMOVE_IMAGE_REF](this.element);
     }
+    this.removeItemFromObserver();
   }
 
   shouldComponentUpdate(
@@ -117,13 +117,20 @@ export default class SimpleImg extends React.Component<Props, State> {
   }
 
   componentWillUnmount() {
-    if (this.element) this.context[REMOVE_IMAGE_REF](this.element);
-    clearTimeout(this.timer);
-    this.timer = null;
+    this.removeItemFromObserver();
   }
 
+  removeItemFromObserver = () => {
+    if (!this.element) return;
+
+    if (this.state.useContext) {
+      this.context[REMOVE_IMAGE_REF](this.element);
+    } else {
+      window.reactSimpleImgObserver.unobserve(this.element); // eslint-disable-line no-undef
+    }
+  };
+
   element = null;
-  timer = null;
 
   render() {
     const {
