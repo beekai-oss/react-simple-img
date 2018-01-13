@@ -47,39 +47,21 @@ To generate svg placeholder, please install [SQIP](https://github.com/technopaga
 ## Quick start
 
     import react from 'react';
-    import { SimpleImg, SimpleImgProvider } from './react-lazyLoad-images';
+    import { SimpleImg, init } from './react-lazyLoad-images';
 
-    const App = () => <div>
-        <SimpleImg
-            height={500}
-            src="your image path"
-        />
+    init();
 
-        // placeholder background color example
-        <SimpleImg
-            height={500}
-            placeholderColor="linear-gradient(rgb(30, 87, 153) 0%, rgb(125, 185, 232) 100%)"
-            src="your image path"
-        />
-
-        // placeholder background image example
-        <SimpleImg
-            height={500}
-            placeholderSrc="your placeholder svg or image path"
-            src="your image path" />
+    export const App = () => <div>
+        <SimpleImg height={500} src="your image path" />
     </div>;
-
-    export default SimpleImgProvider(App);
 
 ## API
 
-#### 🔗 `SimpleImgProvider([Component], [config])`
-
-This high order component will connect all your Image component to observe images to be loaded.
+#### 🔗 `init([config])` optional
+This function will set up global interscation observer and watch all `<SimpleImg />` appear in the viewport
 
 Arguments
 
-* [Component]: (React Component) react component
 
 * [config]: (Object) this argument is optional
 
@@ -105,6 +87,17 @@ Arguments
        run). A value of 1.0 means that the threshold isn't considered passed
        until every pixel is visible.
 
+#### 🔗 `SimpleImgProvider([Component], [config])`
+
+This high order component will connect all your Image component to observe images to be loaded.
+
+Arguments
+
+* [Component]: (React Component) react component
+
+* [config]: (Object) this argument is optional (same as `init` config argument)
+
+
 ### 🔗 `SimpleImg`
 
 Image component working similar with standard `img` tag and with the following props.
@@ -119,3 +112,32 @@ Image component working similar with standard `img` tag and with the following p
 | `width`        | number |          | image width apply to original image and placeholder                                                                                                                                                                |
 | `height`       | number |          | image height apply to original image and placeholder                                                                                                                                                               |
 | `alt`          | string |          |                                                                                                                                                                                                                    |
+
+## Advance Example
+
+Set up React Simple Img per section. (you can use without `init()`😘)
+
+    import react from 'react';
+    import { SimpleImg, SimpleImgProvider } from './react-lazyLoad-images';
+
+    const App = () => <div>
+        <SimpleImg
+            height={500}
+            src="your image path"
+        />
+
+        // placeholder background color example
+        <SimpleImg
+            height={500}
+            placeholderColor="linear-gradient(rgb(30, 87, 153) 0%, rgb(125, 185, 232) 100%)"
+            src="your image path"
+        />
+
+        // placeholder background image example
+        <SimpleImg
+            height={500}
+            placeholderSrc="your placeholder svg or image path"
+            src="your image path" />
+    </div>;
+
+    export default SimpleImgProvider(App);

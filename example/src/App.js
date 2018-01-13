@@ -12,10 +12,10 @@ import image3 from './wallpapers/Mountain-Range.jpg';
 import image4 from './wallpapers/Pink-Forest.jpg';
 import image5 from './wallpapers/Snow.jpg';
 import image6 from './wallpapers/Lion.jpg';
-import { SimpleImg, SimpleImgProvider, init  } from './src/index';
+import { SimpleImg, init  } from './src/index';
 import './App.css';
 
-// init();
+init();
 
 const images = [
   {
@@ -66,7 +66,4 @@ class App extends Component {
   }
 }
 
-export default SimpleImgProvider(App, {
-  rootMargin: '20px 0px',
-  threshold: [0.25, 0.5, 0.75],
-});
+export default App;
