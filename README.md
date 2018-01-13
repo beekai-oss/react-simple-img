@@ -97,7 +97,7 @@ Arguments
 
 * [config]: (Object) this argument is optional (same as `initSimpleImg` config argument)
 
-### 🔗 `SimpleImg`
+#### 🔗 `SimpleImg`
 
 Image component working similar with standard `img` tag and with the following props.
 
