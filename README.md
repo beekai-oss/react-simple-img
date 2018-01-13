@@ -46,7 +46,6 @@ To generate svg placeholder, please install [SQIP](https://github.com/technopaga
 
 ## Quick start
 
-    import react from 'react';
     import { SimpleImg, init } from './react-lazyLoad-images';
 
     init();
@@ -58,10 +57,11 @@ To generate svg placeholder, please install [SQIP](https://github.com/technopaga
 ## API
 
 #### 🔗 `init([config])` optional
-This function will set up global interscation observer and watch all `<SimpleImg />` appear in the viewport
+
+This function will set up global intersection observer and watch all `<SimpleImg />` appear in the viewport through your
+app
 
 Arguments
-
 
 * [config]: (Object) this argument is optional
 
@@ -89,14 +89,14 @@ Arguments
 
 #### 🔗 `SimpleImgProvider([Component], [config])`
 
-This high order component will connect all your Image component to observe images to be loaded.
+This high order component will connect all your `SimpleImg` to be observed per section, and **overwrite global config by
+`init()`**.
 
 Arguments
 
 * [Component]: (React Component) react component
 
 * [config]: (Object) this argument is optional (same as `init` config argument)
-
 
 ### 🔗 `SimpleImg`
 
@@ -115,17 +115,11 @@ Image component working similar with standard `img` tag and with the following p
 
 ## Advance Example
 
-Set up React Simple Img per section. (you can use without `init()`😘)
+Set up React Simple Img per page. (you can use without `init()`😘)
 
-    import react from 'react';
     import { SimpleImg, SimpleImgProvider } from './react-lazyLoad-images';
 
-    const App = () => <div>
-        <SimpleImg
-            height={500}
-            src="your image path"
-        />
-
+    const Home = () => <div>
         // placeholder background color example
         <SimpleImg
             height={500}
@@ -140,4 +134,6 @@ Set up React Simple Img per section. (you can use without `init()`😘)
             src="your image path" />
     </div>;
 
-    export default SimpleImgProvider(App);
+    export default SimpleImgProvider(App, {
+        threshold: [0.5], // load image when 50 percentage of image in the view port
+    });
