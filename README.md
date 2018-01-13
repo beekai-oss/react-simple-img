@@ -62,7 +62,7 @@ app
 
 Arguments
 
-* [config]: (Object) this argument is optional
+* **config**: (Object) this argument is optional
 
 
      - [root]: The element that is used as the viewport for checking
@@ -93,9 +93,9 @@ This high order component will connect all your `SimpleImg` to be observed per s
 
 Arguments
 
-* [Component]: (React Component) react component
+* **Component**: (Component) react component
 
-* [config]: (Object) this argument is optional (same as `initSimpleImg` config argument)
+* **config**: (Object) this argument is optional (same as `initSimpleImg` config argument)
 
 #### 🔗 `SimpleImg`
 
