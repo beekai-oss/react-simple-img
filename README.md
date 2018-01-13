@@ -107,7 +107,7 @@ Image component working similar with standard `img` tag and with the following p
 | `src`          | string |    ✓     | The large image source                                                                                                                                                                                             |
 | `srcSet`       | string |          | eg: `large.jpg 2x, small.jpg` <br /><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images" target="_blank">Reference for examples</a>                            |
 | `sizes`        | string |          | eg: `(max-width: 320px) 280px, (max-width: 480px) 440px` <br /><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images" target="_blank">Reference for examples</a> |
-| `placeholder`  | string |          | Placeholder image source (svg, jpg, png...) or css color value                                                                                                                                                     |
+| `placeholder`  | string |          | Placeholder image source (svg, jpg, png...) or css color value (`white, linear-gradient(blue, pink)`)                                                                                                              |
 | `imgClassName` | string |          | class for the image itself, which also applied to the placeholder                                                                                                                                                  |
 | `width`        | number |          | image width apply to original image and placeholder                                                                                                                                                                |
 | `height`       | number |          | image height apply to original image and placeholder                                                                                                                                                               |
@@ -115,7 +115,7 @@ Image component working similar with standard `img` tag and with the following p
 
 ## Advance Example
 
-Set up React Simple Img per page. (you can use without `init()`😘)
+Set up React Simple Img per page, you can use the following example without `init()`😘
 
     import { SimpleImg, SimpleImgProvider } from './react-lazyLoad-images';
 
