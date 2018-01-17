@@ -47,13 +47,15 @@ export default function SimpleImgProvider(WrappedComponent: any, config: Config 
 
     appendImageRef = (image: HTMLElement) => this.observer && this.observer.observe(image);
 
-    removeImageRef = (image: HTMLElement) =>
-      this.setState(({ mountedImages }) => {
+    removeImageRef = (image: HTMLElement) => {
+      this.observer.unobserve(image);
+      this.setState(({mountedImages}) => {
         mountedImages.delete(image);
         return {
           mountedImages,
         };
       });
+    };
 
     observer = {};
 
