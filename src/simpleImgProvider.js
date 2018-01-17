@@ -48,6 +48,7 @@ export default function SimpleImgProvider(WrappedComponent: any, config: Config 
     appendImageRef = (image: HTMLElement) => this.observer && this.observer.observe(image);
 
     removeImageRef = (image: HTMLElement) => {
+      // $FlowIgnoreLine:
       this.observer.unobserve(image);
       this.setState(({mountedImages}) => {
         mountedImages.delete(image);
