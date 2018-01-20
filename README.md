@@ -8,7 +8,7 @@
 
 > **Smart react image with IntersectionObserver API and animations** :clap:
 
-Why this package?:
+🤔 Why this package?
 
 * Speed up initial page loads by loading only images above the fold
 * Responsive with placeholders and animations
@@ -17,29 +17,25 @@ Why this package?:
 
 ## Install
 
-    $ yarn add react-simple-img
-    or
-    $ npm install react-simple-img
+    $ yarn add react-simple-img or $ npm install react-simple-img
 
 ## Example
-
-Navigate into `example` folder and install
-
-    $ yarn && yarn start
-    or
-    $ npm install && npm run start
-
-<a href="https://react-simple-img.herokuapp.com/" target="_blank">Check it out.</a> 😍
-
-**Tip for the following effect**
-
-To generate svg placeholder, please install [SQIP](https://github.com/technopagan/sqip/) to generate placeholders.
 
 <p align="center">
     <a href="https://react-simple-img.herokuapp.com/" target="_blank">
         <img width="300" src="https://raw.githubusercontent.com/bluebill1049/react-simple-img/master/example/src/example.gif" alt="Logo" />
     </a>
 </p>
+
+Navigate into `example` folder and install
+
+    $ yarn && yarn start or $ npm install && npm run start
+
+<a href="https://react-simple-img.herokuapp.com/" target="_blank">Check it out.</a> 😍
+
+**Tip for the following effect**
+
+To generate svg placeholder, please install [SQIP](https://github.com/technopagan/sqip/) to generate placeholders.
 
 ## Quick start
 
