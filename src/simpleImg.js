@@ -71,7 +71,7 @@ export default class SimpleImg extends React.Component<Props, State> {
     if (this.state.useContext) {
       this.context[APPEND_IMAGE_REF](this.element);
     } else {
-      window.reactSimpleImgObserver.observer.observe(this.element); // eslint-disable-line no-undef
+      window.__REACT_SIMPLE_IMG__.observer.observe(this.element); // eslint-disable-line no-undef
     }
   }
 
@@ -131,7 +131,7 @@ export default class SimpleImg extends React.Component<Props, State> {
       const {
         observer,
         imgLoadingRefs,
-      } = window.reactSimpleImgObserver;
+      } = window.__REACT_SIMPLE_IMG__;
       observer.unobserve(this.element);
 
       if (imgLoadingRefs.has(this.element)) {

@@ -17,7 +17,7 @@ export function applyImage(target: any, image: Image, src: string) {
     /* eslint-enable */
     const nextSiblingElm = target.nextSibling;
     nextSiblingElm.setAttribute('style', `opacity: 0; transition: 0.3s all; ${nextSiblingElm.getAttribute('style')}`);
-    window.reactSimpleImgObserver.imgLoadingRefs.delete(target); // eslint-disable-line no-undef
+    window.__REACT_SIMPLE_IMG__.imgLoadingRefs.delete(target); // eslint-disable-line no-undef
   }
 }
 
@@ -32,7 +32,7 @@ export default async function imageLoader(target: any) {
       const {
         observer,
         imgLoadingRefs,
-      } = window.reactSimpleImgObserver;
+      } = window.__REACT_SIMPLE_IMG__;
       
       observer.unobserve(target); // eslint-disable-line no-undef
       imgLoadingRefs.set(target, image); // eslint-disable-line no-undef

@@ -15,7 +15,7 @@ export default function initSimpleImg(config: Config = defaultConfig) {
   if (this) {
     return observer;
   } else {
-    window.reactSimpleImgObserver = {
+    window.__REACT_SIMPLE_IMG__ = {
       observer,
       imgLoadingRefs: new Map(),
     };
