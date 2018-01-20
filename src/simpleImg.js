@@ -128,11 +128,15 @@ export default class SimpleImg extends React.Component<Props, State> {
       this.context[REMOVE_IMAGE_REF](this.element);
     } else {
       /* eslint-disable */
-      window.reactSimpleImgObserver.observer.unobserve(this.element); // eslint-disable-line no-undef
-      if (window.reactSimpleImgObserver.imgLoadingRefs.has(this.element)) {
-        window.reactSimpleImgObserver.imgLoadingRefs.get(this.element).src = '';
-        window.reactSimpleImgObserver.imgLoadingRefs.delete(this.element);
-        /* eslint-enable */
+      const {
+        observer,
+        imgLoadingRefs,
+      } = window.reactSimpleImgObserver;
+      observer.unobserve(this.element);
+
+      if (imgLoadingRefs.has(this.element)) {
+        imgLoadingRefs.get(this.element).src = '';
+        imgLoadingRefs.delete(this.element);
       }
     }
   };
