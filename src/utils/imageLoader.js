@@ -29,8 +29,13 @@ export default async function imageLoader(target: any) {
       this.observer.unobserve(target);
       this.appendImgLoadingRef(image);
     } else {
-      window.reactSimpleImgObserver.observer.unobserve(target); // eslint-disable-line no-undef
-      window.reactSimpleImgObserver.imgLoadingRefs.set(target, image); // eslint-disable-line no-undef
+      const {
+        observer,
+        imgLoadingRefs,
+      } = window.reactSimpleImgObserver;
+      
+      observer.unobserve(target); // eslint-disable-line no-undef
+      imgLoadingRefs.set(target, image); // eslint-disable-line no-undef
     }
 
     const src = filterImgSrc(target);
