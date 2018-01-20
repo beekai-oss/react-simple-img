@@ -9,7 +9,7 @@ export function applyImage(target: any, image: Image, src: string) {
     }));
     this.removeImgLoadingRef(image);
   } else {
-    if (!target) return false;
+    if (!target) return;
 
     /* eslint-disable */
     target.src = src;
