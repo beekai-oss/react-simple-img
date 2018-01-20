@@ -45,6 +45,14 @@ export default function SimpleImgProvider(WrappedComponent: any, config: Config 
       };
     }
 
+    componentWillUnmount() {
+      this.imageLoadRefs.forEach((image) => {
+        // cancel all loading images;
+        image.src = ''; // eslint-disable-line no-param-reassign
+      });
+      this.imageLoadRefs.clear();
+    }
+
     appendImageRef = (image: HTMLElement) => this.observer && this.observer.observe(image);
 
     removeImageRef = (image: HTMLElement) => {
@@ -58,7 +66,17 @@ export default function SimpleImgProvider(WrappedComponent: any, config: Config 
       });
     };
 
+    appendImgLoadingRef = (image: Image) => {
+      this.imageLoadRefs.add(image);
+    };
+
+    removeImgLoadingRef = (image: Image) => {
+      this.imageLoadRefs.delete(image);
+    };
+
     observer = {};
+
+    imageLoadRefs = new Set();
 
     render() {
       return <WrappedComponent {...this.props} />;

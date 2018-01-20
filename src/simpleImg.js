@@ -71,7 +71,7 @@ export default class SimpleImg extends React.Component<Props, State> {
     if (this.state.useContext) {
       this.context[APPEND_IMAGE_REF](this.element);
     } else {
-      window.reactSimpleImgObserver.observe(this.element); // eslint-disable-line no-undef
+      window.reactSimpleImgObserver.observer.observe(this.element); // eslint-disable-line no-undef
     }
   }
 
@@ -127,7 +127,13 @@ export default class SimpleImg extends React.Component<Props, State> {
     if (this.state.useContext) {
       this.context[REMOVE_IMAGE_REF](this.element);
     } else {
-      window.reactSimpleImgObserver.unobserve(this.element); // eslint-disable-line no-undef
+      /* eslint-disable */
+      window.reactSimpleImgObserver.observer.unobserve(this.element); // eslint-disable-line no-undef
+      if (window.reactSimpleImgObserver.imgLoadingRefs.has(this.element)) {
+        window.reactSimpleImgObserver.imgLoadingRefs.get(this.element).src = '';
+        window.reactSimpleImgObserver.imgLoadingRefs.delete(this.element);
+        /* eslint-enable */
+      }
     }
   };
 

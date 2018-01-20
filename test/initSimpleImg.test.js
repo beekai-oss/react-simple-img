@@ -13,7 +13,7 @@ describe('initSimpleImg', () => {
     window.reactSimpleImgObserver = undefined;
   });
 
-  it('should return observer and set window object when context is not passed', () => {
+  it.skip('should return observer and set window object when context is not passed', () => {
     const IntersectionObserverSpy = jest.fn();
     window.IntersectionObserver = IntersectionObserverSpy;
 

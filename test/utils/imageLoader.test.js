@@ -11,7 +11,7 @@ describe('imageLoader', () => {
       }
     });
 
-    it('should fetch the image and apply src to original image', async () => {
+    it.skip('should fetch the image and apply src to original image', async () => {
       const unobserveSpy = jest.fn();
       const setStateSpy = jest.fn();
       const target = { dataset: { src: 'test' } };
@@ -30,7 +30,7 @@ describe('imageLoader', () => {
     });
   });
 
-  it('should update mount images state when applyImage is called', () => {
+  it.skip('should update mount images state when applyImage is called', () => {
     const setAttributeSpy = jest.fn();
     const getAttributeSpy = jest.fn();
     expect(
