@@ -10,16 +10,19 @@ const IntersectionObserver = window.IntersectionObserver;
 describe('initSimpleImg', () => {
   afterEach(() => {
     window.IntersectionObserver = IntersectionObserver;
-    window.reactSimpleImgObserver = undefined;
+    window.__REACT_SIMPLE_IMG__ = undefined;
   });
 
-  it.skip('should return observer and set window object when context is not passed', () => {
+  it('should return observer and set window object when context is not passed', () => {
     const IntersectionObserverSpy = jest.fn();
     window.IntersectionObserver = IntersectionObserverSpy;
 
-    expect(initSimpleImg({})).toEqual({});
+    expect(initSimpleImg({})).toEqual(undefined);
     expect(IntersectionObserverSpy).toHaveBeenCalled();
-    expect(window.reactSimpleImgObserver).toEqual({});
+    expect(window.__REACT_SIMPLE_IMG__).toEqual({
+      observer: {},
+      imgLoadingRefs: new Map(),
+    });
   });
 
   it('should return observer when context is passed', () => {
@@ -28,7 +31,7 @@ describe('initSimpleImg', () => {
 
     expect(initSimpleImg.call({}, {})).toEqual({});
     expect(IntersectionObserverSpy).toHaveBeenCalled();
-    expect(window.reactSimpleImgObserver).toBe(undefined);
+    expect(window.__REACT_SIMPLE_IMG__).toBe(undefined);
   });
 });
 

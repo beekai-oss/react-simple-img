@@ -6,16 +6,14 @@
 [![npm](https://img.shields.io/npm/dt/react-simple-img.svg?style=flat-square)](https://www.npmjs.com/package/react-simple-img)
 [![npm](https://img.shields.io/npm/l/react-simple-img.svg?style=flat-square)](https://www.npmjs.com/package/react-lazyload-image)
 
-> **Make responsive image lazy load simple and faster page load** :clap:
+> **Smart react image with IntersectionObserver API and animations** :clap:
 
-Features:
+Why this package?:
 
-* Boost your web pages performance due to large images
-* Make images lazy load easy
-* Support responsive images with `srcset`
-* Use `IntersectionObserver` API
-* Support placeholder (image/placeholder color) for transition
-* Super easy to use and small size
+* Speed up initial page loads by loading only images above the fold
+* Responsive with placeholders and animations
+* Smart download logic using [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)
+* Simple usage and tiny size
 
 ## Install
 
@@ -31,7 +29,7 @@ Navigate into `example` folder and install
     or
     $ npm install && npm run start
 
-<a href="https://react-simple-img.herokuapp.com/" target="_blank">Check out the interactive demo.</a> 😍
+<a href="https://react-simple-img.herokuapp.com/" target="_blank">Check it out.</a> 😍
 
 **Tip for the following effect**
 
@@ -47,7 +45,7 @@ To generate svg placeholder, please install [SQIP](https://github.com/technopaga
 
     import { SimpleImg, initSimpleImg } from 'react-lazyLoad-images';
 
-    initSimpleImg();
+    initSimpleImg(); // run once at your root component or at file which calls `ReactDOM.render`
 
     export const App = () => <div>
         <SimpleImg height={500} src="your image path" />
@@ -57,8 +55,8 @@ To generate svg placeholder, please install [SQIP](https://github.com/technopaga
 
 #### 🔗 `initSimpleImg([config])` optional
 
-This function will set up global intersection observer and watch all `<SimpleImg />` appear in the viewport through your
-app
+This function will set up **global** intersection observer and watch all `<SimpleImg />` appear in the viewport through your
+entire app
 
 Arguments
 
