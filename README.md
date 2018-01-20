@@ -17,7 +17,7 @@
 
 ## Install
 
-    $ yarn add react-simple-img or $ npm install react-simple-img
+    yarn add react-simple-img || npm install react-simple-img
 
 ## Example
 
@@ -29,11 +29,11 @@
 
 Navigate into `example` folder and install
 
-    $ yarn && yarn start or $ npm install && npm run start
+    yarn && yarn start || npm install && npm run start
 
-<a href="https://react-simple-img.herokuapp.com/" target="_blank">Check it out.</a> 😍
+😍 <a href="https://react-simple-img.herokuapp.com/" target="_blank">Check it out.</a>
 
-**Tip for the following effect**
+**Tip for the above effect**
 
 To generate svg placeholder, please install [SQIP](https://github.com/technopagan/sqip/) to generate placeholders.
 
