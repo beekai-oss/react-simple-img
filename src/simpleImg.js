@@ -118,10 +118,6 @@ export default class SimpleImg extends React.Component<Props, State> {
   }
 
   componentWillUnmount() {
-    this.removeItemFromObserver();
-  }
-
-  removeItemFromObserver = () => {
     if (!this.element) return;
 
     if (this.state.useContext) {
@@ -139,7 +135,7 @@ export default class SimpleImg extends React.Component<Props, State> {
         imgLoadingRefs.delete(this.element);
       }
     }
-  };
+  }
 
   element = null;
 
