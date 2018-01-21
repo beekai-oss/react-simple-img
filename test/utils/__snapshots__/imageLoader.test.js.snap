@@ -1,5 +1,34 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`imageLoader should catch error failed 1`] = `[Error: 💩 Fetch image failed with target {} and error message TypeError: Cannot read property 'observer' of undefined]`;
+
 exports[`imageLoader should update mount images state when applyImage is called 1`] = `undefined`;
 
-exports[`imageLoader when preloadImage called should catch error failed 1`] = `[Error: 💩 Fetch image failed with target {} and error message TypeError: Cannot read property 'unobserve' of undefined]`;
+exports[`imageLoader when context is provided should fetch the image and apply src to original image 1`] = `
+Object {
+  "dataset": Object {
+    "src": "test",
+  },
+  "nextSibling": Object {
+    "getAttribute": [Function],
+    "setAttribute": [Function],
+  },
+  "src": "test",
+  "style": Object {
+    "visibility": "visible",
+  },
+}
+`;
+
+exports[`imageLoader when context is provided should fetch the image and apply src to original image 2`] = `
+Array [
+  "style",
+  "opacity: 0; transition: 0.3s all; undefined",
+]
+`;
+
+exports[`imageLoader when context is provided should fetch the image and apply src to original image 3`] = `
+Array [
+  "style",
+]
+`;

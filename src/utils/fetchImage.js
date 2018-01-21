@@ -1,11 +1,10 @@
 // @flow
 
-const fetchImage = (imageSrc: string) =>
+const fetchImage = (image: Image, imageSrc: string) =>
   new Promise((resolve, error) => {
-    const image = new Image(); // eslint-disable-line no-undef
-    image.src = imageSrc;
-    image.onload = resolve;
-    image.onerror = error;
+    image.src = imageSrc; // eslint-disable-line no-param-reassign
+    image.onload = resolve; // eslint-disable-line no-param-reassign
+    image.onerror = error; // eslint-disable-line no-param-reassign
   });
 
 export default fetchImage;

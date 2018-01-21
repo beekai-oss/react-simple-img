@@ -71,7 +71,7 @@ export default class SimpleImg extends React.Component<Props, State> {
     if (this.state.useContext) {
       this.context[APPEND_IMAGE_REF](this.element);
     } else {
-      window.reactSimpleImgObserver.observe(this.element); // eslint-disable-line no-undef
+      window.__REACT_SIMPLE_IMG__.observer.observe(this.element); // eslint-disable-line
     }
   }
 
@@ -118,18 +118,24 @@ export default class SimpleImg extends React.Component<Props, State> {
   }
 
   componentWillUnmount() {
-    this.removeItemFromObserver();
-  }
-
-  removeItemFromObserver = () => {
     if (!this.element) return;
 
     if (this.state.useContext) {
       this.context[REMOVE_IMAGE_REF](this.element);
     } else {
-      window.reactSimpleImgObserver.unobserve(this.element); // eslint-disable-line no-undef
+      /* eslint-disable */
+      const {
+        observer,
+        imgLoadingRefs,
+      } = window.__REACT_SIMPLE_IMG__;
+      observer.unobserve(this.element);
+
+      if (imgLoadingRefs.has(this.element)) {
+        imgLoadingRefs.get(this.element).src = '';
+        imgLoadingRefs.delete(this.element);
+      }
     }
-  };
+  }
 
   element = null;
 
