@@ -70,7 +70,7 @@ describe('imageLoader', () => {
     ).toBeFalsy();
   });
 
-  it('should update mount images state when applyImage is called', () => {
+  it.only('should update mount images state when applyImage is called', () => {
     const setAttributeSpy = jest.fn();
     const getAttributeSpy = jest.fn();
     const deleteSpy = jest.fn();
@@ -87,6 +87,10 @@ describe('imageLoader', () => {
       applyImage(
         {
           src: 'test',
+          dataset: {
+            srcset: 'srcset',
+          },
+          srcset: 'srcset',
           style: {
             visibility: 'hidden',
           },

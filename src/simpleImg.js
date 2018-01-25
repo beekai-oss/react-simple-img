@@ -160,6 +160,7 @@ export default class SimpleImg extends React.Component<Props, State> {
       ...(!isValidImgSrc ? { background: placeholder } : null),
     };
     const imgPlaceholder = isValidImgSrc ? placeholder : defaultImgPlaceholder;
+    const isSrcSetFulfilled = this.element && this.element.src !== imgPlaceholder;
 
     return (
       <span style={rootStyle} className={wrapperClassName}>
@@ -174,7 +175,7 @@ export default class SimpleImg extends React.Component<Props, State> {
           data-src={src}
           data-srcset={srcSet}
           style={{
-            ...(!isValidImgSrc && !loaded ? hiddenStyle : null),
+            ...(!isValidImgSrc && !loaded && !isSrcSetFulfilled ? hiddenStyle : null),
           }}
         />
         <Animate

@@ -14,6 +14,7 @@ Object {
     "setAttribute": [Function],
   },
   "src": "test",
+  "srcSet": undefined,
   "style": Object {
     "visibility": "visible",
   },

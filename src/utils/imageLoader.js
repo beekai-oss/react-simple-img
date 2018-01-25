@@ -13,6 +13,9 @@ export function applyImage(target: any, image: Image, src: string) {
 
     /* eslint-disable */
     target.src = src;
+    if (target.dataset.srcset) {
+      target.srcset = target.dataset.srcset;
+    }
     target.style.visibility = 'visible';
     /* eslint-enable */
     const nextSiblingElm = target.nextSibling;
