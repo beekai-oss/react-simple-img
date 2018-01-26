@@ -2,7 +2,12 @@
 import imageLoader from './utils/imageLoader';
 import type { Config } from './simpleImgProvider';
 
-export default function initSimpleImg(config: Config) {
+export const defaultConfig = {
+  rootMargin: '0px 0px',
+  threshold: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+};
+
+export default function initSimpleImg(config: Config = defaultConfig) {
   /* eslint-disable */
   if (!window.IntersectionObserver) require('intersection-observer');
   // $FlowIgnoreLine:

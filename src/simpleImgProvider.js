@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import type { Context } from './simpleImg';
-import init from './initSimpleImg';
+import init, { defaultConfig } from './initSimpleImg';
 
 export const APPEND_IMAGE_REF = '__ProgresssiveImagesAppendImageRef__';
 export const REMOVE_IMAGE_REF = '__ProgresssiveImagesRemoveImageRef__';
@@ -21,11 +21,6 @@ export type Config = {
   root?: HTMLElement,
   rootMargin?: string,
   threshold?: number | Array<number>,
-};
-
-const defaultConfig = {
-  rootMargin: '20px 0px',
-  threshold: [0, 0.25, 0.5, 0.75, 1],
 };
 
 export default function SimpleImgProvider(WrappedComponent: any, config: Config = defaultConfig) {
