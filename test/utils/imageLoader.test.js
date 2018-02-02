@@ -35,29 +35,32 @@ describe('imageLoader', () => {
       expect(removeImgLoadingRefSpy).toHaveBeenCalled();
     });
 
-    it('should fetch the image and apply src to original image', async () => {
-      const setAttributeSpy = jest.fn();
-      const getAttributeSpy = jest.fn();
-      window.__REACT_SIMPLE_IMG__ = {
-        observer: {
-          unobserve: () => {},
-        },
-        imgLoadingRefs: {
-          set: () => {},
-          delete: () => {},
-        },
-      };
-      const target = {
-        dataset: {
-          src: 'test',
-        },
-        style: { visibility: '' },
-        nextSibling: { setAttribute: setAttributeSpy, getAttribute: getAttributeSpy },
-      };
-      await imageLoader.call(undefined, target);
-      expect(target).toMatchSnapshot();
-      expect(setAttributeSpy.mock.calls[0]).toMatchSnapshot();
-      expect(getAttributeSpy.mock.calls[0]).toMatchSnapshot();
+    it('should fetch the image and apply src to original image', (done) => {
+      window.addEventListener('load', async () => {
+        const setAttributeSpy = jest.fn();
+        const getAttributeSpy = jest.fn();
+        window.__REACT_SIMPLE_IMG__ = {
+          observer: {
+            unobserve: () => {},
+          },
+          imgLoadingRefs: {
+            set: () => {},
+            delete: () => {},
+          },
+        };
+        const target = {
+          dataset: {
+            src: 'test',
+          },
+          style: { visibility: '' },
+          nextSibling: { setAttribute: setAttributeSpy, getAttribute: getAttributeSpy },
+        };
+        await imageLoader.call(undefined, target);
+        expect(target).toMatchSnapshot();
+        expect(setAttributeSpy.mock.calls[0]).toMatchSnapshot();
+        expect(getAttributeSpy.mock.calls[0]).toMatchSnapshot();
+        done();
+      })
     });
   });
 

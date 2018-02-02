@@ -52,15 +52,15 @@ describe('SimpleImgProvider', () => {
         tree.instance().removeImageRef('image');
         expect(tree.state('mountedImages')).toEqual(new Set(['image1']));
       });
-    });
-
-    describe('when all will mount images removed', () => {
-      it('should remove image and reset mounted images', () => {
-        tree.setState({
-          mountedImages: new Set(['image1']),
+      
+      describe('when all will mount images removed', () => {
+        it('should remove image and reset mounted images', () => {
+          tree.setState({
+            mountedImages: new Set(['image1']),
+          });
+          tree.instance().removeImageRef('image1');
+          expect(tree.state('mountedImages')).toEqual(new Set());
         });
-        tree.instance().removeImageRef('image1');
-        expect(tree.state('mountedImages')).toEqual(new Set());
       });
     });
   });
