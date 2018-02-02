@@ -7,7 +7,7 @@ export const defaultConfig = {
   threshold: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
 };
 
-export default function initSimpleImg(config: Config = defaultConfig) {
+export function intersectionStart(config: Config = defaultConfig) {
   /* eslint-disable */
   if (!window.IntersectionObserver) require('intersection-observer');
   // $FlowIgnoreLine:
@@ -21,6 +21,14 @@ export default function initSimpleImg(config: Config = defaultConfig) {
     };
   }
   return;
+  /* eslint-enable */
+}
+
+export default function initSimpleImg(config: Config = defaultConfig) {
+  /* eslint-disable */
+  window.addEventListener('load', () => {
+    intersectionStart(config);
+  });
   /* eslint-enable */
 }
 

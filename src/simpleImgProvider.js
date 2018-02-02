@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import type { Context } from './simpleImg';
-import init, { defaultConfig } from './initSimpleImg';
+import { intersectionStart, defaultConfig } from './initSimpleImg';
 
 export const APPEND_IMAGE_REF = '__ProgresssiveImagesAppendImageRef__';
 export const REMOVE_IMAGE_REF = '__ProgresssiveImagesRemoveImageRef__';
@@ -28,11 +28,6 @@ export default function SimpleImgProvider(WrappedComponent: any, config: Config 
     static childContextTypes: Context = contextTypes;
     static displayName = `SimpleImgProvider(${WrappedComponent.displayName || WrappedComponent.name || 'Component'})`;
 
-    constructor(props: any) {
-      super(props);
-      this.observer = init.call(this, config);
-    }
-
     state: State = {
       mountedImages: new Set(),
     };
@@ -43,6 +38,14 @@ export default function SimpleImgProvider(WrappedComponent: any, config: Config 
         [REMOVE_IMAGE_REF]: this.removeImageRef,
         [IMAGES_LOADED]: this.state.mountedImages,
       };
+    }
+
+    componentDidMount() {
+      /* eslint-disable */
+      window.addEventListener('load', () => {
+        this.observer = intersectionStart.call(this, config);
+      });
+      /* eslint-enable */
     }
 
     componentWillUnmount() {

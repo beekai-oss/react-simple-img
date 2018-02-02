@@ -70,7 +70,7 @@ describe('imageLoader', () => {
     ).toBeFalsy();
   });
 
-  it.only('should update mount images state when applyImage is called', () => {
+  it('should update mount images state when applyImage is called', () => {
     const setAttributeSpy = jest.fn();
     const getAttributeSpy = jest.fn();
     const deleteSpy = jest.fn();
