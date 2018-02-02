@@ -1,4 +1,4 @@
-import { intersectionStart, onIntersection } from '../src/initSimpleImg';
+import { observerStart, onIntersection } from '../src/initSimpleImg';
 jest.mock('../src/utils/imageLoader');
 
 const imageLoader = require('../src/utils/imageLoader').default;
@@ -17,7 +17,7 @@ describe('intersectionStart', () => {
     const IntersectionObserverSpy = jest.fn();
     window.IntersectionObserver = IntersectionObserverSpy;
 
-    expect(intersectionStart({})).toEqual(undefined);
+    expect(observerStart({})).toEqual(undefined);
     expect(IntersectionObserverSpy).toHaveBeenCalled();
     expect(window.__REACT_SIMPLE_IMG__).toEqual({
       observer: {},
@@ -29,7 +29,7 @@ describe('intersectionStart', () => {
     const IntersectionObserverSpy = jest.fn();
     window.IntersectionObserver = IntersectionObserverSpy;
 
-    expect(intersectionStart.call({}, {})).toEqual({});
+    expect(observerStart.call({}, {})).toEqual({});
     expect(IntersectionObserverSpy).toHaveBeenCalled();
     expect(window.__REACT_SIMPLE_IMG__).toBe(undefined);
   });

@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import type { Context } from './simpleImg';
-import { intersectionStart, defaultConfig } from './initSimpleImg';
+import { observerStart, defaultConfig } from './initSimpleImg';
 
 export const APPEND_IMAGE_REF = '__ProgresssiveImagesAppendImageRef__';
 export const REMOVE_IMAGE_REF = '__ProgresssiveImagesRemoveImageRef__';
@@ -43,7 +43,7 @@ export default function SimpleImgProvider(WrappedComponent: any, config: Config 
     componentDidMount() {
       /* eslint-disable */
       window.addEventListener('load', () => {
-        this.observer = intersectionStart.call(this, config);
+        this.observer = observerStart.call(this, config);
       });
       /* eslint-enable */
     }
