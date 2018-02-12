@@ -75,6 +75,10 @@ export default class SimpleImg extends React.Component<Props, State> {
       window.addEventListener('load', () => {
         window.__REACT_SIMPLE_IMG__.observer.observe(this.element);
       });
+
+      if (document.readyState === 'complete') {
+        window.__REACT_SIMPLE_IMG__.observer.observe(this.element);
+      }
       /* eslint-enable */
     }
   }

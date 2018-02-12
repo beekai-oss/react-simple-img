@@ -45,6 +45,10 @@ export default function SimpleImgProvider(WrappedComponent: any, config: Config 
       window.addEventListener('load', () => {
         this.observer = observerStart.call(this, config);
       });
+
+      if (document.readyState === 'complete') {
+        this.observer = observerStart.call(this, config);
+      }
       /* eslint-enable */
     }
 
