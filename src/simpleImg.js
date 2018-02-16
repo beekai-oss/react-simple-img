@@ -131,9 +131,9 @@ export default class SimpleImg extends React.Component<Props, State> {
     if (this.state.useContext) {
       this.context[REMOVE_IMAGE_REF](this.element);
     } else {
+      /* eslint-disable */
       if (!window.__REACT_SIMPLE_IMG__) return;
 
-      /* eslint-disable */
       const {
         observer,
         imgLoadingRefs,
