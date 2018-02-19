@@ -72,7 +72,7 @@ export default class SimpleImg extends React.Component<Props, State> {
       this.context[APPEND_IMAGE_REF](this.element);
     } else {
       /* eslint-disable */
-      if (document.readyState === 'complete') {
+      if (document.readyState === 'complete' && window.__REACT_SIMPLE_IMG__) {
         window.__REACT_SIMPLE_IMG__.observer.observe(this.element);
       } else {
         window.addEventListener('load', () => {
