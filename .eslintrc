@@ -6,7 +6,9 @@
     "react/no-unused-prop-types": 0,
     "react/jsx-filename-extension": 0,
     "global-require": 0,
-    "max-len": 0
+    "max-len": 0,
+    "no-underscore-dangle": 0,
+    "import/first": 0
   },
   "parser": "babel-eslint",
   "plugins": ["flowtype"]
