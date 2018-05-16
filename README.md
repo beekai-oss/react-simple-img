@@ -23,7 +23,7 @@
 
 <p align="center">
     <a href="https://react-simple-img.herokuapp.com/" target="_blank">
-        <img width="300" src="https://raw.githubusercontent.com/bluebill1049/react-simple-img/master/example/src/example.gif" alt="Logo" />
+        <img width="600" src="https://raw.githubusercontent.com/bluebill1049/react-simple-img/master/example/src/example.gif" alt="Logo" />
     </a>
 </p>
 
