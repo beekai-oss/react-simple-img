@@ -50,15 +50,15 @@
     "rimraf": "^2.6.1"
   },
   "peerDependencies": {
-    "react": ">= 15.6.1",
-    "react-dom": ">= 15.6.1",
+    "babel-polyfill": "^6.26.0",
     "prop-types": "^15.6.0",
-    "babel-polyfill": "^6.26.0"
+    "react": ">= 15.6.1",
+    "react-dom": ">= 15.6.1"
   },
   "dependencies": {
-    "prop-types": "^15.6.0",
     "babel-polyfill": "^6.26.0",
     "intersection-observer": "^0.5.0",
+    "prop-types": "^15.6.0",
     "react-simple-animate": "^1.7.4"
   }
 }
