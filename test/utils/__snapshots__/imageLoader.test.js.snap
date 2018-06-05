@@ -1,5 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`imageLoader should catch error failed 1`] = `[Error: 💩 Fetch image failed with target {} and error message TypeError: Cannot read property 'observer' of undefined]`;
+exports[`imageLoader should catch error failed 1`] = `
+[Error: 💩 Fetch image failed with target
+
+undefined
+
+and error message TypeError: Cannot read property 'observer' of undefined]
+`;
 
 exports[`imageLoader should update mount images state when applyImage is called 1`] = `undefined`;
