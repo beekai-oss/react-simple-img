@@ -75,9 +75,7 @@ export default class SimpleImg extends React.Component<Props, State> {
       if (document.readyState === 'complete' && window.__REACT_SIMPLE_IMG__) {
         window.__REACT_SIMPLE_IMG__.observer.observe(this.element);
       } else {
-        window.addEventListener('load', () => {
-          if (this.element !== null) window.__REACT_SIMPLE_IMG__.observer.observe(this.element);
-        });
+        window.addEventListener('load', this.startObserverImage);
       }
       /* eslint-enable */
     }
@@ -134,10 +132,13 @@ export default class SimpleImg extends React.Component<Props, State> {
       /* eslint-disable */
       if (!window.__REACT_SIMPLE_IMG__) return;
 
+      window.removeEventListener('load', this.startObserverImage);
+
       const {
         observer,
         imgLoadingRefs,
       } = window.__REACT_SIMPLE_IMG__;
+      /* eslint-enable */
       observer.unobserve(this.element);
 
       if (imgLoadingRefs.has(this.element)) {
@@ -148,6 +149,12 @@ export default class SimpleImg extends React.Component<Props, State> {
   }
 
   element = null;
+
+  startObserverImage() {
+    /* eslint-disable */
+    if (this.element !== null) window.__REACT_SIMPLE_IMG__.observer.observe(this.element);
+    /* eslint-enable */
+  }
 
   render() {
     const {
