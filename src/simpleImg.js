@@ -150,7 +150,7 @@ export default class SimpleImg extends React.Component<Props, State> {
 
   element = null;
 
-  startObserverImage() {
+  startObserverImage = () => {
     /* eslint-disable */
     if (this.element !== null) window.__REACT_SIMPLE_IMG__.observer.observe(this.element);
     /* eslint-enable */
