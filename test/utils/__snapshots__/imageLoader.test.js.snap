@@ -5,7 +5,7 @@ exports[`imageLoader should catch error failed 1`] = `
 
 undefined
 
-and error message TypeError: Cannot read property 'observer' of undefined]
+and error message Cannot read property 'observer' of undefined]
 `;
 
 exports[`imageLoader should update mount images state when applyImage is called 1`] = `undefined`;
