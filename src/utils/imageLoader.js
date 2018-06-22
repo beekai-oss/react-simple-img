@@ -46,6 +46,6 @@ export default async function imageLoader(target: any) {
 
     applyImage.apply(this, [target, image, src]);
   } catch (e) {
-    throw new Error(`💩 Fetch image failed with target\n\n${target.outerHTML}\n\nand error message ${e.message}`);
+    throw new Error(`💩 Fetch image failed with target\n\n${target.outerHTML}\n\nand error message ${JSON.stringify(e, null, 2)}`);
   }
 }
