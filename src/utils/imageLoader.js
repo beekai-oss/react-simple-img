@@ -24,7 +24,7 @@ export function applyImage(target: any, image: Image, src: string) {
   }
 }
 
-export default async function imageLoader(target: any) {
+export default function imageLoader(target: any) {
   try {
     const image = new Image(); // eslint-disable-line no-undef
 
@@ -32,20 +32,19 @@ export default async function imageLoader(target: any) {
       this.observer.unobserve(target);
       this.appendImgLoadingRef(image);
     } else {
-      const {
-        observer,
-        imgLoadingRefs,
-      } = window.__REACT_SIMPLE_IMG__; // eslint-disable-line
+      const { observer, imgLoadingRefs } = window.__REACT_SIMPLE_IMG__; // eslint-disable-line
 
       observer.unobserve(target);
       imgLoadingRefs.set(target, image);
     }
 
     const src = filterImgSrc(target);
-    await fetchImage(image, filterImgSrc(target));
-
-    applyImage.apply(this, [target, image, src]);
+    fetchImage(image, filterImgSrc(target)).then(() => {
+      applyImage.apply(this, [target, image, src]);
+    });
   } catch (e) {
-    throw new Error(`💩 Fetch image failed with target\n\n${target.outerHTML}\n\nand error message ${JSON.stringify(e, null, 2)}`);
+    throw new Error(
+      `💩 Fetch image failed with target\n\n${target.outerHTML}\n\nand error message ${JSON.stringify(e, null, 2)}`,
+    );
   }
 }
