@@ -130,6 +130,6 @@ Set up React Simple Img per page, you can use the following example without `ini
             src="your image path" />
     </div>;
 
-    export default SimpleImgProvider(App, {
+    export default SimpleImgProvider(Home, {
         threshold: [0.5], // load image when 50 percentage of image in the view port
     });
