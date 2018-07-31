@@ -39,7 +39,7 @@ To generate svg placeholder, please install [SQIP](https://github.com/technopaga
 
 ## Quick start
 
-    import { SimpleImg, initSimpleImg } from 'react-lazyLoad-images';
+    import { SimpleImg, initSimpleImg } from 'react-simple-img';
 
     initSimpleImg(); // run once at your root component or at file which calls `ReactDOM.render`
 
