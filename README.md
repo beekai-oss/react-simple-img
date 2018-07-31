@@ -119,14 +119,14 @@ Set up React Simple Img per page, you can use the following example without `ini
         // placeholder background color example
         <SimpleImg
             height={500}
-            placeholderColor="linear-gradient(rgb(30, 87, 153) 0%, rgb(125, 185, 232) 100%)"
+            placeholder="linear-gradient(rgb(30, 87, 153) 0%, rgb(125, 185, 232) 100%)"
             src="your image path"
         />
 
         // placeholder background image example
         <SimpleImg
             height={500}
-            placeholderSrc="your placeholder svg or image path"
+            placeholder="your placeholder svg or image path"
             src="your image path" />
     </div>;
 
