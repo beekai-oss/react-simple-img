@@ -1,7 +1,7 @@
 import renderer from 'react-test-renderer';
 import SimpleImg from '../src/simpleImg';
 import { shallow, mount } from 'enzyme';
-import { APPEND_IMAGE_REF, IMAGES_LOADED, REMOVE_IMAGE_REF } from '../src/simpleImgProvider';
+import { APPEND_IMAGE_REF, IMAGES_LOADED, REMOVE_IMAGE_REF, DOCUMENT_LOADED } from '../src/simpleImgProvider';
 import React from 'react';
 
 jest.mock('react-simple-animate', () => 'Animate');
@@ -25,6 +25,7 @@ const context = {
   [APPEND_IMAGE_REF]: appendImage,
   [IMAGES_LOADED]: imageLoaded,
   [REMOVE_IMAGE_REF]: removeImage,
+  [DOCUMENT_LOADED]: true,
 };
 
 describe('SimpleImg', () => {
@@ -59,7 +60,10 @@ describe('SimpleImg', () => {
   });
 
   it('should append image ref when image mounted', () => {
-    mount(<SimpleImg {...props} />, { context });
+    const tree = mount(<SimpleImg {...props} />, { context });
+    tree.setState({
+      isDocumentLoad: true,
+    });
     expect(appendImage).toHaveBeenCalled();
   });
 

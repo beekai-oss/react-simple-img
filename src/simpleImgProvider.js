@@ -7,14 +7,17 @@ import { observerStart, defaultConfig } from './initSimpleImg';
 export const APPEND_IMAGE_REF = '__ProgresssiveImagesAppendImageRef__';
 export const REMOVE_IMAGE_REF = '__ProgresssiveImagesRemoveImageRef__';
 export const IMAGES_LOADED = '__ProgresssiveImagesLoaded__';
+export const DOCUMENT_LOADED = '__DocumentLoaded__';
 export const contextTypes = {
   [APPEND_IMAGE_REF]: PropTypes.func,
   [REMOVE_IMAGE_REF]: PropTypes.func,
   [IMAGES_LOADED]: PropTypes.object,
+  [DOCUMENT_LOADED]: PropTypes.bool,
 };
 
 type State = {
   mountedImages: Set<HTMLElement>,
+  isDocumentLoad: boolean,
 };
 
 export type Config = {
@@ -30,6 +33,7 @@ export default function SimpleImgProvider(WrappedComponent: any, config: Config 
 
     state: State = {
       mountedImages: new Set(),
+      isDocumentLoad: false,
     };
 
     getChildContext() {
@@ -37,6 +41,7 @@ export default function SimpleImgProvider(WrappedComponent: any, config: Config 
         [APPEND_IMAGE_REF]: this.appendImageRef,
         [REMOVE_IMAGE_REF]: this.removeImageRef,
         [IMAGES_LOADED]: this.state.mountedImages,
+        [DOCUMENT_LOADED]: this.state.isDocumentLoad,
       };
     }
 
@@ -44,6 +49,9 @@ export default function SimpleImgProvider(WrappedComponent: any, config: Config 
       /* eslint-disable */
       window.addEventListener('load', () => {
         this.observer = observerStart.call(this, config);
+        this.setState({
+          isDocumentLoad: true,
+        });
       });
 
       if (document.readyState === 'complete') {

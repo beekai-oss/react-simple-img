@@ -2,10 +2,11 @@
 import React from 'react';
 import Animate from 'react-simple-animate';
 import validImgSrc from './utils/validImgSrc';
-import { APPEND_IMAGE_REF, IMAGES_LOADED, REMOVE_IMAGE_REF, contextTypes } from './simpleImgProvider';
+import { APPEND_IMAGE_REF, IMAGES_LOADED, REMOVE_IMAGE_REF, DOCUMENT_LOADED, contextTypes } from './simpleImgProvider';
 
 type State = {
   loaded: boolean,
+  isDocumentLoad: boolean,
 };
 
 type Style = { [string]: number | string };
@@ -28,6 +29,7 @@ export type Context = {
   __ProgresssiveImagesAppendImageRef__: HTMLElement => void,
   __ProgresssiveImagesRemoveImageRef__: HTMLElement => void,
   __ProgresssiveImagesLoaded__: Set<HTMLElement>,
+  __DocumentLoaded__: boolean,
 };
 
 const commonStyle = {
@@ -49,7 +51,7 @@ const onCompleteStyle = { display: 'none' };
 const fullWidthStyle = { width: '100%' };
 const hiddenStyle = { visibility: 'hidden' };
 
-export default class SimpleImg extends React.Component<Props, State> {
+export default class SimpleImg extends React.PureComponent<Props, State> {
   static contextTypes = contextTypes;
 
   constructor(props: Props, context: Context) {
@@ -58,24 +60,24 @@ export default class SimpleImg extends React.Component<Props, State> {
     this.state = {
       loaded: false,
       useContext: !!context[IMAGES_LOADED],
+      isDocumentLoad: false,
     };
   }
 
   state: State = {
     loaded: false,
+    isDocumentLoad: false,
   };
 
   componentDidMount() {
     if (!this.element) return;
 
-    if (this.state.useContext) {
+    if (this.state.useContext && this.state.isDocumentLoad) {
       this.context[APPEND_IMAGE_REF](this.element);
     } else {
       /* eslint-disable */
-      if (document.readyState === 'complete' && window.__REACT_SIMPLE_IMG__) {
+      if (this.state.isDocumentLoad && window.__REACT_SIMPLE_IMG__) {
         window.__REACT_SIMPLE_IMG__.observer.observe(this.element);
-      } else {
-        window.addEventListener('load', this.startObserverImage);
       }
       /* eslint-enable */
     }
@@ -91,36 +93,24 @@ export default class SimpleImg extends React.Component<Props, State> {
 
       if (this.element) nextContext[REMOVE_IMAGE_REF](this.element);
     }
+
+    if (nextContext[DOCUMENT_LOADED]) {
+      this.setState({
+        isDocumentLoad: true,
+      });
+    }
   }
 
-  shouldComponentUpdate(
-    {
-      src,
-      placeholder,
-      width,
-      height,
-      alt,
-      srcSet,
-      wrapperClassName,
-      imgClassName,
-      animationDuration,
-      animationEndStyle,
-    }: Props,
-    { loaded }: State,
-  ) {
-    return (
-      this.state.loaded !== loaded ||
-      this.props.src !== src ||
-      this.props.placeholder !== placeholder ||
-      this.props.wrapperClassName !== wrapperClassName ||
-      this.props.imgClassName !== imgClassName ||
-      this.props.width !== width ||
-      this.props.height !== height ||
-      this.props.alt !== alt ||
-      this.props.srcSet !== srcSet ||
-      this.props.animationDuration !== animationDuration ||
-      this.props.animationEndStyle !== animationEndStyle
-    );
+  componentDidUpdate() {
+    if (this.state.isDocumentLoad) {
+      if (this.state.useContext) {
+        this.context[APPEND_IMAGE_REF](this.element);
+      } else {
+        /* eslint-disable */
+        if (this.element !== null) window.__REACT_SIMPLE_IMG__.observer.observe(this.element);
+        /* eslint-enable */
+      }
+    }
   }
 
   componentWillUnmount() {
@@ -131,8 +121,6 @@ export default class SimpleImg extends React.Component<Props, State> {
     } else {
       /* eslint-disable */
       if (!window.__REACT_SIMPLE_IMG__) return;
-
-      window.removeEventListener('load', this.startObserverImage);
 
       const {
         observer,
@@ -149,12 +137,6 @@ export default class SimpleImg extends React.Component<Props, State> {
   }
 
   element = null;
-
-  startObserverImage = () => {
-    /* eslint-disable */
-    if (this.element !== null) window.__REACT_SIMPLE_IMG__.observer.observe(this.element);
-    /* eslint-enable */
-  }
 
   render() {
     const {
