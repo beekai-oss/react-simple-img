@@ -168,7 +168,7 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
         <img
           {...{ width, height, sizes, className }}
           alt={alt}
-          ref={element => {
+          ref={(element) => {
             this.element = element;
           }}
           src={loaded ? src : imgPlaceholder}
@@ -190,11 +190,11 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
           onCompleteStyle={onCompleteStyle}
           {...(!isValidImgSrc
             ? {
-                startStyle: {
-                  ...inlineStyle,
-                  ...fullWidthStyle,
-                },
-              }
+              startStyle: {
+                ...inlineStyle,
+                ...fullWidthStyle,
+              },
+            }
             : null)}
         >
           {isValidImgSrc && <img {...{ width, height, className }} style={inlineStyle} alt={alt} src={placeholder} />}
