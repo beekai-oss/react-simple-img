@@ -25,6 +25,7 @@ export function observerStart(config: Config = defaultConfig) {
 }
 
 export default function initSimpleImg(config: Config = defaultConfig) {
+  if (typeof window === 'undefined') return;
   /* eslint-disable */
   window.addEventListener('load', () => {
     observerStart(config);
