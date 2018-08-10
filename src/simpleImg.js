@@ -76,7 +76,12 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
       this.context[APPEND_IMAGE_REF](this.element);
     } else {
       /* eslint-disable */
-      if (this.state.isDocumentLoad && window.__REACT_SIMPLE_IMG__) {
+      window.addEventListener('load', () => {
+        this.setState({
+          isDocumentLoad: true,
+        });
+      });
+      if ((this.state.isDocumentLoad || document.readyState === 'complete') && window.__REACT_SIMPLE_IMG__) {
         window.__REACT_SIMPLE_IMG__.observer.observe(this.element);
       }
       /* eslint-enable */
@@ -122,10 +127,7 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
       /* eslint-disable */
       if (!window.__REACT_SIMPLE_IMG__) return;
 
-      const {
-        observer,
-        imgLoadingRefs,
-      } = window.__REACT_SIMPLE_IMG__;
+      const { observer, imgLoadingRefs } = window.__REACT_SIMPLE_IMG__;
       /* eslint-enable */
       observer.unobserve(this.element);
 
@@ -166,7 +168,7 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
         <img
           {...{ width, height, sizes, className }}
           alt={alt}
-          ref={(element) => {
+          ref={element => {
             this.element = element;
           }}
           src={loaded ? src : imgPlaceholder}
@@ -188,12 +190,12 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
           onCompleteStyle={onCompleteStyle}
           {...(!isValidImgSrc
             ? {
-              startStyle: {
-                ...inlineStyle,
-                ...fullWidthStyle,
-              },
-            }
-          : null)}
+                startStyle: {
+                  ...inlineStyle,
+                  ...fullWidthStyle,
+                },
+              }
+            : null)}
         >
           {isValidImgSrc && <img {...{ width, height, className }} style={inlineStyle} alt={alt} src={placeholder} />}
         </Animate>
