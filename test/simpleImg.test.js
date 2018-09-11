@@ -1,10 +1,10 @@
 import renderer from 'react-test-renderer';
-import SimpleImg from '../src/simpleImg';
+import { SimpleImg } from '../src/simpleImg';
 import { shallow, mount } from 'enzyme';
 import { APPEND_IMAGE_REF, IMAGES_LOADED, REMOVE_IMAGE_REF, DOCUMENT_LOADED } from '../src/simpleImgProvider';
 import React from 'react';
 
-jest.mock('react-simple-animate', () => 'Animate');
+jest.mock('react-simple-animate', () => ({ Animate: 'Animate' }));
 
 const props = {
   src: 'src',

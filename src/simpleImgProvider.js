@@ -1,19 +1,11 @@
 // @flow
 import React from 'react';
-import PropTypes from 'prop-types';
-import type { Context } from './simpleImg';
 import { observerStart, defaultConfig } from './initSimpleImg';
 
-export const APPEND_IMAGE_REF = '__ProgresssiveImagesAppendImageRef__';
-export const REMOVE_IMAGE_REF = '__ProgresssiveImagesRemoveImageRef__';
-export const IMAGES_LOADED = '__ProgresssiveImagesLoaded__';
-export const DOCUMENT_LOADED = '__DocumentLoaded__';
-export const contextTypes = {
-  [APPEND_IMAGE_REF]: PropTypes.func,
-  [REMOVE_IMAGE_REF]: PropTypes.func,
-  [IMAGES_LOADED]: PropTypes.object,
-  [DOCUMENT_LOADED]: PropTypes.bool,
-};
+export const SimpleImgContext = React.createContext({
+  animationStates: {},
+  register: undefined,
+});
 
 type State = {
   mountedImages: Set<HTMLElement>,
@@ -26,75 +18,79 @@ export type Config = {
   threshold?: number | Array<number>,
 };
 
-export default function SimpleImgProvider(WrappedComponent: any, config: Config = defaultConfig) {
-  return class extends React.Component<any, State> {
-    static childContextTypes: Context = contextTypes;
-    static displayName = `SimpleImgProvider(${WrappedComponent.displayName || WrappedComponent.name || 'Component'})`;
+type Props = {
+  config: Object,
+};
 
-    state: State = {
-      mountedImages: new Set(),
-      isDocumentLoad: false,
-    };
+export default class SimpleImgProvider extends React.Component<Props, State> {
+  static displayName = 'SimpleImgProvider';
 
-    getChildContext() {
-      return {
-        [APPEND_IMAGE_REF]: this.appendImageRef,
-        [REMOVE_IMAGE_REF]: this.removeImageRef,
-        [IMAGES_LOADED]: this.state.mountedImages,
-        [DOCUMENT_LOADED]: this.state.isDocumentLoad,
-      };
-    }
-
-    componentDidMount() {
-      /* eslint-disable */
-      window.addEventListener('load', () => {
-        this.observer = observerStart.call(this, config);
-        this.setState({
-          isDocumentLoad: true,
-        });
-      });
-
-      if (document.readyState === 'complete') {
-        this.observer = observerStart.call(this, config);
-      }
-      /* eslint-enable */
-    }
-
-    componentWillUnmount() {
-      this.imageLoadRefs.forEach((image) => {
-        // cancel all loading images;
-        image.src = ''; // eslint-disable-line no-param-reassign
-      });
-      this.imageLoadRefs.clear();
-    }
-
-    appendImageRef = (image: HTMLElement) => this.observer && this.observer.observe(image);
-
-    removeImageRef = (image: HTMLElement) => {
-      // $FlowIgnoreLine:
-      this.observer.unobserve(image);
-      this.setState(({ mountedImages }) => {
-        mountedImages.delete(image);
-        return {
-          mountedImages,
-        };
-      });
-    };
-
-    appendImgLoadingRef = (image: Image) => {
-      this.imageLoadRefs.add(image);
-    };
-
-    removeImgLoadingRef = (image: Image) => {
-      this.imageLoadRefs.delete(image);
-    };
-
-    observer = {};
-
-    imageLoadRefs = new Set();
-
-    render() {
-      return <WrappedComponent {...this.props} />;
-    }
+  static defaultProps = {
+    config: defaultConfig,
   };
+
+  state: State = {
+    mountedImages: new Set(),
+    isDocumentLoad: false,
+  };
+
+  componentDidMount() {
+    const { config } = this.props;
+
+    /* eslint-disable */
+    window.addEventListener('load', () => {
+      this.observer = observerStart.call(this, config);
+      this.setState({
+        isDocumentLoad: true,
+      });
+    });
+
+    if (document.readyState === 'complete') {
+      this.observer = observerStart.call(this, config);
+    }
+    /* eslint-enable */
+  }
+
+  componentWillUnmount() {
+    this.imageLoadRefs.forEach(image => {
+      // cancel all loading images;
+      image.src = ''; // eslint-disable-line no-param-reassign
+    });
+    this.imageLoadRefs.clear();
+  }
+
+  appendImageRef = (image: HTMLElement) => this.observer && this.observer.observe(image);
+
+  removeImageRef = (image: HTMLElement) => {
+    // $FlowIgnoreLine:
+    this.observer.unobserve(image);
+    this.setState(({ mountedImages }) => {
+      mountedImages.delete(image);
+      return {
+        mountedImages,
+      };
+    });
+  };
+
+  appendImgLoadingRef = (image: Image) => {
+    this.imageLoadRefs.add(image);
+  };
+
+  removeImgLoadingRef = (image: Image) => {
+    this.imageLoadRefs.delete(image);
+  };
+
+  observer = {};
+
+  imageLoadRefs = new Set();
+
+  render() {
+    return (
+      <SimpleImgContext.provider
+        value={{ ...{ ...this.state, appendImageRef: this.appendImageRef, removeImageRef: this.removeImageRef } }}
+      >
+        {this.props.children}
+      </SimpleImgContext.provider>
+    );
+  }
 }

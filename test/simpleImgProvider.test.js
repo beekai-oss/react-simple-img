@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { mount } from 'enzyme';
-import SimpleImgProvider from '../src/simpleImgProvider';
+import { SimpleImgProvider } from '../src/simpleImgProvider';
 
 const TestComponent = () => <div>Test</div>;
 const IntersectionObserverSpy = jest.fn();
