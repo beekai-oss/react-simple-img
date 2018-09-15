@@ -20,7 +20,7 @@ export function applyImage(target: any, image: Image, src: string) {
     /* eslint-enable */
     const nextSiblingElm = target.nextSibling;
     nextSiblingElm.setAttribute('style', `opacity: 0; transition: 0.3s all; ${nextSiblingElm.getAttribute('style')}`);
-    window.__REACT_SIMPLE_IMG__.imgLoadingRefs.delete(target); // eslint-disable-line
+    window.__REACT_SIMPLE_IMG__.imgLoadingRefs.delete(target);
   }
 }
 
@@ -32,7 +32,7 @@ export default function imageLoader(target: any) {
       this.observer.unobserve(target);
       this.appendImgLoadingRef(image);
     } else {
-      const { observer, imgLoadingRefs } = window.__REACT_SIMPLE_IMG__; // eslint-disable-line
+      const { observer, imgLoadingRefs } = window.__REACT_SIMPLE_IMG__;
 
       observer.unobserve(target);
       imgLoadingRefs.set(target, image);

@@ -2,6 +2,7 @@
 import React from 'react';
 import { observerStart, defaultConfig } from './initSimpleImg';
 
+// $FlowIgnoreLine:
 export const SimpleImgContext = React.createContext({
   animationStates: {},
   register: undefined,
@@ -9,6 +10,7 @@ export const SimpleImgContext = React.createContext({
 
 type State = {
   isDocumentLoad: boolean,
+  mountedImages: Set<HTMLElement>,
 };
 
 export type Config = {
@@ -19,6 +21,7 @@ export type Config = {
 
 type Props = {
   config: Object,
+  children: any,
 };
 
 export default class SimpleImgProvider extends React.Component<Props, State> {
@@ -28,25 +31,28 @@ export default class SimpleImgProvider extends React.Component<Props, State> {
     config: defaultConfig,
   };
 
-  state: State = {
-    isDocumentLoad: false,
-  };
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {
+      mountedImages: new Set(),
+      isDocumentLoad: typeof window === 'undefined' ? document.readyState === 'complete' : false,
+    };
+  }
 
   componentDidMount() {
     const { config } = this.props;
 
-    /* eslint-disable */
-    window.addEventListener('load', () => {
-      this.observer = observerStart.call(this, config);
-      this.setState({
-        isDocumentLoad: true,
-      });
-    });
-
     if (document.readyState === 'complete') {
       this.observer = observerStart.call(this, config);
+    } else {
+      window.addEventListener('load', () => {
+        this.observer = observerStart.call(this, config);
+        this.setState({
+          isDocumentLoad: true,
+        });
+      });
     }
-    /* eslint-enable */
   }
 
   componentWillUnmount() {
@@ -61,6 +67,12 @@ export default class SimpleImgProvider extends React.Component<Props, State> {
   removeImageRef = (image: HTMLElement) => {
     // $FlowIgnoreLine:
     this.observer.unobserve(image);
+    this.setState(({ mountedImages }) => {
+      mountedImages.delete(image);
+      return {
+        mountedImages,
+      };
+    });
   };
 
   appendImgLoadingRef = (image: Image) => {
@@ -77,11 +89,20 @@ export default class SimpleImgProvider extends React.Component<Props, State> {
 
   render() {
     return (
-      <SimpleImgContext.provider
-        value={{ ...{ ...this.state, appendImageRef: this.appendImageRef, removeImageRef: this.removeImageRef } }}
+      <SimpleImgContext.Provider
+        value={{
+          ...{
+            ...this.state,
+            useContext: true,
+            appendImageRef: this.appendImageRef,
+            removeImageRef: this.removeImageRef,
+            appendImgLoadingRef: this.appendImgLoadingRef,
+            removeImgLoadingRef: this.removeImgLoadingRef,
+          },
+        }}
       >
         {this.props.children}
-      </SimpleImgContext.provider>
+      </SimpleImgContext.Provider>
     );
   }
 }

@@ -7,8 +7,16 @@ export const defaultConfig = {
   threshold: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
 };
 
+export function onIntersection(entries: Array<{ intersectionRatio: number, target: any }>) {
+  for (let i = 0, len = entries.length; i < len; i++) {
+    const { intersectionRatio, target } = entries[i];
+    if (intersectionRatio > 0) {
+      imageLoader.call(this, target);
+    }
+  }
+}
+
 export function observerStart(config: Config = defaultConfig) {
-  /* eslint-disable */
   if (!window.IntersectionObserver) require('intersection-observer');
   // $FlowIgnoreLine:
   const observer = new IntersectionObserver(entries => onIntersection.call(this, entries), config);
@@ -18,24 +26,13 @@ export function observerStart(config: Config = defaultConfig) {
     observer,
     imgLoadingRefs: new Map(),
   };
-  /* eslint-enable */
+
+  return null;
 }
 
 export default function initSimpleImg(config: Config = defaultConfig) {
   if (typeof window === 'undefined') return;
-  /* eslint-disable */
   window.addEventListener('load', () => {
     observerStart(config);
   });
-  /* eslint-enable */
-}
-
-export function onIntersection(entries: Array<{ intersectionRatio: number, target: any }>) {
-  for (let i = 0, len = entries.length; i < len; i++) {
-    // eslint-disable-line no-plusplus
-    const { intersectionRatio, target } = entries[i];
-    if (intersectionRatio > 0) {
-      imageLoader.call(this, target);
-    }
-  }
 }

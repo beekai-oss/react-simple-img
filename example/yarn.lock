@@ -5637,8 +5637,8 @@ react-simple-animate@^1.7.4:
   resolved "https://registry.yarnpkg.com/react-simple-animate/-/react-simple-animate-1.7.4.tgz#40389bb7530930a93a658581559a3db7f7fad5ad"
 
 react-simple-animate@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/react-simple-animate/-/react-simple-animate-2.0.0.tgz#5bf6762584807d60636af7628a33a85c51c8e8d2"
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/react-simple-animate/-/react-simple-animate-2.0.1.tgz#af8828059d86e5686347cf4eac1419e2ecc02b5d"
 
 react-simple-img@1.3.16:
   version "1.3.16"
