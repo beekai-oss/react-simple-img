@@ -24,6 +24,7 @@ type Props = {
   animationDuration: number,
   animationEndStyle: Style,
   isDocumentLoad: boolean,
+  useContext: boolean,
 };
 
 const commonStyle = {
@@ -48,6 +49,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
   static defaultProps = {
     removeImgLoadingRef: undefined,
     appendImageRef: undefined,
+    animationDuration: 0.3,
   };
 
   state: State = {
@@ -56,31 +58,47 @@ export class SimpleImg extends React.PureComponent<Props, State> {
   };
 
   componentDidMount() {
-    const { isDocumentLoad, appendImageRef } = this.props;
+    const { useContext, isDocumentLoad, appendImageRef } = this.props;
 
-    if (isDocumentLoad) {
+    if (useContext && isDocumentLoad) {
       appendImageRef(this.element.current);
+    } else if ((this.state.isLocalDocumentLoad || document.readyState === 'complete') && window.__REACT_SIMPLE_IMG__) {
+      window.__REACT_SIMPLE_IMG__.observer.observe(this.element.current);
     } else {
-      /* eslint-disable */
-      if ((this.state.isLocalDocumentLoad || document.readyState === 'complete') && window.__REACT_SIMPLE_IMG__) {
-        window.__REACT_SIMPLE_IMG__.observer.observe(this.element.current);
-      } else {
-        window.addEventListener('load', () => {
-          this.setState({
-            isLocalDocumentLoad: true,
-          });
+      window.addEventListener('load', () => {
+        this.setState({
+          isLocalDocumentLoad: true,
         });
-      }
-      /* eslint-enable */
+      });
     }
   }
 
   componentDidUpdate(prevProps: Props, prevState: State) {
-    const { appendImgLoadingRef, removeImageRef, isDocumentLoad } = this.props;
+    const {
+      appendImageRef,
+      // appendImgLoadingRef,
+      useContext,
+      removeImageRef,
+      mountedImages,
+      isDocumentLoad,
+    } = this.props;
     const element = this.element.current;
 
-    if (!prevState.isLocalDocumentLoad && this.state.isLocalDocumentLoad) {
-      window.__REACT_SIMPLE_IMG__.observer.observe(element);
+    if (useContext) {
+      if (!prevProps.isDocumentLoad && isDocumentLoad) appendImageRef(element);
+
+      if (mountedImages.has(element)) {
+        setTimeout(() =>
+          this.setState({
+            loaded: true,
+          }),
+        );
+        removeImageRef(element);
+      }
+    } else if (!prevState.isLocalDocumentLoad && this.state.isLocalDocumentLoad) {
+      if (window.__REACT_SIMPLE_IMG__) {
+        window.__REACT_SIMPLE_IMG__.observer.observe(element);
+      }
     }
 
     // if (this.element.current && removeImageRef) removeImageRef(this.element.current);
@@ -88,16 +106,14 @@ export class SimpleImg extends React.PureComponent<Props, State> {
 
   componentWillUnmount() {
     if (!this.element.current) return;
-    const { removeImgLoadingRef } = this.props;
+    const { removeImgLoadingRef, useContext } = this.props;
 
-    if (removeImgLoadingRef) {
+    if (useContext) {
       removeImgLoadingRef(this.element.current);
     } else {
-      /* eslint-disable */
       if (!window.__REACT_SIMPLE_IMG__) return;
 
       const { observer, imgLoadingRefs } = window.__REACT_SIMPLE_IMG__;
-      /* eslint-enable */
       observer.unobserve(this.element.current);
 
       if (imgLoadingRefs.has(this.element.current)) {
@@ -146,7 +162,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
           }}
         />
         <Animate
-          startAnimation={loaded}
+          play={loaded}
           durationSeconds={animationDuration}
           endStyle={{
             ...inlineStyle,
@@ -170,4 +186,6 @@ export class SimpleImg extends React.PureComponent<Props, State> {
   }
 }
 
-export default () => <SimpleImgContext.consumer>{props => <SimpleImg {...props} />}</SimpleImgContext.consumer>;
+export default props => (
+  <SimpleImgContext.Consumer>{values => <SimpleImg {...{ ...values, ...props }} />}</SimpleImgContext.Consumer>
+);
