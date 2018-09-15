@@ -1,7 +1,8 @@
-import { observerStart, onIntersection } from '../src/initSimpleImg';
-jest.mock('../src/utils/imageLoader');
+import observerStart, { onIntersection } from '../../src/logic/observerStart';
 
-const imageLoader = require('../src/utils/imageLoader').default;
+jest.mock('../../src/utils/imageLoader');
+
+const imageLoader = require('../../src/utils/imageLoader').default;
 const imageLoaderSpy = jest.fn();
 imageLoader.mockImplementation(imageLoaderSpy);
 
@@ -41,17 +42,13 @@ describe('onIntersection', () => {
   });
 
   it('should call image loader when image hit intersectionRatio ratio', () => {
-    const entries = [
-      { intersectionRatio: 1, target: null },
-    ];
+    const entries = [{ intersectionRatio: 1, target: null }];
     onIntersection(entries);
     expect(imageLoaderSpy).toHaveBeenCalled();
   });
 
   it('should not call image loader when image not intersected yet', () => {
-    const entries = [
-      { intersectionRatio: 0, target: null },
-    ];
+    const entries = [{ intersectionRatio: 0, target: null }];
     onIntersection(entries);
     expect(imageLoaderSpy).not.toHaveBeenCalled();
   });

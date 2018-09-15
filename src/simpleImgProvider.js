@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { observerStart, defaultConfig } from './initSimpleImg';
+import observerStart, { defaultConfig } from './logic/observerStart';
 
 // $FlowIgnoreLine:
 export const SimpleImgContext = React.createContext({
