@@ -6,7 +6,7 @@ import { SimpleImgContext } from './simpleImgProvider';
 
 type State = {
   loaded: boolean,
-  isDocumentLoad: boolean,
+  isLocalDocumentLoad: boolean,
 };
 
 type Style = { [string]: number | string };
@@ -57,39 +57,35 @@ export class SimpleImg extends React.PureComponent<Props, State> {
 
   componentDidMount() {
     const { isDocumentLoad, appendImageRef } = this.props;
+
     if (isDocumentLoad) {
       appendImageRef(this.element.current);
     } else {
       /* eslint-disable */
-      window.addEventListener('load', () => {
-        this.setState({
-          isLocalDocumentLoad: true,
-        });
-      });
-
       if ((this.state.isLocalDocumentLoad || document.readyState === 'complete') && window.__REACT_SIMPLE_IMG__) {
         window.__REACT_SIMPLE_IMG__.observer.observe(this.element.current);
+      } else {
+        window.addEventListener('load', () => {
+          this.setState({
+            isLocalDocumentLoad: true,
+          });
+        });
       }
       /* eslint-enable */
     }
   }
 
-  static getDerivedStateFromProps() {
-    return {
-      ...(this.props.mountedImages.has(this.element.current) ? { loaded: true } : null),
-    };
-  }
-
-  componentDidUpdate() {
+  componentDidUpdate(prevProps: Props, prevState: State) {
     const { appendImgLoadingRef, removeImageRef, isDocumentLoad } = this.props;
+    const element = this.element.current;
 
-    if (this.state.isLocalDocumentLoad && this.element.current !== null) {
-      window.__REACT_SIMPLE_IMG__.observer.observe(this.element.current);
+    if (!prevState.isLocalDocumentLoad && this.state.isLocalDocumentLoad) {
+      window.__REACT_SIMPLE_IMG__.observer.observe(element);
     } else if (isDocumentLoad) {
-      appendImgLoadingRef(this.element.current);
+      appendImgLoadingRef(element);
     }
 
-    if (this.element.current && removeImageRef) removeImageRef(this.element.current);
+    // if (this.element.current && removeImageRef) removeImageRef(this.element.current);
   }
 
   componentWillUnmount() {
@@ -162,11 +158,11 @@ export class SimpleImg extends React.PureComponent<Props, State> {
           onCompleteStyle={onCompleteStyle}
           {...(!isValidImgSrc
             ? {
-              startStyle: {
-                ...inlineStyle,
-                ...fullWidthStyle,
-              },
-            }
+                startStyle: {
+                  ...inlineStyle,
+                  ...fullWidthStyle,
+                },
+              }
             : null)}
         >
           {isValidImgSrc && <img {...{ width, height, className }} style={inlineStyle} alt={alt} src={placeholder} />}

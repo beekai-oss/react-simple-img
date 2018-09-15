@@ -8,7 +8,6 @@ export const SimpleImgContext = React.createContext({
 });
 
 type State = {
-  mountedImages: Set<HTMLElement>,
   isDocumentLoad: boolean,
 };
 
@@ -30,7 +29,6 @@ export default class SimpleImgProvider extends React.Component<Props, State> {
   };
 
   state: State = {
-    mountedImages: new Set(),
     isDocumentLoad: false,
   };
 
@@ -56,7 +54,6 @@ export default class SimpleImgProvider extends React.Component<Props, State> {
       // cancel all loading images;
       image.src = ''; // eslint-disable-line no-param-reassign
     });
-    this.imageLoadRefs.clear();
   }
 
   appendImageRef = (image: HTMLElement) => this.observer && this.observer.observe(image);
@@ -64,12 +61,6 @@ export default class SimpleImgProvider extends React.Component<Props, State> {
   removeImageRef = (image: HTMLElement) => {
     // $FlowIgnoreLine:
     this.observer.unobserve(image);
-    this.setState(({ mountedImages }) => {
-      mountedImages.delete(image);
-      return {
-        mountedImages,
-      };
-    });
   };
 
   appendImgLoadingRef = (image: Image) => {
