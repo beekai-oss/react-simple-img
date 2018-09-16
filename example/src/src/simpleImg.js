@@ -6,7 +6,6 @@ import { SimpleImgContext } from './simpleImgProvider';
 
 type State = {
   loaded: boolean,
-  isDocumentLoad: boolean,
 };
 
 type Style = { [string]: number | string };
@@ -25,6 +24,7 @@ type Props = {
   animationEndStyle: Style,
   isDocumentLoad: boolean,
   useContext: boolean,
+  isContextDocumentLoad: boolean,
   appendImageRef: () => void,
 };
 
@@ -69,11 +69,21 @@ export class SimpleImg extends React.PureComponent<Props, State> {
   }
 
   componentDidUpdate(prevProps: Props, prevState: State) {
-    const { appendImageRef, useContext, removeImageRef, mountedImages, isDocumentLoad } = this.props;
+    const {
+      appendImageRef,
+      useContext,
+      removeImageRef,
+      mountedImages,
+      removeImgLoadingRef,
+      isContextDocumentLoad,
+    } = this.props;
     const element = this.element.current;
 
     if (useContext) {
-      if (!prevProps.isDocumentLoad && isDocumentLoad) appendImageRef(element);
+      if (!prevProps.isContextDocumentLoad && isContextDocumentLoad) {
+        appendImageRef(element);
+        removeImgLoadingRef(element);
+      }
 
       if (mountedImages.has(element)) {
         setTimeout(() =>
@@ -90,10 +100,11 @@ export class SimpleImg extends React.PureComponent<Props, State> {
 
   componentWillUnmount() {
     if (!this.element.current) return;
-    const { removeImgLoadingRef, useContext } = this.props;
+    const { removeImgLoadingRef, removeImageRef, useContext } = this.props;
 
     if (useContext) {
       removeImgLoadingRef(this.element.current);
+      removeImageRef(this.element.current);
     } else {
       if (!window.__REACT_SIMPLE_IMG__) return;
 
@@ -157,11 +168,11 @@ export class SimpleImg extends React.PureComponent<Props, State> {
           onCompleteStyle={onCompleteStyle}
           {...(!isValidImgSrc
             ? {
-                startStyle: {
-                  ...inlineStyle,
-                  ...fullWidthStyle,
-                },
-              }
+              startStyle: {
+                ...inlineStyle,
+                ...fullWidthStyle,
+              },
+            }
             : null)}
         >
           {isValidImgSrc && <img {...{ width, height, className }} style={inlineStyle} alt={alt} src={placeholder} />}

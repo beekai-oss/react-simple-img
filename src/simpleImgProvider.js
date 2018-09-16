@@ -21,6 +21,7 @@ export type Config = {
 type Props = {
   config: Object,
   children: any,
+  isContextDocumentLoad: boolean,
 };
 
 export default class SimpleImgProvider extends React.Component<Props, State> {
@@ -46,6 +47,9 @@ export default class SimpleImgProvider extends React.Component<Props, State> {
     } else {
       window.addEventListener('load', () => {
         this.observer = observerStart.call(this, config);
+        this.setState({
+          isContextDocumentLoad: true,
+        });
       });
     }
   }

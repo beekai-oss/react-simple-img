@@ -24,6 +24,7 @@ type Props = {
   animationEndStyle: Style,
   isDocumentLoad: boolean,
   useContext: boolean,
+  isContextDocumentLoad: boolean,
   appendImageRef: () => void,
 };
 
@@ -68,12 +69,18 @@ export class SimpleImg extends React.PureComponent<Props, State> {
   }
 
   componentDidUpdate(prevProps: Props, prevState: State) {
-    const { appendImageRef, useContext, removeImageRef, mountedImages, removeImgLoadingRef } = this.props;
-    const { isDocumentLoad } = this.state;
+    const {
+      appendImageRef,
+      useContext,
+      removeImageRef,
+      mountedImages,
+      removeImgLoadingRef,
+      isContextDocumentLoad,
+    } = this.props;
     const element = this.element.current;
 
     if (useContext) {
-      if (!prevState.isDocumentLoad && isDocumentLoad) {
+      if (!prevProps.isContextDocumentLoad && isContextDocumentLoad) {
         appendImageRef(element);
         removeImgLoadingRef(element);
       }

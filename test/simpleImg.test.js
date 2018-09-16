@@ -76,8 +76,8 @@ describe('SimpleImg', () => {
     instance.element = {
       current: 1,
     };
-    tree.setState({
-      isDocumentLoad: true,
+    tree.setProps({
+      isContextDocumentLoad: true,
     });
     expect(appendImageRef).toHaveBeenCalled();
     expect(removeImgLoadingRef).toHaveBeenCalled();
