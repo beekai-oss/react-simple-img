@@ -13,6 +13,8 @@ import image4 from './wallpapers/Pink-Forest.jpg';
 import image5 from './wallpapers/Snow.jpg';
 import image6 from './wallpapers/Lion.jpg';
 import { SimpleImg } from 'react-simple-img';
+// use provider example below
+// import { SimpleImg, SimpleImgProvider } from './src/index';
 import './App.css';
 
 const images = [
@@ -44,6 +46,27 @@ const images = [
 
 class App extends Component {
   render() {
+    // Provider example here below, remove initSimpleImg in index.js
+    // return  <SimpleImgProvider>
+    //   <div className="App">
+    //     <header className="App-header">
+    //       <SimpleImg src={Logo} wrapperClassName="App-logo" alt="logo" backgroundColor="white" />
+    //     </header>
+    //     <div className="App-container">
+    //       {images.map((image, i) => (
+    //         <SimpleImg
+    //           alt="whatever"
+    //           key={i}
+    //           placeholder={image.svg}
+    //           animationDuration={3}
+    //           src={image.img}
+    //           height={500}
+    //         />
+    //       ))}
+    //     </div>
+    //   </div>
+    // </SimpleImgProvider>;
+
     return (
       <div className="App">
         <header className="App-header">

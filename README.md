@@ -43,9 +43,7 @@ To generate svg placeholder, please install [SQIP](https://github.com/technopaga
 
     initSimpleImg(); // run once at your root component or at file which calls `ReactDOM.render`
 
-    export const App = () => <div>
-        <SimpleImg height={500} src="your image path" />
-    </div>;
+    export default () => <SimpleImg height={500} src="your image path" />;
 
 ## API
 
@@ -115,26 +113,21 @@ Set up React Simple Img per page, you can use the following example without `ini
 
     import { SimpleImg, SimpleImgProvider } from 'react-simple-img';
 
-    const Home = () => <div>
-        // placeholder background color example
-        <SimpleImg
-            height={500}
-            placeholder="linear-gradient(rgb(30, 87, 153) 0%, rgb(125, 185, 232) 100%)"
-            src="your image path"
-        />
-
-        // placeholder background image example
-        <SimpleImg
-            height={500}
-            placeholder="your placeholder svg or image path"
-            src="your image path" />
-    </div>;
-
-    export default SimpleImgProvider(Home, {
-        threshold: [0.5], // load image when 50 percentage of image in the view port
-    });
-    
-    
-## Reference
+    export default () =>  (
+       <SimpleImgProvider
+         config={{
+           threshold: [0.5], // load image when 50 percentage of image in the view port
+         }}
+       >
+         // placeholder background color example
+         <SimpleImg
+           height={500}
+           placeholder="linear-gradient(rgb(30, 87, 153) 0%, rgb(125, 185, 232) 100%)"
+           src="your image path"
+         />
+         // placeholder background image example
+         <SimpleImg height={500} placeholder="your placeholder svg or image path" src="your image path" />
+       </SimpleImgProvider>
+     );
 
 https://medium.com/jsdownunder/optimising-web-page-a-simple-step-66f7f4ba417c

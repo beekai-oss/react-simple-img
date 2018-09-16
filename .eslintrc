@@ -8,7 +8,16 @@
     "global-require": 0,
     "max-len": 0,
     "no-underscore-dangle": 0,
-    "import/first": 0
+    "import/first": 0,
+    "indent": 0,
+    "import/no-named-as-default": 0,
+    "no-plusplus": 0,
+    "arrow-parens": 0
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "jest": true
   },
   "parser": "babel-eslint",
   "plugins": ["flowtype"]

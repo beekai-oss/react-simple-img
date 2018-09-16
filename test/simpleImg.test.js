@@ -1,10 +1,13 @@
 import renderer from 'react-test-renderer';
-import SimpleImg from '../src/simpleImg';
+import { SimpleImg } from '../src/simpleImg';
 import { shallow, mount } from 'enzyme';
-import { APPEND_IMAGE_REF, IMAGES_LOADED, REMOVE_IMAGE_REF, DOCUMENT_LOADED } from '../src/simpleImgProvider';
 import React from 'react';
 
-jest.mock('react-simple-animate', () => 'Animate');
+jest.mock('react-simple-animate', () => ({ Animate: 'Animate' }));
+
+const appendImageRef = jest.fn();
+const removeImageRef = jest.fn();
+const removeImgLoadingRef = jest.fn();
 
 const props = {
   src: 'src',
@@ -17,20 +20,28 @@ const props = {
   srcSet: 'srcSet',
   animationDuration: 1,
   animationEndStyle: { opacity: 0 },
+  useContext: true,
+  appendImageRef,
+  removeImageRef,
+  removeImgLoadingRef,
+  mountedImages: new Set([1, 2, 3]),
 };
-const appendImage = jest.fn();
-const imageLoaded = jest.fn();
-const removeImage = jest.fn();
-const context = {
-  [APPEND_IMAGE_REF]: appendImage,
-  [IMAGES_LOADED]: imageLoaded,
-  [REMOVE_IMAGE_REF]: removeImage,
-  [DOCUMENT_LOADED]: true,
-};
+const addEventListener = window.addEventListener;
 
 describe('SimpleImg', () => {
   beforeEach(() => {
     jest.resetAllMocks();
+    window.addEventListener = jest.fn();
+    window.__REACT_SIMPLE_IMG__ = {
+      observer: {
+        observe: jest.fn(),
+      },
+    };
+  });
+
+  afterEach(() => {
+    window.addEventListener = addEventListener;
+    window.__REACT_SIMPLE_IMG__ = undefined;
   });
 
   it('should render correctly', () => {
@@ -60,32 +71,23 @@ describe('SimpleImg', () => {
   });
 
   it('should append image ref when image mounted', () => {
-    const tree = mount(<SimpleImg {...props} />, { context });
-    tree.setState({
-      isDocumentLoad: true,
+    const tree = mount(<SimpleImg {...props} />);
+    const instance = tree.instance();
+    instance.element = {
+      current: 1,
+    };
+    tree.setProps({
+      isContextDocumentLoad: true,
     });
-    expect(appendImage).toHaveBeenCalled();
-  });
-
-  describe('when first time image is loaded', () => {
-    it('should set state as loaded and remove the image from the stack', () => {
-      const tree = shallow(<SimpleImg {...props} />, { context: { ...context, [IMAGES_LOADED]: new Set(['test']) } });
-      tree.instance().element = 'test';
-      tree.setProps({});
-      expect(tree.state('loaded')).toBeTruthy();
-      expect(removeImage).toHaveBeenCalled();
-      expect(removeImage.mock.calls[0][0]).toBe('test');
-    });
+    expect(appendImageRef).toHaveBeenCalled();
+    expect(removeImgLoadingRef).toHaveBeenCalled();
   });
 
   it('should remove item from observer when component removed', () => {
-    const tree = shallow(<SimpleImg {...props} />, { context: { ...context } });
-    tree.setState({
-      useContext: true,
-    });
-    tree.instance().element = {};
+    const tree = shallow(<SimpleImg {...props} />);
+    tree.instance().element.current = {};
     tree.unmount();
-    expect(removeImage).toHaveBeenCalled();
+    expect(removeImageRef).toHaveBeenCalled();
   });
 
   it('should remove window object reference when component removed', () => {
@@ -93,6 +95,7 @@ describe('SimpleImg', () => {
     const hasSpy = jest.fn();
     window.__REACT_SIMPLE_IMG__ = {
       observer: {
+        observe: () => {},
         unobserve: unobserveSpy,
       },
       imgLoadingRefs: {
@@ -101,11 +104,13 @@ describe('SimpleImg', () => {
         has: hasSpy,
       },
     };
-    const tree = shallow(<SimpleImg {...props} />, { context: { ...context } });
+    const tree = shallow(<SimpleImg {...{ ...props, useContext: false }} />);
     tree.setState({
       useContext: false,
     });
-    tree.instance().element = 'test';
+    tree.instance().element = {
+      current: 'test',
+    };
     tree.unmount();
     expect(unobserveSpy).toHaveBeenCalled();
     expect(hasSpy.mock.calls[0][0]).toEqual('test');

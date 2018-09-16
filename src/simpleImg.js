@@ -1,8 +1,8 @@
 // @flow
 import React from 'react';
-import Animate from 'react-simple-animate';
+import { Animate } from 'react-simple-animate';
 import validImgSrc from './utils/validImgSrc';
-import { APPEND_IMAGE_REF, IMAGES_LOADED, REMOVE_IMAGE_REF, DOCUMENT_LOADED, contextTypes } from './simpleImgProvider';
+import { SimpleImgContext } from './simpleImgProvider';
 
 type State = {
   loaded: boolean,
@@ -23,13 +23,12 @@ type Props = {
   srcSet: string,
   animationDuration: number,
   animationEndStyle: Style,
-};
-
-export type Context = {
-  __ProgresssiveImagesAppendImageRef__: HTMLElement => void,
-  __ProgresssiveImagesRemoveImageRef__: HTMLElement => void,
-  __ProgresssiveImagesLoaded__: Set<HTMLElement>,
-  __DocumentLoaded__: boolean,
+  useContext: boolean,
+  isContextDocumentLoad: boolean,
+  mountedImages: Set<any>,
+  appendImageRef: (HTMLElement) => void,
+  removeImageRef: (HTMLElement) => void,
+  removeImgLoadingRef: (HTMLElement) => void,
 };
 
 const commonStyle = {
@@ -44,25 +43,16 @@ const rootStyle = {
   display: 'flex',
 };
 const defaultDisappearStyle = { opacity: 0 };
-const defaultDisappearInSecond = 0.3;
 const defaultImgPlaceholder = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
 const defaultPlaceholderColor = 'white';
 const onCompleteStyle = { display: 'none' };
 const fullWidthStyle = { width: '100%' };
 const hiddenStyle = { visibility: 'hidden' };
 
-export default class SimpleImg extends React.PureComponent<Props, State> {
-  static contextTypes = contextTypes;
-
-  constructor(props: Props, context: Context) {
-    super(props);
-
-    this.state = {
-      loaded: false,
-      useContext: !!context[IMAGES_LOADED],
-      isDocumentLoad: false,
-    };
-  }
+export class SimpleImg extends React.PureComponent<Props, State> {
+  static defaultProps = {
+    animationDuration: 0.3,
+  };
 
   state: State = {
     loaded: false,
@@ -70,75 +60,69 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
   };
 
   componentDidMount() {
-    if (!this.element) return;
-
-    if (this.state.useContext && this.state.isDocumentLoad) {
-      this.context[APPEND_IMAGE_REF](this.element);
+    if (document.readyState === 'complete') {
+      window.__REACT_SIMPLE_IMG__.observer.observe(this.element.current);
     } else {
-      /* eslint-disable */
       window.addEventListener('load', () => {
         this.setState({
           isDocumentLoad: true,
         });
       });
-      if ((this.state.isDocumentLoad || document.readyState === 'complete') && window.__REACT_SIMPLE_IMG__) {
-        window.__REACT_SIMPLE_IMG__.observer.observe(this.element);
-      }
-      /* eslint-enable */
     }
   }
 
-  componentWillReceiveProps(nextProps: Props, nextContext: Context) {
-    if (!this.element || this.state.loaded) return;
+  componentDidUpdate(prevProps: Props, prevState: State) {
+    const {
+      appendImageRef,
+      useContext,
+      removeImageRef,
+      mountedImages,
+      removeImgLoadingRef,
+      isContextDocumentLoad,
+    } = this.props;
+    const element = this.element.current;
 
-    if (this.state.useContext && nextContext[IMAGES_LOADED].has(this.element)) {
-      this.setState({
-        loaded: true,
-      });
-
-      if (this.element) nextContext[REMOVE_IMAGE_REF](this.element);
-    }
-
-    if (nextContext[DOCUMENT_LOADED]) {
-      this.setState({
-        isDocumentLoad: true,
-      });
-    }
-  }
-
-  componentDidUpdate() {
-    if (this.state.isDocumentLoad) {
-      if (this.state.useContext) {
-        this.context[APPEND_IMAGE_REF](this.element);
-      } else {
-        /* eslint-disable */
-        if (this.element !== null) window.__REACT_SIMPLE_IMG__.observer.observe(this.element);
-        /* eslint-enable */
+    if (useContext) {
+      if (!prevProps.isContextDocumentLoad && isContextDocumentLoad && element) {
+        appendImageRef(element);
+        removeImgLoadingRef(element);
       }
+
+      if (element && mountedImages.has(element)) {
+        setTimeout(() =>
+          this.setState({
+            loaded: true,
+          }),
+        );
+        removeImageRef(element);
+      }
+    } else if (!prevState.isDocumentLoad && this.state.isDocumentLoad) {
+      window.__REACT_SIMPLE_IMG__.observer.observe(element);
     }
   }
 
   componentWillUnmount() {
-    if (!this.element) return;
+    if (!this.element.current) return;
+    const { removeImgLoadingRef, removeImageRef, useContext } = this.props;
+    const element = this.element.current;
 
-    if (this.state.useContext) {
-      this.context[REMOVE_IMAGE_REF](this.element);
+    if (useContext && element) {
+      removeImgLoadingRef(element);
+      removeImageRef(element);
     } else {
-      /* eslint-disable */
       if (!window.__REACT_SIMPLE_IMG__) return;
 
       const { observer, imgLoadingRefs } = window.__REACT_SIMPLE_IMG__;
-      /* eslint-enable */
-      observer.unobserve(this.element);
+      observer.unobserve(element);
 
-      if (imgLoadingRefs.has(this.element)) {
-        imgLoadingRefs.get(this.element).src = '';
-        imgLoadingRefs.delete(this.element);
+      if (imgLoadingRefs.has(element)) {
+        imgLoadingRefs.get(element).src = '';
+        imgLoadingRefs.delete(element);
       }
     }
   }
 
-  element = null;
+  element = React.createRef();
 
   render() {
     const {
@@ -150,7 +134,7 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
       alt,
       srcSet,
       sizes,
-      animationDuration = defaultDisappearInSecond,
+      animationDuration,
       animationEndStyle = defaultDisappearStyle,
       placeholder = defaultPlaceholderColor,
     } = this.props;
@@ -161,16 +145,14 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
       ...(!isValidImgSrc ? { background: placeholder } : null),
     };
     const imgPlaceholder = isValidImgSrc ? placeholder : defaultImgPlaceholder;
-    const isSrcSetFulfilled = this.element && this.element.src !== imgPlaceholder;
+    const isSrcSetFulfilled = this.element.current && this.element.current.src !== imgPlaceholder;
 
     return (
       <span style={rootStyle} className={wrapperClassName}>
         <img
           {...{ width, height, sizes, className }}
           alt={alt}
-          ref={(element) => {
-            this.element = element;
-          }}
+          ref={this.element}
           src={loaded ? src : imgPlaceholder}
           srcSet={loaded ? srcSet : ''}
           data-src={src}
@@ -180,7 +162,7 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
           }}
         />
         <Animate
-          startAnimation={loaded}
+          play={loaded}
           durationSeconds={animationDuration}
           endStyle={{
             ...inlineStyle,
@@ -190,11 +172,11 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
           onCompleteStyle={onCompleteStyle}
           {...(!isValidImgSrc
             ? {
-              startStyle: {
-                ...inlineStyle,
-                ...fullWidthStyle,
-              },
-            }
+                startStyle: {
+                  ...inlineStyle,
+                  ...fullWidthStyle,
+                },
+              }
             : null)}
         >
           {isValidImgSrc && <img {...{ width, height, className }} style={inlineStyle} alt={alt} src={placeholder} />}
@@ -203,3 +185,7 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
     );
   }
 }
+
+export default (props: Props) => (
+  <SimpleImgContext.Consumer>{values => <SimpleImg {...{ ...props, ...values }} />}</SimpleImgContext.Consumer>
+);
