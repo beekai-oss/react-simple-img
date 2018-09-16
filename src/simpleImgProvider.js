@@ -9,7 +9,8 @@ export const SimpleImgContext = React.createContext({
 });
 
 type State = {
-  mountedImages: Set<HTMLElement>,
+  mountedImages: Set<any>,
+  isContextDocumentLoad: boolean,
 };
 
 export type Config = {
@@ -21,7 +22,6 @@ export type Config = {
 type Props = {
   config: Object,
   children: any,
-  isContextDocumentLoad: boolean,
 };
 
 export default class SimpleImgProvider extends React.Component<Props, State> {
@@ -31,13 +31,10 @@ export default class SimpleImgProvider extends React.Component<Props, State> {
     config: defaultConfig,
   };
 
-  constructor(props: Props) {
-    super(props);
-
-    this.state = {
-      mountedImages: new Set(),
-    };
-  }
+  state: State = {
+    mountedImages: new Set(),
+    isContextDocumentLoad: false,
+  };
 
   componentDidMount() {
     const { config } = this.props;
@@ -74,17 +71,17 @@ export default class SimpleImgProvider extends React.Component<Props, State> {
     });
   };
 
-  appendImgLoadingRef = (image: Image) => {
+  appendImgLoadingRef = (image: HTMLElement) => {
     this.imageLoadRefs.add(image);
   };
 
-  removeImgLoadingRef = (image: Image) => {
+  removeImgLoadingRef = (image: HTMLElement) => {
     this.imageLoadRefs.delete(image);
   };
 
   observer = {};
 
-  imageLoadRefs = new Set();
+  imageLoadRefs: Set<any> = new Set();
 
   render() {
     return (

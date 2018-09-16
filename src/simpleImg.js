@@ -6,6 +6,7 @@ import { SimpleImgContext } from './simpleImgProvider';
 
 type State = {
   loaded: boolean,
+  isDocumentLoad: boolean,
 };
 
 type Style = { [string]: number | string };
@@ -22,10 +23,12 @@ type Props = {
   srcSet: string,
   animationDuration: number,
   animationEndStyle: Style,
-  isDocumentLoad: boolean,
   useContext: boolean,
   isContextDocumentLoad: boolean,
-  appendImageRef: () => void,
+  mountedImages: Set<any>,
+  appendImageRef: (HTMLElement) => void,
+  removeImageRef: (HTMLElement) => void,
+  removeImgLoadingRef: (HTMLElement) => void,
 };
 
 const commonStyle = {
@@ -80,12 +83,12 @@ export class SimpleImg extends React.PureComponent<Props, State> {
     const element = this.element.current;
 
     if (useContext) {
-      if (!prevProps.isContextDocumentLoad && isContextDocumentLoad) {
+      if (!prevProps.isContextDocumentLoad && isContextDocumentLoad && element) {
         appendImageRef(element);
         removeImgLoadingRef(element);
       }
 
-      if (mountedImages.has(element)) {
+      if (element && mountedImages.has(element)) {
         setTimeout(() =>
           this.setState({
             loaded: true,
@@ -101,19 +104,20 @@ export class SimpleImg extends React.PureComponent<Props, State> {
   componentWillUnmount() {
     if (!this.element.current) return;
     const { removeImgLoadingRef, removeImageRef, useContext } = this.props;
+    const element = this.element.current;
 
-    if (useContext) {
-      removeImgLoadingRef(this.element.current);
-      removeImageRef(this.element.current);
+    if (useContext && element) {
+      removeImgLoadingRef(element);
+      removeImageRef(element);
     } else {
       if (!window.__REACT_SIMPLE_IMG__) return;
 
       const { observer, imgLoadingRefs } = window.__REACT_SIMPLE_IMG__;
-      observer.unobserve(this.element.current);
+      observer.unobserve(element);
 
-      if (imgLoadingRefs.has(this.element.current)) {
-        imgLoadingRefs.get(this.element.current).src = '';
-        imgLoadingRefs.delete(this.element.current);
+      if (imgLoadingRefs.has(element)) {
+        imgLoadingRefs.get(element).src = '';
+        imgLoadingRefs.delete(element);
       }
     }
   }
@@ -183,5 +187,5 @@ export class SimpleImg extends React.PureComponent<Props, State> {
 }
 
 export default (props: Props) => (
-  <SimpleImgContext.Consumer>{values => <SimpleImg {...{ ...values, ...props }} />}</SimpleImgContext.Consumer>
+  <SimpleImgContext.Consumer>{values => <SimpleImg {...{ ...props, ...values }} />}</SimpleImgContext.Consumer>
 );
