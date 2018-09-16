@@ -1,5 +1,6 @@
 // @flow
 import imageLoader from '../utils/imageLoader';
+import type { Config } from '../simpleImgProvider';
 
 export const defaultConfig = {
   rootMargin: '0px 0px',

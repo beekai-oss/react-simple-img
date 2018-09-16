@@ -12,7 +12,9 @@ import image3 from './wallpapers/Mountain-Range.jpg';
 import image4 from './wallpapers/Pink-Forest.jpg';
 import image5 from './wallpapers/Snow.jpg';
 import image6 from './wallpapers/Lion.jpg';
-import { SimpleImg, SimpleImgProvider } from './src/index';
+import { SimpleImg } from './src/index';
+// use provider example below
+// import { SimpleImg, SimpleImgProvider } from './src/index';
 import './App.css';
 
 const images = [
@@ -44,26 +46,45 @@ const images = [
 
 class App extends Component {
   render() {
+    // Provider example here below, remove initSimpleImg in index.js
+    // return  <SimpleImgProvider>
+    //   <div className="App">
+    //     <header className="App-header">
+    //       <SimpleImg src={Logo} wrapperClassName="App-logo" alt="logo" backgroundColor="white" />
+    //     </header>
+    //     <div className="App-container">
+    //       {images.map((image, i) => (
+    //         <SimpleImg
+    //           alt="whatever"
+    //           key={i}
+    //           placeholder={image.svg}
+    //           animationDuration={3}
+    //           src={image.img}
+    //           height={500}
+    //         />
+    //       ))}
+    //     </div>
+    //   </div>
+    // </SimpleImgProvider>;
+
     return (
-      <SimpleImgProvider>
-        <div className="App">
-          <header className="App-header">
-            <SimpleImg src={Logo} wrapperClassName="App-logo" alt="logo" backgroundColor="white" />
-          </header>
-          <div className="App-container">
-            {images.map((image, i) => (
-              <SimpleImg
-                alt="whatever"
-                key={i}
-                placeholder={image.svg}
-                animationDuration={3}
-                src={image.img}
-                height={500}
-              />
-            ))}
-          </div>
+      <div className="App">
+        <header className="App-header">
+          <SimpleImg src={Logo} wrapperClassName="App-logo" alt="logo" backgroundColor="white" />
+        </header>
+        <div className="App-container">
+          {images.map((image, i) => (
+            <SimpleImg
+              alt="whatever"
+              key={i}
+              placeholder={image.svg}
+              animationDuration={3}
+              src={image.img}
+              height={500}
+            />
+          ))}
         </div>
-      </SimpleImgProvider>
+      </div>
     );
   }
 }
