@@ -9,7 +9,6 @@ export const SimpleImgContext = React.createContext({
 });
 
 type State = {
-  isDocumentLoad: boolean,
   mountedImages: Set<HTMLElement>,
 };
 
@@ -36,7 +35,6 @@ export default class SimpleImgProvider extends React.Component<Props, State> {
 
     this.state = {
       mountedImages: new Set(),
-      isDocumentLoad: typeof window === 'undefined' ? document.readyState === 'complete' : false,
     };
   }
 
@@ -48,9 +46,6 @@ export default class SimpleImgProvider extends React.Component<Props, State> {
     } else {
       window.addEventListener('load', () => {
         this.observer = observerStart.call(this, config);
-        this.setState({
-          isDocumentLoad: true,
-        });
       });
     }
   }

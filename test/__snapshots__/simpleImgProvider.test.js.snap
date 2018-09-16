@@ -2,6 +2,6 @@
 
 exports[`SimpleImgProvider should render correctly 1`] = `
 <div>
-  Test
+  test
 </div>
 `;

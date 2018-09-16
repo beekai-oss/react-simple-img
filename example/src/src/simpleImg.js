@@ -25,6 +25,7 @@ type Props = {
   animationEndStyle: Style,
   isDocumentLoad: boolean,
   useContext: boolean,
+  appendImageRef: () => void,
 };
 
 const commonStyle = {
@@ -45,7 +46,7 @@ const onCompleteStyle = { display: 'none' };
 const fullWidthStyle = { width: '100%' };
 const hiddenStyle = { visibility: 'hidden' };
 
-export class Img extends React.PureComponent<Props, State> {
+export class SimpleImg extends React.PureComponent<Props, State> {
   static defaultProps = {
     animationDuration: 0.3,
   };
@@ -56,11 +57,7 @@ export class Img extends React.PureComponent<Props, State> {
   };
 
   componentDidMount() {
-    const { useContext, isDocumentLoad, appendImageRef } = this.props;
-
-    if (useContext && isDocumentLoad) {
-      appendImageRef(this.element.current);
-    } else if (this.state.isDocumentLoad || document.readyState === 'complete') {
+    if (document.readyState === 'complete') {
       window.__REACT_SIMPLE_IMG__.observer.observe(this.element.current);
     } else {
       window.addEventListener('load', () => {
@@ -174,6 +171,6 @@ export class Img extends React.PureComponent<Props, State> {
   }
 }
 
-export default props => (
-  <SimpleImgContext.Consumer>{values => <Img {...{ ...values, ...props }} />}</SimpleImgContext.Consumer>
+export default (props: Props) => (
+  <SimpleImgContext.Consumer>{values => <SimpleImg {...{ ...values, ...props }} />}</SimpleImgContext.Consumer>
 );

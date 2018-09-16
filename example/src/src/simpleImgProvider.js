@@ -1,7 +1,8 @@
 // @flow
 import React from 'react';
-import { observerStart, defaultConfig } from './initSimpleImg';
+import observerStart, { defaultConfig } from './logic/observerStart';
 
+// $FlowIgnoreLine:
 export const SimpleImgContext = React.createContext({
   animationStates: {},
   register: undefined,
@@ -9,6 +10,7 @@ export const SimpleImgContext = React.createContext({
 
 type State = {
   isDocumentLoad: boolean,
+  mountedImages: Set<HTMLElement>,
 };
 
 export type Config = {
@@ -19,6 +21,7 @@ export type Config = {
 
 type Props = {
   config: Object,
+  children: any,
 };
 
 export default class SimpleImgProvider extends React.Component<Props, State> {
@@ -28,20 +31,13 @@ export default class SimpleImgProvider extends React.Component<Props, State> {
     config: defaultConfig,
   };
 
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
 
-    if (typeof window === 'undefined') {
-      this.state = {
-        mountedImages: new Set(),
-        isDocumentLoad: document.readyState === 'complete',
-      };
-    } else {
-      this.state = {
-        mountedImages: new Set(),
-        isDocumentLoad: false,
-      };
-    }
+    this.state = {
+      mountedImages: new Set(),
+      isDocumentLoad: typeof window === 'undefined' ? document.readyState === 'complete' : false,
+    };
   }
 
   componentDidMount() {

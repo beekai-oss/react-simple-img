@@ -6,7 +6,6 @@ import { SimpleImgContext } from './simpleImgProvider';
 
 type State = {
   loaded: boolean,
-  isDocumentLoad: boolean,
 };
 
 type Style = { [string]: number | string };
@@ -57,11 +56,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
   };
 
   componentDidMount() {
-    const { useContext, isDocumentLoad, appendImageRef } = this.props;
-
-    if (useContext && isDocumentLoad) {
-      appendImageRef(this.element.current);
-    } else if (this.state.isDocumentLoad || document.readyState === 'complete') {
+    if (document.readyState === 'complete') {
       window.__REACT_SIMPLE_IMG__.observer.observe(this.element.current);
     } else {
       window.addEventListener('load', () => {
@@ -73,11 +68,15 @@ export class SimpleImg extends React.PureComponent<Props, State> {
   }
 
   componentDidUpdate(prevProps: Props, prevState: State) {
-    const { appendImageRef, useContext, removeImageRef, mountedImages, isDocumentLoad } = this.props;
+    const { appendImageRef, useContext, removeImageRef, mountedImages, removeImgLoadingRef } = this.props;
+    const { isDocumentLoad } = this.state;
     const element = this.element.current;
 
     if (useContext) {
-      if (!prevProps.isDocumentLoad && isDocumentLoad) appendImageRef(element);
+      if (!prevState.isDocumentLoad && isDocumentLoad) {
+        appendImageRef(element);
+        removeImgLoadingRef(element);
+      }
 
       if (mountedImages.has(element)) {
         setTimeout(() =>
@@ -94,10 +93,11 @@ export class SimpleImg extends React.PureComponent<Props, State> {
 
   componentWillUnmount() {
     if (!this.element.current) return;
-    const { removeImgLoadingRef, useContext } = this.props;
+    const { removeImgLoadingRef, removeImageRef, useContext } = this.props;
 
     if (useContext) {
       removeImgLoadingRef(this.element.current);
+      removeImageRef(this.element.current);
     } else {
       if (!window.__REACT_SIMPLE_IMG__) return;
 
