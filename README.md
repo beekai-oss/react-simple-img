@@ -129,5 +129,7 @@ Set up React Simple Img per page, you can use the following example without `ini
          <SimpleImg height={500} placeholder="your placeholder svg or image path" src="your image path" />
        </SimpleImgProvider>
      );
+     
+## Reference
 
 https://medium.com/jsdownunder/optimising-web-page-a-simple-step-66f7f4ba417c
