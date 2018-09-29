@@ -24,6 +24,12 @@ export function applyImage(target: any, image: Image, src: string) {
   }
 }
 
+function throwError(message, target, e) {
+  throw new Error(
+    `💩 ${message}\n\n${target.outerHTML}\n\nand error message ${JSON.stringify(e, null, 2)}`,
+  );
+}
+
 export default function imageLoader(target: any) {
   try {
     const image = new Image(); // eslint-disable-line no-undef
@@ -39,12 +45,17 @@ export default function imageLoader(target: any) {
     }
 
     const src = filterImgSrc(target);
-    fetchImage(image, filterImgSrc(target)).then(() => {
-      applyImage.apply(this, [target, image, src]);
-    });
+
+    if (!src) return console.error(`💩 Filter Image source returned empty image source`);
+
+    fetchImage(image, src)
+      .then(() => {
+        applyImage.apply(this, [target, image, src]);
+      })
+      .catch(e => {
+        throwError('Fetch image failed with target', target, e);
+      });
   } catch (e) {
-    throw new Error(
-      `💩 Fetch image failed with target\n\n${target.outerHTML}\n\nand error message ${JSON.stringify(e, null, 2)}`,
-    );
+    throwError('Image loader failed with target', target, e);
   }
 }
