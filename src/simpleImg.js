@@ -58,15 +58,18 @@ export class SimpleImg extends React.PureComponent<Props, State> {
     loaded: false,
     isDocumentLoad: false,
   };
-
+  _isMounted = false;
   componentDidMount() {
+    this._isMounted = true;
     if (document.readyState === 'complete') {
       window.__REACT_SIMPLE_IMG__.observer.observe(this.element.current);
     } else {
       window.addEventListener('load', () => {
-        this.setState({
-          isDocumentLoad: true,
-        });
+        if(this._isMounted){
+          this.setState({
+            isDocumentLoad: true,
+          });
+        }
       });
     }
   }
@@ -102,6 +105,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
   }
 
   componentWillUnmount() {
+    this._isMounted = false;
     if (!this.element.current) return;
     const { removeImgLoadingRef, removeImageRef, useContext } = this.props;
     const element = this.element.current;
