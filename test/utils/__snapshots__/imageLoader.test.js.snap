@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`imageLoader should catch error failed 1`] = `
-[Error: 💩 Fetch image failed with target
+[Error: 💩 Image loader failed with target
 
 undefined
 

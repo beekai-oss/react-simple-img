@@ -46,7 +46,10 @@ export default function imageLoader(target: any) {
 
     const src = filterImgSrc(target);
 
-    if (!src) return console.error(`💩 Filter Image source returned empty image source`);
+    if (!src) {
+      console.error('💩 Filter Image source returned empty image source');
+      return;
+    }
 
     fetchImage(image, src)
       .then(() => {
