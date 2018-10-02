@@ -98,7 +98,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
   }
 
   componentWillUnmount() {
-    window.removeEventListener(this.setDocumentLoaded);
+    window.removeEventListener('load', this.setDocumentLoaded);
     if (!this.element.current) return;
     const { removeImgLoadingRef, removeImageRef, useContext } = this.props;
     const element = this.element.current;
