@@ -27,11 +27,13 @@ const props = {
   mountedImages: new Set([1, 2, 3]),
 };
 const addEventListener = window.addEventListener;
+const removeEventListener = window.removeEventListener;
 
 describe('SimpleImg', () => {
   beforeEach(() => {
     jest.resetAllMocks();
     window.addEventListener = jest.fn();
+    window.removeEventListener = jest.fn();
     window.__REACT_SIMPLE_IMG__ = {
       observer: {
         observe: jest.fn(),
@@ -41,6 +43,7 @@ describe('SimpleImg', () => {
 
   afterEach(() => {
     window.addEventListener = addEventListener;
+    window.removeEventListener = removeEventListener;
     window.__REACT_SIMPLE_IMG__ = undefined;
   });
 

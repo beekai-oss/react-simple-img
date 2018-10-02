@@ -26,9 +26,9 @@ type Props = {
   useContext: boolean,
   isContextDocumentLoad: boolean,
   mountedImages: Set<any>,
-  appendImageRef: (HTMLElement) => void,
-  removeImageRef: (HTMLElement) => void,
-  removeImgLoadingRef: (HTMLElement) => void,
+  appendImageRef: HTMLElement => void,
+  removeImageRef: HTMLElement => void,
+  removeImgLoadingRef: HTMLElement => void,
 };
 
 const commonStyle = {
@@ -63,11 +63,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
     if (document.readyState === 'complete') {
       window.__REACT_SIMPLE_IMG__.observer.observe(this.element.current);
     } else {
-      window.addEventListener('load', () => {
-        this.setState({
-          isDocumentLoad: true,
-        });
-      });
+      window.addEventListener('load', this.setDocumentLoaded);
     }
   }
 
@@ -102,6 +98,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
   }
 
   componentWillUnmount() {
+    window.removeEventListener(this.setDocumentLoaded);
     if (!this.element.current) return;
     const { removeImgLoadingRef, removeImageRef, useContext } = this.props;
     const element = this.element.current;
@@ -121,6 +118,12 @@ export class SimpleImg extends React.PureComponent<Props, State> {
       }
     }
   }
+
+  setDocumentLoaded = () => {
+    this.setState({
+      isDocumentLoad: true,
+    });
+  };
 
   element = React.createRef();
 
