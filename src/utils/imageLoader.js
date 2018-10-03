@@ -24,10 +24,8 @@ export function applyImage(target: any, image: Image, src: string) {
   }
 }
 
-function throwError(message, target, e) {
-  throw new Error(
-    `💩 ${message}\n\n${target.outerHTML}\n\nand error message ${JSON.stringify(e, null, 2)}`,
-  );
+function logError(message, target, e = '') {
+  console.error(`💩 ${message}\n\n${target.outerHTML}\n\nand error message ${JSON.stringify(e, null, 2)}`);
 }
 
 export default function imageLoader(target: any) {
@@ -47,7 +45,7 @@ export default function imageLoader(target: any) {
     const src = filterImgSrc(target);
 
     if (!src) {
-      console.error('💩 Filter Image source returned empty image source');
+      logError('Filter Image source returned empty image source', target);
       return;
     }
 
@@ -56,9 +54,9 @@ export default function imageLoader(target: any) {
         applyImage.apply(this, [target, image, src]);
       })
       .catch(e => {
-        throwError('Fetch image failed with target', target, e);
+        logError('Fetch image failed with target', target, e);
       });
   } catch (e) {
-    throwError('Image loader failed with target', target, e);
+    logError('Image loader failed with target', target, e);
   }
 }

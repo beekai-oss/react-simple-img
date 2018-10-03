@@ -1,11 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`imageLoader should catch error failed 1`] = `
-[Error: 💩 Image loader failed with target
-
-undefined
-
-and error message {}]
-`;
-
 exports[`imageLoader should update mount images state when applyImage is called 1`] = `undefined`;
