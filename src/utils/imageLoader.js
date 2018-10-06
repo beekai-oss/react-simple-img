@@ -19,13 +19,21 @@ export function applyImage(target: any, image: Image, src: string) {
     target.style.visibility = 'visible';
     /* eslint-enable */
     const nextSiblingElm = target.nextSibling;
-    nextSiblingElm.setAttribute('style', `opacity: 0; transition: 0.3s all; ${nextSiblingElm.getAttribute('style')}`);
+    nextSiblingElm.setAttribute('style', `opacity: 0;${nextSiblingElm.getAttribute('style')}`);
     window.__REACT_SIMPLE_IMG__.imgLoadingRefs.delete(target);
   }
 }
 
-function logError(message, target, e = '') {
-  console.error(`💩 ${message}\n\n${target.outerHTML}\n\nand error message ${JSON.stringify(e, null, 2)}`);
+function logError(message: string, target: any, e: any) {
+  const errorObject = { message, target, e };
+
+  if (window.__REACT_SIMPLE_IMG__.onError) {
+    window.__REACT_SIMPLE_IMG__.onError(errorObject);
+  } else if (this && this.props.onError) {
+    this.props.onError(errorObject);
+  } else {
+    console.error(`💩 ${message}\n\n${target.outerHTML}\n\n and error message ${JSON.stringify(e, null, 2)}`);
+  }
 }
 
 export default function imageLoader(target: any) {
@@ -45,7 +53,7 @@ export default function imageLoader(target: any) {
     const src = filterImgSrc(target);
 
     if (!src) {
-      logError('Filter Image source returned empty image source', target);
+      logError.apply(this, 'Filter Image source returned empty image source', target);
       return;
     }
 
@@ -54,9 +62,9 @@ export default function imageLoader(target: any) {
         applyImage.apply(this, [target, image, src]);
       })
       .catch(e => {
-        logError('Fetch image failed with target', target, e);
+        logError.apply(this, 'Fetch image failed with target', target, e);
       });
   } catch (e) {
-    logError('Image loader failed with target', target, e);
+    logError.apply(this, 'Image loader failed with target', target, e);
   }
 }

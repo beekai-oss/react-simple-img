@@ -1,6 +1,6 @@
 // @flow
 import imageLoader from '../utils/imageLoader';
-import type { Config } from '../simpleImgProvider';
+import type { Config, OnErrorFunction } from '../simpleImgProvider';
 
 export const defaultConfig = {
   rootMargin: '0px 0px',
@@ -16,7 +16,7 @@ export function onIntersection(entries: Array<{ intersectionRatio: number, targe
   }
 }
 
-export default function observerStart(config: Config = defaultConfig) {
+export default function observerStart(config: Config = defaultConfig, onError?: OnErrorFunction) {
   if (!window.IntersectionObserver) require('intersection-observer');
   // $FlowIgnoreLine:
   const observer = new IntersectionObserver(entries => onIntersection.call(this, entries), config);
@@ -25,6 +25,7 @@ export default function observerStart(config: Config = defaultConfig) {
   window.__REACT_SIMPLE_IMG__ = {
     observer,
     imgLoadingRefs: new Map(),
+    onError,
   };
 
   return undefined;

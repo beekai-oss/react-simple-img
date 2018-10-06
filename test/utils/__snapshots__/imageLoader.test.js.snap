@@ -1,3 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`imageLoader should catch error failed 1`] = `[TypeError: CreateListFromArrayLike called on non-object]`;
+
 exports[`imageLoader should update mount images state when applyImage is called 1`] = `undefined`;
