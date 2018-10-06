@@ -19,9 +19,18 @@ export type Config = {
   threshold?: number | Array<number>,
 };
 
+export type OnErrorFunction = ({
+  message: string,
+  target: {
+    outerHTML: string,
+  },
+  e: any,
+}) => void;
+
 type Props = {
   config: Object,
   children: any,
+  onError?: OnErrorFunction,
 };
 
 export default class SimpleImgProvider extends React.Component<Props, State> {
@@ -29,6 +38,7 @@ export default class SimpleImgProvider extends React.Component<Props, State> {
 
   static defaultProps = {
     config: defaultConfig,
+    onError: undefined,
   };
 
   state: State = {
