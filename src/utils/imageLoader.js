@@ -27,10 +27,10 @@ export function applyImage(target: any, image: Image, src: string) {
 function logError(message: string, target: any, e: any) {
   const errorObject = { message, target, e };
 
-  if (window.__REACT_SIMPLE_IMG__.onError) {
-    window.__REACT_SIMPLE_IMG__.onError(errorObject);
-  } else if (this && this.props.onError) {
+  if (this && this.props.onError) {
     this.props.onError(errorObject);
+  } else if (window.__REACT_SIMPLE_IMG__.onError) {
+    window.__REACT_SIMPLE_IMG__.onError(errorObject);
   } else {
     console.error(`💩 ${message}\n\n${target.outerHTML}\n\n and error message ${JSON.stringify(e, null, 2)}`);
   }
