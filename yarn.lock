@@ -5010,10 +5010,10 @@ react-is@^16.4.2, react-is@^16.5.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.5.1.tgz#c6e8734fd548a22e1cef4fd0833afbeb433b85ee"
   integrity sha512-Q7S+9y2lJA9oJCMqLt045f+kLRhsMLA1wW2DAGXA6b7wcTQRHnUDMc5oR49tn0Z4swvnfV+/t8iZFXY74IQmpA==
 
-react-simple-animate@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/react-simple-animate/-/react-simple-animate-2.0.1.tgz#af8828059d86e5686347cf4eac1419e2ecc02b5d"
-  integrity sha512-B8K9FmTz6GyJvupE/k1b6TPGWS87+oghgvYBwxQVJtdEK/BRppaF9fnpSyx4jQlY3TwkKQ04ZdUenWyeYRoNiQ==
+react-simple-animate@^2.1.6:
+  version "2.1.6"
+  resolved "https://registry.yarnpkg.com/react-simple-animate/-/react-simple-animate-2.1.6.tgz#dbb1dc4368f062f0cd14d5dc60829af35bebcd4b"
+  integrity sha512-G/cmhiNnX0rncHHHH7Eh18r1lWEwYoQECl0VkxwcxqLqPI2EaWHe8Td6Bxwk7hk0OOC3u6/Aed7BFLEQtVNXzA==
 
 react-test-renderer@^16.0.0-0, react-test-renderer@^16.5.1:
   version "16.5.1"

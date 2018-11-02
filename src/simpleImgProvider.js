@@ -58,7 +58,7 @@ export default class SimpleImgProvider extends React.Component<Props, State> {
     });
   }
 
-  appendImageRef = (image: HTMLElement) => this.observer && this.observer.observe(image);
+  appendImageRef = (image: HTMLElement) => this.observer && this.observer.observe && this.observer.observe(image);
 
   removeImageRef = (image: HTMLElement) => {
     // $FlowIgnoreLine:

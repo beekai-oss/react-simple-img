@@ -14,7 +14,7 @@ import image5 from './wallpapers/Snow.jpg';
 import image6 from './wallpapers/Lion.jpg';
 import { SimpleImg } from 'react-simple-img';
 // use provider example below
-// import { SimpleImg, SimpleImgProvider } from './src/index';
+// import { SimpleImg, SimpleImgProvider } from 'react-simple-img';
 import './App.css';
 
 const images = [

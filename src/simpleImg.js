@@ -81,7 +81,11 @@ export class SimpleImg extends React.PureComponent<Props, State> {
     const element = this.element.current;
 
     if (useContext) {
-      if (((!prevProps.isContextDocumentLoad && isContextDocumentLoad) || this.state.isDocumentLoad) && element) {
+      if (
+        ((!prevProps.isContextDocumentLoad && isContextDocumentLoad) ||
+          (!prevState.isDocumentLoad && this.state.isDocumentLoad)) &&
+        element
+      ) {
         appendImageRef(element);
         removeImgLoadingRef(element);
       }
@@ -167,27 +171,29 @@ export class SimpleImg extends React.PureComponent<Props, State> {
             ...(!isValidImgSrc && !loaded && !isSrcSetFulfilled ? hiddenStyle : null),
           }}
         />
-        <Animate
-          play={loaded}
-          durationSeconds={animationDuration}
-          endStyle={{
-            ...inlineStyle,
-            ...animationEndStyle,
-            ...(!isValidImgSrc ? fullWidthStyle : null),
-          }}
-          onCompleteStyle={onCompleteStyle}
-          {...(!isValidImgSrc
-            ? {
-                startStyle: {
-                  ...inlineStyle,
-                  ...fullWidthStyle,
-                },
-              }
-            : null)}
-          render={() =>
-            isValidImgSrc && <img {...{ width, height, className }} style={inlineStyle} alt={alt} src={placeholder} />
-          }
-        />
+        {isValidImgSrc && (
+          <Animate
+            play={loaded}
+            durationSeconds={animationDuration}
+            endStyle={{
+              ...inlineStyle,
+              ...animationEndStyle,
+              ...(!isValidImgSrc ? fullWidthStyle : null),
+            }}
+            onCompleteStyle={onCompleteStyle}
+            {...(!isValidImgSrc
+              ? {
+                  startStyle: {
+                    ...inlineStyle,
+                    ...fullWidthStyle,
+                  },
+                }
+              : null)}
+            render={({ style }) => (
+              <img {...{ width, height, className }} style={{ ...inlineStyle, ...style }} alt={alt} src={placeholder} />
+            )}
+          />
+        )}
       </span>
     );
   }
