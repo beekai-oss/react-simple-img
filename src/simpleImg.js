@@ -148,6 +148,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
     const inlineStyle = {
       ...commonStyle,
       ...(!isValidImgSrc ? { background: placeholder } : null),
+      height,
     };
     const imgPlaceholder = isValidImgSrc ? placeholder : defaultImgPlaceholder;
     const isSrcSetFulfilled = this.element.current && this.element.current.src !== imgPlaceholder;
@@ -183,9 +184,10 @@ export class SimpleImg extends React.PureComponent<Props, State> {
                 },
               }
             : null)}
-        >
-          {isValidImgSrc && <img {...{ width, height, className }} style={inlineStyle} alt={alt} src={placeholder} />}
-        </Animate>
+          render={() =>
+            isValidImgSrc && <img {...{ width, height, className }} style={inlineStyle} alt={alt} src={placeholder} />
+          }
+        />
       </span>
     );
   }
