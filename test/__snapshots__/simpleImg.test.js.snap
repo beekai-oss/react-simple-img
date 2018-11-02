@@ -32,7 +32,7 @@ exports[`SimpleImg should render background color 1`] = `
     endStyle={
       Object {
         "background": "red",
-        "height": "100%",
+        "height": 1000,
         "left": 0,
         "opacity": 0,
         "position": "absolute",
@@ -46,10 +46,11 @@ exports[`SimpleImg should render background color 1`] = `
       }
     }
     play={false}
+    render={[Function]}
     startStyle={
       Object {
         "background": "red",
-        "height": "100%",
+        "height": 1000,
         "left": 0,
         "position": "absolute",
         "top": 0,
@@ -92,7 +93,7 @@ exports[`SimpleImg should render correctly 1`] = `
     endStyle={
       Object {
         "background": "white",
-        "height": "100%",
+        "height": 1000,
         "left": 0,
         "opacity": 0,
         "position": "absolute",
@@ -106,10 +107,11 @@ exports[`SimpleImg should render correctly 1`] = `
       }
     }
     play={false}
+    render={[Function]}
     startStyle={
       Object {
         "background": "white",
-        "height": "100%",
+        "height": 1000,
         "left": 0,
         "position": "absolute",
         "top": 0,
@@ -152,7 +154,7 @@ exports[`SimpleImg should render only span when place holder src is not supplied
     endStyle={
       Object {
         "background": "white",
-        "height": "100%",
+        "height": 1000,
         "left": 0,
         "opacity": 0,
         "position": "absolute",
@@ -166,10 +168,11 @@ exports[`SimpleImg should render only span when place holder src is not supplied
       }
     }
     play={false}
+    render={[Function]}
     startStyle={
       Object {
         "background": "white",
-        "height": "100%",
+        "height": 1000,
         "left": 0,
         "position": "absolute",
         "top": 0,
@@ -207,7 +210,7 @@ exports[`SimpleImg should render out as image data 1`] = `
     durationSeconds={1}
     endStyle={
       Object {
-        "height": "100%",
+        "height": 1000,
         "left": 0,
         "opacity": 0,
         "position": "absolute",
@@ -220,23 +223,8 @@ exports[`SimpleImg should render out as image data 1`] = `
       }
     }
     play={false}
-  >
-    <img
-      alt="alt"
-      className="img className"
-      height={1000}
-      src="data:image//test"
-      style={
-        Object {
-          "height": "100%",
-          "left": 0,
-          "position": "absolute",
-          "top": 0,
-        }
-      }
-      width={100}
-    />
-  </Animate>
+    render={[Function]}
+  />
 </span>
 `;
 
@@ -267,7 +255,7 @@ exports[`SimpleImg should render out placeholder as image 1`] = `
     durationSeconds={1}
     endStyle={
       Object {
-        "height": "100%",
+        "height": 1000,
         "left": 0,
         "opacity": 0,
         "position": "absolute",
@@ -280,22 +268,7 @@ exports[`SimpleImg should render out placeholder as image 1`] = `
       }
     }
     play={false}
-  >
-    <img
-      alt="alt"
-      className="img className"
-      height={1000}
-      src="/test/image.jpg"
-      style={
-        Object {
-          "height": "100%",
-          "left": 0,
-          "position": "absolute",
-          "top": 0,
-        }
-      }
-      width={100}
-    />
-  </Animate>
+    render={[Function]}
+  />
 </span>
 `;
