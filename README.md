@@ -54,7 +54,7 @@ entire app
 
 Arguments
 
-* **config**: (Object) this argument is optional
+* **config**: (Object) this argument is <b>optional</b>
 
 
      - [root]: The element that is used as the viewport for checking
@@ -78,7 +78,7 @@ Arguments
        run). A value of 1.0 means that the threshold isn't considered passed
        until every pixel is visible.
 
-#### 🔗 `SimpleImgProvider([Component], [config])`
+#### 🔗 `SimpleImgProvider([Component], [config])` <b>optional</b>
 
 This high order component will connect all your `SimpleImg` to be observed per section, and **overwrite global config by
 `initSimpleImg()`**.
