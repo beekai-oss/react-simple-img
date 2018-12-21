@@ -37,13 +37,15 @@ Navigate into `example` folder and install
 
 To generate svg placeholder, please install [SQIP](https://github.com/technopagan/sqip/) to generate placeholders.
 
-## Quick start
+## Quickstart
 
+```jsx
     import { SimpleImg, initSimpleImg } from 'react-simple-img';
 
     initSimpleImg(); // run once at your root component or at file which calls `ReactDOM.render`
 
     export default () => <SimpleImg height={500} src="your image path" />;
+```
 
 ## API
 
@@ -111,6 +113,7 @@ Image component working similar with standard `img` tag and with the following p
 
 Set up React Simple Img per page, you can use the following example without `initSimpleImg()`😘
 
+```jsx
     import { SimpleImg, SimpleImgProvider } from 'react-simple-img';
 
     export default () =>  (
@@ -129,6 +132,7 @@ Set up React Simple Img per page, you can use the following example without `ini
          <SimpleImg height={500} placeholder="your placeholder svg or image path" src="your image path" />
        </SimpleImgProvider>
      );
+ ```
      
 ## Reference
 
