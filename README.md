@@ -40,11 +40,11 @@ To generate svg placeholder, please install [SQIP](https://github.com/technopaga
 ## Quickstart
 
 ```jsx
-    import { SimpleImg, initSimpleImg } from 'react-simple-img';
+import { SimpleImg, initSimpleImg } from 'react-simple-img';
 
-    initSimpleImg(); // run once at your root component or at file which calls `ReactDOM.render`
+initSimpleImg(); // run once at your root component or at file which calls `ReactDOM.render`
 
-    export default () => <SimpleImg height={500} src="your image path" />;
+export default () => <SimpleImg height={500} src="your image path" />;
 ```
 
 ## API
@@ -114,24 +114,24 @@ Image component working similar with standard `img` tag and with the following p
 Set up React Simple Img per page, you can use the following example without `initSimpleImg()`😘
 
 ```jsx
-    import { SimpleImg, SimpleImgProvider } from 'react-simple-img';
+import { SimpleImg, SimpleImgProvider } from 'react-simple-img';
 
-    export default () =>  (
-       <SimpleImgProvider
-         config={{
-           threshold: [0.5], // load image when 50 percentage of image in the view port
-         }}
-       >
-         // placeholder background color example
-         <SimpleImg
-           height={500}
-           placeholder="linear-gradient(rgb(30, 87, 153) 0%, rgb(125, 185, 232) 100%)"
-           src="your image path"
-         />
-         // placeholder background image example
-         <SimpleImg height={500} placeholder="your placeholder svg or image path" src="your image path" />
-       </SimpleImgProvider>
-     );
+export default () =>  (
+   <SimpleImgProvider
+     config={{
+       threshold: [0.5], // load image when 50 percentage of image in the view port
+     }}
+   >
+     // placeholder background color example
+     <SimpleImg
+       height={500}
+       placeholder="linear-gradient(rgb(30, 87, 153) 0%, rgb(125, 185, 232) 100%)"
+       src="your image path"
+     />
+     // placeholder background image example
+     <SimpleImg height={500} placeholder="your placeholder svg or image path" src="your image path" />
+   </SimpleImgProvider>
+ );
  ```
      
 ## Reference
