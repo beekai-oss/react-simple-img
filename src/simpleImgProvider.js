@@ -20,7 +20,7 @@ export type Config = {
 };
 
 type Props = {
-  config: Object,
+  config?: Object,
   children: any,
 };
 
@@ -35,6 +35,10 @@ export default class SimpleImgProvider extends React.Component<Props, State> {
     mountedImages: new Set(),
     isContextDocumentLoad: false,
   };
+
+  observer = {};
+
+  imageLoadRefs: Set<any> = new Set();
 
   componentDidMount() {
     const { config } = this.props;
@@ -78,10 +82,6 @@ export default class SimpleImgProvider extends React.Component<Props, State> {
   removeImgLoadingRef = (image: HTMLElement) => {
     this.imageLoadRefs.delete(image);
   };
-
-  observer = {};
-
-  imageLoadRefs: Set<any> = new Set();
 
   render() {
     return (
