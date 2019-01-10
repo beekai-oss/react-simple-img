@@ -23,7 +23,6 @@ type Props = {
   srcSet: string,
   animationDuration: number,
   animationEndStyle: Style,
-  animationstates: Object,
   useContext: boolean,
   isContextDocumentLoad: boolean,
   mountedImages: Set<any>,
@@ -163,7 +162,6 @@ export class SimpleImg extends React.PureComponent<Props, State> {
       appendImageRef,
       removeImageRef,
       removeImgLoadingRef,
-      animationstates,
       ...restImgProps
     } = restProps;
 
