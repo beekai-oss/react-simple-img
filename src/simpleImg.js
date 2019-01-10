@@ -23,6 +23,7 @@ type Props = {
   srcSet: string,
   animationDuration: number,
   animationEndStyle: Style,
+  animationstates: Object,
   useContext: boolean,
   isContextDocumentLoad: boolean,
   mountedImages: Set<any>,
