@@ -21,7 +21,7 @@ type Props = {
   alt: string,
   sizes: string,
   srcSet: string,
-  animationDuration: number,
+  animationDuration?: number,
   animationEndStyle: Style,
   useContext: boolean,
   isContextDocumentLoad: boolean,
@@ -58,6 +58,8 @@ export class SimpleImg extends React.PureComponent<Props, State> {
     loaded: false,
     isDocumentLoad: false,
   };
+
+  element: any = React.createRef();
 
   componentDidMount() {
     if (window.__REACT_SIMPLE_IMG__ && document.readyState === 'complete') {
@@ -130,8 +132,6 @@ export class SimpleImg extends React.PureComponent<Props, State> {
       isDocumentLoad: true,
     });
   };
-
-  element = React.createRef();
 
   render() {
     const {
