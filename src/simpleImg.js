@@ -131,7 +131,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
     });
   };
 
-  element = React.createRef();
+  element: any = React.createRef();
 
   render() {
     const {
