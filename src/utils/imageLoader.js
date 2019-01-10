@@ -19,7 +19,7 @@ export function applyImage(target: any, image: Image, src: string) {
     target.style.visibility = 'visible';
     /* eslint-enable */
     const nextSiblingElm = target.nextSibling;
-    nextSiblingElm.setAttribute('style', `opacity: 0; transition: 0.3s all; ${nextSiblingElm.getAttribute('style')}`);
+    if (nextSiblingElm) nextSiblingElm.setAttribute('style', `opacity: 0; transition: 0.3s all; ${nextSiblingElm.getAttribute('style')}`);
     window.__REACT_SIMPLE_IMG__.imgLoadingRefs.delete(target);
   }
 }

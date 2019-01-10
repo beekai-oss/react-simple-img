@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
+import { SimpleImg } from 'react-simple-img';
 import Logo from './logo.png';
 import svg1 from './wallpapers/Isles.svg';
 import svg2 from './wallpapers/Lake.svg';
@@ -12,7 +13,6 @@ import image3 from './wallpapers/Mountain-Range.jpg';
 import image4 from './wallpapers/Pink-Forest.jpg';
 import image5 from './wallpapers/Snow.jpg';
 import image6 from './wallpapers/Lion.jpg';
-import { SimpleImg } from 'react-simple-img';
 // use provider example below
 // import { SimpleImg, SimpleImgProvider } from 'react-simple-img';
 import './App.css';
@@ -44,7 +44,7 @@ const images = [
   },
 ];
 
-class App extends Component {
+class App extends PureComponent {
   render() {
     // Provider example here below, remove initSimpleImg in index.js
     // return  <SimpleImgProvider>

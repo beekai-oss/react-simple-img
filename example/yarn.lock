@@ -6514,9 +6514,9 @@ react-simple-animate@^2.0.0:
   integrity sha512-B8K9FmTz6GyJvupE/k1b6TPGWS87+oghgvYBwxQVJtdEK/BRppaF9fnpSyx4jQlY3TwkKQ04ZdUenWyeYRoNiQ==
 
 react-simple-animate@^2.1.6:
-  version "2.1.6"
-  resolved "https://registry.yarnpkg.com/react-simple-animate/-/react-simple-animate-2.1.6.tgz#dbb1dc4368f062f0cd14d5dc60829af35bebcd4b"
-  integrity sha512-G/cmhiNnX0rncHHHH7Eh18r1lWEwYoQECl0VkxwcxqLqPI2EaWHe8Td6Bxwk7hk0OOC3u6/Aed7BFLEQtVNXzA==
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/react-simple-animate/-/react-simple-animate-2.5.0.tgz#f25c83bee1299367714fe5161f40e417120fd74e"
+  integrity sha512-e2GL46oVO0Y7CwuHEf1ZvLQt3wbJ5B9f5H+UkHXEvDDDkMMcCRz+w0DAWkz7icD0d+++1FfQt5MR9IBnYYMuAQ==
 
 react-simple-img@1.4.5-beta.4:
   version "1.4.5-beta.4"
