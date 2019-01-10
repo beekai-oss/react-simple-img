@@ -162,6 +162,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
       appendImageRef,
       removeImageRef,
       removeImgLoadingRef,
+      animationstates,
       ...restImgProps
     } = restProps;
 
