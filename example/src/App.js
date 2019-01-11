@@ -70,7 +70,7 @@ class App extends PureComponent {
     return (
       <div className="App">
         <header className="App-header">
-          <SimpleImg src={Logo} wrapperClassName="App-logo" alt="logo" backgroundColor="white" />
+          <SimpleImg src={Logo} wrapperClassName="App-logo" alt="logo" />
         </header>
         <div className="App-container">
           {images.map((image, i) => (
