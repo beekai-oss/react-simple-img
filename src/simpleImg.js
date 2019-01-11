@@ -138,14 +138,13 @@ export class SimpleImg extends React.PureComponent<Props, State> {
       src,
       imgClassName: className,
       wrapperClassName,
-      width,
       height,
       alt,
       srcSet,
-      sizes,
       animationDuration,
       animationEndStyle = defaultDisappearStyle,
       placeholder = defaultPlaceholderColor,
+      ...restProps
     } = this.props;
     const { loaded } = this.state;
     const isValidImgSrc = validImgSrc(placeholder);
@@ -156,11 +155,21 @@ export class SimpleImg extends React.PureComponent<Props, State> {
     };
     const imgPlaceholder = isValidImgSrc ? placeholder : defaultImgPlaceholder;
     const isSrcSetFulfilled = this.element.current && this.element.current.src !== imgPlaceholder;
+    const {
+      useContext,
+      isContextDocumentLoad,
+      mountedImages,
+      appendImageRef,
+      removeImageRef,
+      removeImgLoadingRef,
+      ...restImgProps
+    } = restProps;
 
     return (
       <span style={rootStyle} className={wrapperClassName}>
         <img
-          {...{ width, height, sizes, className }}
+          className={className}
+          height={height}
           alt={alt}
           ref={this.element}
           src={loaded ? src : imgPlaceholder}
@@ -170,6 +179,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
           style={{
             ...(!isValidImgSrc && !loaded && !isSrcSetFulfilled ? hiddenStyle : null),
           }}
+          {...restImgProps}
         />
         {isValidImgSrc && (
           <Animate
@@ -190,7 +200,14 @@ export class SimpleImg extends React.PureComponent<Props, State> {
                 }
               : null)}
             render={({ style }) => (
-              <img {...{ width, height, className }} style={{ ...inlineStyle, ...style }} alt={alt} src={placeholder} />
+              <img
+                className={className}
+                style={{ ...inlineStyle, ...style }}
+                height={height}
+                alt={alt}
+                src={placeholder}
+                {...restImgProps}
+              />
             )}
           />
         )}

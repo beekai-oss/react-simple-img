@@ -4,7 +4,6 @@ import observerStart, { defaultConfig } from './logic/observerStart';
 
 // $FlowIgnoreLine:
 export const SimpleImgContext = React.createContext({
-  animationStates: {},
   register: undefined,
 });
 
