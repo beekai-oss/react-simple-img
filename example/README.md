@@ -1,4 +1,4 @@
-# React Lazy Load Images Example
+# React-simple-img example
 
 ## Install and start
 
