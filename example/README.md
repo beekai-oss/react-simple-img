@@ -1,4 +1,4 @@
-# React-simple-img example
+# React Simple Img Example
 
 ## Install and start
 
