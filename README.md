@@ -6,7 +6,7 @@
 [![npm](https://img.shields.io/npm/dt/react-simple-img.svg?style=flat-square)](https://www.npmjs.com/package/react-simple-img)
 [![npm](https://img.shields.io/npm/l/react-simple-img.svg?style=flat-square)](https://www.npmjs.com/package/react-lazyload-image)
 
-> **Smart react image with IntersectionObserver API and animations** :clap:
+> **Smart react lazy load image with IntersectionObserver API and animations** :clap:
 
 🤔 Why this package?
 
