@@ -2,7 +2,7 @@
     <a href="https://react-simple-img.herokuapp.com/"><img width="675" src="https://raw.githubusercontent.com/bluebill1049/react-simple-img/master/example/src/logo.png" alt="React Simple Img Logo - Animated lazy loading - on demand" /></a>
 </p>
 
-[![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=React+Lazy+load+images+with+Intersection+Observer+API&url=https://github.com/bluebill1049/react-simple-img)&nbsp;[![npm downloads](https://img.shields.io/npm/dm/react-simple-img.svg?style=flat-square)](https://www.npmjs.com/package/react-simple-img)
+[![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=React+Lazy+load+images+with+Intersection+Observer+API&url=https://github.com/bluebill1049/react-simple-img)&nbsp;[![Coverage Status](https://coveralls.io/repos/github/bluebill1049/react-simple-img/badge.svg?branch=master)](https://coveralls.io/github/bluebill1049/react-simple-img?branch=master)[![npm downloads](https://img.shields.io/npm/dm/react-simple-img.svg?style=flat-square)](https://www.npmjs.com/package/react-simple-img)
 [![npm](https://img.shields.io/npm/dt/react-simple-img.svg?style=flat-square)](https://www.npmjs.com/package/react-simple-img)
 [![npm](https://img.shields.io/npm/l/react-simple-img.svg?style=flat-square)](https://www.npmjs.com/package/react-lazyload-image)
 
@@ -10,10 +10,10 @@
 
 🤔 Why this package?
 
-* Speed up initial page loads by loading only images above the fold
-* Responsive with placeholders and animations
-* Smart download logic using [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)
-* Simple usage and tiny size
+- Speed up initial page loads by loading only images above the fold
+- Responsive with placeholders and animations
+- Smart download logic using [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)
+- Simple usage and tiny size
 
 ## Install
 
@@ -56,7 +56,7 @@ entire app
 
 Arguments
 
-* **config**: (Object) this argument is <b>optional</b>
+- **config**: (Object) this argument is <b>optional</b>
 
 
      - [root]: The element that is used as the viewport for checking
@@ -87,9 +87,9 @@ This high order component will connect all your `SimpleImg` to be observed per s
 
 Arguments
 
-* **Component**: (Component) react component
+- **Component**: (Component) react component
 
-* **config**: (Object) this argument is optional (same as `initSimpleImg` config argument)
+- **config**: (Object) this argument is optional (same as `initSimpleImg` config argument)
 
 #### 🔗 `SimpleImg`
 
@@ -113,24 +113,24 @@ Set up React Simple Img per page, you can use the following example without `ini
 ```jsx
 import { SimpleImg, SimpleImgProvider } from 'react-simple-img';
 
-export default () =>  (
-   <SimpleImgProvider
-     config={{
-       threshold: [0.5], // load image when 50 percentage of image in the view port
-     }}
-   >
-     // placeholder background color example
-     <SimpleImg
-       height={500}
-       placeholder="linear-gradient(rgb(30, 87, 153) 0%, rgb(125, 185, 232) 100%)"
-       src="your image path"
-     />
-     // placeholder background image example
-     <SimpleImg height={500} placeholder="your placeholder svg or image path" src="your image path" />
-   </SimpleImgProvider>
- );
- ```
-     
+export default () => (
+  <SimpleImgProvider
+    config={{
+      threshold: [0.5], // load image when 50 percentage of image in the view port
+    }}
+  >
+    // placeholder background color example
+    <SimpleImg
+      height={500}
+      placeholder="linear-gradient(rgb(30, 87, 153) 0%, rgb(125, 185, 232) 100%)"
+      src="your image path"
+    />
+    // placeholder background image example
+    <SimpleImg height={500} placeholder="your placeholder svg or image path" src="your image path" />
+  </SimpleImgProvider>
+);
+```
+
 ## Reference
 
 https://medium.com/jsdownunder/optimising-web-page-a-simple-step-66f7f4ba417c
