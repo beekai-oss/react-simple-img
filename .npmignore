@@ -10,3 +10,5 @@ yarn.lock
 .idea/
 CONTRIBUTING.md
 .eslintrc
+rollup.config.js
+.coveralls.yml
