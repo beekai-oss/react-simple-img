@@ -59,6 +59,8 @@ export class SimpleImg extends React.PureComponent<Props, State> {
     isDocumentLoad: false,
   };
 
+  element: any = React.createRef();
+
   componentDidMount() {
     if (window.__REACT_SIMPLE_IMG__ && document.readyState === 'complete') {
       window.__REACT_SIMPLE_IMG__.observer.observe(this.element.current);
@@ -130,8 +132,6 @@ export class SimpleImg extends React.PureComponent<Props, State> {
       isDocumentLoad: true,
     });
   };
-
-  element: any = React.createRef();
 
   render() {
     const {
