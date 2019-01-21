@@ -59,8 +59,6 @@ export class SimpleImg extends React.PureComponent<Props, State> {
     isDocumentLoad: false,
   };
 
-  element: any = React.createRef();
-
   componentDidMount() {
     if (window.__REACT_SIMPLE_IMG__ && document.readyState === 'complete') {
       window.__REACT_SIMPLE_IMG__.observer.observe(this.element.current);
@@ -133,6 +131,8 @@ export class SimpleImg extends React.PureComponent<Props, State> {
     });
   };
 
+  element: any = React.createRef();
+
   render() {
     const {
       src,
@@ -181,25 +181,25 @@ export class SimpleImg extends React.PureComponent<Props, State> {
           }}
           {...restImgProps}
         />
-        {isValidImgSrc && (
-          <Animate
-            play={loaded}
-            durationSeconds={animationDuration}
-            endStyle={{
-              ...inlineStyle,
-              ...animationEndStyle,
-              ...(!isValidImgSrc ? fullWidthStyle : null),
-            }}
-            onCompleteStyle={onCompleteStyle}
-            {...(!isValidImgSrc
-              ? {
-                  startStyle: {
-                    ...inlineStyle,
-                    ...fullWidthStyle,
-                  },
-                }
-              : null)}
-            render={({ style }) => (
+        <Animate
+          play={loaded}
+          durationSeconds={animationDuration}
+          endStyle={{
+            ...inlineStyle,
+            ...animationEndStyle,
+            ...(!isValidImgSrc ? fullWidthStyle : null),
+          }}
+          onCompleteStyle={onCompleteStyle}
+          {...(!isValidImgSrc
+            ? {
+              startStyle: {
+                ...inlineStyle,
+                ...fullWidthStyle,
+              },
+            }
+            : null)}
+          render={({ style }) =>
+            isValidImgSrc ? (
               <img
                 className={className}
                 style={{ ...inlineStyle, ...style }}
@@ -208,9 +208,11 @@ export class SimpleImg extends React.PureComponent<Props, State> {
                 src={placeholder}
                 {...restImgProps}
               />
-            )}
-          />
-        )}
+            ) : (
+              <div className={className} style={{ ...inlineStyle, ...style }} height={height} />
+            )
+          }
+        />
       </span>
     );
   }
