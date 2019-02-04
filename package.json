@@ -1,6 +1,6 @@
 {
   "name": "react-simple-img",
-  "version": "1.5.4",
+  "version": "1.6.0-beta.2",
   "description": "react simple img",
   "main": "lib/index.js",
   "keywords": [
@@ -12,7 +12,7 @@
     "clean": "rimraf lib/",
     "release": "npm version",
     "postrelease": "yarn publish && git push --follow-tags",
-    "test": "jest --config ./jestConfig.json",
+    "test": "jest --coverage --config ./jestConfig.json",
     "testw": "yarn test -- --watchAll",
     "coverage": "jest --config ./jestConfig.json --coverage --coverageReporters=text-lcov | coveralls",
     "build": "rollup -c",

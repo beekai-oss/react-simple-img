@@ -1,7 +1,7 @@
-import renderer from 'react-test-renderer';
-import { SimpleImg } from '../src/simpleImg';
-import { shallow, mount } from 'enzyme';
 import React from 'react';
+import renderer from 'react-test-renderer';
+import { shallow, mount } from 'enzyme';
+import { SimpleImg } from '../src/simpleImg';
 
 jest.mock('react-simple-animate', () => ({ Animate: 'Animate' }));
 
@@ -119,5 +119,11 @@ describe('SimpleImg', () => {
     expect(hasSpy.mock.calls[0][0]).toEqual('test');
 
     window.__REACT_SIMPLE_IMG__ = undefined;
+  });
+
+  it('should ', () => {
+    const tree = shallow(<SimpleImg {...props} />);
+    tree.instance().setDocumentLoaded();
+    expect(tree.state('isDocumentLoad')).toBeTruthy();
   });
 });
