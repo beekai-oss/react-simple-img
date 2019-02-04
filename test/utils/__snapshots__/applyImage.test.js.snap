@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`applyImage should update mount images state when applyImage is called 1`] = `undefined`;
