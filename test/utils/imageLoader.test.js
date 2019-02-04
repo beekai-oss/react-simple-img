@@ -1,7 +1,18 @@
-import imageLoader, { applyImage } from '../../src/utils/imageLoader';
-jest.mock('../../src/utils/fetchImage', () => () => new Promise(resolve => resolve('test')));
+import imageLoader from '../../src/utils/imageLoader';
+import fetchImage from '../../src/utils/fetchImage';
+import applyImage from '../../src/utils/applyImage';
+import logError from '../../src/utils/logError';
+
+jest.mock('../../src/utils/fetchImage');
+jest.mock('../../src/utils/applyImage');
+jest.mock('../../src/utils/logError');
+jest.mock('../../src/logic/filterSrcset', () => () => true);
 
 describe('imageLoader', () => {
+  beforeEach(() => {
+    jest.resetAllMocks();
+  });
+
   it('should catch error failed', async () => {
     try {
       await imageLoader({});
@@ -11,7 +22,7 @@ describe('imageLoader', () => {
   });
 
   describe('when context is provided', () => {
-    window.addEventListener('load', (done) => {
+    window.addEventListener('load', done => {
       it('should call api remove and add images', async () => {
         const unobserveSpy = jest.fn();
         const setStateSpy = jest.fn();
@@ -65,51 +76,39 @@ describe('imageLoader', () => {
     });
   });
 
-  it('should return false when target is not exist', () => {
-    expect(
-      applyImage(
-        undefined,
-        'loadedImg',
-      ),
-    ).toBeFalsy();
-  });
-
-  it('should update mount images state when applyImage is called', () => {
-    const setAttributeSpy = jest.fn();
-    const getAttributeSpy = jest.fn();
-    const deleteSpy = jest.fn();
+  it('should call applyImage when image resolved', async () => {
+    fetchImage.mockReturnValueOnce(new Promise(resolve => resolve('test')));
     window.__REACT_SIMPLE_IMG__ = {
       observer: {
         unobserve: () => {},
       },
       imgLoadingRefs: {
         set: () => {},
-        delete: deleteSpy,
+        delete: () => {},
       },
     };
-    expect(
-      applyImage(
-        {
-          src: 'test',
-          dataset: {
-            srcset: 'srcset',
-          },
-          srcset: 'srcset',
-          style: {
-            visibility: 'hidden',
-          },
-          nextSibling: {
-            setAttribute: setAttributeSpy,
-            getAttribute: getAttributeSpy,
-          },
-        },
-        'loadedImg',
-      ),
-    ).toMatchSnapshot();
-    expect(getAttributeSpy).toHaveBeenCalled();
-    expect(setAttributeSpy).toHaveBeenCalled();
-    expect(deleteSpy).toHaveBeenCalled();
+    await imageLoader({});
+    expect(fetchImage).toHaveBeenCalled();
+    expect(applyImage).toHaveBeenCalled();
+  });
 
-    window.__REACT_SIMPLE_IMG__ = undefined;
+  it('should report error when image fetch failed', async () => {
+    fetchImage.mockReturnValueOnce(
+      new Promise((resolve, reject) => {
+        reject(new Error('test'));
+      }),
+    );
+    window.__REACT_SIMPLE_IMG__ = {
+      observer: {
+        unobserve: () => {},
+      },
+      imgLoadingRefs: {
+        set: () => {},
+        delete: () => {},
+      },
+    };
+    await imageLoader({});
+    expect(fetchImage).toHaveBeenCalled();
+    expect(applyImage).not.toHaveBeenCalled();
   });
 });

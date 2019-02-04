@@ -100,7 +100,10 @@ export class SimpleImg extends React.PureComponent<Props, State> {
         );
         removeImageRef(element);
       }
-    } else if (!prevState.isDocumentLoad && this.state.isDocumentLoad) {
+      return;
+    }
+
+    if (!prevState.isDocumentLoad && this.state.isDocumentLoad) {
       window.__REACT_SIMPLE_IMG__.observer.observe(element);
     } else if (this.props.src !== prevProps.src) {
       this.setState({
