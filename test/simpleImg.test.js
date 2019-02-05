@@ -156,16 +156,11 @@ describe('SimpleImg', () => {
     expect(deleteSpy).toBeCalled();
   });
 
-  it('should remove image ref when component update and finished loaded', () => {
+  it('should remove image ref when component update and finished loaded with context', () => {
     const removeImageRefSpy = jest.fn();
     window.__REACT_SIMPLE_IMG__ = {
       observer: {
         observe: () => {},
-        unobserve: () => {},
-      },
-      imgLoadingRefs: {
-        set: () => {},
-        has: () => true,
       },
     };
 
@@ -180,5 +175,25 @@ describe('SimpleImg', () => {
     });
 
     expect(removeImageRefSpy).toBeCalled();
+  });
+
+  it('should remove image ref when component update and finished loaded with context', () => {
+    window.__REACT_SIMPLE_IMG__ = {
+      observer: {
+        observe: () => {},
+      },
+    };
+
+    const tree = shallow(<SimpleImg {...{ ...props, mountedImages: new Set([1]), useContext: false }} />);
+    const instance = tree.instance();
+    instance.element = {
+      current: 1,
+    };
+
+    tree.setProps({
+      src: 'test',
+    });
+
+    expect(tree.state('loaded')).toBeTruthy();
   });
 });
