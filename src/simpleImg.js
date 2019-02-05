@@ -37,12 +37,12 @@ const commonStyle = {
   top: 0,
   left: 0,
   height: '100%',
+  width: '100%',
 };
 const defaultDisappearStyle = { opacity: 0 };
 const defaultImgPlaceholder = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
 const defaultPlaceholderColor = 'white';
 const onCompleteStyle = { display: 'none' };
-const fullWidthStyle = { width: '100%' };
 const hiddenStyle = { visibility: 'hidden' };
 
 export class SimpleImg extends React.PureComponent<Props, State> {
@@ -155,7 +155,6 @@ export class SimpleImg extends React.PureComponent<Props, State> {
     const inlineStyle = {
       ...commonStyle,
       ...(!isValidImgSrc ? { background: placeholder } : null),
-      height,
     };
     const imgPlaceholder = isValidImgSrc ? placeholder : defaultImgPlaceholder;
     const isSrcSetFulfilled = this.element.current && this.element.current.src !== imgPlaceholder;
@@ -166,6 +165,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
       appendImageRef,
       removeImageRef,
       removeImgLoadingRef,
+      register,
       ...restImgProps
     } = restProps;
 
@@ -181,15 +181,15 @@ export class SimpleImg extends React.PureComponent<Props, State> {
       >
         <img
           className={className}
-          height={height}
           alt={alt}
           ref={this.element}
           src={loaded ? src : imgPlaceholder}
           srcSet={loaded ? srcSet : ''}
           data-src={src}
           data-srcset={srcSet}
+          height={height}
           style={{
-            ...(!isValidImgSrc && !loaded && !isSrcSetFulfilled ? hiddenStyle : null),
+            ...(!isValidImgSrc && !loaded && !isSrcSetFulfilled ? hiddenStyle : { width: '100%', height: '100%' }),
           }}
           {...restImgProps}
         />
@@ -199,31 +199,25 @@ export class SimpleImg extends React.PureComponent<Props, State> {
           endStyle={{
             ...inlineStyle,
             ...animationEndStyle,
-            ...(!isValidImgSrc ? fullWidthStyle : null),
+            height,
           }}
           onCompleteStyle={onCompleteStyle}
-          {...(!isValidImgSrc
-            ? {
-                startStyle: {
-                  ...inlineStyle,
-                  ...fullWidthStyle,
-                },
-              }
-            : null)}
-          render={({ style }) =>
-            isValidImgSrc ? (
+          render={({ style }) => {
+            const combinedStyle = { ...inlineStyle, ...style };
+
+            return isValidImgSrc ? (
               <img
                 className={className}
-                style={{ ...inlineStyle, ...style }}
-                height={height}
+                style={combinedStyle}
                 alt={alt}
                 src={placeholder}
+                height={height}
                 {...restImgProps}
               />
             ) : (
-              <div className={className} style={{ ...inlineStyle, ...style }} height={height} />
-            )
-          }
+              <div className={className} style={combinedStyle} height={height} />
+            );
+          }}
         />
       </span>
     );

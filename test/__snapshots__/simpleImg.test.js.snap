@@ -47,16 +47,6 @@ exports[`SimpleImg should render background color 1`] = `
     }
     play={false}
     render={[Function]}
-    startStyle={
-      Object {
-        "background": "red",
-        "height": 1000,
-        "left": 0,
-        "position": "absolute",
-        "top": 0,
-        "width": "100%",
-      }
-    }
   />
 </span>
 `;
@@ -108,16 +98,6 @@ exports[`SimpleImg should render correctly 1`] = `
     }
     play={false}
     render={[Function]}
-    startStyle={
-      Object {
-        "background": "white",
-        "height": 1000,
-        "left": 0,
-        "position": "absolute",
-        "top": 0,
-        "width": "100%",
-      }
-    }
   />
 </span>
 `;
@@ -169,16 +149,6 @@ exports[`SimpleImg should render only span when place holder src is not supplied
     }
     play={false}
     render={[Function]}
-    startStyle={
-      Object {
-        "background": "white",
-        "height": 1000,
-        "left": 0,
-        "position": "absolute",
-        "top": 0,
-        "width": "100%",
-      }
-    }
   />
 </span>
 `;
@@ -203,7 +173,12 @@ exports[`SimpleImg should render out as image data 1`] = `
     sizes="sizes"
     src="data:image//test"
     srcSet=""
-    style={Object {}}
+    style={
+      Object {
+        "height": "100%",
+        "width": "100%",
+      }
+    }
     width={100}
   />
   <Animate
@@ -215,6 +190,7 @@ exports[`SimpleImg should render out as image data 1`] = `
         "opacity": 0,
         "position": "absolute",
         "top": 0,
+        "width": "100%",
       }
     }
     onCompleteStyle={
@@ -248,7 +224,12 @@ exports[`SimpleImg should render out placeholder as image 1`] = `
     sizes="sizes"
     src="/test/image.jpg"
     srcSet=""
-    style={Object {}}
+    style={
+      Object {
+        "height": "100%",
+        "width": "100%",
+      }
+    }
     width={100}
   />
   <Animate
@@ -260,6 +241,7 @@ exports[`SimpleImg should render out placeholder as image 1`] = `
         "opacity": 0,
         "position": "absolute",
         "top": 0,
+        "width": "100%",
       }
     }
     onCompleteStyle={

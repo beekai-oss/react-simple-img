@@ -121,7 +121,7 @@ describe('SimpleImg', () => {
     window.__REACT_SIMPLE_IMG__ = undefined;
   });
 
-  it('should ', () => {
+  it('should update isDocumentLoad state', () => {
     const tree = shallow(<SimpleImg {...props} />);
     tree.instance().setDocumentLoaded();
     expect(tree.state('isDocumentLoad')).toBeTruthy();
