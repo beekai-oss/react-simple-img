@@ -29,7 +29,7 @@ type Props = {
   appendImageRef: HTMLElement => void,
   removeImageRef: HTMLElement => void,
   removeImgLoadingRef: HTMLElement => void,
-  warpperStyle: Style,
+  wrapperStyle: Style,
 };
 
 const commonStyle = {
@@ -147,7 +147,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
       animationDuration,
       animationEndStyle = defaultDisappearStyle,
       placeholder = defaultPlaceholderColor,
-      warpperStyle,
+      warpperStylewrapperStyle,
       ...restProps
     } = this.props;
     const { loaded } = this.state;
@@ -175,7 +175,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
           position: 'relative',
           overflow: 'hidden',
           display: 'flex',
-          ...warpperStyle,
+          ...warpperStylewrapperStyle,
         }}
         className={wrapperClassName}
       >
