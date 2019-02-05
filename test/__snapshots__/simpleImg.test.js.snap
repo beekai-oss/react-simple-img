@@ -27,26 +27,20 @@ exports[`SimpleImg should render background color 1`] = `
     }
     width={100}
   />
-  <Animate
-    durationSeconds={1}
-    endStyle={
+  <div
+    className="img className"
+    height={1000}
+    style={
       Object {
         "background": "red",
-        "height": 1000,
+        "height": "100%",
         "left": 0,
-        "opacity": 0,
         "position": "absolute",
         "top": 0,
+        "transition": "all 1s linear 0s",
         "width": "100%",
       }
     }
-    onCompleteStyle={
-      Object {
-        "display": "none",
-      }
-    }
-    play={false}
-    render={[Function]}
   />
 </span>
 `;
@@ -78,26 +72,20 @@ exports[`SimpleImg should render correctly 1`] = `
     }
     width={100}
   />
-  <Animate
-    durationSeconds={1}
-    endStyle={
+  <div
+    className="img className"
+    height={1000}
+    style={
       Object {
         "background": "white",
-        "height": 1000,
+        "height": "100%",
         "left": 0,
-        "opacity": 0,
         "position": "absolute",
         "top": 0,
+        "transition": "all 1s linear 0s",
         "width": "100%",
       }
     }
-    onCompleteStyle={
-      Object {
-        "display": "none",
-      }
-    }
-    play={false}
-    render={[Function]}
   />
 </span>
 `;
@@ -129,26 +117,20 @@ exports[`SimpleImg should render only span when place holder src is not supplied
     }
     width={100}
   />
-  <Animate
-    durationSeconds={1}
-    endStyle={
+  <div
+    className="img className"
+    height={1000}
+    style={
       Object {
         "background": "white",
-        "height": 1000,
+        "height": "100%",
         "left": 0,
-        "opacity": 0,
         "position": "absolute",
         "top": 0,
+        "transition": "all 1s linear 0s",
         "width": "100%",
       }
     }
-    onCompleteStyle={
-      Object {
-        "display": "none",
-      }
-    }
-    play={false}
-    render={[Function]}
   />
 </span>
 `;
@@ -181,25 +163,23 @@ exports[`SimpleImg should render out as image data 1`] = `
     }
     width={100}
   />
-  <Animate
-    durationSeconds={1}
-    endStyle={
+  <img
+    alt="alt"
+    className="img className"
+    height={1000}
+    sizes="sizes"
+    src="data:image//test"
+    style={
       Object {
-        "height": 1000,
+        "height": "100%",
         "left": 0,
-        "opacity": 0,
         "position": "absolute",
         "top": 0,
+        "transition": "all 1s linear 0s",
         "width": "100%",
       }
     }
-    onCompleteStyle={
-      Object {
-        "display": "none",
-      }
-    }
-    play={false}
-    render={[Function]}
+    width={100}
   />
 </span>
 `;
@@ -232,25 +212,23 @@ exports[`SimpleImg should render out placeholder as image 1`] = `
     }
     width={100}
   />
-  <Animate
-    durationSeconds={1}
-    endStyle={
+  <img
+    alt="alt"
+    className="img className"
+    height={1000}
+    sizes="sizes"
+    src="/test/image.jpg"
+    style={
       Object {
-        "height": 1000,
+        "height": "100%",
         "left": 0,
-        "opacity": 0,
         "position": "absolute",
         "top": 0,
+        "transition": "all 1s linear 0s",
         "width": "100%",
       }
     }
-    onCompleteStyle={
-      Object {
-        "display": "none",
-      }
-    }
-    play={false}
-    render={[Function]}
+    width={100}
   />
 </span>
 `;
