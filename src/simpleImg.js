@@ -147,7 +147,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
       animationDuration,
       animationEndStyle = defaultDisappearStyle,
       placeholder = defaultPlaceholderColor,
-      warpperStylewrapperStyle,
+      wrapperStyle,
       ...restProps
     } = this.props;
     const { loaded } = this.state;
@@ -175,7 +175,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
           position: 'relative',
           overflow: 'hidden',
           display: 'flex',
-          ...warpperStylewrapperStyle,
+          ...wrapperStyle,
         }}
         className={wrapperClassName}
       >
