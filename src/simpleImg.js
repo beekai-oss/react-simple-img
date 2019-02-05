@@ -29,6 +29,7 @@ type Props = {
   appendImageRef: HTMLElement => void,
   removeImageRef: HTMLElement => void,
   removeImgLoadingRef: HTMLElement => void,
+  warpperStyle: Style,
 };
 
 const commonStyle = {
@@ -36,11 +37,6 @@ const commonStyle = {
   top: 0,
   left: 0,
   height: '100%',
-};
-const rootStyle = {
-  position: 'relative',
-  overflow: 'hidden',
-  display: 'flex',
 };
 const defaultDisappearStyle = { opacity: 0 };
 const defaultImgPlaceholder = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
@@ -151,6 +147,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
       animationDuration,
       animationEndStyle = defaultDisappearStyle,
       placeholder = defaultPlaceholderColor,
+      warpperStyle,
       ...restProps
     } = this.props;
     const { loaded } = this.state;
@@ -173,7 +170,15 @@ export class SimpleImg extends React.PureComponent<Props, State> {
     } = restProps;
 
     return (
-      <span style={rootStyle} className={wrapperClassName}>
+      <span
+        style={{
+          position: 'relative',
+          overflow: 'hidden',
+          display: 'flex',
+          ...warpperStyle,
+        }}
+        className={wrapperClassName}
+      >
         <img
           className={className}
           height={height}
