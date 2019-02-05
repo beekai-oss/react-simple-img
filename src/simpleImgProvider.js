@@ -3,9 +3,7 @@ import React from 'react';
 import observerStart, { defaultConfig } from './logic/observerStart';
 
 // $FlowIgnoreLine:
-export const SimpleImgContext = React.createContext({
-  register: undefined,
-});
+export const SimpleImgContext = React.createContext({});
 
 type State = {
   mountedImages: Set<any>,
