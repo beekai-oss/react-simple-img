@@ -8,8 +8,6 @@
 
 > **Smart react lazy load image with IntersectionObserver API and animations** :clap:
 
-🤔 Why this package?
-
 - Speed up initial page loads by loading only images above the fold
 - Responsive with placeholders and animations
 - Smart download logic using [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)
