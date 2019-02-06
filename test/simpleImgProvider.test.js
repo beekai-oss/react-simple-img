@@ -74,12 +74,52 @@ describe('SimpleImgProvider', () => {
     expect(instance.imageLoadRefs).toEqual([{ src: '' }]);
   });
 
-  it.only('should should start the observer when app loaded', () => {
+  it('should should start the observer when app loaded', () => {
     Object.defineProperty(document, 'readyState', {
       get() {
         return 'loading';
       },
     });
-    // const tree = shallow(<SimpleImgProvider />);
+    const map = {};
+    window.addEventListener = jest.fn((event, callback) => {
+      map[event] = callback;
+    });
+    const tree = shallow(<SimpleImgProvider />);
+    map.load();
+
+    expect(tree.state('isContextDocumentLoad')).toBeTruthy();
+  });
+
+  it('should start observe images when observer is ready', () => {
+    const tree = shallow(<SimpleImgProvider />);
+    const observe = jest.fn();
+
+    const instance = tree.instance();
+
+    instance.observer = {
+      observe,
+    };
+
+    instance.appendImageRef('test');
+
+    expect(observe).toBeCalledWith('test');
+  });
+
+  it('should add image ref into imageLoadRefs', () => {
+    const tree = shallow(<SimpleImgProvider />);
+    const instance = tree.instance();
+
+    instance.imageLoadRefs = new Set();
+    instance.appendImgLoadingRef('test');
+    expect(instance.imageLoadRefs).toEqual(new Set(['test']));
+  });
+
+  it('should add image ref into imageLoadRefs', () => {
+    const tree = shallow(<SimpleImgProvider />);
+    const instance = tree.instance();
+
+    instance.imageLoadRefs = new Set(['test']);
+    instance.removeImgLoadingRef('test');
+    expect(instance.imageLoadRefs).toEqual(new Set());
   });
 });
