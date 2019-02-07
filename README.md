@@ -15,7 +15,7 @@
 
 ## Install
 
-    yarn add react-simple-img || npm install react-simple-img
+    npm install react-simple-img
 
 ## Example
 
@@ -27,7 +27,7 @@
 
 Navigate into `example` folder and install
 
-    yarn && yarn start || npm install && npm run start
+    npm install && npm run start
 
 😍 <a href="https://react-simple-img.herokuapp.com/" target="_blank">Check it out.</a>
 
