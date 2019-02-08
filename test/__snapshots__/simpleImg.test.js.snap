@@ -22,7 +22,9 @@ exports[`SimpleImg should render background color 1`] = `
     srcSet=""
     style={
       Object {
+        "height": "100%",
         "visibility": "hidden",
+        "width": "100%",
       }
     }
     width={100}
@@ -67,7 +69,9 @@ exports[`SimpleImg should render correctly 1`] = `
     srcSet=""
     style={
       Object {
+        "height": "100%",
         "visibility": "hidden",
+        "width": "100%",
       }
     }
     width={100}
@@ -112,7 +116,9 @@ exports[`SimpleImg should render only span when place holder src is not supplied
     srcSet=""
     style={
       Object {
+        "height": "100%",
         "visibility": "hidden",
+        "width": "100%",
       }
     }
     width={100}

@@ -44,6 +44,7 @@ const defaultImgPlaceholder = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQA
 const defaultPlaceholderColor = 'white';
 const onCompleteStyle = { display: 'none' };
 const hiddenStyle = { visibility: 'hidden' };
+const expendWidthHeight = { width: '100%', height: '100%' };
 
 export class SimpleImg extends React.PureComponent<Props, State> {
   static defaultProps = {
@@ -188,7 +189,9 @@ export class SimpleImg extends React.PureComponent<Props, State> {
           data-srcset={srcSet}
           height={height}
           style={{
-            ...(!isValidImgSrc && !loaded && !isSrcSetFulfilled ? hiddenStyle : { width: '100%', height: '100%' }),
+            ...(!isValidImgSrc && !loaded && !isSrcSetFulfilled
+              ? { ...expendWidthHeight, ...hiddenStyle }
+              : { ...expendWidthHeight }),
           }}
           {...restImgProps}
         />
