@@ -16,18 +16,16 @@ exports[`SimpleImg should render background color 1`] = `
     className="img className"
     data-src="src"
     data-srcset="srcSet"
-    height={1000}
     sizes="sizes"
     src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
     srcSet=""
     style={
       Object {
-        "height": "100%",
+        "height": 1000,
         "visibility": "hidden",
-        "width": "100%",
+        "width": 100,
       }
     }
-    width={100}
   />
   <div
     className="img className"
@@ -43,6 +41,7 @@ exports[`SimpleImg should render background color 1`] = `
         "width": "100%",
       }
     }
+    width={100}
   />
 </span>
 `;
@@ -63,18 +62,16 @@ exports[`SimpleImg should render correctly 1`] = `
     className="img className"
     data-src="src"
     data-srcset="srcSet"
-    height={1000}
     sizes="sizes"
     src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
     srcSet=""
     style={
       Object {
-        "height": "100%",
+        "height": 1000,
         "visibility": "hidden",
-        "width": "100%",
+        "width": 100,
       }
     }
-    width={100}
   />
   <div
     className="img className"
@@ -90,6 +87,7 @@ exports[`SimpleImg should render correctly 1`] = `
         "width": "100%",
       }
     }
+    width={100}
   />
 </span>
 `;
@@ -110,18 +108,16 @@ exports[`SimpleImg should render only span when place holder src is not supplied
     className="img className"
     data-src="src"
     data-srcset="srcSet"
-    height={1000}
     sizes="sizes"
     src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
     srcSet=""
     style={
       Object {
-        "height": "100%",
+        "height": 1000,
         "visibility": "hidden",
-        "width": "100%",
+        "width": 100,
       }
     }
-    width={100}
   />
   <div
     className="img className"
@@ -137,6 +133,7 @@ exports[`SimpleImg should render only span when place holder src is not supplied
         "width": "100%",
       }
     }
+    width={100}
   />
 </span>
 `;
@@ -157,17 +154,15 @@ exports[`SimpleImg should render out as image data 1`] = `
     className="img className"
     data-src="src"
     data-srcset="srcSet"
-    height={1000}
     sizes="sizes"
     src="data:image//test"
     srcSet=""
     style={
       Object {
-        "height": "100%",
-        "width": "100%",
+        "height": 1000,
+        "width": 100,
       }
     }
-    width={100}
   />
   <img
     alt="alt"
@@ -206,17 +201,15 @@ exports[`SimpleImg should render out placeholder as image 1`] = `
     className="img className"
     data-src="src"
     data-srcset="srcSet"
-    height={1000}
     sizes="sizes"
     src="/test/image.jpg"
     srcSet=""
     style={
       Object {
-        "height": "100%",
-        "width": "100%",
+        "height": 1000,
+        "width": 100,
       }
     }
-    width={100}
   />
   <img
     alt="alt"

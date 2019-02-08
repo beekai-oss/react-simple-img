@@ -143,6 +143,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
       imgClassName: className,
       wrapperClassName,
       height,
+      width,
       alt,
       srcSet,
       animationDuration,
@@ -187,11 +188,10 @@ export class SimpleImg extends React.PureComponent<Props, State> {
           srcSet={loaded ? srcSet : ''}
           data-src={src}
           data-srcset={srcSet}
-          height={height}
           style={{
             ...(!isValidImgSrc && !loaded && !isSrcSetFulfilled
-              ? { ...expendWidthHeight, ...hiddenStyle }
-              : { ...expendWidthHeight }),
+              ? { ...expendWidthHeight, height, width, ...hiddenStyle }
+              : { ...expendWidthHeight, height, width }),
           }}
           {...restImgProps}
         />
@@ -202,6 +202,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
             ...inlineStyle,
             ...animationEndStyle,
             height,
+            width,
           }}
           onCompleteStyle={onCompleteStyle}
           render={({ style }) => {
@@ -214,10 +215,11 @@ export class SimpleImg extends React.PureComponent<Props, State> {
                 alt={alt}
                 src={placeholder}
                 height={height}
+                width={width}
                 {...restImgProps}
               />
             ) : (
-              <div className={className} style={combinedStyle} height={height} />
+              <div className={className} style={combinedStyle} height={height} width={width} />
             );
           }}
         />
