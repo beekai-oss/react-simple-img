@@ -149,7 +149,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
       animationDuration,
       animationEndStyle = defaultDisappearStyle,
       placeholder = defaultPlaceholderColor,
-      wrapperStyle,
+      wrapperStyle = {},
       ...restProps
     } = this.props;
     const { loaded } = this.state;
@@ -169,6 +169,10 @@ export class SimpleImg extends React.PureComponent<Props, State> {
       removeImgLoadingRef,
       ...restImgProps
     } = restProps;
+    const heightWidth = {
+      ...(height ? { height: wrapperStyle.height || height } : null),
+      ...(width ? { width: wrapperStyle.width || width } : null),
+    };
 
     return (
       <span
@@ -190,8 +194,8 @@ export class SimpleImg extends React.PureComponent<Props, State> {
           data-srcset={srcSet}
           style={{
             ...(!isValidImgSrc && !loaded && !isSrcSetFulfilled
-              ? { ...expendWidthHeight, height, width, ...hiddenStyle }
-              : { ...expendWidthHeight, height, width }),
+              ? { ...expendWidthHeight, ...heightWidth, ...hiddenStyle }
+              : { ...expendWidthHeight, ...heightWidth }),
           }}
           {...restImgProps}
         />
@@ -201,8 +205,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
           endStyle={{
             ...inlineStyle,
             ...animationEndStyle,
-            height,
-            width,
+            ...heightWidth,
           }}
           onCompleteStyle={onCompleteStyle}
           render={({ style }) => {
@@ -214,12 +217,11 @@ export class SimpleImg extends React.PureComponent<Props, State> {
                 style={combinedStyle}
                 alt={alt}
                 src={placeholder}
-                height={height}
-                width={width}
+                {...heightWidth}
                 {...restImgProps}
               />
             ) : (
-              <div className={className} style={combinedStyle} height={height} width={width} />
+              <div className={className} style={combinedStyle} {...heightWidth} />
             );
           }}
         />
