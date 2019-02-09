@@ -173,6 +173,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
       ...(height ? { height: wrapperStyle.height || height } : null),
       ...(width ? { width: wrapperStyle.width || width } : null),
     };
+    const isHeightOrWidthSet = height || width;
 
     return (
       <span
@@ -197,8 +198,8 @@ export class SimpleImg extends React.PureComponent<Props, State> {
           data-srcset={srcSet}
           style={{
             ...(!isValidImgSrc && !loaded && !isSrcSetFulfilled
-              ? { ...expendWidthHeight, ...heightWidth, ...hiddenStyle }
-              : { ...expendWidthHeight, ...heightWidth }),
+              ? { ...(isHeightOrWidthSet ? null : { expendWidthHeight }), ...heightWidth, ...hiddenStyle }
+              : { ...(isHeightOrWidthSet ? null : { expendWidthHeight }), ...heightWidth }),
           }}
           {...restImgProps}
         />
