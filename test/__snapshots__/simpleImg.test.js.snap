@@ -5,7 +5,10 @@ exports[`SimpleImg should render background color 1`] = `
   className="wrapper className"
   style={
     Object {
+      "alignItems": "center",
       "display": "flex",
+      "flexDirection": "column",
+      "justifyContent": "center",
       "overflow": "hidden",
       "position": "relative",
     }
@@ -51,7 +54,10 @@ exports[`SimpleImg should render correctly 1`] = `
   className="wrapper className"
   style={
     Object {
+      "alignItems": "center",
       "display": "flex",
+      "flexDirection": "column",
+      "justifyContent": "center",
       "overflow": "hidden",
       "position": "relative",
     }
@@ -97,7 +103,10 @@ exports[`SimpleImg should render only span when place holder src is not supplied
   className="wrapper className"
   style={
     Object {
+      "alignItems": "center",
       "display": "flex",
+      "flexDirection": "column",
+      "justifyContent": "center",
       "overflow": "hidden",
       "position": "relative",
     }
@@ -143,7 +152,10 @@ exports[`SimpleImg should render out as image data 1`] = `
   className="wrapper className"
   style={
     Object {
+      "alignItems": "center",
       "display": "flex",
+      "flexDirection": "column",
+      "justifyContent": "center",
       "overflow": "hidden",
       "position": "relative",
     }
@@ -190,7 +202,10 @@ exports[`SimpleImg should render out placeholder as image 1`] = `
   className="wrapper className"
   style={
     Object {
+      "alignItems": "center",
       "display": "flex",
+      "flexDirection": "column",
+      "justifyContent": "center",
       "overflow": "hidden",
       "position": "relative",
     }

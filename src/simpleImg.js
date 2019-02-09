@@ -180,6 +180,9 @@ export class SimpleImg extends React.PureComponent<Props, State> {
           position: 'relative',
           overflow: 'hidden',
           display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
           ...wrapperStyle,
         }}
         className={wrapperClassName}
