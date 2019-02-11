@@ -1,6 +1,6 @@
 // @flow
 
-export default function applyImage(target: any, image: Image, src: string) {
+export default function applyImage(target: any, image: Image, src: string, isCached: boolean) {
   if (this) {
     this.setState(previousState => ({
       mountedImages: new Set(previousState.mountedImages.add(target)),
@@ -18,7 +18,10 @@ export default function applyImage(target: any, image: Image, src: string) {
     /* eslint-enable */
     const nextSiblingElm = target.nextSibling;
     if (nextSiblingElm) {
-      nextSiblingElm.setAttribute('style', `opacity: 0; transition: 0.3s all; ${nextSiblingElm.getAttribute('style')}`);
+      nextSiblingElm.setAttribute(
+        'style',
+        `${isCached ? '' : 'opacity: 0; transition: 0.3s all;'} ${nextSiblingElm.getAttribute('style')}`,
+      );
     }
     window.__REACT_SIMPLE_IMG__.imgLoadingRefs.delete(target);
   }

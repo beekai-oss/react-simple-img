@@ -32,19 +32,17 @@ exports[`SimpleImg should render background color 1`] = `
   />
   <div
     className="img className"
-    height={1000}
     style={
       Object {
         "background": "red",
-        "height": "100%",
+        "height": 1000,
         "left": 0,
         "position": "absolute",
         "top": 0,
         "transition": "all 1s linear 0s",
-        "width": "100%",
+        "width": 100,
       }
     }
-    width={100}
   />
 </span>
 `;
@@ -81,19 +79,17 @@ exports[`SimpleImg should render correctly 1`] = `
   />
   <div
     className="img className"
-    height={1000}
     style={
       Object {
         "background": "white",
-        "height": "100%",
+        "height": 1000,
         "left": 0,
         "position": "absolute",
         "top": 0,
         "transition": "all 1s linear 0s",
-        "width": "100%",
+        "width": 100,
       }
     }
-    width={100}
   />
 </span>
 `;
@@ -130,19 +126,17 @@ exports[`SimpleImg should render only span when place holder src is not supplied
   />
   <div
     className="img className"
-    height={1000}
     style={
       Object {
         "background": "white",
-        "height": "100%",
+        "height": 1000,
         "left": 0,
         "position": "absolute",
         "top": 0,
         "transition": "all 1s linear 0s",
-        "width": "100%",
+        "width": 100,
       }
     }
-    width={100}
   />
 </span>
 `;
@@ -179,20 +173,18 @@ exports[`SimpleImg should render out as image data 1`] = `
   <img
     alt="alt"
     className="img className"
-    height={1000}
     sizes="sizes"
     src="data:image//test"
     style={
       Object {
-        "height": "100%",
+        "height": 1000,
         "left": 0,
         "position": "absolute",
         "top": 0,
         "transition": "all 1s linear 0s",
-        "width": "100%",
+        "width": 100,
       }
     }
-    width={100}
   />
 </span>
 `;
@@ -229,20 +221,18 @@ exports[`SimpleImg should render out placeholder as image 1`] = `
   <img
     alt="alt"
     className="img className"
-    height={1000}
     sizes="sizes"
     src="/test/image.jpg"
     style={
       Object {
-        "height": "100%",
+        "height": 1000,
         "left": 0,
         "position": "absolute",
         "top": 0,
         "transition": "all 1s linear 0s",
-        "width": "100%",
+        "width": 100,
       }
     }
-    width={100}
   />
 </span>
 `;

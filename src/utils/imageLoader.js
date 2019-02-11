@@ -7,6 +7,7 @@ import logError from './logError';
 export default function imageLoader(target: any) {
   try {
     const image = new Image(); // eslint-disable-line no-undef
+    const now = +new Date();
 
     if (this) {
       this.observer.unobserve(target);
@@ -27,7 +28,8 @@ export default function imageLoader(target: any) {
 
     fetchImage(image, src)
       .then(() => {
-        applyImage.apply(this, [target, image, src]);
+        const isCached = +new Date() - now < 100;
+        applyImage.apply(this, [target, image, src, isCached]);
       })
       .catch(e => {
         logError('Fetch image failed with target', target, e);

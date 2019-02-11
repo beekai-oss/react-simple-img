@@ -213,7 +213,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
           }}
           onCompleteStyle={onCompleteStyle}
           render={({ style }) => {
-            const combinedStyle = { ...inlineStyle, ...style };
+            const combinedStyle = { ...inlineStyle, ...style, ...heightWidth };
 
             return isValidImgSrc ? (
               <img
@@ -221,11 +221,10 @@ export class SimpleImg extends React.PureComponent<Props, State> {
                 style={combinedStyle}
                 alt={alt}
                 src={placeholder}
-                {...heightWidth}
                 {...restImgProps}
               />
             ) : (
-              <div className={className} style={combinedStyle} {...heightWidth} />
+              <div className={className} style={combinedStyle} />
             );
           }}
         />
