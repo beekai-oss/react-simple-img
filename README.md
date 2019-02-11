@@ -103,7 +103,7 @@ Image component working similar with standard `img` tag and with the following p
 | `imgClassName`      | string               |          | class for the image itself, which also applied to the placeholder                                                                                                                                                  |
 | `wrapperClassName`  | string               |          | className for element wrapping img tag                                                                                                                                                                             |
 | `animationDuration` | number               |          | animation duration in seconds <br />passed as `durationSeconds` to [react-simple-animate](https://github.com/bluebill1049/react-simple-animate#api)                                                                |
-| `animationEndStyle` | object <br /> string |          | style to transition to <br />passed as `endStyle` to [react-simple-animate](https://github.com/bluebill1049/react-simple-animate#api)                                                                              |
+| `animationEndStyle` | Object               |          | style to transition to <br />passed as `endStyle` to [react-simple-animate](https://github.com/bluebill1049/react-simple-animate#api)                                                                              |
 
 ## Advance Example
 
