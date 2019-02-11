@@ -6,7 +6,10 @@
   "keywords": [
     "react",
     "lazyload",
-    "images"
+    "images",
+    "intersection observer",
+    "performance",
+    "animation"
   ],
   "scripts": {
     "clean": "rimraf lib/",
