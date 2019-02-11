@@ -18,9 +18,10 @@ export default function applyImage(target: any, image: Image, src: string, isCac
     /* eslint-enable */
     const nextSiblingElm = target.nextSibling;
     if (nextSiblingElm) {
+      const style = nextSiblingElm.getAttribute('style');
       nextSiblingElm.setAttribute(
         'style',
-        `${isCached ? '' : 'opacity: 0; transition: 0.3s all;'} ${nextSiblingElm.getAttribute('style')}`,
+        `${style.includes('opacity') ? '' : 'opacity: 0;'} ${style} ${isCached ? 'display: none' : ''}`,
       );
     }
     window.__REACT_SIMPLE_IMG__.imgLoadingRefs.delete(target);

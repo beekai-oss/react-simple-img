@@ -70,7 +70,7 @@ class App extends PureComponent {
     return (
       <div className="App">
         <header className="App-header">
-          <SimpleImg src={Logo} wrapperClassName="App-logo" alt="logo" />
+          <SimpleImg src={Logo} wrapperClassName="App-logo" alt="logo" height={150} />
         </header>
         <div className="App-container">
           {images.map((image, i) => (
@@ -80,6 +80,7 @@ class App extends PureComponent {
               placeholder={image.svg}
               animationDuration={3}
               src={image.img}
+              width="auto"
               height={500}
             />
           ))}
