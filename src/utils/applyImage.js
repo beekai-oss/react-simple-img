@@ -21,7 +21,7 @@ export default function applyImage(target: any, image: Image, src: string, isCac
       const style = nextSiblingElm.getAttribute('style');
       nextSiblingElm.setAttribute(
         'style',
-        `${style.includes('opacity') ? '' : 'opacity: 0;'} ${style} ${isCached ? 'display: none' : ''}`,
+        `${style && style.includes('opacity') ? '' : 'opacity: 0;'} ${style} ${isCached ? 'display: none' : ''}`,
       );
     }
     window.__REACT_SIMPLE_IMG__.imgLoadingRefs.delete(target);
