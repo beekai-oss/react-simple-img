@@ -23,6 +23,7 @@ describe('intersectionStart', () => {
     expect(window.__REACT_SIMPLE_IMG__).toEqual({
       observer: {},
       imgLoadingRefs: new Map(),
+      disableAnimateCachedImg: false,
     });
   });
 

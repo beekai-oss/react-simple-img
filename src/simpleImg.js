@@ -44,6 +44,14 @@ const defaultPlaceholderColor = 'white';
 const onCompleteStyle = { display: 'none' };
 const hiddenStyle = { visibility: 'hidden' };
 const expendWidth = { width: '100%' };
+const wrapperCommonStyle = {
+  position: 'relative',
+  overflow: 'hidden',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+};
 
 export class SimpleImg extends React.PureComponent<Props, State> {
   static defaultProps = {
@@ -63,19 +71,12 @@ export class SimpleImg extends React.PureComponent<Props, State> {
     if (cachedImagesRefString && window.__REACT_SIMPLE_IMG__ && window.__REACT_SIMPLE_IMG__.disableAnimateCachedImg) {
       const cachedImagesRef = JSON.parse(cachedImagesRefString);
 
-      const updatedCachedImagesRef = Object.entries(cachedImagesRef).reduce((previous, [key, value]) => {
-        const clone = { ...previous };
-        if ((+new Date() - value) / 86400000 / 30 < 1) {
-          clone[key] = value;
-        }
-        return clone;
-      }, {});
-
-      window.sessionStorage.setItem('__REACT_SIMPLE_IMG__', JSON.stringify(updatedCachedImagesRef));
-      if (updatedCachedImagesRef[this.props.src]) {
+      window.sessionStorage.setItem('__REACT_SIMPLE_IMG__', JSON.stringify(cachedImagesRef));
+      if (cachedImagesRef[this.props.src]) {
         this.setState({
           isCached: true,
         });
+
         return;
       }
     }
@@ -200,12 +201,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
       return (
         <span
           style={{
-            position: 'relative',
-            overflow: 'hidden',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
+            ...wrapperCommonStyle,
             ...wrapperStyle,
           }}
           className={wrapperClassName}
@@ -215,11 +211,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
             alt={alt}
             src={src}
             srcSet={srcSet}
-            style={{
-              ...(!isValidImgSrc && !loaded && !isSrcSetFulfilled
-                ? { ...(isHeightAndWidthNotSet ? expendWidth : heightWidth) }
-                : { ...(isHeightAndWidthNotSet ? expendWidth : heightWidth) }),
-            }}
+            style={{ ...(isHeightAndWidthNotSet ? expendWidth : heightWidth) }}
             {...restImgProps}
           />
         </span>
@@ -229,12 +221,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
     return (
       <span
         style={{
-          position: 'relative',
-          overflow: 'hidden',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
+          ...wrapperCommonStyle,
           ...(height ? { height } : { height: 1, visibility: 'hidden' }),
           ...wrapperStyle,
         }}
@@ -249,9 +236,8 @@ export class SimpleImg extends React.PureComponent<Props, State> {
           data-src={src}
           data-srcset={srcSet}
           style={{
-            ...(!isValidImgSrc && !loaded && !isSrcSetFulfilled
-              ? { ...(isHeightAndWidthNotSet ? expendWidth : heightWidth), ...hiddenStyle }
-              : { ...(isHeightAndWidthNotSet ? expendWidth : heightWidth) }),
+            ...(isHeightAndWidthNotSet ? expendWidth : heightWidth),
+            ...(!isValidImgSrc && !loaded && !isSrcSetFulfilled ? hiddenStyle : {}),
           }}
           {...restImgProps}
         />
@@ -265,7 +251,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
           }}
           onCompleteStyle={onCompleteStyle}
           render={({ style }) => {
-            const combinedStyle = { ...inlineStyle, ...style, ...heightWidth };
+            const combinedStyle = { ...inlineStyle, ...style };
 
             return isValidImgSrc ? (
               <img className={className} style={combinedStyle} alt={alt} src={placeholder} {...restImgProps} />
