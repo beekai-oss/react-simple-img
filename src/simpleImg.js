@@ -36,7 +36,6 @@ const commonStyle = {
   position: 'absolute',
   top: 0,
   left: 0,
-  height: '100%',
   width: '100%',
 };
 const defaultDisappearStyle = { opacity: 0 };
@@ -44,7 +43,7 @@ const defaultImgPlaceholder = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQA
 const defaultPlaceholderColor = 'white';
 const onCompleteStyle = { display: 'none' };
 const hiddenStyle = { visibility: 'hidden' };
-const expendWidthHeight = { width: '100%', height: '100%' };
+const expendWidth = { width: '100%' };
 
 export class SimpleImg extends React.PureComponent<Props, State> {
   static defaultProps = {
@@ -54,11 +53,33 @@ export class SimpleImg extends React.PureComponent<Props, State> {
   state: State = {
     loaded: false,
     isDocumentLoad: false,
+    isCached: false,
   };
 
   element: any = React.createRef();
 
   componentDidMount() {
+    const cachedImagesRefString = window.sessionStorage.getItem('__REACT_SIMPLE_IMG__');
+    if (cachedImagesRefString && window.__REACT_SIMPLE_IMG__ && window.__REACT_SIMPLE_IMG__.disableAnimateCachedImg) {
+      const cachedImagesRef = JSON.parse(cachedImagesRefString);
+
+      const updatedCachedImagesRef = Object.entries(cachedImagesRef).reduce((previous, [key, value]) => {
+        const clone = { ...previous };
+        if ((+new Date() - value) / 86400000 / 30 < 1) {
+          clone[key] = value;
+        }
+        return clone;
+      }, {});
+
+      window.sessionStorage.setItem('__REACT_SIMPLE_IMG__', JSON.stringify(updatedCachedImagesRef));
+      if (updatedCachedImagesRef[this.props.src]) {
+        this.setState({
+          isCached: true,
+        });
+        return;
+      }
+    }
+
     if (window.__REACT_SIMPLE_IMG__ && document.readyState === 'complete') {
       window.__REACT_SIMPLE_IMG__.observer.observe(this.element.current);
     } else if (document.readyState === 'complete') {
@@ -152,7 +173,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
       wrapperStyle = {},
       ...restProps
     } = this.props;
-    const { loaded } = this.state;
+    const { loaded, isCached } = this.state;
     const isValidImgSrc = validImgSrc(placeholder);
     const inlineStyle = {
       ...commonStyle,
@@ -175,6 +196,36 @@ export class SimpleImg extends React.PureComponent<Props, State> {
     };
     const isHeightAndWidthNotSet = !height && !width;
 
+    if (isCached) {
+      return (
+        <span
+          style={{
+            position: 'relative',
+            overflow: 'hidden',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            ...wrapperStyle,
+          }}
+          className={wrapperClassName}
+        >
+          <img
+            className={className}
+            alt={alt}
+            src={src}
+            srcSet={srcSet}
+            style={{
+              ...(!isValidImgSrc && !loaded && !isSrcSetFulfilled
+                ? { ...(isHeightAndWidthNotSet ? expendWidth : heightWidth) }
+                : { ...(isHeightAndWidthNotSet ? expendWidth : heightWidth) }),
+            }}
+            {...restImgProps}
+          />
+        </span>
+      );
+    }
+
     return (
       <span
         style={{
@@ -184,6 +235,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
+          ...(height ? { height } : { height: 1, visibility: 'hidden' }),
           ...wrapperStyle,
         }}
         className={wrapperClassName}
@@ -198,8 +250,8 @@ export class SimpleImg extends React.PureComponent<Props, State> {
           data-srcset={srcSet}
           style={{
             ...(!isValidImgSrc && !loaded && !isSrcSetFulfilled
-              ? { ...(isHeightAndWidthNotSet ? expendWidthHeight : heightWidth), ...hiddenStyle }
-              : { ...(isHeightAndWidthNotSet ? expendWidthHeight : heightWidth) }),
+              ? { ...(isHeightAndWidthNotSet ? expendWidth : heightWidth), ...hiddenStyle }
+              : { ...(isHeightAndWidthNotSet ? expendWidth : heightWidth) }),
           }}
           {...restImgProps}
         />
@@ -216,15 +268,9 @@ export class SimpleImg extends React.PureComponent<Props, State> {
             const combinedStyle = { ...inlineStyle, ...style, ...heightWidth };
 
             return isValidImgSrc ? (
-              <img
-                className={className}
-                style={combinedStyle}
-                alt={alt}
-                src={placeholder}
-                {...restImgProps}
-              />
+              <img className={className} style={combinedStyle} alt={alt} src={placeholder} {...restImgProps} />
             ) : (
-              <div className={className} style={combinedStyle} />
+              <div className={className} style={{ ...combinedStyle, width: '100%', height: '100%' }} />
             );
           }}
         />

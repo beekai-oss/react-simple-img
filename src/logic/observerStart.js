@@ -16,7 +16,7 @@ export function onIntersection(entries: Array<{ intersectionRatio: number, targe
   }
 }
 
-export default function observerStart(config: Config = defaultConfig) {
+export default function observerStart(config: Config = defaultConfig, disableAnimateCachedImg: boolean = false) {
   if (!window.IntersectionObserver) require('intersection-observer');
   // $FlowIgnoreLine:
   const observer = new IntersectionObserver(entries => onIntersection.call(this, entries), config);
@@ -25,6 +25,7 @@ export default function observerStart(config: Config = defaultConfig) {
   window.__REACT_SIMPLE_IMG__ = {
     observer,
     imgLoadingRefs: new Map(),
+    disableAnimateCachedImg,
   };
 
   return undefined;

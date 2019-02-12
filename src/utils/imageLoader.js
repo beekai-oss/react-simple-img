@@ -7,7 +7,6 @@ import logError from './logError';
 export default function imageLoader(target: any) {
   try {
     const image = new Image(); // eslint-disable-line no-undef
-    const now = +new Date();
 
     if (this) {
       this.observer.unobserve(target);
@@ -26,10 +25,19 @@ export default function imageLoader(target: any) {
       return;
     }
 
+    image.addEventListener('load', e => {
+      if (target.parentNode.style.height === '1px') target.parentNode.style.height = `${e.target.height}px`; // eslint-disable-line
+      target.parentNode.style.visibility = 'visible'; // eslint-disable-line
+    });
+
     fetchImage(image, src)
       .then(() => {
-        const isCached = +new Date() - now < 100;
-        applyImage.apply(this, [target, image, src, isCached]);
+        applyImage.apply(this, [target, image, src]);
+        if (window.__REACT_SIMPLE_IMG__ && window.__REACT_SIMPLE_IMG__.disableAnimateCachedImg) {
+          const cachedImages = JSON.parse(window.sessionStorage.getItem('__REACT_SIMPLE_IMG__')) || {};
+          cachedImages[src] = +new Date();
+          window.sessionStorage.setItem('__REACT_SIMPLE_IMG__', JSON.stringify(cachedImages));
+        }
       })
       .catch(e => {
         logError('Fetch image failed with target', target, e);

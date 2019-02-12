@@ -1,6 +1,6 @@
 // @flow
 
-export default function applyImage(target: any, image: Image, src: string, isCached: boolean) {
+export default function applyImage(target: any, image: Image, src: string) {
   if (this) {
     this.setState(previousState => ({
       mountedImages: new Set(previousState.mountedImages.add(target)),
@@ -21,7 +21,7 @@ export default function applyImage(target: any, image: Image, src: string, isCac
       const style = nextSiblingElm.getAttribute('style');
       nextSiblingElm.setAttribute(
         'style',
-        `${style && style.includes('opacity') ? '' : 'opacity: 0;'} ${style} ${isCached ? 'display: none' : ''}`,
+        `${style && style.includes('opacity') ? '' : 'opacity: 0;'} ${style}`,
       );
     }
     window.__REACT_SIMPLE_IMG__.imgLoadingRefs.delete(target);
