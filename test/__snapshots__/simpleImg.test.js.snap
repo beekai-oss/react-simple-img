@@ -5,9 +5,14 @@ exports[`SimpleImg should apply aspect ratio when height and width is supplied 1
   className="wrapper className"
   style={
     Object {
-      "display": "block",
-      "paddingBottom": "50%",
+      "alignItems": "center",
+      "display": "flex",
+      "flexDirection": "column",
+      "height": 1,
+      "justifyContent": "center",
+      "overflow": "hidden",
       "position": "relative",
+      "visibility": "hidden",
     }
   }
 >
@@ -21,10 +26,6 @@ exports[`SimpleImg should apply aspect ratio when height and width is supplied 1
     srcSet=""
     style={
       Object {
-        "height": "100%",
-        "left": 0,
-        "position": "absolute",
-        "top": 0,
         "visibility": "hidden",
         "width": "100%",
       }

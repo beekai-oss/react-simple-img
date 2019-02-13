@@ -77,7 +77,7 @@ Arguments
        (meaning as soon as even one pixel is visible, the callback will be
        run). A value of 1.0 means that the threshold isn't considered passed
        until every pixel is visible.
-       
+
 - **disableAnimateCachedImg**: (boolean) this argument is <b>optional</b>
 
 
@@ -98,17 +98,18 @@ Arguments
 
 Image component working similar with standard `img` tag and with the following props.
 
-| Prop                | Type                 | Required | Description                                                                                                                                                                                                        |
-| :------------------ | :------------------- | :------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `src`               | string               |    ✓     | The large image source                                                                                                                                                                                             |
-| `srcSet`            | string               |          | eg: `large.jpg 2x, small.jpg` <br /><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images" target="_blank">Reference for examples</a>                            |
-| `sizes`             | string               |          | eg: `(max-width: 320px) 280px, (max-width: 480px) 440px` <br /><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images" target="_blank">Reference for examples</a> |
-| `placeholder`       | string               |          | Placeholder image source (svg, jpg, png...) or css color value (`white, linear-gradient(blue, pink)`)                                                                                                              |
-| `wrapperStyle`      | Object               |          | inline style for root wrapper                                                                                                                                                                                      |
-| `imgClassName`      | string               |          | class for the image itself, which also applied to the placeholder                                                                                                                                                  |
-| `wrapperClassName`  | string               |          | className for element wrapping img tag                                                                                                                                                                             |
-| `animationDuration` | number               |          | animation duration in seconds <br />passed as `durationSeconds` to [react-simple-animate](https://github.com/bluebill1049/react-simple-animate#api)                                                                |
-| `animationEndStyle` | Object               |          | style to transition to <br />passed as `endStyle` to [react-simple-animate](https://github.com/bluebill1049/react-simple-animate#api)                                                                              |
+| Prop                | Type    | Required | Description                                                                                                                                                                                                        |
+| :------------------ | :------ | :------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `src`               | string  |    ✓     | The large image source                                                                                                                                                                                             |
+| `srcSet`            | string  |          | eg: `large.jpg 2x, small.jpg` <br /><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images" target="_blank">Reference for examples</a>                            |
+| `sizes`             | string  |          | eg: `(max-width: 320px) 280px, (max-width: 480px) 440px` <br /><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images" target="_blank">Reference for examples</a> |
+| `placeholder`       | string  |          | Placeholder image source (svg, jpg, png...) or css color value (`white, linear-gradient(blue, pink)`)                                                                                                              |
+| `applyAspectRatio`  | boolean |          | image will scale automatically with aspect ratio, note width and height will need to be supplied.                                                                                                                  |
+| `wrapperStyle`      | Object  |          | inline style for root wrapper                                                                                                                                                                                      |
+| `imgClassName`      | string  |          | class for the image itself, which also applied to the placeholder                                                                                                                                                  |
+| `wrapperClassName`  | string  |          | className for element wrapping img tag                                                                                                                                                                             |
+| `animationDuration` | number  |          | animation duration in seconds <br />passed as `durationSeconds` to [react-simple-animate](https://github.com/bluebill1049/react-simple-animate#api)                                                                |
+| `animationEndStyle` | Object  |          | style to transition to <br />passed as `endStyle` to [react-simple-animate](https://github.com/bluebill1049/react-simple-animate#api)                                                                              |
 
 ## Advance Example
 

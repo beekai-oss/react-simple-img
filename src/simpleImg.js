@@ -16,6 +16,7 @@ type Props = {
   src: string,
   placeholder: string,
   wrapperClassName: string,
+  aspectRatio: number,
   imgClassName: string,
   width: number,
   height: number,
@@ -169,6 +170,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
       width,
       alt,
       srcSet,
+      applyAspectRatio,
       animationDuration,
       animationEndStyle = defaultDisappearStyle,
       placeholder = defaultPlaceholderColor,
@@ -198,7 +200,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
     };
     const isHeightAndWidthNotSet = !height && !width;
     const aspectRatio = parseInt(height, 10) / parseInt(width, 10);
-    const shouldUseAspectRatio = aspectRatio > 0;
+    const shouldUseAspectRatio = applyAspectRatio && aspectRatio > 0 && aspectRatio !== 1;
     const aspectRatioStyle = {
       position: 'relative',
       display: 'block',

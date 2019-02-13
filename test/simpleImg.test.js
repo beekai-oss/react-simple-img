@@ -49,7 +49,7 @@ describe('SimpleImg', () => {
   });
 
   it('should apply aspect ratio when height and width is supplied', () => {
-    const tree = renderer.create(<SimpleImg {...{ ...props, height: 100, width: 200 }} />);
+    const tree = renderer.create(<SimpleImg {...{ ...props, applyAspectRatio: true }} />);
     expect(tree).toMatchSnapshot();
   });
 
