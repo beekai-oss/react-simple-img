@@ -144,54 +144,6 @@ exports[`SimpleImg should render correctly 1`] = `
 </div>
 `;
 
-exports[`SimpleImg should render correctly 2`] = `
-<div
-  className="wrapper className"
-  style={
-    Object {
-      "alignItems": "center",
-      "display": "flex",
-      "flexDirection": "column",
-      "height": 1,
-      "justifyContent": "center",
-      "overflow": "hidden",
-      "position": "relative",
-      "visibility": "hidden",
-    }
-  }
->
-  <img
-    alt="alt"
-    className="img className"
-    data-src="src"
-    data-srcset="srcSet"
-    sizes="sizes"
-    src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-    srcSet=""
-    style={
-      Object {
-        "visibility": "hidden",
-        "width": "100%",
-      }
-    }
-  />
-  <div
-    className="img className"
-    style={
-      Object {
-        "background": "white",
-        "height": "100%",
-        "left": 0,
-        "position": "absolute",
-        "top": 0,
-        "transition": "all 1s linear 0s",
-        "width": "100%",
-      }
-    }
-  />
-</div>
-`;
-
 exports[`SimpleImg should render correctly with context consumer 1`] = `
 <div
   className="wrapper className"
@@ -535,11 +487,5 @@ exports[`SimpleImg should render out placeholder as image 1`] = `
       }
     }
   />
-</div>
-`;
-
-exports[`SimpleImgProvider should render correctly 1`] = `
-<div>
-  test
 </div>
 `;

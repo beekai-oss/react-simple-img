@@ -2,7 +2,6 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import { shallow, mount } from 'enzyme';
 import SimpleImgWithProvider, { SimpleImg } from '../src/simpleImg';
-import SimpleImgProvider from "./simpleImgProvider.test";
 
 const appendImageRef = jest.fn();
 const removeImageRef = jest.fn();
@@ -218,7 +217,7 @@ describe('SimpleImg', () => {
 
   it('should set document loaded ready when document is on ready state', () => {
     window.__REACT_SIMPLE_IMG__ = undefined;
-    const tree = shallow(<SimpleImg {...{ ...props, mountedImages: new Set([1]), useContext: false }} />);
+    const tree = shallow(<SimpleImg {...props} />);
 
     expect(tree.state('isDocumentLoad')).toBeTruthy();
   });
