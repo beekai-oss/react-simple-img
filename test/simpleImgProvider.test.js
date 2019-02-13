@@ -74,7 +74,7 @@ describe('SimpleImgProvider', () => {
     expect(instance.imageLoadRefs).toEqual([{ src: '' }]);
   });
 
-  it('should should start the observer when app loaded', () => {
+  it('should start the observer when app loaded', () => {
     Object.defineProperty(document, 'readyState', {
       get() {
         return 'loading';

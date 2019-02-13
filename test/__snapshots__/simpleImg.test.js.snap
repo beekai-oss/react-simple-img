@@ -144,6 +144,102 @@ exports[`SimpleImg should render correctly 1`] = `
 </div>
 `;
 
+exports[`SimpleImg should render correctly 2`] = `
+<div
+  className="wrapper className"
+  style={
+    Object {
+      "alignItems": "center",
+      "display": "flex",
+      "flexDirection": "column",
+      "height": 1,
+      "justifyContent": "center",
+      "overflow": "hidden",
+      "position": "relative",
+      "visibility": "hidden",
+    }
+  }
+>
+  <img
+    alt="alt"
+    className="img className"
+    data-src="src"
+    data-srcset="srcSet"
+    sizes="sizes"
+    src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+    srcSet=""
+    style={
+      Object {
+        "visibility": "hidden",
+        "width": "100%",
+      }
+    }
+  />
+  <div
+    className="img className"
+    style={
+      Object {
+        "background": "white",
+        "height": "100%",
+        "left": 0,
+        "position": "absolute",
+        "top": 0,
+        "transition": "all 1s linear 0s",
+        "width": "100%",
+      }
+    }
+  />
+</div>
+`;
+
+exports[`SimpleImg should render correctly with context consumer 1`] = `
+<div
+  className="wrapper className"
+  style={
+    Object {
+      "alignItems": "center",
+      "display": "flex",
+      "flexDirection": "column",
+      "height": 1,
+      "justifyContent": "center",
+      "overflow": "hidden",
+      "position": "relative",
+      "visibility": "hidden",
+    }
+  }
+>
+  <img
+    alt="alt"
+    className="img className"
+    data-src="src"
+    data-srcset="srcSet"
+    sizes="sizes"
+    src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+    srcSet=""
+    style={
+      Object {
+        "visibility": "hidden",
+        "width": "100%",
+      }
+    }
+  />
+  <div
+    className="img className"
+    style={
+      Object {
+        "background": "white",
+        "height": "100%",
+        "left": 0,
+        "position": "absolute",
+        "top": 0,
+        "transition": "all 1s linear 0s",
+        "width": "100%",
+      }
+    }
+  />
+</div>
+`;
+
 exports[`SimpleImg should render only span when place holder src is not supplied 1`] = `
 <div
   className="wrapper className"
@@ -240,6 +336,160 @@ exports[`SimpleImg should render out as image data 1`] = `
 </div>
 `;
 
+exports[`SimpleImg should render out cached img 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <SimpleImg
+    alt="alt"
+    animationDuration={1}
+    animationEndStyle={
+      Object {
+        "opacity": 0,
+      }
+    }
+    appendImageRef={[MockFunction]}
+    imgClassName="img className"
+    mountedImages={
+      Set {
+        1,
+        2,
+        3,
+      }
+    }
+    removeImageRef={[MockFunction]}
+    removeImgLoadingRef={[MockFunction]}
+    sizes="sizes"
+    src="src"
+    srcSet="srcSet"
+    useContext={true}
+    wrapperClassName="wrapper className"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": <img
+        alt="alt"
+        className="img className"
+        sizes="sizes"
+        src="src"
+        srcSet="srcSet"
+        style={
+          Object {
+            "width": "100%",
+          }
+        }
+      />,
+      "className": "wrapper className",
+      "style": Object {
+        "alignItems": "center",
+        "display": "flex",
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "overflow": "hidden",
+        "position": "relative",
+      },
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "alt": "alt",
+        "className": "img className",
+        "sizes": "sizes",
+        "src": "src",
+        "srcSet": "srcSet",
+        "style": Object {
+          "width": "100%",
+        },
+      },
+      "ref": null,
+      "rendered": null,
+      "type": "img",
+    },
+    "type": "span",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": <img
+          alt="alt"
+          className="img className"
+          sizes="sizes"
+          src="src"
+          srcSet="srcSet"
+          style={
+            Object {
+              "width": "100%",
+            }
+          }
+        />,
+        "className": "wrapper className",
+        "style": Object {
+          "alignItems": "center",
+          "display": "flex",
+          "flexDirection": "column",
+          "justifyContent": "center",
+          "overflow": "hidden",
+          "position": "relative",
+        },
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "alt": "alt",
+          "className": "img className",
+          "sizes": "sizes",
+          "src": "src",
+          "srcSet": "srcSet",
+          "style": Object {
+            "width": "100%",
+          },
+        },
+        "ref": null,
+        "rendered": null,
+        "type": "img",
+      },
+      "type": "span",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+}
+`;
+
 exports[`SimpleImg should render out placeholder as image 1`] = `
 <div
   className="wrapper className"
@@ -285,5 +535,11 @@ exports[`SimpleImg should render out placeholder as image 1`] = `
       }
     }
   />
+</div>
+`;
+
+exports[`SimpleImgProvider should render correctly 1`] = `
+<div>
+  test
 </div>
 `;

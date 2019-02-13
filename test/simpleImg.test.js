@@ -1,7 +1,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { shallow, mount } from 'enzyme';
-import { SimpleImg } from '../src/simpleImg';
+import SimpleImgWithProvider, { SimpleImg } from '../src/simpleImg';
+import SimpleImgProvider from "./simpleImgProvider.test";
 
 const appendImageRef = jest.fn();
 const removeImageRef = jest.fn();
@@ -43,8 +44,21 @@ describe('SimpleImg', () => {
     window.__REACT_SIMPLE_IMG__ = undefined;
   });
 
+  it('should render correctly with context consumer', () => {
+    const tree = renderer.create(<SimpleImgWithProvider {...props} />);
+    expect(tree).toMatchSnapshot();
+  });
+
   it('should render correctly', () => {
     const tree = renderer.create(<SimpleImg {...props} />);
+    expect(tree).toMatchSnapshot();
+  });
+
+  it('should render out cached img', () => {
+    const tree = shallow(<SimpleImg {...props} />);
+    tree.setState({
+      isCached: true,
+    });
     expect(tree).toMatchSnapshot();
   });
 
@@ -200,5 +214,12 @@ describe('SimpleImg', () => {
     });
 
     expect(tree.state('loaded')).toBeTruthy();
+  });
+
+  it.only('should set document loaded ready when document is on ready state', () => {
+    window.__REACT_SIMPLE_IMG__ = undefined;
+    const tree = shallow(<SimpleImg {...{ ...props, mountedImages: new Set([1]), useContext: false }} />);
+
+    expect(tree.state('isDocumentLoad')).toBeTruthy();
   });
 });
