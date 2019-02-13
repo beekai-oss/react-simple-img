@@ -25,7 +25,7 @@ export default function imageLoader(target: any) {
       return;
     }
 
-    image.addEventListener('load', e => {
+    image.addEventListener('load', (e: any) => {
       if (target.parentNode.style.height === '1px') target.parentNode.style.height = `${e.target.height}px`; // eslint-disable-line
       target.parentNode.style.visibility = 'visible'; // eslint-disable-line
     });

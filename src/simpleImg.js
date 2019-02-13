@@ -7,6 +7,7 @@ import { SimpleImgContext } from './simpleImgProvider';
 type State = {
   loaded: boolean,
   isDocumentLoad: boolean,
+  isCached: boolean,
 };
 
 type Style = { [string]: number | string };
