@@ -216,7 +216,7 @@ describe('SimpleImg', () => {
     expect(tree.state('loaded')).toBeTruthy();
   });
 
-  it.only('should set document loaded ready when document is on ready state', () => {
+  it('should set document loaded ready when document is on ready state', () => {
     window.__REACT_SIMPLE_IMG__ = undefined;
     const tree = shallow(<SimpleImg {...{ ...props, mountedImages: new Set([1]), useContext: false }} />);
 
