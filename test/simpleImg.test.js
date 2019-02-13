@@ -221,4 +221,13 @@ describe('SimpleImg', () => {
 
     expect(tree.state('isDocumentLoad')).toBeTruthy();
   });
+
+  it('should set state to be is cached when image ref is stored in sessionStorage', () => {
+    window.sessionStorage.setItem('__REACT_SIMPLE_IMG__', JSON.stringify({ src: 'test' }));
+    window.__REACT_SIMPLE_IMG__ = {
+      disableAnimateCachedImg: true,
+    };
+    const tree = shallow(<SimpleImg {...props} />);
+    expect(tree.state('isCached')).toBeTruthy();
+  });
 });
