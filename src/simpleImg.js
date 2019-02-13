@@ -17,6 +17,7 @@ type Props = {
   placeholder: string,
   wrapperClassName: string,
   aspectRatio: number,
+  applyAspectRatio: boolean,
   imgClassName: string,
   width: number,
   height: number,
