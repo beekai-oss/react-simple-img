@@ -1,16 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SimpleImg should render background color 1`] = `
-<span
+exports[`SimpleImg should apply aspect ratio when height and width is supplied 1`] = `
+<div
   className="wrapper className"
   style={
     Object {
-      "alignItems": "center",
-      "display": "flex",
-      "flexDirection": "column",
-      "height": 1000,
-      "justifyContent": "center",
-      "overflow": "hidden",
+      "display": "block",
+      "paddingBottom": "50%",
       "position": "relative",
     }
   }
@@ -25,9 +21,60 @@ exports[`SimpleImg should render background color 1`] = `
     srcSet=""
     style={
       Object {
-        "height": 1000,
+        "height": "100%",
+        "left": 0,
+        "position": "absolute",
+        "top": 0,
         "visibility": "hidden",
-        "width": 100,
+        "width": "100%",
+      }
+    }
+  />
+  <div
+    className="img className"
+    style={
+      Object {
+        "background": "white",
+        "height": "100%",
+        "left": 0,
+        "position": "absolute",
+        "top": 0,
+        "transition": "all 1s linear 0s",
+        "width": "100%",
+      }
+    }
+  />
+</div>
+`;
+
+exports[`SimpleImg should render background color 1`] = `
+<div
+  className="wrapper className"
+  style={
+    Object {
+      "alignItems": "center",
+      "display": "flex",
+      "flexDirection": "column",
+      "height": 1,
+      "justifyContent": "center",
+      "overflow": "hidden",
+      "position": "relative",
+      "visibility": "hidden",
+    }
+  }
+>
+  <img
+    alt="alt"
+    className="img className"
+    data-src="src"
+    data-srcset="srcSet"
+    sizes="sizes"
+    src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+    srcSet=""
+    style={
+      Object {
+        "visibility": "hidden",
+        "width": "100%",
       }
     }
   />
@@ -45,21 +92,22 @@ exports[`SimpleImg should render background color 1`] = `
       }
     }
   />
-</span>
+</div>
 `;
 
 exports[`SimpleImg should render correctly 1`] = `
-<span
+<div
   className="wrapper className"
   style={
     Object {
       "alignItems": "center",
       "display": "flex",
       "flexDirection": "column",
-      "height": 1000,
+      "height": 1,
       "justifyContent": "center",
       "overflow": "hidden",
       "position": "relative",
+      "visibility": "hidden",
     }
   }
 >
@@ -73,9 +121,8 @@ exports[`SimpleImg should render correctly 1`] = `
     srcSet=""
     style={
       Object {
-        "height": 1000,
         "visibility": "hidden",
-        "width": 100,
+        "width": "100%",
       }
     }
   />
@@ -93,21 +140,22 @@ exports[`SimpleImg should render correctly 1`] = `
       }
     }
   />
-</span>
+</div>
 `;
 
 exports[`SimpleImg should render only span when place holder src is not supplied 1`] = `
-<span
+<div
   className="wrapper className"
   style={
     Object {
       "alignItems": "center",
       "display": "flex",
       "flexDirection": "column",
-      "height": 1000,
+      "height": 1,
       "justifyContent": "center",
       "overflow": "hidden",
       "position": "relative",
+      "visibility": "hidden",
     }
   }
 >
@@ -121,9 +169,8 @@ exports[`SimpleImg should render only span when place holder src is not supplied
     srcSet=""
     style={
       Object {
-        "height": 1000,
         "visibility": "hidden",
-        "width": 100,
+        "width": "100%",
       }
     }
   />
@@ -141,21 +188,22 @@ exports[`SimpleImg should render only span when place holder src is not supplied
       }
     }
   />
-</span>
+</div>
 `;
 
 exports[`SimpleImg should render out as image data 1`] = `
-<span
+<div
   className="wrapper className"
   style={
     Object {
       "alignItems": "center",
       "display": "flex",
       "flexDirection": "column",
-      "height": 1000,
+      "height": 1,
       "justifyContent": "center",
       "overflow": "hidden",
       "position": "relative",
+      "visibility": "hidden",
     }
   }
 >
@@ -169,8 +217,7 @@ exports[`SimpleImg should render out as image data 1`] = `
     srcSet=""
     style={
       Object {
-        "height": 1000,
-        "width": 100,
+        "width": "100%",
       }
     }
   />
@@ -189,21 +236,22 @@ exports[`SimpleImg should render out as image data 1`] = `
       }
     }
   />
-</span>
+</div>
 `;
 
 exports[`SimpleImg should render out placeholder as image 1`] = `
-<span
+<div
   className="wrapper className"
   style={
     Object {
       "alignItems": "center",
       "display": "flex",
       "flexDirection": "column",
-      "height": 1000,
+      "height": 1,
       "justifyContent": "center",
       "overflow": "hidden",
       "position": "relative",
+      "visibility": "hidden",
     }
   }
 >
@@ -217,8 +265,7 @@ exports[`SimpleImg should render out placeholder as image 1`] = `
     srcSet=""
     style={
       Object {
-        "height": 1000,
-        "width": 100,
+        "width": "100%",
       }
     }
   />
@@ -237,5 +284,5 @@ exports[`SimpleImg should render out placeholder as image 1`] = `
       }
     }
   />
-</span>
+</div>
 `;

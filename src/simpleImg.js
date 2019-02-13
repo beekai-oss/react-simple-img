@@ -197,13 +197,24 @@ export class SimpleImg extends React.PureComponent<Props, State> {
       ...(width ? { width: wrapperStyle.width || width } : null),
     };
     const isHeightAndWidthNotSet = !height && !width;
+    const aspectRatio = parseInt(height, 10) / parseInt(width, 10);
+    const shouldUseAspectRatio = aspectRatio > 0;
+    const aspectRatioStyle = {
+      position: 'relative',
+      display: 'block',
+      paddingBottom: shouldUseAspectRatio ? `${(aspectRatio) * 100}%` : '',
+    };
 
     if (isCached) {
       return (
         <span
           style={{
-            ...wrapperCommonStyle,
-            ...wrapperStyle,
+            ...(shouldUseAspectRatio
+              ? aspectRatioStyle
+              : {
+                  ...wrapperCommonStyle,
+                  ...wrapperStyle,
+                }),
           }}
           className={wrapperClassName}
         >
@@ -212,7 +223,12 @@ export class SimpleImg extends React.PureComponent<Props, State> {
             alt={alt}
             src={src}
             srcSet={srcSet}
-            style={{ ...(isHeightAndWidthNotSet ? expendWidth : heightWidth) }}
+            style={{
+              ...(isHeightAndWidthNotSet ? expendWidth : heightWidth),
+              ...(shouldUseAspectRatio
+                ? { width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 }
+                : null),
+            }}
             {...restImgProps}
           />
         </span>
@@ -220,11 +236,15 @@ export class SimpleImg extends React.PureComponent<Props, State> {
     }
 
     return (
-      <span
+      <div
         style={{
-          ...wrapperCommonStyle,
-          ...(height ? { height } : { height: 1, visibility: 'hidden' }),
-          ...wrapperStyle,
+          ...(shouldUseAspectRatio
+            ? aspectRatioStyle
+            : {
+                ...wrapperCommonStyle,
+                ...(height ? { height } : { height: 1, visibility: 'hidden' }),
+                ...wrapperStyle,
+              }),
         }}
         className={wrapperClassName}
       >
@@ -239,6 +259,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
           style={{
             ...(isHeightAndWidthNotSet ? expendWidth : heightWidth),
             ...(!isValidImgSrc && !loaded && !isSrcSetFulfilled ? hiddenStyle : {}),
+            ...(shouldUseAspectRatio ? { width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 } : null),
           }}
           {...restImgProps}
         />
@@ -261,7 +282,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
             );
           }}
         />
-      </span>
+      </div>
     );
   }
 }

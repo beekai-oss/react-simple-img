@@ -11,8 +11,6 @@ const props = {
   src: 'src',
   imgClassName: 'img className',
   wrapperClassName: 'wrapper className',
-  width: 100,
-  height: 1000,
   alt: 'alt',
   sizes: 'sizes',
   srcSet: 'srcSet',
@@ -47,6 +45,11 @@ describe('SimpleImg', () => {
 
   it('should render correctly', () => {
     const tree = renderer.create(<SimpleImg {...props} />);
+    expect(tree).toMatchSnapshot();
+  });
+
+  it('should apply aspect ratio when height and width is supplied', () => {
+    const tree = renderer.create(<SimpleImg {...{ ...props, height: 100, width: 200 }} />);
     expect(tree).toMatchSnapshot();
   });
 
@@ -164,7 +167,9 @@ describe('SimpleImg', () => {
       },
     };
 
-    const tree = shallow(<SimpleImg {...{ ...props, mountedImages: new Set([1]), removeImageRef: removeImageRefSpy, useContext: true }} />);
+    const tree = shallow(
+      <SimpleImg {...{ ...props, mountedImages: new Set([1]), removeImageRef: removeImageRefSpy, useContext: true }} />,
+    );
     const instance = tree.instance();
     instance.element = {
       current: 1,
