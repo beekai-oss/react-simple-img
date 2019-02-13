@@ -173,29 +173,6 @@ describe('SimpleImg', () => {
   });
 
   it('should remove image ref when component update and finished loaded with context', () => {
-    const removeImageRefSpy = jest.fn();
-    window.__REACT_SIMPLE_IMG__ = {
-      observer: {
-        observe: () => {},
-      },
-    };
-
-    const tree = shallow(
-      <SimpleImg {...{ ...props, mountedImages: new Set([1]), removeImageRef: removeImageRefSpy, useContext: true }} />,
-    );
-    const instance = tree.instance();
-    instance.element = {
-      current: 1,
-    };
-
-    tree.setState({
-      isDocumentLoad: true,
-    });
-
-    expect(removeImageRefSpy).toBeCalled();
-  });
-
-  it('should remove image ref when component update and finished loaded with context', () => {
     window.__REACT_SIMPLE_IMG__ = {
       observer: {
         observe: () => {},
@@ -229,5 +206,49 @@ describe('SimpleImg', () => {
     };
     const tree = shallow(<SimpleImg {...props} />);
     expect(tree.state('isCached')).toBeTruthy();
+  });
+
+  describe('when using context API', () => {
+    it('should set loaded to be true when mounted images contain the element', () => {
+      jest.useFakeTimers();
+      const removeImageRefSpy = jest.fn();
+      const tree = shallow(
+        <SimpleImg {...{ ...props, removeImageRef: removeImageRefSpy, mountedImages: new Set([1, 2, 3]) }} />,
+      );
+      const instance = tree.instance();
+      instance.element.current = 2;
+      tree.setProps({
+        removeImageRef: removeImageRefSpy,
+      });
+
+      jest.runOnlyPendingTimers();
+      expect(removeImageRefSpy).toBeCalled();
+      expect(tree.state('loaded')).toBeTruthy();
+    });
+
+    it('should remove image ref when component update and finished loaded with context', () => {
+      const removeImageRefSpy = jest.fn();
+      window.__REACT_SIMPLE_IMG__ = {
+        observer: {
+          observe: () => {},
+        },
+      };
+
+      const tree = shallow(
+        <SimpleImg
+          {...{ ...props, mountedImages: new Set([1]), removeImageRef: removeImageRefSpy }}
+        />,
+      );
+      const instance = tree.instance();
+      instance.element = {
+        current: 1,
+      };
+
+      tree.setState({
+        isDocumentLoad: true,
+      });
+
+      expect(removeImageRefSpy).toBeCalled();
+    });
   });
 });
