@@ -205,7 +205,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
     const aspectRatioStyle = {
       position: 'relative',
       display: 'block',
-      paddingBottom: shouldUseAspectRatio ? `${(aspectRatio) * 100}%` : '',
+      paddingBottom: shouldUseAspectRatio ? `${aspectRatio * 100}%` : '',
     };
 
     if (isCached) {
@@ -215,6 +215,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
             ...(shouldUseAspectRatio
               ? aspectRatioStyle
               : {
+                  ...heightWidth,
                   ...wrapperCommonStyle,
                   ...wrapperStyle,
                 }),
