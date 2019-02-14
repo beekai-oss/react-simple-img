@@ -3,6 +3,8 @@ import filterImgSrc from '../logic/filterSrcset';
 import fetchImage from './fetchImage';
 import applyImage from './applyImage';
 import logError from './logError';
+import setImageHeight from '../logic/setImageHeight';
+import updateSessionStorage from '../logic/updateSessionStorage';
 
 export default function imageLoader(target: any) {
   try {
@@ -25,18 +27,15 @@ export default function imageLoader(target: any) {
       return;
     }
 
-    image.addEventListener('load', (e: any) => {
-      if (target.parentNode.style.height === '1px') target.parentNode.style.height = `${e.target.height}px`; // eslint-disable-line
-      target.parentNode.style.visibility = 'visible'; // eslint-disable-line
-    });
+    if (target.parentNode && target.parentNode.style.height === '1px') {
+      setImageHeight(image, target);
+    }
 
     fetchImage(image, src)
       .then(() => {
         applyImage.apply(this, [target, image, src]);
         if (window.__REACT_SIMPLE_IMG__ && window.__REACT_SIMPLE_IMG__.disableAnimateCachedImg) {
-          const cachedImages = JSON.parse(window.sessionStorage.getItem('__REACT_SIMPLE_IMG__')) || {};
-          cachedImages[src] = +new Date();
-          window.sessionStorage.setItem('__REACT_SIMPLE_IMG__', JSON.stringify(cachedImages));
+          updateSessionStorage(src);
         }
       })
       .catch(e => {

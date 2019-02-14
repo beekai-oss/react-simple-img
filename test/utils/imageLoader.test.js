@@ -1,8 +1,9 @@
 import imageLoader from '../../src/utils/imageLoader';
 import fetchImage from '../../src/utils/fetchImage';
 import applyImage from '../../src/utils/applyImage';
-import logError from '../../src/utils/logError';
 
+jest.mock('../../src/logic/setImageHeight');
+jest.mock('../../src/logic/updateSessionStorage');
 jest.mock('../../src/utils/fetchImage');
 jest.mock('../../src/utils/applyImage');
 jest.mock('../../src/utils/logError');
@@ -110,5 +111,19 @@ describe('imageLoader', () => {
     await imageLoader({});
     expect(fetchImage).toHaveBeenCalled();
     expect(applyImage).not.toHaveBeenCalled();
+  });
+
+  it('should unobserve the image and append image as loading ref when this is provided', () => {
+    const unobserve = jest.fn();
+    const appendImgLoadingRef = jest.fn();
+    imageLoader.apply({
+      observer: {
+        unobserve,
+      },
+      appendImgLoadingRef,
+    });
+
+    expect(unobserve).toBeCalled();
+    expect(appendImgLoadingRef).toBeCalled();
   });
 });
