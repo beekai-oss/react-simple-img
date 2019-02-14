@@ -370,7 +370,7 @@ ShallowWrapper {
       "rendered": null,
       "type": "img",
     },
-    "type": "span",
+    "type": "div",
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
@@ -419,7 +419,7 @@ ShallowWrapper {
         "rendered": null,
         "type": "img",
       },
-      "type": "span",
+      "type": "div",
     },
   ],
   Symbol(enzyme.__options__): Object {

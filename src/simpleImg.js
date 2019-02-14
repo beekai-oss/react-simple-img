@@ -210,7 +210,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
 
     if (isCached) {
       return (
-        <span
+        <div
           style={{
             ...(shouldUseAspectRatio
               ? aspectRatioStyle
@@ -234,7 +234,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
             }}
             {...restImgProps}
           />
-        </span>
+        </div>
       );
     }
 
