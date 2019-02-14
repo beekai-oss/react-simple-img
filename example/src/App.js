@@ -80,7 +80,8 @@ class App extends PureComponent {
               placeholder={image.svg}
               animationDuration={3}
               src={image.img}
-              width="auto"
+              applyAspectRatio
+              width={800}
               height={500}
             />
           ))}
