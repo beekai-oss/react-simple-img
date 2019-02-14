@@ -47,7 +47,7 @@ export default () => <SimpleImg height={500} src="your image path" />;
 
 ## API
 
-#### 🔗 `initSimpleImg([config], disableAnimateCachedImg)` optional
+#### 🔗 `initSimpleImg([config], disableAnimationAfterCache)` optional
 
 This function will set up **global** intersection observer and watch all `<SimpleImg />` appear in the viewport through your
 entire app
@@ -78,7 +78,7 @@ Arguments
        run). A value of 1.0 means that the threshold isn't considered passed
        until every pixel is visible.
 
-- **disableAnimateCachedImg**: (boolean) this argument is <b>optional</b>
+- **disableAnimationAfterCache**: (boolean) this argument is <b>optional</b>
 
 
      - if you want to disable the reveal animation after image have been cached
