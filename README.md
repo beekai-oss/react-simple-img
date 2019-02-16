@@ -1,5 +1,5 @@
 <p align="center">
-    <a href="https://react-simple-img.herokuapp.com/"><img width="675" src="https://raw.githubusercontent.com/bluebill1049/react-simple-img/master/example/src/logo.png" alt="React Simple Img Logo - Animated lazy loading - on demand" /></a>
+    <a href="https://react-simple-img.now.sh"><img width="675" src="https://raw.githubusercontent.com/bluebill1049/react-simple-img/master/example/src/logo.png" alt="React Simple Img Logo - Animated lazy loading - on demand" /></a>
 </p>
 
 [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=React+Lazy+load+images+with+Intersection+Observer+API&url=https://github.com/bluebill1049/react-simple-img)&nbsp;[![CircleCI](https://circleci.com/gh/bluebill1049/react-simple-img.svg?style=svg)](https://circleci.com/gh/bluebill1049/react-simple-img) [![Coverage Status](https://coveralls.io/repos/github/bluebill1049/react-simple-img/badge.svg?branch=master)](https://coveralls.io/github/bluebill1049/react-simple-img?branch=master) [![npm downloads](https://img.shields.io/npm/dm/react-simple-img.svg?style=flat-square)](https://www.npmjs.com/package/react-simple-img)
@@ -20,7 +20,7 @@
 ## Example
 
 <p align="center">
-    <a href="https://react-simple-img.herokuapp.com/" target="_blank">
+    <a href="https://react-simple-img.now.sh" target="_blank">
         <img width="600" src="https://raw.githubusercontent.com/bluebill1049/react-simple-img/master/example/src/example.gif" alt="Logo" />
     </a>
 </p>
@@ -29,7 +29,7 @@ Navigate into `example` folder and install
 
     npm install && npm run start
 
-😍 <a href="https://react-simple-img.herokuapp.com/" target="_blank">Check it out.</a>
+😍 <a href="https://react-simple-img.now.sh" target="_blank">Check it out.</a>
 
 **Tip for the above effect**
 
