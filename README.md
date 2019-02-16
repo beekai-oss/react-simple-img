@@ -96,7 +96,7 @@ Arguments
 
 ## Advance Example
 
-Set up React Simple Img per page with context provider
+Set up intersection observer config at page level with `SimpleImgProvider`
 
 ```jsx
 import { SimpleImg, SimpleImgProvider } from 'react-simple-img';
