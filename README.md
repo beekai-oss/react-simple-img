@@ -17,24 +17,6 @@
 
     npm install react-simple-img
 
-## Example
-
-<p align="center">
-    <a href="https://react-simple-img.now.sh" target="_blank">
-        <img width="600" src="https://raw.githubusercontent.com/bluebill1049/react-simple-img/master/example/src/example.gif" alt="Logo" />
-    </a>
-</p>
-
-Navigate into `example` folder and install
-
-    npm install && npm run start
-
-😍 <a href="https://react-simple-img.now.sh" target="_blank">Check it out.</a>
-
-**Tip for the above effect**
-
-To generate svg placeholder, please install [SQIP](https://github.com/technopagan/sqip/) to generate placeholders.
-
 ## Quickstart
 
 ```jsx
@@ -113,7 +95,7 @@ Image component working similar with standard `img` tag and with the following p
 
 ## Advance Example
 
-Set up React Simple Img per page, you can use the following example without `initSimpleImg()`😘
+Set up React Simple Img per page, you can use the following example without `initSimpleImg()`
 
 ```jsx
 import { SimpleImg, SimpleImgProvider } from 'react-simple-img';
@@ -135,7 +117,3 @@ export default () => (
   </SimpleImgProvider>
 );
 ```
-
-## Reference
-
-https://medium.com/jsdownunder/optimising-web-page-a-simple-step-66f7f4ba417c
