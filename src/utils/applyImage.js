@@ -1,5 +1,11 @@
 // @flow
 
+function applyStyle(nextSiblingElm, style) {
+  if (nextSiblingElm) {
+    nextSiblingElm.setAttribute('style', `${style && style.includes('opacity') ? '' : 'opacity: 0;'} ${style}`);
+  }
+}
+
 export default function applyImage(target: any, image: Image, src: string) {
   if (this) {
     this.setState(previousState => ({
@@ -17,12 +23,15 @@ export default function applyImage(target: any, image: Image, src: string) {
     target.style.visibility = 'visible';
     /* eslint-enable */
     const nextSiblingElm = target.nextSibling;
-    if (nextSiblingElm) {
+    if (nextSiblingElm && target) {
       const style = nextSiblingElm.getAttribute('style');
-      nextSiblingElm.setAttribute(
-        'style',
-        `${style && style.includes('opacity') ? '' : 'opacity: 0;'} ${style}`,
-      );
+
+      target.addEventListener('load', () => {
+        applyStyle(nextSiblingElm, style);
+        if (target) {
+          target.removeEventListener('load', applyStyle);
+        }
+      });
     }
     window.__REACT_SIMPLE_IMG__.imgLoadingRefs.delete(target);
   }

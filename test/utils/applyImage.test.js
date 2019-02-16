@@ -8,6 +8,7 @@ describe('applyImage', () => {
   it('should update mount images state when applyImage is called', () => {
     const setAttributeSpy = jest.fn();
     const getAttributeSpy = jest.fn();
+    const addEventListener = jest.fn();
     const deleteSpy = jest.fn();
     window.__REACT_SIMPLE_IMG__ = {
       observer: {
@@ -21,6 +22,7 @@ describe('applyImage', () => {
     expect(
       applyImage(
         {
+          addEventListener,
           src: 'test',
           dataset: {
             srcset: 'srcset',
@@ -38,7 +40,7 @@ describe('applyImage', () => {
       ),
     ).toMatchSnapshot();
     expect(getAttributeSpy).toHaveBeenCalled();
-    expect(setAttributeSpy).toHaveBeenCalled();
+    expect(addEventListener).toHaveBeenCalled();
     expect(deleteSpy).toHaveBeenCalled();
 
     window.__REACT_SIMPLE_IMG__ = undefined;
