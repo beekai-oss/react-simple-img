@@ -14,25 +14,23 @@ type Style = { [string]: number | string };
 
 type Props = {
   src: string,
-  placeholder: string,
-  wrapperClassName: string,
-  aspectRatio: number,
-  applyAspectRatio: boolean,
-  imgClassName: string,
-  width: number,
-  height: number,
-  alt: string,
-  sizes: string,
-  srcSet: string,
+  placeholder?: string,
+  applyAspectRatio?: boolean,
+  className?: string,
+  width?: number,
+  height?: number,
+  alt?: string,
+  sizes?: string,
+  srcSet?: string,
+  style?: Style,
   animationDuration?: number,
-  animationEndStyle: Style,
+  animationEndStyle?: Style,
   useContext: boolean,
   isContextDocumentLoad: boolean,
   mountedImages: Set<any>,
   appendImageRef: HTMLElement => void,
   removeImageRef: HTMLElement => void,
   removeImgLoadingRef: HTMLElement => void,
-  wrapperStyle: Style,
 };
 
 const commonStyle = {
@@ -165,8 +163,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
   render() {
     const {
       src,
-      imgClassName: className,
-      wrapperClassName,
+      className,
       height,
       width,
       alt,
@@ -175,7 +172,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
       animationDuration,
       animationEndStyle = defaultDisappearStyle,
       placeholder = defaultPlaceholderColor,
-      wrapperStyle = {},
+      style = {},
       ...restProps
     } = this.props;
     const { loaded, isCached } = this.state;
@@ -196,16 +193,16 @@ export class SimpleImg extends React.PureComponent<Props, State> {
       ...restImgProps
     } = restProps;
     const heightWidth = {
-      ...(height ? { height: wrapperStyle.height || height } : null),
-      ...(width ? { width: wrapperStyle.width || width } : null),
+      ...(height ? { height: style.height || height } : null),
+      ...(width ? { width: style.width || width } : null),
     };
     const isHeightAndWidthNotSet = !height && !width;
     const aspectRatio = parseInt(height, 10) / parseInt(width, 10);
-    const shouldUseAspectRatio = applyAspectRatio && aspectRatio > 0 && aspectRatio !== 1;
+    const shouldUseAspectRatio = applyAspectRatio && !Number.isNaN(aspectRatio);
     const aspectRatioStyle = {
       position: 'relative',
       display: 'block',
-      paddingBottom: shouldUseAspectRatio ? `${aspectRatio * 100}%` : '',
+      paddingBottom: shouldUseAspectRatio ? `${Math.abs(aspectRatio * 100)}%` : '',
     };
 
     if (isCached) {
@@ -217,13 +214,12 @@ export class SimpleImg extends React.PureComponent<Props, State> {
               : {
                   ...heightWidth,
                   ...wrapperCommonStyle,
-                  ...wrapperStyle,
+                  ...style,
                 }),
           }}
-          className={wrapperClassName}
+          className={className}
         >
           <img
-            className={className}
             alt={alt}
             src={src}
             srcSet={srcSet}
@@ -247,13 +243,12 @@ export class SimpleImg extends React.PureComponent<Props, State> {
             : {
                 ...wrapperCommonStyle,
                 ...(height ? { height } : { height: 1, visibility: 'hidden' }),
-                ...wrapperStyle,
+                ...style,
               }),
         }}
-        className={wrapperClassName}
+        className={className}
       >
         <img
-          className={className}
           alt={alt}
           ref={this.element}
           src={loaded ? src : imgPlaceholder}
@@ -276,13 +271,13 @@ export class SimpleImg extends React.PureComponent<Props, State> {
             ...heightWidth,
           }}
           onCompleteStyle={onCompleteStyle}
-          render={({ style }) => {
-            const combinedStyle = { ...inlineStyle, ...style };
+          render={({ style: animateStyle }) => {
+            const combinedStyle = { ...inlineStyle, ...animateStyle };
 
             return isValidImgSrc ? (
-              <img className={className} style={combinedStyle} alt={alt} src={placeholder} {...restImgProps} />
+              <img style={combinedStyle} alt={alt} src={placeholder} {...restImgProps} />
             ) : (
-              <div className={className} style={{ ...combinedStyle, width: '100%', height: '100%' }} />
+              <div style={{ ...combinedStyle, width: '100%', height: '100%' }} />
             );
           }}
         />

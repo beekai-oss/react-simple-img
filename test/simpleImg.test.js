@@ -9,8 +9,7 @@ const removeImgLoadingRef = jest.fn();
 
 const props = {
   src: 'src',
-  imgClassName: 'img className',
-  wrapperClassName: 'wrapper className',
+  className: 'className',
   alt: 'alt',
   sizes: 'sizes',
   srcSet: 'srcSet',
