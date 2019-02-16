@@ -30,6 +30,23 @@ export default () => <SimpleImg height={500} src="your image path" />;
 
 ## API
 
+#### 🔗 `SimpleImg`
+
+Image component working similar with standard `img` tag and with the following props.
+
+| Prop                | Type    | Required | Description                                                                                                                                                                                                        |
+| :------------------ | :------ | :------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `src`               | string  |    ✓     | The large image source                                                                                                                                                                                             |
+| `srcSet`            | string  |          | eg: `large.jpg 2x, small.jpg` <br /><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images" target="_blank">Reference for examples</a>                            |
+| `sizes`             | string  |          | eg: `(max-width: 320px) 280px, (max-width: 480px) 440px` <br /><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images" target="_blank">Reference for examples</a> |
+| `placeholder`       | string  |          | Placeholder image source (svg, jpg, png...) or css color value (`white, linear-gradient(blue, pink)`)                                                                                                              |
+| `applyAspectRatio`  | boolean |          | Image will scale automatically with aspect ratio. Note: width and height will need to be supplied.                                                                                                                 |
+| `wrapperStyle`      | Object  |          | inline style for root wrapper                                                                                                                                                                                      |
+| `wrapperClassName`  | string  |          | className for element wrapping img tag                                                                                                                                                                             |
+| `imgClassName`      | string  |          | class for the image itself, which also applied to the placeholder                                                                                                                                                  |
+| `animationDuration` | number  |          | animation duration in seconds <br />passed as `durationSeconds` to [react-simple-animate](https://github.com/bluebill1049/react-simple-animate#api)                                                                |
+| `animationEndStyle` | Object  |          | style to transition to <br />passed as `endStyle` to [react-simple-animate](https://github.com/bluebill1049/react-simple-animate#api)                                                                              |
+
 #### 🔗 `initSimpleImg([config], disableAnimationAfterCache)` optional
 
 This function will set up **global** intersection observer and watch all `<SimpleImg />` appear in the viewport through your
@@ -65,23 +82,6 @@ Arguments
 
 
      - if you want to disable the reveal animation after image have been cached
-
-#### 🔗 `SimpleImg`
-
-Image component working similar with standard `img` tag and with the following props.
-
-| Prop                | Type    | Required | Description                                                                                                                                                                                                        |
-| :------------------ | :------ | :------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `src`               | string  |    ✓     | The large image source                                                                                                                                                                                             |
-| `srcSet`            | string  |          | eg: `large.jpg 2x, small.jpg` <br /><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images" target="_blank">Reference for examples</a>                            |
-| `sizes`             | string  |          | eg: `(max-width: 320px) 280px, (max-width: 480px) 440px` <br /><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images" target="_blank">Reference for examples</a> |
-| `placeholder`       | string  |          | Placeholder image source (svg, jpg, png...) or css color value (`white, linear-gradient(blue, pink)`)                                                                                                              |
-| `applyAspectRatio`  | boolean |          | Image will scale automatically with aspect ratio. Note: width and height will need to be supplied.                                                                                                                 |
-| `wrapperStyle`      | Object  |          | inline style for root wrapper                                                                                                                                                                                      |
-| `wrapperClassName`  | string  |          | className for element wrapping img tag                                                                                                                                                                             |
-| `imgClassName`      | string  |          | class for the image itself, which also applied to the placeholder                                                                                                                                                  |
-| `animationDuration` | number  |          | animation duration in seconds <br />passed as `durationSeconds` to [react-simple-animate](https://github.com/bluebill1049/react-simple-animate#api)                                                                |
-| `animationEndStyle` | Object  |          | style to transition to <br />passed as `endStyle` to [react-simple-animate](https://github.com/bluebill1049/react-simple-animate#api)                                                                              |
 
 #### 🔗 `SimpleImgProvider([Component], [config])` <b>optional</b>
 
