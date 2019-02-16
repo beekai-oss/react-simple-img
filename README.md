@@ -96,7 +96,7 @@ Arguments
 
 ## Advance Example
 
-Set up React Simple Img per page, you can use the following example without `initSimpleImg()`
+Set up React Simple Img per page with context provider
 
 ```jsx
 import { SimpleImg, SimpleImgProvider } from 'react-simple-img';
