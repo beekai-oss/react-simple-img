@@ -66,17 +66,6 @@ Arguments
 
      - if you want to disable the reveal animation after image have been cached
 
-#### 🔗 `SimpleImgProvider([Component], [config])` <b>optional</b>
-
-This high order component will connect all your `SimpleImg` to be observed per section, and **overwrite global config by
-`initSimpleImg()`**.
-
-Arguments
-
-- **Component**: (Component) react component
-
-- **config**: (Object) this argument is optional (same as `initSimpleImg` config argument)
-
 #### 🔗 `SimpleImg`
 
 Image component working similar with standard `img` tag and with the following props.
@@ -93,6 +82,17 @@ Image component working similar with standard `img` tag and with the following p
 | `imgClassName`      | string  |          | class for the image itself, which also applied to the placeholder                                                                                                                                                  |
 | `animationDuration` | number  |          | animation duration in seconds <br />passed as `durationSeconds` to [react-simple-animate](https://github.com/bluebill1049/react-simple-animate#api)                                                                |
 | `animationEndStyle` | Object  |          | style to transition to <br />passed as `endStyle` to [react-simple-animate](https://github.com/bluebill1049/react-simple-animate#api)                                                                              |
+
+#### 🔗 `SimpleImgProvider([Component], [config])` <b>optional</b>
+
+This high order component will connect all your `SimpleImg` to be observed per section, and **overwrite global config by
+`initSimpleImg()`**.
+
+Arguments
+
+- **Component**: (Component) react component
+
+- **config**: (Object) this argument is optional (same as `initSimpleImg` config argument)
 
 ## Advance Example
 
