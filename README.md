@@ -21,9 +21,7 @@
 ## Quickstart
 
 ```jsx
-import { SimpleImg, initSimpleImg } from 'react-simple-img';
-
-initSimpleImg(); // run once at your root component or at file which calls `ReactDOM.render`
+import { SimpleImg } from 'react-simple-img';
 
 export default () => <SimpleImg height={500} src="your image path" />;
 ```
@@ -46,8 +44,7 @@ Image component working similar with standard `img` tag and with the following p
 
 #### 🔗 `initSimpleImg([config], disableAnimationAfterCache)` optional
 
-This function will set up **global** intersection observer and watch all `<SimpleImg />` appear in the viewport through your
-entire app
+This function is only required, when you want to customise intersection observer configuration.
 
 Arguments
 
