@@ -3,6 +3,7 @@ import React from 'react';
 import { Animate } from 'react-simple-animate';
 import validImgSrc from './utils/validImgSrc';
 import { SimpleImgContext } from './simpleImgProvider';
+import initSimpleImg from './initSimpleImg';
 
 type State = {
   loaded: boolean,
@@ -66,6 +67,15 @@ export class SimpleImg extends React.PureComponent<Props, State> {
   };
 
   element: any = React.createRef();
+
+  constructor(props: Props) {
+    super(props);
+    if (typeof window === 'undefined') return;
+
+    if (!props.useContext && !window.__REACT_SIMPLE_IMG__) {
+      initSimpleImg();
+    }
+  }
 
   componentDidMount() {
     const cachedImagesRefString = window.sessionStorage.getItem('__REACT_SIMPLE_IMG__');
