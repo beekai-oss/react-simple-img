@@ -6,18 +6,20 @@ import logError from './logError';
 import setImageHeight from '../logic/setImageHeight';
 import updateSessionStorage from '../logic/updateSessionStorage';
 
-export default function imageLoader(target: any) {
+export default function imageLoader(target: any, withObserver: boolean = true) {
   try {
     const image = new Image(); // eslint-disable-line no-undef
 
-    if (this) {
-      this.observer.unobserve(target);
-      this.appendImgLoadingRef(image);
-    } else {
-      const { observer, imgLoadingRefs } = window.__REACT_SIMPLE_IMG__;
+    if (withObserver) {
+      if (this) {
+        this.observer.unobserve(target);
+        this.appendImgLoadingRef(image);
+      } else {
+        const { observer, imgLoadingRefs } = window.__REACT_SIMPLE_IMG__;
 
-      observer.unobserve(target);
-      imgLoadingRefs.set(target, image);
+        observer.unobserve(target);
+        imgLoadingRefs.set(target, image);
+      }
     }
 
     const src = filterImgSrc(target);

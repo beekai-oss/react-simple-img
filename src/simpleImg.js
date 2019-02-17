@@ -4,6 +4,7 @@ import { Animate } from 'react-simple-animate';
 import validImgSrc from './utils/validImgSrc';
 import { SimpleImgContext } from './simpleImgProvider';
 import initSimpleImg from './initSimpleImg';
+import imageLoader from './utils/imageLoader';
 
 type State = {
   loaded: boolean,
@@ -32,6 +33,7 @@ type Props = {
   appendImageRef: HTMLElement => void,
   removeImageRef: HTMLElement => void,
   removeImgLoadingRef: HTMLElement => void,
+  importance?: 'low' | 'high',
 };
 
 const commonStyle = {
@@ -58,6 +60,7 @@ const wrapperCommonStyle = {
 export class SimpleImg extends React.PureComponent<Props, State> {
   static defaultProps = {
     animationDuration: 0.3,
+    importance: 'low',
   };
 
   state: State = {
@@ -93,7 +96,11 @@ export class SimpleImg extends React.PureComponent<Props, State> {
     }
 
     if (window.__REACT_SIMPLE_IMG__ && document.readyState === 'complete') {
-      window.__REACT_SIMPLE_IMG__.observer.observe(this.element.current);
+      if (this.props.importance === 'high') {
+        imageLoader(this.element.current, false);
+      } else {
+        window.__REACT_SIMPLE_IMG__.observer.observe(this.element.current);
+      }
     } else if (document.readyState === 'complete') {
       this.setDocumentLoaded();
     } else {
@@ -109,6 +116,8 @@ export class SimpleImg extends React.PureComponent<Props, State> {
       mountedImages,
       removeImgLoadingRef,
       isContextDocumentLoad,
+      importance,
+      src,
     } = this.props;
     const element = this.element.current;
 
@@ -134,8 +143,12 @@ export class SimpleImg extends React.PureComponent<Props, State> {
     }
 
     if (window.__REACT_SIMPLE_IMG__ && !prevState.isDocumentLoad && this.state.isDocumentLoad) {
-      window.__REACT_SIMPLE_IMG__.observer.observe(element);
-    } else if (this.props.src !== prevProps.src) {
+      if (importance === 'high') {
+        imageLoader(this.element.current, false);
+      } else {
+        window.__REACT_SIMPLE_IMG__.observer.observe(element);
+      }
+    } else if (src !== prevProps.src) {
       this.setState({
         loaded: true,
       });
@@ -200,6 +213,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
       appendImageRef,
       removeImageRef,
       removeImgLoadingRef,
+      importance,
       ...restImgProps
     } = restProps;
     const heightWidth = {
