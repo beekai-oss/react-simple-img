@@ -12,7 +12,7 @@
 
 - Speed up initial page loads by loading only images above the fold
 - Responsive with placeholders and animations
-- Support priority hints with importance attribute
+- Support Priority Hints with importance attribute
 - Smart download logic using [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)
 - Simple usage and tiny size
 
