@@ -2,7 +2,8 @@
     <a href="https://react-simple-img.now.sh"><img width="150" src="https://raw.githubusercontent.com/bluebill1049/react-simple-img/master/example/src/logo.png" alt="React Simple Img Logo - Animated lazy loading - on demand" /></a>
 </p>
 
-# [React Simple Img](https://react-simple-img.now.sh) 
+# [React Simple Img](https://react-simple-img.now.sh)
+
 [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=React+Lazy+load+images+with+Intersection+Observer+API&url=https://github.com/bluebill1049/react-simple-img)&nbsp;[![CircleCI](https://circleci.com/gh/bluebill1049/react-simple-img.svg?style=svg)](https://circleci.com/gh/bluebill1049/react-simple-img) [![Coverage Status](https://coveralls.io/repos/github/bluebill1049/react-simple-img/badge.svg?branch=master)](https://coveralls.io/github/bluebill1049/react-simple-img?branch=master) [![npm downloads](https://img.shields.io/npm/dm/react-simple-img.svg?style=flat-square)](https://www.npmjs.com/package/react-simple-img)
 [![npm](https://img.shields.io/npm/dt/react-simple-img.svg?style=flat-square)](https://www.npmjs.com/package/react-simple-img)
 [![npm](https://img.shields.io/npm/l/react-simple-img.svg?style=flat-square)](https://www.npmjs.com/package/react-lazyload-image)
@@ -13,6 +14,7 @@
 - Responsive with placeholders and animations
 - Smart download logic using [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)
 - Simple usage and tiny size
+- Polyfill for priority hints: importance
 
 ## Install
 
@@ -37,6 +39,7 @@ Image component working similar with standard `img` tag and with the following p
 | `src`               | string  |    ✓     | The large image source                                                                                                                                                                                             |
 | `srcSet`            | string  |          | eg: `large.jpg 2x, small.jpg` <br /><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images" target="_blank">Reference for examples</a>                            |
 | `sizes`             | string  |          | eg: `(max-width: 320px) 280px, (max-width: 480px) 440px` <br /><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images" target="_blank">Reference for examples</a> |
+| `importance`        | string  |          | high or low: set to "high" will load image after <b>load</b> event, otherwise with "low" will load images after <b>load</b> event and lazy load with <b>intersection observer</b>                                  |
 | `placeholder`       | string  |          | Placeholder image source (svg, jpg, png...) or css color value (`white, linear-gradient(blue, pink)`)                                                                                                              |
 | `applyAspectRatio`  | boolean |          | Image will scale automatically with aspect ratio. Note: width and height will need to be supplied.                                                                                                                 |
 | `animationDuration` | number  |          | animation duration in seconds <br />passed as `durationSeconds` to [react-simple-animate](https://github.com/bluebill1049/react-simple-animate#api)                                                                |
