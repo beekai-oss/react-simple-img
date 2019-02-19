@@ -55,7 +55,7 @@ Arguments
 
 
      - [root]: The element that is used as the viewport for checking
-       visiblity of the target. Must be the ancestor of the target. Defaults
+       visibility of the target. Must be the ancestor of the target. Defaults
        to the browser viewport if not specified or if null.
 
      - [rootMargin]: Margin around the root. Can have values similar to the
