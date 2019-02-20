@@ -237,8 +237,8 @@ export class SimpleImg extends React.PureComponent<Props, State> {
         <img
           alt={alt}
           ref={this.element}
-          src={loaded ? src : imgPlaceholder}
-          srcSet={loaded ? srcSet : ''}
+          src={loaded || isCached ? src : imgPlaceholder}
+          srcSet={loaded || isCached ? srcSet : ''}
           data-placeholder="false"
           data-src={src}
           data-srcset={srcSet}
@@ -246,8 +246,12 @@ export class SimpleImg extends React.PureComponent<Props, State> {
           width={width}
           style={{
             ...style,
-            transition: `${animationDuration}s all`,
-            opacity: 0,
+            ...(isCached
+              ? null
+              : {
+                  transition: `${animationDuration}s all`,
+                  opacity: 0,
+                }),
           }}
           {...restImgProps}
         />
