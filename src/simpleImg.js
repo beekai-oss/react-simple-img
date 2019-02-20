@@ -210,7 +210,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
         ? null
         : {
             ref: this.element,
-            'data-placeholder': 'false',
+            ...(placeholder === false ? { 'data-placeholder': 'false' } : null),
             'data-src': src,
             'data-srcset': srcSet,
             'data-end-style': animationEndStyleString,
