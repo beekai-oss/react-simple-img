@@ -194,7 +194,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
       alt,
       srcSet,
       applyAspectRatio,
-      animationDuration,
+      animationDuration = 0.3,
       animationEndStyle = defaultDisappearStyle,
       placeholder = defaultPlaceholderColor,
       style = {},
