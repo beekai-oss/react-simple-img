@@ -6,36 +6,7 @@ import { SimpleImgContext } from './simpleImgProvider';
 import initSimpleImg from './initSimpleImg';
 import imageLoader from './utils/imageLoader';
 import convertStyleIntoString from './utils/convertStyleIntoString';
-
-type State = {
-  loaded: boolean,
-  isDocumentLoad: boolean,
-  isCached: boolean,
-};
-
-type Style = { [string]: number | string };
-
-type Props = {
-  src: string,
-  placeholder?: string | boolean,
-  applyAspectRatio?: boolean,
-  className?: string,
-  width?: number,
-  height?: number,
-  alt?: string,
-  sizes?: string,
-  srcSet?: string,
-  style?: Style,
-  animationDuration?: number,
-  animationEndStyle?: Style,
-  useContext: boolean,
-  isContextDocumentLoad: boolean,
-  mountedImages: Set<any>,
-  appendImageRef: HTMLElement => void,
-  removeImageRef: HTMLElement => void,
-  removeImgLoadingRef: HTMLElement => void,
-  importance?: 'low' | 'high',
-};
+import type { State, Props } from './simpleImg.flow';
 
 const commonStyle = {
   position: 'absolute',
@@ -231,12 +202,15 @@ export class SimpleImg extends React.PureComponent<Props, State> {
       paddingBottom: shouldUseAspectRatio ? `${Math.abs(aspectRatio * 100)}%` : '',
     };
     const animationEndStyleString = convertStyleIntoString(animationEndStyle);
+    const imageProps = {
+      alt,
+      ...(!isCached ? { ref: this.element } : null),
+    };
 
     if (placeholder === false) {
       return (
         <img
-          alt={alt}
-          ref={this.element}
+          {...imageProps}
           src={loaded || isCached ? src : imgPlaceholder}
           srcSet={loaded || isCached ? srcSet : ''}
           data-placeholder="false"
@@ -273,7 +247,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
           className={className}
         >
           <img
-            alt={alt}
+            {...imageProps}
             src={src}
             srcSet={srcSet}
             style={{
@@ -302,8 +276,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
         className={className}
       >
         <img
-          alt={alt}
-          ref={this.element}
+          {...imageProps}
           src={loaded ? src : imgPlaceholder}
           srcSet={loaded ? srcSet : ''}
           data-src={src}
