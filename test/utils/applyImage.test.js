@@ -31,9 +31,9 @@ describe('applyImage', () => {
           style: {
             visibility: 'hidden',
           },
+          getAttribute: getAttributeSpy,
           nextSibling: {
             setAttribute: setAttributeSpy,
-            getAttribute: getAttributeSpy,
           },
         },
         'loadedImg',

@@ -5,6 +5,7 @@ import validImgSrc from './utils/validImgSrc';
 import { SimpleImgContext } from './simpleImgProvider';
 import initSimpleImg from './initSimpleImg';
 import imageLoader from './utils/imageLoader';
+import convertStyleIntoString from './utils/convertStyleIntoString';
 
 type State = {
   loaded: boolean,
@@ -16,7 +17,7 @@ type Style = { [string]: number | string };
 
 type Props = {
   src: string,
-  placeholder?: string,
+  placeholder?: string | boolean,
   applyAspectRatio?: boolean,
   className?: string,
   width?: number,
@@ -61,6 +62,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
   static defaultProps = {
     animationDuration: 0.3,
     importance: 'low',
+    placeholder: defaultPlaceholderColor,
   };
 
   state: State = {
@@ -228,6 +230,29 @@ export class SimpleImg extends React.PureComponent<Props, State> {
       display: 'block',
       paddingBottom: shouldUseAspectRatio ? `${Math.abs(aspectRatio * 100)}%` : '',
     };
+    const animationEndStyleString = convertStyleIntoString(animationEndStyle);
+
+    if (placeholder === false) {
+      return (
+        <img
+          alt={alt}
+          ref={this.element}
+          src={loaded ? src : imgPlaceholder}
+          srcSet={loaded ? srcSet : ''}
+          data-placeholder="false"
+          data-src={src}
+          data-srcset={srcSet}
+          height={height}
+          width={width}
+          style={{
+            ...style,
+            transition: `${animationDuration}s all`,
+            opacity: 0,
+          }}
+          {...restImgProps}
+        />
+      );
+    }
 
     if (isCached) {
       return (
@@ -279,6 +304,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
           srcSet={loaded ? srcSet : ''}
           data-src={src}
           data-srcset={srcSet}
+          data-end-style={animationEndStyleString}
           style={{
             ...(isHeightAndWidthNotSet ? expendWidth : heightWidth),
             ...(!isValidImgSrc && !loaded && !isSrcSetFulfilled ? hiddenStyle : {}),
