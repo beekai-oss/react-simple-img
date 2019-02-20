@@ -204,20 +204,23 @@ export class SimpleImg extends React.PureComponent<Props, State> {
     const animationEndStyleString = convertStyleIntoString(animationEndStyle);
     const imageProps = {
       alt,
-      ...(!isCached ? { ref: this.element } : null),
+      src: loaded || isCached ? src : imgPlaceholder,
+      srcSet: loaded || isCached ? srcSet : '',
+      ...(isCached
+        ? null
+        : {
+            ref: this.element,
+            'data-placeholder': 'false',
+            'data-src': src,
+            'data-srcset': srcSet,
+            'data-end-style': animationEndStyleString,
+          }),
+      ...restImgProps,
     };
 
     if (placeholder === false) {
       return (
         <img
-          {...imageProps}
-          src={loaded || isCached ? src : imgPlaceholder}
-          srcSet={loaded || isCached ? srcSet : ''}
-          data-placeholder="false"
-          data-src={src}
-          data-srcset={srcSet}
-          height={height}
-          width={width}
           style={{
             ...style,
             ...(isCached
@@ -227,7 +230,8 @@ export class SimpleImg extends React.PureComponent<Props, State> {
                   opacity: 0,
                 }),
           }}
-          {...restImgProps}
+          className={className}
+          {...imageProps}
         />
       );
     }
@@ -247,16 +251,13 @@ export class SimpleImg extends React.PureComponent<Props, State> {
           className={className}
         >
           <img
-            {...imageProps}
-            src={src}
-            srcSet={srcSet}
             style={{
               ...(isHeightAndWidthNotSet ? expendWidth : heightWidth),
               ...(shouldUseAspectRatio
                 ? { width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 }
                 : null),
             }}
-            {...restImgProps}
+            {...imageProps}
           />
         </div>
       );
@@ -276,18 +277,12 @@ export class SimpleImg extends React.PureComponent<Props, State> {
         className={className}
       >
         <img
-          {...imageProps}
-          src={loaded ? src : imgPlaceholder}
-          srcSet={loaded ? srcSet : ''}
-          data-src={src}
-          data-srcset={srcSet}
-          data-end-style={animationEndStyleString}
           style={{
             ...(isHeightAndWidthNotSet ? expendWidth : heightWidth),
             ...(!isValidImgSrc && !loaded && !isSrcSetFulfilled ? hiddenStyle : {}),
             ...(shouldUseAspectRatio ? { width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 } : null),
           }}
-          {...restImgProps}
+          {...imageProps}
         />
         <Animate
           play={loaded}
