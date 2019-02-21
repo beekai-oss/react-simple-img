@@ -82,7 +82,6 @@
     "react-dom": ">= 15.6.1"
   },
   "dependencies": {
-    "intersection-observer": "^0.5.1",
-    "react-simple-animate": "^2.5.0"
+    "intersection-observer": "^0.5.1"
   }
 }
