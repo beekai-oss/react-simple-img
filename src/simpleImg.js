@@ -18,6 +18,7 @@ import {
   aspectRatioChildStyle,
   wrapperCommonStyle,
 } from './constants';
+import getAspectRatio from './logic/getAspectRatio';
 
 export class SimpleImg extends React.PureComponent<Props, State> {
   static defaultProps = {
@@ -36,15 +37,15 @@ export class SimpleImg extends React.PureComponent<Props, State> {
 
   constructor(props: Props) {
     super(props);
-    if (typeof window === 'undefined') return;
-
-    if (!props.useContext && !window.__REACT_SIMPLE_IMG__) {
+    if (typeof window !== 'undefined' && !props.useContext && !window.__REACT_SIMPLE_IMG__) {
       initSimpleImg();
     }
   }
 
   componentDidMount() {
     const cachedImagesRefString = window.sessionStorage.getItem('__REACT_SIMPLE_IMG__');
+    const { src } = this.props;
+
     if (
       cachedImagesRefString &&
       window.__REACT_SIMPLE_IMG__ &&
@@ -53,7 +54,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
     ) {
       const cachedImagesRef = JSON.parse(cachedImagesRefString);
 
-      if (cachedImagesRef[this.props.src]) {
+      if (cachedImagesRef[src]) {
         this.setState({
           isCached: true,
         });
@@ -62,11 +63,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
     }
 
     if (window.__REACT_SIMPLE_IMG__ && document.readyState === 'complete') {
-      if (this.props.importance === 'auto') {
-        imageLoader(this.element.current, false);
-      } else {
-        window.__REACT_SIMPLE_IMG__.observer.observe(this.element.current);
-      }
+      this.triggerImageLoadOrObserver();
     } else if (document.readyState === 'complete') {
       this.setDocumentLoaded();
     } else {
@@ -82,7 +79,6 @@ export class SimpleImg extends React.PureComponent<Props, State> {
       mountedImages,
       removeImgLoadingRef,
       isContextDocumentLoad,
-      importance,
       src,
     } = this.props;
     const element = this.element.current;
@@ -109,11 +105,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
     }
 
     if (window.__REACT_SIMPLE_IMG__ && !prevState.isDocumentLoad && this.state.isDocumentLoad) {
-      if (importance === 'auto') {
-        imageLoader(this.element.current, false);
-      } else {
-        window.__REACT_SIMPLE_IMG__.observer.observe(element);
-      }
+      this.triggerImageLoadOrObserver();
     } else if (src !== prevProps.src) {
       this.setState({
         loaded: true,
@@ -146,6 +138,14 @@ export class SimpleImg extends React.PureComponent<Props, State> {
       isDocumentLoad: true,
     });
   };
+
+  triggerImageLoadOrObserver() {
+    if (this.props.importance === 'auto') {
+      imageLoader(this.element.current, false);
+    } else {
+      window.__REACT_SIMPLE_IMG__.observer.observe(this.element.current);
+    }
+  }
 
   render() {
     const {
@@ -185,13 +185,11 @@ export class SimpleImg extends React.PureComponent<Props, State> {
       ...(width ? { width: style.width || width } : null),
     };
     const isHeightAndWidthNotSet = !height && !width;
-    const aspectRatio = parseInt(height, 10) / parseInt(width, 10);
-    const shouldUseAspectRatio = applyAspectRatio && !Number.isNaN(aspectRatio);
-    const aspectRatioStyle = {
-      position: 'relative',
-      display: 'block',
-      paddingBottom: shouldUseAspectRatio ? `${Math.abs(aspectRatio * 100)}%` : '',
-    };
+    const { shouldUseAspectRatio, aspectRatioStyle } = getAspectRatio({
+      height,
+      width,
+      applyAspectRatio,
+    });
     const animationEndStyleString = convertStyleIntoString(animationEndStyle);
     const imageProps = {
       alt,
@@ -270,7 +268,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
           style={{
             ...(isHeightAndWidthNotSet ? expendWidth : heightWidth),
             ...(!isValidImgSrc && !loaded && !isSrcSetFulfilled ? hiddenStyle : {}),
-            ...(shouldUseAspectRatio ? { width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 } : null),
+            ...(shouldUseAspectRatio ? aspectRatioChildStyle : null),
           }}
           {...imageProps}
         />
@@ -287,7 +285,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
             const combinedStyle = { ...inlineStyle, ...animateStyle };
 
             return isValidImgSrc ? (
-              <img style={combinedStyle} alt={alt} src={placeholder} {...restImgProps} />
+              <img style={combinedStyle} src={placeholder} {...restImgProps} />
             ) : (
               <div style={{ ...combinedStyle, width: '100%', height: '100%' }} />
             );
