@@ -26,7 +26,7 @@ export default function applyImage(target: any, image: Image, src: string) {
 
     target.style.visibility = 'visible';
 
-    const withoutPlaceholder = target.getAttribute('data-placeholder') === 'true';
+    const withoutPlaceholder = target.getAttribute('data-placeholder') === 'false';
     /* eslint-enable */
     const currentTarget = withoutPlaceholder ? target : target.nextSibling;
 

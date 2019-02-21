@@ -211,15 +211,16 @@ export class SimpleImg extends React.PureComponent<Props, State> {
       return (
         <img
           style={{
+            ...style,
             ...(isCached
               ? null
               : {
-                  transition: `${animationDuration}s all`,
-                  opacity: 0,
-                }),
-            ...style,
+                transition: `${animationDuration}s all`,
+                opacity: 0,
+              }),
           }}
           className={className}
+          {...heightWidth}
           {...imageProps}
         />
       );
