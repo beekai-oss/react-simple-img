@@ -7,27 +7,17 @@ import initSimpleImg from './initSimpleImg';
 import imageLoader from './utils/imageLoader';
 import convertStyleIntoString from './utils/convertStyleIntoString';
 import type { State, Props } from './simpleImg.flow';
-
-const commonStyle = {
-  position: 'absolute',
-  top: 0,
-  left: 0,
-  width: '100%',
-};
-const defaultDisappearStyle = { opacity: 0 };
-const defaultImgPlaceholder = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
-const defaultPlaceholderColor = 'white';
-const onCompleteStyle = { display: 'none' };
-const hiddenStyle = { visibility: 'hidden' };
-const expendWidth = { width: '100%' };
-const wrapperCommonStyle = {
-  position: 'relative',
-  overflow: 'hidden',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-};
+import {
+  commonStyle,
+  defaultDisappearStyle,
+  defaultImgPlaceholder,
+  defaultPlaceholderColor,
+  onCompleteStyle,
+  hiddenStyle,
+  expendWidth,
+  aspectRatioChildStyle,
+  wrapperCommonStyle,
+} from './constants';
 
 export class SimpleImg extends React.PureComponent<Props, State> {
   static defaultProps = {
@@ -55,14 +45,18 @@ export class SimpleImg extends React.PureComponent<Props, State> {
 
   componentDidMount() {
     const cachedImagesRefString = window.sessionStorage.getItem('__REACT_SIMPLE_IMG__');
-    if (cachedImagesRefString && window.__REACT_SIMPLE_IMG__ && window.__REACT_SIMPLE_IMG__.disableAnimateCachedImg) {
+    if (
+      cachedImagesRefString &&
+      window.__REACT_SIMPLE_IMG__ &&
+      window.__REACT_SIMPLE_IMG__.disableAnimateCachedImg &&
+      !this.element.current.getAttribute('data-from-server') === 'true'
+    ) {
       const cachedImagesRef = JSON.parse(cachedImagesRefString);
 
       if (cachedImagesRef[this.props.src]) {
         this.setState({
           isCached: true,
         });
-
         return;
       }
     }
@@ -136,9 +130,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
     if (useContext && element) {
       removeImgLoadingRef(element);
       removeImageRef(element);
-    } else {
-      if (!window.__REACT_SIMPLE_IMG__) return;
-
+    } else if (window.__REACT_SIMPLE_IMG__) {
       const { observer, imgLoadingRefs } = window.__REACT_SIMPLE_IMG__;
       observer.unobserve(element);
 
@@ -205,6 +197,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
       alt,
       src: loaded || isCached ? src : imgPlaceholder,
       srcSet: loaded || isCached ? srcSet : '',
+      ...(typeof window === 'undefined' ? { 'data-from-server': 'yes' } : null),
       ...(isCached
         ? null
         : {
@@ -252,9 +245,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
           <img
             style={{
               ...(isHeightAndWidthNotSet ? expendWidth : heightWidth),
-              ...(shouldUseAspectRatio
-                ? { width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 }
-                : null),
+              ...(shouldUseAspectRatio ? aspectRatioChildStyle : null),
             }}
             {...imageProps}
           />
