@@ -157,13 +157,6 @@ describe('SimpleImg', () => {
     expect(tree.state('loaded')).toBeTruthy();
   });
 
-  it('should set document loaded ready when document is on ready state', () => {
-    window.__REACT_SIMPLE_IMG__ = undefined;
-    const tree = shallow(<SimpleImg {...props} />);
-
-    expect(tree.state('isDocumentLoad')).toBeTruthy();
-  });
-
   it('should set state to be is cached when image ref is stored in sessionStorage', () => {
     window.sessionStorage.setItem('__REACT_SIMPLE_IMG__', JSON.stringify({ src: 'test' }));
     window.__REACT_SIMPLE_IMG__ = {

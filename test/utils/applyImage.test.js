@@ -1,10 +1,6 @@
 import applyImage from '../../src/utils/applyImage';
 
 describe('applyImage', () => {
-  it('should return false when target is not exist', () => {
-    expect(applyImage(undefined, 'loadedImg')).toBeFalsy();
-  });
-
   it('should update mount images state when applyImage is called', () => {
     const setAttributeSpy = jest.fn();
     const getAttributeSpy = jest.fn();
