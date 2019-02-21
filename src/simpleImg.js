@@ -12,7 +12,6 @@ import {
   defaultDisappearStyle,
   defaultImgPlaceholder,
   defaultPlaceholderColor,
-  onCompleteStyle,
   hiddenStyle,
   expendWidth,
   aspectRatioChildStyle,
@@ -212,13 +211,13 @@ export class SimpleImg extends React.PureComponent<Props, State> {
       return (
         <img
           style={{
-            ...style,
             ...(isCached
               ? null
               : {
                   transition: `${animationDuration}s all`,
                   opacity: 0,
                 }),
+            ...style,
           }}
           className={className}
           {...imageProps}
@@ -280,14 +279,13 @@ export class SimpleImg extends React.PureComponent<Props, State> {
             ...animationEndStyle,
             ...heightWidth,
           }}
-          onCompleteStyle={onCompleteStyle}
           render={({ style: animateStyle }) => {
             const combinedStyle = { ...inlineStyle, ...animateStyle };
 
             return isValidImgSrc ? (
               <img style={combinedStyle} src={placeholder} {...restImgProps} />
             ) : (
-              <div style={{ ...combinedStyle, width: '100%', height: '100%' }} />
+              <div style={combinedStyle} />
             );
           }}
         />
