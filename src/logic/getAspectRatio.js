@@ -1,13 +1,13 @@
 // @flow
 
 export default function getAspectRatio({
-  height,
-  width,
+  height = 0,
+  width = 0,
   applyAspectRatio,
 }: {
-  height: number,
-  width: number,
-  applyAspectRatio: boolean,
+  height?: number,
+  width?: number,
+  applyAspectRatio?: boolean,
 }) {
   const aspectRatio = parseInt(height, 10) / parseInt(width, 10);
   const shouldUseAspectRatio = applyAspectRatio && !Number.isNaN(aspectRatio);
