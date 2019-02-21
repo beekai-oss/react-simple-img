@@ -58,7 +58,6 @@ export class SimpleImg extends React.PureComponent<Props, State> {
     if (cachedImagesRefString && window.__REACT_SIMPLE_IMG__ && window.__REACT_SIMPLE_IMG__.disableAnimateCachedImg) {
       const cachedImagesRef = JSON.parse(cachedImagesRefString);
 
-      window.sessionStorage.setItem('__REACT_SIMPLE_IMG__', JSON.stringify(cachedImagesRef));
       if (cachedImagesRef[this.props.src]) {
         this.setState({
           isCached: true,
@@ -69,7 +68,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
     }
 
     if (window.__REACT_SIMPLE_IMG__ && document.readyState === 'complete') {
-      if (this.props.importance === 'high') {
+      if (this.props.importance === 'auto') {
         imageLoader(this.element.current, false);
       } else {
         window.__REACT_SIMPLE_IMG__.observer.observe(this.element.current);
@@ -116,7 +115,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
     }
 
     if (window.__REACT_SIMPLE_IMG__ && !prevState.isDocumentLoad && this.state.isDocumentLoad) {
-      if (importance === 'high') {
+      if (importance === 'auto') {
         imageLoader(this.element.current, false);
       } else {
         window.__REACT_SIMPLE_IMG__.observer.observe(element);
