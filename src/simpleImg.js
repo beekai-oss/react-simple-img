@@ -49,7 +49,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
       cachedImagesRefString &&
       window.__REACT_SIMPLE_IMG__ &&
       window.__REACT_SIMPLE_IMG__.disableAnimateCachedImg &&
-      !this.element.current.getAttribute('data-from-server') === 'true'
+      !this.element.current.getAttribute('data-from-server')
     ) {
       const cachedImagesRef = JSON.parse(cachedImagesRefString);
 
