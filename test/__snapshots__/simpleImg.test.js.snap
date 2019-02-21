@@ -39,7 +39,7 @@ exports[`SimpleImg should apply aspect ratio when height and width is supplied 1
         "left": 0,
         "position": "absolute",
         "top": 0,
-        "transition": "all 1s linear 0s",
+        "transition": "1s all",
         "width": "100%",
       }
     }
@@ -86,7 +86,7 @@ exports[`SimpleImg should render background color 1`] = `
         "left": 0,
         "position": "absolute",
         "top": 0,
-        "transition": "all 1s linear 0s",
+        "transition": "1s all",
         "width": "100%",
       }
     }
@@ -133,54 +133,7 @@ exports[`SimpleImg should render correctly 1`] = `
         "left": 0,
         "position": "absolute",
         "top": 0,
-        "transition": "all 1s linear 0s",
-        "width": "100%",
-      }
-    }
-  />
-</div>
-`;
-
-exports[`SimpleImg should render correctly with context consumer 1`] = `
-<div
-  className="className"
-  style={
-    Object {
-      "alignItems": "center",
-      "display": "flex",
-      "flexDirection": "column",
-      "height": 1,
-      "justifyContent": "center",
-      "overflow": "hidden",
-      "position": "relative",
-      "visibility": "hidden",
-    }
-  }
->
-  <img
-    alt="alt"
-    data-end-style="opacity:0;"
-    data-src="src"
-    data-srcset="srcSet"
-    sizes="sizes"
-    src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-    srcSet=""
-    style={
-      Object {
-        "visibility": "hidden",
-        "width": "100%",
-      }
-    }
-  />
-  <div
-    style={
-      Object {
-        "background": "white",
-        "height": "100%",
-        "left": 0,
-        "position": "absolute",
-        "top": 0,
-        "transition": "all 1s linear 0s",
+        "transition": "1s all",
         "width": "100%",
       }
     }
@@ -227,7 +180,7 @@ exports[`SimpleImg should render only span when place holder src is not supplied
         "left": 0,
         "position": "absolute",
         "top": 0,
-        "transition": "all 1s linear 0s",
+        "transition": "1s all",
         "width": "100%",
       }
     }
@@ -274,7 +227,7 @@ exports[`SimpleImg should render out as image data 1`] = `
         "left": 0,
         "position": "absolute",
         "top": 0,
-        "transition": "all 1s linear 0s",
+        "transition": "1s all",
         "width": "100%",
       }
     }
@@ -293,23 +246,12 @@ ShallowWrapper {
         "opacity": 0,
       }
     }
-    appendImageRef={[MockFunction]}
     className="className"
     importance="low"
-    mountedImages={
-      Set {
-        1,
-        2,
-        3,
-      }
-    }
     placeholder="white"
-    removeImageRef={[MockFunction]}
-    removeImgLoadingRef={[MockFunction]}
     sizes="sizes"
     src="src"
     srcSet="srcSet"
-    useContext={true}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -472,7 +414,7 @@ exports[`SimpleImg should render out placeholder as image 1`] = `
         "left": 0,
         "position": "absolute",
         "top": 0,
-        "transition": "all 1s linear 0s",
+        "transition": "1s all",
         "width": "100%",
       }
     }

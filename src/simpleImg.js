@@ -128,6 +128,7 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
     const inlineStyle = {
       ...commonStyle,
       ...(!isValidImgSrc ? { background: placeholder } : null),
+      transition: `${animationDuration}s all`,
     };
     const imgPlaceholder = isValidImgSrc ? placeholder : defaultImgPlaceholder;
     const isSrcSetFulfilled = this.element.current && this.element.current.src !== imgPlaceholder;

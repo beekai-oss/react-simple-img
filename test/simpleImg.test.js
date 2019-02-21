@@ -1,11 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { shallow, mount } from 'enzyme';
-import SimpleImgWithProvider, { SimpleImg } from '../src/simpleImg';
-
-const appendImageRef = jest.fn();
-const removeImageRef = jest.fn();
-const removeImgLoadingRef = jest.fn();
+import SimpleImg from '../src/simpleImg';
 
 const props = {
   src: 'src',
@@ -15,11 +11,6 @@ const props = {
   srcSet: 'srcSet',
   animationDuration: 1,
   animationEndStyle: { opacity: 0 },
-  useContext: true,
-  appendImageRef,
-  removeImageRef,
-  removeImgLoadingRef,
-  mountedImages: new Set([1, 2, 3]),
 };
 const addEventListener = window.addEventListener;
 const removeEventListener = window.removeEventListener;
@@ -40,11 +31,6 @@ describe('SimpleImg', () => {
     window.addEventListener = addEventListener;
     window.removeEventListener = removeEventListener;
     window.__REACT_SIMPLE_IMG__ = undefined;
-  });
-
-  it('should render correctly with context consumer', () => {
-    const tree = renderer.create(<SimpleImgWithProvider {...props} />);
-    expect(tree).toMatchSnapshot();
   });
 
   it('should render correctly', () => {
@@ -84,26 +70,6 @@ describe('SimpleImg', () => {
     const { placeholder, ...omitProps } = props;
     const tree = renderer.create(<SimpleImg {...omitProps} />);
     expect(tree).toMatchSnapshot();
-  });
-
-  it('should append image ref when image mounted', () => {
-    const tree = mount(<SimpleImg {...props} />);
-    const instance = tree.instance();
-    instance.element = {
-      current: 1,
-    };
-    tree.setProps({
-      isContextDocumentLoad: true,
-    });
-    expect(appendImageRef).toHaveBeenCalled();
-    expect(removeImgLoadingRef).toHaveBeenCalled();
-  });
-
-  it('should remove item from observer when component removed', () => {
-    const tree = shallow(<SimpleImg {...props} />);
-    tree.instance().element.current = {};
-    tree.unmount();
-    expect(removeImageRef).toHaveBeenCalled();
   });
 
   it('should remove window object reference when component removed', () => {
@@ -205,49 +171,5 @@ describe('SimpleImg', () => {
     };
     const tree = mount(<SimpleImg {...props} />);
     expect(tree.state('isCached')).toBeTruthy();
-  });
-
-  describe('when using context API', () => {
-    it('should set loaded to be true when mounted images contain the element', () => {
-      jest.useFakeTimers();
-      const removeImageRefSpy = jest.fn();
-      const tree = shallow(
-        <SimpleImg {...{ ...props, removeImageRef: removeImageRefSpy, mountedImages: new Set([1, 2, 3]) }} />,
-      );
-      const instance = tree.instance();
-      instance.element.current = 2;
-      tree.setProps({
-        removeImageRef: removeImageRefSpy,
-      });
-
-      jest.runOnlyPendingTimers();
-      expect(removeImageRefSpy).toBeCalled();
-      expect(tree.state('loaded')).toBeTruthy();
-    });
-
-    it('should remove image ref when component update and finished loaded with context', () => {
-      const removeImageRefSpy = jest.fn();
-      window.__REACT_SIMPLE_IMG__ = {
-        observer: {
-          observe: () => {},
-        },
-      };
-
-      const tree = shallow(
-        <SimpleImg
-          {...{ ...props, mountedImages: new Set([1]), removeImageRef: removeImageRefSpy }}
-        />,
-      );
-      const instance = tree.instance();
-      instance.element = {
-        current: 1,
-      };
-
-      tree.setState({
-        isDocumentLoad: true,
-      });
-
-      expect(removeImageRefSpy).toBeCalled();
-    });
   });
 });

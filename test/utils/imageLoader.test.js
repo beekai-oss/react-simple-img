@@ -112,18 +112,4 @@ describe('imageLoader', () => {
     expect(fetchImage).toHaveBeenCalled();
     expect(applyImage).not.toHaveBeenCalled();
   });
-
-  it('should unobserve the image and append image as loading ref when this is provided', () => {
-    const unobserve = jest.fn();
-    const appendImgLoadingRef = jest.fn();
-    imageLoader.apply({
-      observer: {
-        unobserve,
-      },
-      appendImgLoadingRef,
-    });
-
-    expect(unobserve).toBeCalled();
-    expect(appendImgLoadingRef).toBeCalled();
-  });
 });

@@ -20,11 +20,5 @@ export type Props = {
   style?: Style,
   animationDuration?: number,
   animationEndStyle?: Style,
-  useContext: boolean,
-  isContextDocumentLoad: boolean,
-  mountedImages: Set<any>,
-  appendImageRef: HTMLElement => void,
-  removeImageRef: HTMLElement => void,
-  removeImgLoadingRef: HTMLElement => void,
   importance?: 'low' | 'high',
 };
