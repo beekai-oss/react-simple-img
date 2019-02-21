@@ -39,9 +39,9 @@ Image component working similar with standard `img` tag and with the following p
 | `src`               | string  |    ✓     | The large image source                                                                                                                                                                                             |
 | `srcSet`            | string  |          | eg: `large.jpg 2x, small.jpg` <br /><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images" target="_blank">Reference for examples</a>                            |
 | `sizes`             | string  |          | eg: `(max-width: 320px) 280px, (max-width: 480px) 440px` <br /><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images" target="_blank">Reference for examples</a> |
-| `importance`        | string  |          | Priority Hints with "low" or "auto": set to "auto" will load image after <b>load</b> event, otherwise "low" will load images after <b>load</b> event and lazy load with <b>intersection observer</b>                                  |
+| `importance`        | string  |          | Priority Hints with "low" or "auto": set to "auto" will load image after <b>load</b> event, otherwise "low" will load images after <b>load</b> event and lazy load with <b>intersection observer</b>               |
 | `placeholder`       | string  |          | Placeholder image source (svg, jpg, png...) or css color value (`white, linear-gradient(blue, pink)`), set to `false` will remove the wrapper and placeholder. (Note: aspect ratio will not work by that too)      |
-| `applyAspectRatio`  | boolean |          | Image will scale automatically with aspect ratio. Note: width and height will need to be supplied                                                                                                                 |
+| `applyAspectRatio`  | boolean |          | Image will scale automatically with aspect ratio. Note: width and height will need to be supplied                                                                                                                  |
 | `animationDuration` | number  |          | animation duration in seconds <br />passed as `durationSeconds` to [react-simple-animate](https://github.com/bluebill1049/react-simple-animate#api)                                                                |
 | `animationEndStyle` | Object  |          | style to transition to <br />passed as `endStyle` to [react-simple-animate](https://github.com/bluebill1049/react-simple-animate#api)                                                                              |
 
@@ -79,39 +79,3 @@ Arguments
 
 
      - if you want to disable the reveal animation after image have been cached
-
-#### 🔗 `SimpleImgProvider([Component], [config])` <b>optional</b>
-
-This high order component will connect all your `SimpleImg` to be observed per section, and **overwrite global config by
-`initSimpleImg()`**.
-
-Arguments
-
-- **Component**: (Component) react component
-
-- **config**: (Object) this argument is optional (same as `initSimpleImg` config argument)
-
-## Advance Example
-
-Set up intersection observer config at page level with `SimpleImgProvider`
-
-```jsx
-import { SimpleImg, SimpleImgProvider } from 'react-simple-img';
-
-export default () => (
-  <SimpleImgProvider
-    config={{
-      threshold: [0.5], // load image when 50 percentage of image in the view port
-    }}
-  >
-    // placeholder background color example
-    <SimpleImg
-      height={500}
-      placeholder="linear-gradient(rgb(30, 87, 153) 0%, rgb(125, 185, 232) 100%)"
-      src="your image path"
-    />
-    // placeholder background image example
-    <SimpleImg height={500} placeholder="your placeholder svg or image path" src="your image path" />
-  </SimpleImgProvider>
-);
-```
