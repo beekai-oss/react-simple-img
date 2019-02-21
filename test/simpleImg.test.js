@@ -203,7 +203,7 @@ describe('SimpleImg', () => {
     window.__REACT_SIMPLE_IMG__ = {
       disableAnimateCachedImg: true,
     };
-    const tree = shallow(<SimpleImg {...props} />);
+    const tree = mount(<SimpleImg {...props} />);
     expect(tree.state('isCached')).toBeTruthy();
   });
 

@@ -18,6 +18,7 @@ exports[`SimpleImg should apply aspect ratio when height and width is supplied 1
 >
   <img
     alt="alt"
+    data-end-style="opacity:0;"
     data-src="src"
     data-srcset="srcSet"
     sizes="sizes"
@@ -64,6 +65,7 @@ exports[`SimpleImg should render background color 1`] = `
 >
   <img
     alt="alt"
+    data-end-style="opacity:0;"
     data-src="src"
     data-srcset="srcSet"
     sizes="sizes"
@@ -110,6 +112,7 @@ exports[`SimpleImg should render correctly 1`] = `
 >
   <img
     alt="alt"
+    data-end-style="opacity:0;"
     data-src="src"
     data-srcset="srcSet"
     sizes="sizes"
@@ -156,6 +159,7 @@ exports[`SimpleImg should render correctly with context consumer 1`] = `
 >
   <img
     alt="alt"
+    data-end-style="opacity:0;"
     data-src="src"
     data-srcset="srcSet"
     sizes="sizes"
@@ -202,6 +206,7 @@ exports[`SimpleImg should render only span when place holder src is not supplied
 >
   <img
     alt="alt"
+    data-end-style="opacity:0;"
     data-src="src"
     data-srcset="srcSet"
     sizes="sizes"
@@ -248,6 +253,7 @@ exports[`SimpleImg should render out as image data 1`] = `
 >
   <img
     alt="alt"
+    data-end-style="opacity:0;"
     data-src="src"
     data-srcset="srcSet"
     sizes="sizes"
@@ -260,11 +266,11 @@ exports[`SimpleImg should render out as image data 1`] = `
     }
   />
   <img
-    alt="alt"
     sizes="sizes"
     src="data:image//test"
     style={
       Object {
+        "height": "100%",
         "left": 0,
         "position": "absolute",
         "top": 0,
@@ -297,6 +303,7 @@ ShallowWrapper {
         3,
       }
     }
+    placeholder="white"
     removeImageRef={[MockFunction]}
     removeImgLoadingRef={[MockFunction]}
     sizes="sizes"
@@ -444,6 +451,7 @@ exports[`SimpleImg should render out placeholder as image 1`] = `
 >
   <img
     alt="alt"
+    data-end-style="opacity:0;"
     data-src="src"
     data-srcset="srcSet"
     sizes="sizes"
@@ -456,11 +464,11 @@ exports[`SimpleImg should render out placeholder as image 1`] = `
     }
   />
   <img
-    alt="alt"
     sizes="sizes"
     src="/test/image.jpg"
     style={
       Object {
+        "height": "100%",
         "left": 0,
         "position": "absolute",
         "top": 0,
