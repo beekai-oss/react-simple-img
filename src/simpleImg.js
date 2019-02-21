@@ -85,7 +85,6 @@ export class SimpleImg extends React.PureComponent<Props, State> {
     if (cachedImagesRefString && window.__REACT_SIMPLE_IMG__ && window.__REACT_SIMPLE_IMG__.disableAnimateCachedImg) {
       const cachedImagesRef = JSON.parse(cachedImagesRefString);
 
-      window.sessionStorage.setItem('__REACT_SIMPLE_IMG__', JSON.stringify(cachedImagesRef));
       if (cachedImagesRef[this.props.src]) {
         this.setState({
           isCached: true,
