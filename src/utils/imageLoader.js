@@ -11,15 +11,10 @@ export default function imageLoader(target: any, withObserver: boolean = true) {
     const image = new Image(); // eslint-disable-line no-undef
 
     if (withObserver) {
-      if (this) {
-        this.observer.unobserve(target);
-        this.appendImgLoadingRef(image);
-      } else {
-        const { observer, imgLoadingRefs } = window.__REACT_SIMPLE_IMG__;
+      const { observer, imgLoadingRefs } = window.__REACT_SIMPLE_IMG__;
 
-        observer.unobserve(target);
-        imgLoadingRefs.set(target, image);
-      }
+      observer.unobserve(target);
+      imgLoadingRefs.set(target, image);
     }
 
     const src = filterImgSrc(target);
@@ -35,9 +30,11 @@ export default function imageLoader(target: any, withObserver: boolean = true) {
 
     fetchImage(image, src)
       .then(() => {
-        applyImage.apply(this, [target, image, src]);
-        if (window.__REACT_SIMPLE_IMG__ && window.__REACT_SIMPLE_IMG__.disableAnimateCachedImg) {
-          updateSessionStorage(src);
+        if (target) {
+          applyImage(target, image, src);
+          if (window.__REACT_SIMPLE_IMG__ && window.__REACT_SIMPLE_IMG__.disableAnimateCachedImg) {
+            updateSessionStorage(src);
+          }
         }
       })
       .catch(e => {

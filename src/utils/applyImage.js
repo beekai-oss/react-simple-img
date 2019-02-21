@@ -10,35 +10,26 @@ function applyStyle(target, endStyle, withoutPlaceholder) {
 }
 
 export default function applyImage(target: any, image: Image, src: string) {
-  if (this) {
-    this.setState(previousState => ({
-      mountedImages: new Set(previousState.mountedImages.add(target)),
-    }));
-    this.removeImgLoadingRef(image);
-  } else {
-    if (!target) return;
-
-    /* eslint-disable */
-    target.src = src;
-    if (target.dataset.srcset) {
-      target.srcset = target.dataset.srcset;
-    }
-
-    target.style.visibility = 'visible';
-
-    const withoutPlaceholder = target.getAttribute('data-placeholder') === 'false';
-    /* eslint-enable */
-    const currentTarget = withoutPlaceholder ? target : target.nextSibling;
-
-    if (currentTarget || withoutPlaceholder) {
-      target.addEventListener('load', () => {
-        if (target) {
-          const endStyle = target.getAttribute('data-end-style') || '';
-          applyStyle(currentTarget, endStyle, withoutPlaceholder);
-          target.removeEventListener('load', applyStyle);
-        }
-      });
-    }
-    window.__REACT_SIMPLE_IMG__.imgLoadingRefs.delete(target);
+  /* eslint-disable */
+  target.src = src;
+  if (target.dataset.srcset) {
+    target.srcset = target.dataset.srcset;
   }
+
+  target.style.visibility = 'visible';
+
+  const withoutPlaceholder = target.getAttribute('data-placeholder') === 'false';
+  /* eslint-enable */
+  const currentTarget = withoutPlaceholder ? target : target.nextSibling;
+
+  if (currentTarget || withoutPlaceholder) {
+    target.addEventListener('load', () => {
+      if (target) {
+        const endStyle = target.getAttribute('data-end-style') || '';
+        applyStyle(currentTarget, endStyle, withoutPlaceholder);
+        target.removeEventListener('load', applyStyle);
+      }
+    });
+  }
+  window.__REACT_SIMPLE_IMG__.imgLoadingRefs.delete(target);
 }

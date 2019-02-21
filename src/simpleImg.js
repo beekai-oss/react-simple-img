@@ -1,8 +1,6 @@
 // @flow
 import React from 'react';
-import { Animate } from 'react-simple-animate';
 import validImgSrc from './utils/validImgSrc';
-import { SimpleImgContext } from './simpleImgProvider';
 import initSimpleImg from './initSimpleImg';
 import imageLoader from './utils/imageLoader';
 import convertStyleIntoString from './utils/convertStyleIntoString';
@@ -19,7 +17,7 @@ import {
 } from './constants';
 import getAspectRatio from './logic/getAspectRatio';
 
-export class SimpleImg extends React.PureComponent<Props, State> {
+export default class SimpleImg extends React.PureComponent<Props, State> {
   static defaultProps = {
     animationDuration: 0.3,
     importance: 'low',
@@ -36,7 +34,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
 
   constructor(props: Props) {
     super(props);
-    if (typeof window !== 'undefined' && !props.useContext && !window.__REACT_SIMPLE_IMG__) {
+    if (typeof window !== 'undefined' && !window.__REACT_SIMPLE_IMG__) {
       initSimpleImg();
     }
   }
@@ -71,37 +69,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
   }
 
   componentDidUpdate(prevProps: Props, prevState: State) {
-    const {
-      appendImageRef,
-      useContext,
-      removeImageRef,
-      mountedImages,
-      removeImgLoadingRef,
-      isContextDocumentLoad,
-      src,
-    } = this.props;
-    const element = this.element.current;
-
-    if (useContext) {
-      if (
-        ((!prevProps.isContextDocumentLoad && isContextDocumentLoad) ||
-          (!prevState.isDocumentLoad && this.state.isDocumentLoad)) &&
-        element
-      ) {
-        appendImageRef(element);
-        removeImgLoadingRef(element);
-      }
-
-      if (element && mountedImages.has(element)) {
-        setTimeout(() =>
-          this.setState({
-            loaded: true,
-          }),
-        );
-        removeImageRef(element);
-      }
-      return;
-    }
+    const { src } = this.props;
 
     if (window.__REACT_SIMPLE_IMG__ && !prevState.isDocumentLoad && this.state.isDocumentLoad) {
       this.triggerImageLoadOrObserver();
@@ -115,20 +83,14 @@ export class SimpleImg extends React.PureComponent<Props, State> {
   componentWillUnmount() {
     window.removeEventListener('load', this.setDocumentLoaded);
     if (!this.element.current) return;
-    const { removeImgLoadingRef, removeImageRef, useContext } = this.props;
     const element = this.element.current;
 
-    if (useContext && element) {
-      removeImgLoadingRef(element);
-      removeImageRef(element);
-    } else if (window.__REACT_SIMPLE_IMG__) {
-      const { observer, imgLoadingRefs } = window.__REACT_SIMPLE_IMG__;
-      observer.unobserve(element);
+    const { observer, imgLoadingRefs } = window.__REACT_SIMPLE_IMG__;
+    observer.unobserve(element);
 
-      if (imgLoadingRefs.has(element)) {
-        imgLoadingRefs.get(element).src = '';
-        imgLoadingRefs.delete(element);
-      }
+    if (imgLoadingRefs.has(element)) {
+      imgLoadingRefs.get(element).src = '';
+      imgLoadingRefs.delete(element);
     }
   }
 
@@ -169,16 +131,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
     };
     const imgPlaceholder = isValidImgSrc ? placeholder : defaultImgPlaceholder;
     const isSrcSetFulfilled = this.element.current && this.element.current.src !== imgPlaceholder;
-    const {
-      useContext,
-      isContextDocumentLoad,
-      mountedImages,
-      appendImageRef,
-      removeImageRef,
-      removeImgLoadingRef,
-      importance,
-      ...restImgProps
-    } = restProps;
+    const { importance, ...restImgProps } = restProps;
     const heightWidth = {
       ...(height ? { height: style.height || height } : null),
       ...(width ? { width: style.width || width } : null),
@@ -215,9 +168,9 @@ export class SimpleImg extends React.PureComponent<Props, State> {
             ...(isCached
               ? null
               : {
-                transition: `${animationDuration}s all`,
-                opacity: 0,
-              }),
+                  transition: `${animationDuration}s all`,
+                  opacity: 0,
+                }),
           }}
           className={className}
           {...heightWidth}
@@ -272,29 +225,8 @@ export class SimpleImg extends React.PureComponent<Props, State> {
           }}
           {...imageProps}
         />
-        <Animate
-          play={loaded}
-          durationSeconds={animationDuration}
-          endStyle={{
-            ...inlineStyle,
-            ...animationEndStyle,
-            ...heightWidth,
-          }}
-          render={({ style: animateStyle }) => {
-            const combinedStyle = { ...inlineStyle, ...animateStyle };
-
-            return isValidImgSrc ? (
-              <img style={combinedStyle} src={placeholder} {...restImgProps} />
-            ) : (
-              <div style={combinedStyle} />
-            );
-          }}
-        />
+        {isValidImgSrc ? <img style={inlineStyle} src={placeholder} {...restImgProps} /> : <div style={inlineStyle} />}
       </div>
     );
   }
 }
-
-export default (props: Props) => (
-  <SimpleImgContext.Consumer>{values => <SimpleImg {...{ ...props, ...values }} />}</SimpleImgContext.Consumer>
-);

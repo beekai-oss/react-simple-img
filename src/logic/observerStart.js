@@ -1,6 +1,6 @@
 // @flow
 import imageLoader from '../utils/imageLoader';
-import type { Config } from '../simpleImgProvider';
+import type { Config } from '../initSimpleImg';
 
 export const defaultConfig = {
   rootMargin: '0px 0px',
@@ -11,7 +11,7 @@ export function onIntersection(entries: Array<{ intersectionRatio: number, targe
   for (let i = 0, len = entries.length; i < len; i++) {
     const { intersectionRatio, target } = entries[i];
     if (intersectionRatio > 0) {
-      imageLoader.call(this, target);
+      imageLoader(target);
     }
   }
 }
@@ -19,7 +19,7 @@ export function onIntersection(entries: Array<{ intersectionRatio: number, targe
 export default function observerStart(config: Config = defaultConfig, disableAnimateCachedImg: boolean = false) {
   if (!window.IntersectionObserver) require('intersection-observer');
   // $FlowIgnoreLine:
-  const observer = new IntersectionObserver(entries => onIntersection.call(this, entries), config);
+  const observer = new IntersectionObserver(entries => onIntersection(entries), config);
   if (this) return observer;
 
   window.__REACT_SIMPLE_IMG__ = {
