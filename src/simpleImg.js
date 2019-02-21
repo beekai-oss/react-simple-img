@@ -33,7 +33,7 @@ type Props = {
   appendImageRef: HTMLElement => void,
   removeImageRef: HTMLElement => void,
   removeImgLoadingRef: HTMLElement => void,
-  importance?: 'low' | 'high',
+  importance?: 'low' | 'auto',
 };
 
 const commonStyle = {
@@ -96,7 +96,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
     }
 
     if (window.__REACT_SIMPLE_IMG__ && document.readyState === 'complete') {
-      if (this.props.importance === 'high') {
+      if (this.props.importance === 'auto') {
         imageLoader(this.element.current, false);
       } else {
         window.__REACT_SIMPLE_IMG__.observer.observe(this.element.current);
@@ -143,7 +143,7 @@ export class SimpleImg extends React.PureComponent<Props, State> {
     }
 
     if (window.__REACT_SIMPLE_IMG__ && !prevState.isDocumentLoad && this.state.isDocumentLoad) {
-      if (importance === 'high') {
+      if (importance === 'auto') {
         imageLoader(this.element.current, false);
       } else {
         window.__REACT_SIMPLE_IMG__.observer.observe(element);
