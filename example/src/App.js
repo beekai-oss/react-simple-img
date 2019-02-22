@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { SimpleImg } from 'react-simple-img';
+import { Image } from 'react-simple-img';
 import Logo from './logo.png';
 import svg1 from './wallpapers/Isles.svg';
 import svg2 from './wallpapers/Lake.svg';
@@ -14,7 +14,7 @@ import image4 from './wallpapers/Pink-Forest.jpg';
 import image5 from './wallpapers/Snow.jpg';
 import image6 from './wallpapers/Lion.jpg';
 // use provider example below
-// import { SimpleImg, SimpleImgProvider } from 'react-simple-img';
+// import { Image, SimpleImgProvider } from 'react-simple-img';
 import './App.css';
 
 const images = [
@@ -70,11 +70,11 @@ class App extends PureComponent {
     return (
       <div className="App">
         <header className="App-header">
-          <SimpleImg src={Logo} alt="logo" height={150} />
+          <Image src={Logo} alt="logo" height={150} />
         </header>
         <div className="App-container">
           {images.map((image, i) => (
-            <SimpleImg
+            <Image
               alt="whatever"
               key={i}
               placeholder={image.svg}

@@ -20,4 +20,5 @@ export type Props = {
   animationDuration?: number,
   animationEndStyle?: Style,
   importance?: 'low' | 'high',
+  onComplete?: () => void,
 };

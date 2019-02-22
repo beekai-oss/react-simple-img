@@ -25,6 +25,7 @@ export default function observerStart(config: Config = defaultConfig, disableAni
   window.__REACT_SIMPLE_IMG__ = {
     observer,
     imgLoadingRefs: new Map(),
+    callBackRefs: new Map(),
     disableAnimateCachedImg,
   };
 

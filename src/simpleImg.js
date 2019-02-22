@@ -83,13 +83,15 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
     if (!this.element.current) return;
     const element = this.element.current;
 
-    const { observer, imgLoadingRefs } = window.__REACT_SIMPLE_IMG__;
+    const { observer, imgLoadingRefs, callBackRefs } = window.__REACT_SIMPLE_IMG__;
     observer.unobserve(element);
 
     if (imgLoadingRefs.has(element)) {
       imgLoadingRefs.get(element).src = '';
       imgLoadingRefs.delete(element);
     }
+
+    callBackRefs.delete(element);
   }
 
   setDocumentLoaded = () => {
@@ -99,11 +101,16 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
   };
 
   triggerImageLoadOrObserver() {
-    if (this.props.importance === 'auto') {
+    const { importance, onComplete } = this.props;
+    const { observer, callBackRefs } = window.__REACT_SIMPLE_IMG__;
+
+    if (importance === 'auto') {
       imageLoader(this.element.current, false);
     } else {
-      window.__REACT_SIMPLE_IMG__.observer.observe(this.element.current);
+      observer.observe(this.element.current);
     }
+
+    callBackRefs.set(this.element.current, onComplete);
   }
 
   render() {
@@ -150,7 +157,6 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
       ...(isCached
         ? null
         : {
-            ref: this.element,
             ...(placeholder === false ? { 'data-placeholder': 'false' } : null),
             'data-src': src,
             'data-srcset': srcSet,

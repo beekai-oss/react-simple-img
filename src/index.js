@@ -1,7 +1,7 @@
-import Image from './simpleImg';
+import SimpleImg from './simpleImg';
 import initSimpleImg from './initSimpleImg';
 
 export {
   initSimpleImg,
-  Image,
+  SimpleImg,
 };
