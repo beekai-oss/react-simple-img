@@ -1,8 +1,8 @@
 import observerStart, { onIntersection } from '../../src/logic/observerStart';
 
-jest.mock('../../src/utils/imageLoader');
+jest.mock('../../src/logic/imageLoader');
 
-const imageLoader = require('../../src/utils/imageLoader').default;
+const imageLoader = require('../../src/logic/imageLoader').default;
 const imageLoaderSpy = jest.fn();
 imageLoader.mockImplementation(imageLoaderSpy);
 

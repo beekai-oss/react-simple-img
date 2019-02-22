@@ -2,7 +2,6 @@
 export type Style = { [string]: number | string };
 
 export type State = {
-  loaded: boolean,
   isDocumentLoad: boolean,
   isCached: boolean,
 };
@@ -20,11 +19,6 @@ export type Props = {
   style?: Style,
   animationDuration?: number,
   animationEndStyle?: Style,
-  useContext: boolean,
-  isContextDocumentLoad: boolean,
-  mountedImages: Set<any>,
-  appendImageRef: HTMLElement => void,
-  removeImageRef: HTMLElement => void,
-  removeImgLoadingRef: HTMLElement => void,
   importance?: 'low' | 'high',
+  onComplete?: () => void,
 };

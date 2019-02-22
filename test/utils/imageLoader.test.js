@@ -1,13 +1,13 @@
-import imageLoader from '../../src/utils/imageLoader';
-import fetchImage from '../../src/utils/fetchImage';
-import applyImage from '../../src/utils/applyImage';
+import imageLoader from '../../src/logic/imageLoader';
+import fetchImage from '../../src/logic/fetchImage';
+import applyImage from '../../src/logic/applyImage';
 
-jest.mock('../../src/logic/setImageHeight');
+jest.mock('../../src/utils/setImageHeight');
 jest.mock('../../src/logic/updateSessionStorage');
-jest.mock('../../src/utils/fetchImage');
-jest.mock('../../src/utils/applyImage');
+jest.mock('../../src/logic/fetchImage');
+jest.mock('../../src/logic/applyImage');
 jest.mock('../../src/utils/logError');
-jest.mock('../../src/logic/filterSrcset', () => () => true);
+jest.mock('../../src/utils/filterSrcset', () => () => true);
 
 describe('imageLoader', () => {
   beforeEach(() => {
@@ -111,19 +111,5 @@ describe('imageLoader', () => {
     await imageLoader({});
     expect(fetchImage).toHaveBeenCalled();
     expect(applyImage).not.toHaveBeenCalled();
-  });
-
-  it('should unobserve the image and append image as loading ref when this is provided', () => {
-    const unobserve = jest.fn();
-    const appendImgLoadingRef = jest.fn();
-    imageLoader.apply({
-      observer: {
-        unobserve,
-      },
-      appendImgLoadingRef,
-    });
-
-    expect(unobserve).toBeCalled();
-    expect(appendImgLoadingRef).toBeCalled();
   });
 });

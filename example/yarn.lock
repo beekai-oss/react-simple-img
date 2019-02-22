@@ -6518,18 +6518,12 @@ react-simple-animate@^2.0.0:
   resolved "https://registry.yarnpkg.com/react-simple-animate/-/react-simple-animate-2.0.1.tgz#af8828059d86e5686347cf4eac1419e2ecc02b5d"
   integrity sha512-B8K9FmTz6GyJvupE/k1b6TPGWS87+oghgvYBwxQVJtdEK/BRppaF9fnpSyx4jQlY3TwkKQ04ZdUenWyeYRoNiQ==
 
-react-simple-animate@^2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/react-simple-animate/-/react-simple-animate-2.5.0.tgz#f25c83bee1299367714fe5161f40e417120fd74e"
-  integrity sha512-e2GL46oVO0Y7CwuHEf1ZvLQt3wbJ5B9f5H+UkHXEvDDDkMMcCRz+w0DAWkz7icD0d+++1FfQt5MR9IBnYYMuAQ==
-
-react-simple-img@1.14.0-beta.2:
-  version "1.14.0-beta.2"
-  resolved "https://registry.yarnpkg.com/react-simple-img/-/react-simple-img-1.14.0-beta.2.tgz#7f2c9cc5d0e9910ec6a24a4cb5c3ba0c5b517d82"
-  integrity sha512-FnKK8aVDs6Xb/kAVM8kWiHq2foySDC4NYXrwnbzplfJtn3lmtyuRX4+Zcdx4rdLce0egsmbB90lSsbV0lVxtsw==
+react-simple-img@2.0.0-beta.1:
+  version "2.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/react-simple-img/-/react-simple-img-2.0.0-beta.1.tgz#9052a726ed0ac0ac29c3362e32ab43dc387c766d"
+  integrity sha512-Od7H9JNUPnPhiv1rTijp8dZLcoPk8EX0RrESsvanLbe3gQ3LGE0jMFppJ//SVtq19d/v/VrpJpSAgx9jpInmWg==
   dependencies:
     intersection-observer "^0.5.1"
-    react-simple-animate "^2.5.0"
 
 react@^16.5.1:
   version "16.5.1"

@@ -1,4 +1,4 @@
-import fetchImage from '../../src/utils/fetchImage';
+import fetchImage from '../../src/logic/fetchImage';
 
 describe('fetchImage', () => {
   it('should resolve when onload is triggered', async () => {
