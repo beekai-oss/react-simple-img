@@ -1,5 +1,5 @@
-import React, { PureComponent } from 'react';
-import { Image } from 'react-simple-img';
+import React from 'react';
+import { SimpleImg } from 'react-simple-img';
 import Logo from './logo.png';
 import svg1 from './wallpapers/Isles.svg';
 import svg2 from './wallpapers/Lake.svg';
@@ -13,8 +13,6 @@ import image3 from './wallpapers/Mountain-Range.jpg';
 import image4 from './wallpapers/Pink-Forest.jpg';
 import image5 from './wallpapers/Snow.jpg';
 import image6 from './wallpapers/Lion.jpg';
-// use provider example below
-// import { Image, SimpleImgProvider } from 'react-simple-img';
 import './App.css';
 
 const images = [
@@ -44,51 +42,26 @@ const images = [
   },
 ];
 
-class App extends PureComponent {
-  render() {
-    // Provider example here below, remove initSimpleImg in index.js
-    // return  <SimpleImgProvider>
-    //   <div className="App">
-    //     <header className="App-header">
-    //       <SimpleImg src={Logo} wrapperClassName="App-logo" alt="logo" backgroundColor="white" />
-    //     </header>
-    //     <div className="App-container">
-    //       {images.map((image, i) => (
-    //         <SimpleImg
-    //           alt="whatever"
-    //           key={i}
-    //           placeholder={image.svg}
-    //           animationDuration={3}
-    //           src={image.img}
-    //           height={500}
-    //         />
-    //       ))}
-    //     </div>
-    //   </div>
-    // </SimpleImgProvider>;
-
-    return (
-      <div className="App">
-        <header className="App-header">
-          <Image src={Logo} alt="logo" height={150} />
-        </header>
-        <div className="App-container">
-          {images.map((image, i) => (
-            <Image
-              alt="whatever"
-              key={i}
-              placeholder={image.svg}
-              animationDuration={3}
-              src={image.img}
-              applyAspectRatio
-              width={800}
-              height={500}
-            />
-          ))}
-        </div>
+export default function App() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <SimpleImg src={Logo} alt="logo" height={150} />
+      </header>
+      <div className="App-container">
+        {images.map((image, i) => (
+          <SimpleImg
+            alt="whatever"
+            key={i}
+            placeholder={image.svg}
+            animationDuration={3}
+            src={image.img}
+            applyAspectRatio
+            width={800}
+            height={500}
+          />
+        ))}
       </div>
-    );
-  }
+    </div>
+  );
 }
-
-export default App;
