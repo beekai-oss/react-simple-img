@@ -1,6 +1,6 @@
 {
   "name": "react-simple-img",
-  "version": "2.0.0-beta.1",
+  "version": "2.0.0-beta.2",
   "description": "react simple img",
   "main": "lib/index.js",
   "keywords": [
@@ -24,6 +24,7 @@
     "flow": "flow"
   },
   "repository": "https://github.com/bluebill1049/react-simple-img.git",
+  "homepage": "https://react-simple-img.now.sh",
   "author": "beier luo",
   "license": "Mit",
   "bugs": {
