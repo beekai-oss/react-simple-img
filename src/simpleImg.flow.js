@@ -2,7 +2,6 @@
 export type Style = { [string]: number | string };
 
 export type State = {
-  loaded: boolean,
   isDocumentLoad: boolean,
   isCached: boolean,
 };

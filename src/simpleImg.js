@@ -16,6 +16,7 @@ import {
   wrapperCommonStyle,
 } from './constants';
 import getAspectRatio from './utils/getAspectRatio';
+import logError from './utils/logError';
 
 export default class SimpleImg extends React.PureComponent<Props, State> {
   static defaultProps = {
@@ -25,7 +26,6 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
   };
 
   state: State = {
-    loaded: false,
     isDocumentLoad: false,
     isCached: false,
   };
@@ -49,13 +49,17 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
       window.__REACT_SIMPLE_IMG__.disableAnimateCachedImg &&
       !this.element.current.getAttribute('data-from-server')
     ) {
-      const cachedImagesRef = JSON.parse(cachedImagesRefString);
+      try {
+        const cachedImagesRef = JSON.parse(cachedImagesRefString);
 
-      if (cachedImagesRef[src]) {
-        this.setState({
-          isCached: true,
-        });
-        return;
+        if (cachedImagesRef[src]) {
+          this.setState({
+            isCached: true,
+          });
+          return;
+        }
+      } catch (e) {
+        logError(`JSON parsing is broken ${e}`);
       }
     }
 
@@ -69,14 +73,8 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
   }
 
   componentDidUpdate(prevProps: Props, prevState: State) {
-    const { src } = this.props;
-
     if (window.__REACT_SIMPLE_IMG__ && !prevState.isDocumentLoad && this.state.isDocumentLoad) {
       this.triggerImageLoadOrObserver();
-    } else if (src !== prevProps.src) {
-      this.setState({
-        loaded: true,
-      });
     }
   }
 
@@ -123,7 +121,7 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
       style = {},
       ...restProps
     } = this.props;
-    const { loaded, isCached } = this.state;
+    const { isCached } = this.state;
     const isValidImgSrc = validImgSrc(placeholder);
     const inlineStyle = {
       ...commonStyle,
@@ -146,8 +144,8 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
     const animationEndStyleString = convertStyleIntoString(animationEndStyle);
     const imageProps = {
       alt,
-      src: loaded || isCached ? src : imgPlaceholder,
-      srcSet: loaded || isCached ? srcSet : '',
+      src: isCached ? src : imgPlaceholder,
+      srcSet: isCached ? srcSet : '',
       ...(typeof window === 'undefined' ? { 'data-from-server': 'yes' } : null),
       ...(isCached
         ? null
@@ -221,7 +219,7 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
         <img
           style={{
             ...(isHeightAndWidthNotSet ? expendWidth : heightWidth),
-            ...(!isValidImgSrc && !loaded && !isSrcSetFulfilled ? hiddenStyle : {}),
+            ...(!isValidImgSrc && !isSrcSetFulfilled ? hiddenStyle : {}),
             ...(shouldUseAspectRatio ? aspectRatioChildStyle : null),
           }}
           {...imageProps}

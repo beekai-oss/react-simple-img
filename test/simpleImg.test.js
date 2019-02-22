@@ -137,26 +137,6 @@ describe('SimpleImg', () => {
     expect(deleteSpy).toBeCalled();
   });
 
-  it('should remove image ref when component update and finished loaded with context', () => {
-    window.__REACT_SIMPLE_IMG__ = {
-      observer: {
-        observe: () => {},
-      },
-    };
-
-    const tree = shallow(<SimpleImg {...{ ...props, mountedImages: new Set([1]), useContext: false }} />);
-    const instance = tree.instance();
-    instance.element = {
-      current: 1,
-    };
-
-    tree.setProps({
-      src: 'test',
-    });
-
-    expect(tree.state('loaded')).toBeTruthy();
-  });
-
   it('should set state to be is cached when image ref is stored in sessionStorage', () => {
     window.sessionStorage.setItem('__REACT_SIMPLE_IMG__', JSON.stringify({ src: 'test' }));
     window.__REACT_SIMPLE_IMG__ = {
