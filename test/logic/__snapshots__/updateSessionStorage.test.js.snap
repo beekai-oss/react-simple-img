@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`updateSessionStorage should update session storage 1`] = `
+Array [
+  "test",
+]
+`;
