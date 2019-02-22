@@ -2,12 +2,12 @@ import imageLoader from '../../src/logic/imageLoader';
 import fetchImage from '../../src/logic/fetchImage';
 import applyImage from '../../src/logic/applyImage';
 
-jest.mock('../../src/logic/setImageHeight');
+jest.mock('../../src/utils/setImageHeight');
 jest.mock('../../src/logic/updateSessionStorage');
-jest.mock('../../src/utils/fetchImage');
-jest.mock('../../src/utils/applyImage');
+jest.mock('../../src/logic/fetchImage');
+jest.mock('../../src/logic/applyImage');
 jest.mock('../../src/utils/logError');
-jest.mock('../../src/logic/filterSrcset', () => () => true);
+jest.mock('../../src/utils/filterSrcset', () => () => true);
 
 describe('imageLoader', () => {
   beforeEach(() => {
