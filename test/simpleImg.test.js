@@ -39,14 +39,6 @@ describe('SimpleImg', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('should render out cached img', () => {
-    const tree = shallow(<SimpleImg {...props} />);
-    tree.setState({
-      isCached: true,
-    });
-    expect(tree).toMatchSnapshot();
-  });
-
   it('should apply aspect ratio when height and width is supplied', () => {
     const tree = renderer.create(<SimpleImg {...{ ...props, applyAspectRatio: true }} />);
     expect(tree).toMatchSnapshot();
