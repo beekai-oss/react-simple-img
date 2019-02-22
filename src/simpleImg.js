@@ -105,7 +105,7 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
     const { observer, callBackRefs } = window.__REACT_SIMPLE_IMG__;
 
     if (importance === 'auto') {
-      imageLoader(this.element.current, false);
+      imageLoader(this.element.current);
     } else {
       observer.observe(this.element.current);
     }
@@ -137,7 +137,7 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
     };
     const imgPlaceholder = isValidImgSrc ? placeholder : defaultImgPlaceholder;
     const isSrcSetFulfilled = this.element.current && this.element.current.src !== imgPlaceholder;
-    const { importance, ...restImgProps } = restProps;
+    const { importance, onComplete, ...restImgProps } = restProps;
     const heightWidth = {
       ...(height ? { height: style.height || height } : null),
       ...(width ? { width: style.width || width } : null),
@@ -157,6 +157,7 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
       ...(isCached
         ? null
         : {
+            ref: this.element,
             ...(placeholder === false ? { 'data-placeholder': 'false' } : null),
             'data-src': src,
             'data-srcset': srcSet,

@@ -31,12 +31,18 @@ export default function imageLoader(target: any) {
           applyImage(target, image, src);
 
           if (!window.__REACT_SIMPLE_IMG__) return;
+          const { disableAnimateCachedImg, callBackRefs } = window.__REACT_SIMPLE_IMG__;
 
-          if (window.__REACT_SIMPLE_IMG__.disableAnimateCachedImg) {
+          if (disableAnimateCachedImg) {
             updateSessionStorage(src);
           }
-          window.__REACT_SIMPLE_IMG__.callBackRefs.get(target)();
-          window.__REACT_SIMPLE_IMG__.callBackRefs.delete(target);
+
+          const callback = callBackRefs.get(target);
+
+          if (callback) {
+            callback();
+            callBackRefs.delete(target);
+          }
         }
       })
       .catch(e => {
