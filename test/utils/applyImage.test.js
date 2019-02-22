@@ -1,4 +1,4 @@
-import applyImage from '../../src/utils/applyImage';
+import applyImage from '../../src/logic/applyImage';
 
 describe('applyImage', () => {
   it('should update mount images state when applyImage is called', () => {

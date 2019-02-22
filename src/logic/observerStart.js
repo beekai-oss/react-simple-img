@@ -1,5 +1,5 @@
 // @flow
-import imageLoader from '../utils/imageLoader';
+import imageLoader from './imageLoader';
 import type { Config } from '../initSimpleImg';
 
 export const defaultConfig = {

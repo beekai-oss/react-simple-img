@@ -2,7 +2,7 @@
 import React from 'react';
 import validImgSrc from './utils/validImgSrc';
 import initSimpleImg from './initSimpleImg';
-import imageLoader from './utils/imageLoader';
+import imageLoader from './logic/imageLoader';
 import convertStyleIntoString from './utils/convertStyleIntoString';
 import type { State, Props } from './simpleImg.flow';
 import {
@@ -15,7 +15,7 @@ import {
   aspectRatioChildStyle,
   wrapperCommonStyle,
 } from './constants';
-import getAspectRatio from './logic/getAspectRatio';
+import getAspectRatio from './utils/getAspectRatio';
 
 export default class SimpleImg extends React.PureComponent<Props, State> {
   static defaultProps = {

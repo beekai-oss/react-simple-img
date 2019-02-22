@@ -1,6 +1,6 @@
-import imageLoader from '../../src/utils/imageLoader';
-import fetchImage from '../../src/utils/fetchImage';
-import applyImage from '../../src/utils/applyImage';
+import imageLoader from '../../src/logic/imageLoader';
+import fetchImage from '../../src/logic/fetchImage';
+import applyImage from '../../src/logic/applyImage';
 
 jest.mock('../../src/logic/setImageHeight');
 jest.mock('../../src/logic/updateSessionStorage');

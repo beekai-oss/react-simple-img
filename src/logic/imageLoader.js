@@ -1,10 +1,10 @@
 // @flow
-import filterImgSrc from '../logic/filterSrcset';
+import filterImgSrc from '../utils/filterSrcset';
 import fetchImage from './fetchImage';
 import applyImage from './applyImage';
-import logError from './logError';
-import setImageHeight from '../logic/setImageHeight';
-import updateSessionStorage from '../logic/updateSessionStorage';
+import logError from '../utils/logError';
+import setImageHeight from '../utils/setImageHeight';
+import updateSessionStorage from './updateSessionStorage';
 
 export default function imageLoader(target: any, withObserver: boolean = true) {
   try {

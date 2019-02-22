@@ -1,6 +1,6 @@
 // @flow
-import parseSrcset from '../utils/parseSrcset';
-import findClosestDpr from '../utils/findClosestDpr';
+import parseSrcset from './parseSrcset';
+import findClosestDpr from './findClosestDpr';
 
 export default function filterImgSrc({ dataset: { src, srcset } }: any) {
   if (!srcset) return src;

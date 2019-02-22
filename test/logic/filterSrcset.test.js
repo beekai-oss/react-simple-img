@@ -1,4 +1,4 @@
-import filterImgSrc from '../../src/logic/filterSrcset';
+import filterImgSrc from '../../src/utils/filterSrcset';
 import findClosestDpr from '../../src/utils/findClosestDpr';
 
 jest.mock('../../src/utils/findClosestDpr');
