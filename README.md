@@ -14,7 +14,7 @@
 - Responsive with placeholders and animations
 - Support [Priority Hints](https://developers.google.com/web/updates/2019/02/priority-hints) with importance attribute
 - Smart download logic using [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)
-- Simple usage and tiny size
+- Simple usage and tiny size 5.9 kB (MINIFIED + GZIPPED)
 
 ## Install
 
