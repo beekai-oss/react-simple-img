@@ -55,6 +55,7 @@
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.1.0",
+    "babel-polyfill": "^6.26.0",
     "coveralls": "^3.0.2",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.9.1",
