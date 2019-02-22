@@ -3,6 +3,7 @@ import observerStart, { onIntersection } from '../../src/logic/observerStart';
 jest.mock('../../src/logic/imageLoader');
 
 const imageLoader = require('../../src/logic/imageLoader').default;
+
 const imageLoaderSpy = jest.fn();
 imageLoader.mockImplementation(imageLoaderSpy);
 
@@ -23,6 +24,7 @@ describe('intersectionStart', () => {
     expect(window.__REACT_SIMPLE_IMG__).toEqual({
       observer: {},
       imgLoadingRefs: new Map(),
+      callBackRefs: new Map(),
       disableAnimateCachedImg: false,
     });
   });

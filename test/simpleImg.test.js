@@ -21,6 +21,7 @@ describe('SimpleImg', () => {
     window.addEventListener = jest.fn();
     window.removeEventListener = jest.fn();
     window.__REACT_SIMPLE_IMG__ = {
+      callBackRefs: new Map(),
       observer: {
         observe: jest.fn(),
       },
@@ -76,6 +77,7 @@ describe('SimpleImg', () => {
     const unobserveSpy = jest.fn();
     const hasSpy = jest.fn();
     window.__REACT_SIMPLE_IMG__ = {
+      callBackRefs: new Map(),
       observer: {
         observe: () => {},
         unobserve: unobserveSpy,
@@ -111,6 +113,7 @@ describe('SimpleImg', () => {
     const getSpy = jest.fn();
 
     window.__REACT_SIMPLE_IMG__ = {
+      callBackRefs: new Map(),
       observer: {
         observe: () => {},
         unobserve: () => {},
@@ -140,6 +143,7 @@ describe('SimpleImg', () => {
   it('should set state to be is cached when image ref is stored in sessionStorage', () => {
     window.sessionStorage.setItem('__REACT_SIMPLE_IMG__', JSON.stringify({ src: 'test' }));
     window.__REACT_SIMPLE_IMG__ = {
+      callBackRefs: new Map(),
       disableAnimateCachedImg: true,
     };
     const tree = mount(<SimpleImg {...props} />);
