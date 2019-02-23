@@ -2,7 +2,7 @@
 
 export function applyStyle(target: any, withoutPlaceholder: boolean): void {
   /* eslint-disable */
-  target.style.opacity = withoutPlaceholder ? 0 : 1;
+  target.style.opacity = withoutPlaceholder ? 1 : 0;
   /* eslint-enable */
 }
 
