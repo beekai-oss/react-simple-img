@@ -1,12 +1,9 @@
 // @flow
 
-export function applyStyle(target, withoutPlaceholder): void {
-  const style = target.getAttribute('style');
-
-  target.setAttribute(
-    'style',
-    `${style}${style && style.includes('opacity') ? '' : `opacity: ${withoutPlaceholder ? 1 : 0};`}`,
-  );
+export function applyStyle(target: any, withoutPlaceholder: boolean): void {
+  /* eslint-disable */
+  target.style.opacity = withoutPlaceholder ? 0 : 1;
+  /* eslint-enable */
 }
 
 export default function applyImage(target: any, image: Image, src: string) {
@@ -26,8 +23,8 @@ export default function applyImage(target: any, image: Image, src: string) {
     target.addEventListener('load', () => {
       if (target) {
         applyStyle(currentTarget, withoutPlaceholder);
-        target.removeEventListener('load', applyStyle);
       }
+      target.removeEventListener('load', applyStyle);
     });
   }
   window.__REACT_SIMPLE_IMG__.imgLoadingRefs.delete(target);
