@@ -38,11 +38,10 @@ export default function imageLoader(target: any) {
           }
 
           const callback = callBackRefs.get(target);
+          if (!callback) return;
 
-          if (callback) {
-            callback();
-            callBackRefs.delete(target);
-          }
+          callback();
+          callBackRefs.delete(target);
         }
       })
       .catch(e => {

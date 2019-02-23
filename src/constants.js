@@ -5,7 +5,6 @@ export const commonStyle = {
   width: '100%',
   height: '100%',
 };
-export const defaultDisappearStyle = { opacity: 0 };
 export const defaultImgPlaceholder = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
 export const defaultPlaceholderColor = 'white';
 export const hiddenStyle = { visibility: 'hidden' };

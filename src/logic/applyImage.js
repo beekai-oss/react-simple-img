@@ -9,21 +9,21 @@ export function applyStyle(target: any, withoutPlaceholder: boolean): void {
 export default function applyImage(target: any, image: Image, src: string) {
   /* eslint-disable */
   target.src = src;
+  target.style.visibility = 'visible';
+
   if (target.dataset.srcset) {
     target.srcset = target.dataset.srcset;
   }
 
-  target.style.visibility = 'visible';
-
   const withoutPlaceholder = target.getAttribute('data-placeholder') === 'false';
   /* eslint-enable */
-  const currentTarget = withoutPlaceholder ? target : target.nextSibling;
+  const targetElement = withoutPlaceholder ? target : target.nextSibling;
 
-  if (currentTarget || withoutPlaceholder) {
+  if (targetElement) {
     target.addEventListener('load', () => {
-      if (target) {
-        applyStyle(currentTarget, withoutPlaceholder);
-      }
+      if (!target) return;
+
+      applyStyle(targetElement, withoutPlaceholder);
       target.removeEventListener('load', applyStyle);
     });
   }

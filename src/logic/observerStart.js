@@ -20,7 +20,6 @@ export default function observerStart(config: Config = defaultConfig, disableAni
   if (!window.IntersectionObserver) require('intersection-observer');
   // $FlowIgnoreLine:
   const observer = new IntersectionObserver(entries => onIntersection(entries), config);
-  if (this) return observer;
 
   window.__REACT_SIMPLE_IMG__ = {
     observer,
