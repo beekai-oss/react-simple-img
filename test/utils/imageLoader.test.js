@@ -1,13 +1,18 @@
 import imageLoader from '../../src/logic/imageLoader';
 import fetchImage from '../../src/logic/fetchImage';
 import applyImage from '../../src/logic/applyImage';
+import setImageHeight from '../../src/utils/setImageHeight';
+import logError from '../../src/utils/logError';
+import filterImgSrc from '../../src/utils/filterSrcset';
+import updateSessionStorage from '../../src/logic/updateSessionStorage';
 
+jest.mock('../../src/utils/filterSrcset');
+jest.mock('../../src/utils/logError');
 jest.mock('../../src/utils/setImageHeight');
 jest.mock('../../src/logic/updateSessionStorage');
 jest.mock('../../src/logic/fetchImage');
 jest.mock('../../src/logic/applyImage');
 jest.mock('../../src/utils/logError');
-jest.mock('../../src/utils/filterSrcset', () => () => true);
 
 describe('imageLoader', () => {
   beforeEach(() => {
@@ -22,62 +27,8 @@ describe('imageLoader', () => {
     }
   });
 
-  describe('when context is provided', () => {
-    window.addEventListener('load', done => {
-      it('should call api remove and add images', async () => {
-        const unobserveSpy = jest.fn();
-        const setStateSpy = jest.fn();
-        const appendImgLoadingRefSpy = jest.fn();
-        const removeImgLoadingRefSpy = jest.fn();
-        const target = { dataset: { src: 'test' } };
-        await imageLoader.call(
-          {
-            observer: {
-              unobserve: unobserveSpy,
-            },
-            setState: setStateSpy,
-            appendImgLoadingRef: appendImgLoadingRefSpy,
-            removeImgLoadingRef: removeImgLoadingRefSpy,
-          },
-          target,
-        );
-
-        expect(unobserveSpy).toHaveBeenCalled();
-        expect(setStateSpy).toHaveBeenCalled();
-        expect(appendImgLoadingRefSpy).toHaveBeenCalled();
-        expect(removeImgLoadingRefSpy).toHaveBeenCalled();
-      });
-
-      it('should fetch the image and apply src to original image', async () => {
-        const setAttributeSpy = jest.fn();
-        const getAttributeSpy = jest.fn();
-        window.__REACT_SIMPLE_IMG__ = {
-          observer: {
-            unobserve: () => {},
-          },
-          imgLoadingRefs: {
-            set: () => {},
-            delete: () => {},
-          },
-        };
-        const target = {
-          dataset: {
-            src: 'test',
-          },
-          style: { visibility: '' },
-          nextSibling: { setAttribute: setAttributeSpy, getAttribute: getAttributeSpy },
-        };
-        await imageLoader.call(undefined, target);
-        expect(target).toMatchSnapshot();
-        expect(setAttributeSpy.mock.calls[0]).toMatchSnapshot();
-        expect(getAttributeSpy.mock.calls[0]).toMatchSnapshot();
-      });
-
-      done();
-    });
-  });
-
   it('should call applyImage when image resolved', async () => {
+    filterImgSrc.mockReturnValueOnce(true);
     fetchImage.mockReturnValueOnce(new Promise(resolve => resolve('test')));
     window.__REACT_SIMPLE_IMG__ = {
       observer: {
@@ -94,6 +45,7 @@ describe('imageLoader', () => {
   });
 
   it('should report error when image fetch failed', async () => {
+    filterImgSrc.mockReturnValueOnce(true);
     fetchImage.mockReturnValueOnce(
       new Promise((resolve, reject) => {
         reject(new Error('test'));
@@ -111,5 +63,46 @@ describe('imageLoader', () => {
     await imageLoader({});
     expect(fetchImage).toHaveBeenCalled();
     expect(applyImage).not.toHaveBeenCalled();
+  });
+
+  describe('when target node is defined and height is set to 1px', () => {
+    it('should trigger setImageHeight', async () => {
+      filterImgSrc.mockReturnValueOnce(true);
+      imageLoader({
+        parentNode: {
+          style: {
+            height: '1px',
+          },
+        },
+      });
+      expect(setImageHeight).toBeCalled();
+    });
+  });
+
+  describe('when image src return as empty', () => {
+    it('should break the function and log error', () => {
+      filterImgSrc.mockReturnValueOnce(false);
+      expect(imageLoader({})).toBeUndefined();
+      expect(logError).toBeCalled();
+    });
+  });
+
+  describe('when set disableAnimationCachedImg to true', () => {
+    it('should updateSessionStorage after loaded', async () => {
+      filterImgSrc.mockReturnValueOnce(true);
+      fetchImage.mockReturnValueOnce(new Promise(resolve => resolve('test')));
+      window.__REACT_SIMPLE_IMG__ = {
+        disableAnimateCachedImg: true,
+        observer: {
+          unobserve: () => {},
+        },
+        imgLoadingRefs: {
+          set: () => {},
+          delete: () => {},
+        },
+      };
+      await imageLoader({});
+      expect(updateSessionStorage).toHaveBeenCalled();
+    });
   });
 });
