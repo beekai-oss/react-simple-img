@@ -42,12 +42,13 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
   componentDidMount() {
     const cachedImagesRefString = window.sessionStorage.getItem('__REACT_SIMPLE_IMG__');
     const { src } = this.props;
+    const element = this.element.current;
 
     if (
       cachedImagesRefString &&
-      window.__REACT_SIMPLE_IMG__ &&
       window.__REACT_SIMPLE_IMG__.disableAnimateCachedImg &&
-      !this.element.current.getAttribute('data-from-server')
+      element &&
+      !element.getAttribute('data-from-server')
     ) {
       try {
         const cachedImagesRef = JSON.parse(cachedImagesRefString);
@@ -63,17 +64,15 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
       }
     }
 
-    if (window.__REACT_SIMPLE_IMG__ && document.readyState === 'complete') {
+    if (document.readyState === 'complete') {
       this.triggerImageLoadOrObserver();
-    } else if (document.readyState === 'complete') {
-      this.setDocumentLoaded();
     } else {
       window.addEventListener('load', this.setDocumentLoaded);
     }
   }
 
   componentDidUpdate(prevProps: Props, prevState: State) {
-    if (window.__REACT_SIMPLE_IMG__ && !prevState.isDocumentLoad && this.state.isDocumentLoad) {
+    if (!prevState.isDocumentLoad && this.state.isDocumentLoad) {
       this.triggerImageLoadOrObserver();
     }
   }
@@ -110,7 +109,7 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
       observer.observe(this.element.current);
     }
 
-    callBackRefs.set(this.element.current, onComplete);
+    if (onComplete) callBackRefs.set(this.element.current, onComplete);
   }
 
   render() {

@@ -2,6 +2,13 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import { shallow, mount } from 'enzyme';
 import SimpleImg from '../src/simpleImg';
+import imageLoader from '../src/logic/imageLoader';
+import initSimpleImg from '../src/initSimpleImg';
+import logError from '../src/utils/logError';
+
+jest.mock('../src/logic/imageLoader');
+jest.mock('../src/initSimpleImg');
+jest.mock('../src/utils/logError');
 
 const props = {
   src: 'src',
@@ -62,6 +69,11 @@ describe('SimpleImg', () => {
   it('should render only span when place holder src is not supplied', () => {
     const { placeholder, ...omitProps } = props;
     const tree = renderer.create(<SimpleImg {...omitProps} />);
+    expect(tree).toMatchSnapshot();
+  });
+
+  it('should render correctly when placeholder set to false', () => {
+    const tree = renderer.create(<SimpleImg {...{ ...props, placeholder: false }} />);
     expect(tree).toMatchSnapshot();
   });
 
@@ -140,5 +152,49 @@ describe('SimpleImg', () => {
     };
     const tree = mount(<SimpleImg {...props} />);
     expect(tree.state('isCached')).toBeTruthy();
+  });
+
+  describe('when importance set as auto', () => {
+    it('should start loading image right after load event', () => {
+      mount(<SimpleImg {...{ ...props, importance: 'auto' }} />);
+      expect(imageLoader).toBeCalled();
+    });
+  });
+
+  describe('when component mount', () => {
+    it('should call initSimpleImg if window.__REACT_SIMPLE_IMG__ is not defined', () => {
+      window.__REACT_SIMPLE_IMG__ = undefined;
+      initSimpleImg.mockImplementation(() => {
+        window.__REACT_SIMPLE_IMG__ = {
+          observer: {
+            observe: () => {},
+            unobserve: () => {},
+          },
+        };
+      });
+      shallow(<SimpleImg {...props} />);
+      expect(initSimpleImg).toBeCalled();
+    });
+  });
+
+  describe('when parse error happens', () => {
+    it('should call log error', () => {
+      window.__REACT_SIMPLE_IMG__ = {
+        disableAnimateCachedImg: true,
+        observer: {
+          observe: () => {},
+          unobserve: () => {},
+        },
+      };
+      window.sessionStorage.setItem('__REACT_SIMPLE_IMG__', undefined);
+      const tree = shallow(<SimpleImg {...props} />);
+      const instance = tree.instance();
+
+      instance.element.current = {
+        getAttribute: () => {},
+      };
+      instance.componentDidMount();
+      expect(logError).toBeCalled();
+    });
   });
 });

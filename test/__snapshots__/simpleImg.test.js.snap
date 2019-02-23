@@ -141,6 +141,26 @@ exports[`SimpleImg should render correctly 1`] = `
 </div>
 `;
 
+exports[`SimpleImg should render correctly when placeholder set to false 1`] = `
+<img
+  alt="alt"
+  className="className"
+  data-end-style="opacity:0;"
+  data-placeholder="false"
+  data-src="src"
+  data-srcset="srcSet"
+  sizes="sizes"
+  src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+  srcSet=""
+  style={
+    Object {
+      "opacity": 0,
+      "transition": "1s all",
+    }
+  }
+/>
+`;
+
 exports[`SimpleImg should render only span when place holder src is not supplied 1`] = `
 <div
   className="className"
