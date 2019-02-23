@@ -6518,10 +6518,10 @@ react-simple-animate@^2.0.0:
   resolved "https://registry.yarnpkg.com/react-simple-animate/-/react-simple-animate-2.0.1.tgz#af8828059d86e5686347cf4eac1419e2ecc02b5d"
   integrity sha512-B8K9FmTz6GyJvupE/k1b6TPGWS87+oghgvYBwxQVJtdEK/BRppaF9fnpSyx4jQlY3TwkKQ04ZdUenWyeYRoNiQ==
 
-react-simple-img@2.0.0-beta.2:
-  version "2.0.0-beta.2"
-  resolved "https://registry.yarnpkg.com/react-simple-img/-/react-simple-img-2.0.0-beta.2.tgz#8f26cf048bdac993e89b2a789d0288f612afe392"
-  integrity sha512-JGXZn+ucWVddEdk0docBp6q1aqrnTMohHeNZIOd400wSeEAOcE1ler4IvQsZyWW6J5YBNCHHpwlz5NMeixF1+Q==
+react-simple-img@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/react-simple-img/-/react-simple-img-2.0.0.tgz#effd4d54898c8421641eb9058317c40d4d45489a"
+  integrity sha512-hsyyos25tVarOF9iFD5ZhBk/NuHHKVexxFkvveV4ZnQJrcVsvrI67LbuAcURuucynWrwgRFvUnHsOC7Gi8N+Jw==
   dependencies:
     intersection-observer "^0.5.1"
 
