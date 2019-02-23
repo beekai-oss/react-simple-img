@@ -17,7 +17,6 @@ const props = {
   sizes: 'sizes',
   srcSet: 'srcSet',
   animationDuration: 1,
-  animationEndStyle: { opacity: 0 },
 };
 const addEventListener = window.addEventListener;
 const removeEventListener = window.removeEventListener;

@@ -18,7 +18,6 @@ export type Props = {
   srcSet?: string,
   style?: Style,
   animationDuration?: number,
-  animationEndStyle?: Style,
   importance?: 'low' | 'high',
   onComplete?: () => void,
 };

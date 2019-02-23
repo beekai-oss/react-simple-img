@@ -105,4 +105,37 @@ describe('imageLoader', () => {
       expect(updateSessionStorage).toHaveBeenCalled();
     });
   });
+
+  describe('when set call back refs are set for the target', () => {
+    it('should call it', async () => {
+      const target = { test: 'test' };
+      const callback = jest.fn();
+      const callBackRefs = new Map();
+      callBackRefs.set(target, callback);
+      filterImgSrc.mockReturnValueOnce(true);
+      fetchImage.mockReturnValueOnce(new Promise(resolve => resolve('test')));
+      window.__REACT_SIMPLE_IMG__ = {
+        disableAnimateCachedImg: true,
+        observer: {
+          unobserve: () => {},
+        },
+        imgLoadingRefs: {
+          set: () => {},
+          delete: () => {},
+        },
+        callBackRefs,
+      };
+      await imageLoader(target);
+      expect(callback).toBeCalled();
+    });
+  });
+
+  it('should break if __REACT_SIMPLE_IMG__ is not set', async () => {
+    filterImgSrc.mockReturnValueOnce(true);
+    fetchImage.mockReturnValueOnce(new Promise(resolve => resolve('test')));
+    window.__REACT_SIMPLE_IMG__ = undefined;
+    await imageLoader({});
+    expect(fetchImage).not.toHaveBeenCalled();
+    expect(applyImage).not.toHaveBeenCalled();
+  });
 });

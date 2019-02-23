@@ -1,12 +1,12 @@
 // @flow
 
-function applyStyle(target, endStyle, withoutPlaceholder) {
-  if (withoutPlaceholder) {
-    target.style.opacity = 1; // eslint-disable-line
-  } else {
-    const style = target.getAttribute('style');
-    target.setAttribute('style', `${style && style.includes('opacity') ? '' : 'opacity: 0;'}${style}${endStyle}`);
-  }
+export function applyStyle(target, withoutPlaceholder): void {
+  const style = target.getAttribute('style');
+
+  target.setAttribute(
+    'style',
+    `${style}${style && style.includes('opacity') ? '' : `opacity: ${withoutPlaceholder ? 1 : 0};`}`,
+  );
 }
 
 export default function applyImage(target: any, image: Image, src: string) {
@@ -25,8 +25,7 @@ export default function applyImage(target: any, image: Image, src: string) {
   if (currentTarget || withoutPlaceholder) {
     target.addEventListener('load', () => {
       if (target) {
-        const endStyle = target.getAttribute('data-end-style') || '';
-        applyStyle(currentTarget, endStyle, withoutPlaceholder);
+        applyStyle(currentTarget, withoutPlaceholder);
         target.removeEventListener('load', applyStyle);
       }
     });

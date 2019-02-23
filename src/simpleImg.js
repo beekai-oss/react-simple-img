@@ -3,11 +3,9 @@ import React from 'react';
 import validImgSrc from './utils/validImgSrc';
 import initSimpleImg from './initSimpleImg';
 import imageLoader from './logic/imageLoader';
-import convertStyleIntoString from './utils/convertStyleIntoString';
 import type { State, Props } from './simpleImg.flow';
 import {
   commonStyle,
-  defaultDisappearStyle,
   defaultImgPlaceholder,
   defaultPlaceholderColor,
   hiddenStyle,
@@ -122,7 +120,6 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
       srcSet,
       applyAspectRatio,
       animationDuration = 0.3,
-      animationEndStyle = defaultDisappearStyle,
       placeholder = defaultPlaceholderColor,
       style = {},
       ...restProps
@@ -147,7 +144,6 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
       width,
       applyAspectRatio,
     });
-    const animationEndStyleString = convertStyleIntoString(animationEndStyle);
     const imageProps = {
       alt,
       src: isCached ? src : imgPlaceholder,
@@ -160,7 +156,6 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
             ...(placeholder === false ? { 'data-placeholder': 'false' } : null),
             'data-src': src,
             'data-srcset': srcSet,
-            'data-end-style': animationEndStyleString,
           }),
       ...restImgProps,
     };

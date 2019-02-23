@@ -42,8 +42,7 @@ Image component working similar with standard `img` tag and with the following p
 | `importance`        | string  |          | Priority Hints with "low" or "auto": set to "auto" will load image after <b>load</b> event, otherwise "low" will load images after <b>load</b> event and lazy load with <b>intersection observer</b>               |
 | `placeholder`       | string  |          | Placeholder image source (svg, jpg, png...) or css color value (`white, linear-gradient(blue, pink)`), set to `false` will remove the wrapper and placeholder. (Note: aspect ratio will not work by that too)      |
 | `applyAspectRatio`  | boolean |          | Image will scale automatically with aspect ratio. Note: width and height will need to be supplied                                                                                                                  |
-| `animationDuration` | number  |          | animation duration in seconds                                    |
-| `animationEndStyle` | Object  |          | style to transition to                                                        |
+| `animationDuration` | number  |          | animation duration in seconds                                                                                                                                                                                      |
 
 #### 🔗 `initSimpleImg([config], disableAnimationAfterCache)` optional
 
