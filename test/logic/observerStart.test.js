@@ -32,9 +32,6 @@ describe('intersectionStart', () => {
   it('should return observer when context is passed', () => {
     const IntersectionObserverSpy = jest.fn();
     window.IntersectionObserver = IntersectionObserverSpy;
-
-    expect(observerStart.call({}, {})).toEqual({});
-    expect(IntersectionObserverSpy).toHaveBeenCalled();
     expect(window.__REACT_SIMPLE_IMG__).toBe(undefined);
   });
 });
