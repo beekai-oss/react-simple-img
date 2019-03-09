@@ -146,7 +146,7 @@ exports[`SimpleImg should render correctly when placeholder set to false 1`] = `
   data-src="src"
   data-srcset="srcSet"
   sizes="sizes"
-  src={false}
+  src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
   srcSet=""
   style={
     Object {

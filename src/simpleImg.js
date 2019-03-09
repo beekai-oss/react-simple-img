@@ -125,7 +125,8 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
       ...restProps
     } = this.props;
     const { isCached } = this.state;
-    const isValidImgSrc = placeholder === false || validImgSrc(placeholder);
+    const disablePlaceholder = placeholder === false;
+    const isValidImgSrc = validImgSrc(placeholder);
     const inlineStyle = {
       ...commonStyle,
       ...(!isValidImgSrc ? { background: placeholder } : null),
@@ -153,14 +154,14 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
         ? null
         : {
             ref: this.element,
-            ...(placeholder === false ? { 'data-placeholder': 'false' } : null),
+            ...(disablePlaceholder ? { 'data-placeholder': 'false' } : null),
             'data-src': src,
             'data-srcset': srcSet,
           }),
       ...restImgProps,
     };
 
-    if (placeholder === false && !applyAspectRatio) {
+    if (disablePlaceholder && !applyAspectRatio) {
       return (
         <img
           style={{
@@ -178,6 +179,11 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
         />
       );
     }
+    const placeholderComponent = isValidImgSrc ? (
+      <img style={inlineStyle} src={placeholder} {...restImgProps} />
+    ) : (
+      <div style={inlineStyle} />
+    );
 
     if (isCached) {
       return (
@@ -222,7 +228,7 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
             ...(isHeightAndWidthNotSet ? expendWidth : heightWidth),
             ...(!isValidImgSrc && !isSrcSetFulfilled ? hiddenStyle : {}),
             ...(shouldUseAspectRatio ? aspectRatioChildStyle : null),
-            ...(placeholder === false
+            ...(disablePlaceholder
               ? {
                   transition: `${animationDuration}s all`,
                   opacity: 0,
@@ -231,7 +237,7 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
           }}
           {...imageProps}
         />
-        {isValidImgSrc ? <img style={inlineStyle} src={placeholder} {...restImgProps} /> : <div style={inlineStyle} />}
+        {!disablePlaceholder && placeholderComponent}
       </div>
     );
   }
