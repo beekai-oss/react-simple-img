@@ -160,7 +160,7 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
       ...restImgProps,
     };
 
-    if (placeholder === false) {
+    if (placeholder === false && !applyAspectRatio) {
       return (
         <img
           style={{
@@ -222,6 +222,12 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
             ...(isHeightAndWidthNotSet ? expendWidth : heightWidth),
             ...(!isValidImgSrc && !isSrcSetFulfilled ? hiddenStyle : {}),
             ...(shouldUseAspectRatio ? aspectRatioChildStyle : null),
+            ...(placeholder === false
+              ? {
+                  transition: `${animationDuration}s all`,
+                  opacity: 0,
+                }
+              : null),
           }}
           {...imageProps}
         />
