@@ -125,7 +125,7 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
       ...restProps
     } = this.props;
     const { isCached } = this.state;
-    const isValidImgSrc = validImgSrc(placeholder);
+    const isValidImgSrc = placeholder === false || validImgSrc(placeholder);
     const inlineStyle = {
       ...commonStyle,
       ...(!isValidImgSrc ? { background: placeholder } : null),
