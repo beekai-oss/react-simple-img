@@ -7,7 +7,11 @@ export type Config = {
   threshold?: number | Array<number>,
 };
 
-export default function initSimpleImg(config: Config = defaultConfig, disableAnimateCachedImg: boolean = false) {
+export default function initSimpleImg(
+  config: Config = defaultConfig,
+  disableAnimateCachedImg: boolean = false,
+  logConsoleError: boolean = false,
+) {
   if (typeof window === 'undefined') return;
-  observerStart(config, disableAnimateCachedImg);
+  observerStart(config, disableAnimateCachedImg, logConsoleError);
 }
