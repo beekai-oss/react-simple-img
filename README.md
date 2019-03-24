@@ -83,4 +83,4 @@ Arguments
 - **logConsoleError**: (boolean) this argument is <b>optional</b>
 
 
-     - if you want to log error in browser console, you can set to true.
+     - if you want to log error in browser console when image fetch failed, you can set to true.
