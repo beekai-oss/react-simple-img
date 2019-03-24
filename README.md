@@ -45,7 +45,7 @@ Image component working similar with standard `img` tag and with the following p
 | `applyAspectRatio`  | boolean |          | Image will scale automatically with aspect ratio. Note: width and height will need to be supplied                                                                                                                  |
 | `animationDuration` | number  |          | animation duration in seconds                                                                                                                                                                                      |
 
-#### 🔗 `initSimpleImg([config], disableAnimationAfterCache)` optional
+#### 🔗 `initSimpleImg([config], disableAnimationAfterCache = false, logConsoleError = false)` optional
 
 This function is only required, when you want to customise intersection observer configuration.
 
@@ -79,3 +79,8 @@ Arguments
 
 
      - if you want to disable the reveal animation after image have been cached
+
+- **logConsoleError**: (boolean) this argument is <b>optional</b>
+
+
+     - if you want to log error in browser console, you can set to true.
