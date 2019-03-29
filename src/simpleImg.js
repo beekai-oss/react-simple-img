@@ -149,7 +149,7 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
       alt,
       src: isCached ? src : imgPlaceholder,
       srcSet: isCached ? srcSet : '',
-      ...(typeof window === 'undefined' ? { 'data-from-server': 'yes' } : null),
+      ...(typeof window === 'undefined' ? { 'data-from-server': 'yes' } : { 'data-from-server': 'no' } ),
       ...(isCached
         ? null
         : {
