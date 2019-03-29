@@ -148,6 +148,9 @@ describe('SimpleImg', () => {
     window.__REACT_SIMPLE_IMG__ = {
       callBackRefs: new Map(),
       disableAnimateCachedImg: true,
+      observer: {
+        observe: () => {},
+      },
     };
     const tree = mount(<SimpleImg {...props} />);
     expect(tree.state('isCached')).toBeTruthy();
@@ -186,7 +189,7 @@ describe('SimpleImg', () => {
         },
       };
       window.sessionStorage.setItem('__REACT_SIMPLE_IMG__', undefined);
-      const tree = shallow(<SimpleImg {...props} />);
+      const tree = mount(<SimpleImg {...props} />);
       const instance = tree.instance();
 
       instance.element.current = {

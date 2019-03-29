@@ -46,7 +46,7 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
       cachedImagesRefString &&
       window.__REACT_SIMPLE_IMG__.disableAnimateCachedImg &&
       element &&
-      !element.getAttribute('data-from-server')
+      element.getAttribute('data-from-server') === 'no'
     ) {
       try {
         const cachedImagesRef = JSON.parse(cachedImagesRefString);
@@ -149,7 +149,7 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
       alt,
       src: isCached ? src : imgPlaceholder,
       srcSet: isCached ? srcSet : '',
-      ...(typeof window === 'undefined' ? { 'data-from-server': 'yes' } : { 'data-from-server': 'no' } ),
+      'data-from-server': typeof window === 'undefined' ? 'yes' : 'no',
       ...(isCached
         ? null
         : {

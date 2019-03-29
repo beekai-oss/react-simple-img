@@ -18,6 +18,7 @@ exports[`SimpleImg should apply aspect ratio when height and width is supplied 1
 >
   <img
     alt="alt"
+    data-from-server="no"
     data-src="src"
     data-srcset="srcSet"
     sizes="sizes"
@@ -64,6 +65,7 @@ exports[`SimpleImg should render background color 1`] = `
 >
   <img
     alt="alt"
+    data-from-server="no"
     data-src="src"
     data-srcset="srcSet"
     sizes="sizes"
@@ -110,6 +112,7 @@ exports[`SimpleImg should render correctly 1`] = `
 >
   <img
     alt="alt"
+    data-from-server="no"
     data-src="src"
     data-srcset="srcSet"
     sizes="sizes"
@@ -142,6 +145,7 @@ exports[`SimpleImg should render correctly when placeholder set to false 1`] = `
 <img
   alt="alt"
   className="className"
+  data-from-server="no"
   data-placeholder="false"
   data-src="src"
   data-srcset="srcSet"
@@ -175,6 +179,7 @@ exports[`SimpleImg should render only span when place holder src is not supplied
 >
   <img
     alt="alt"
+    data-from-server="no"
     data-src="src"
     data-srcset="srcSet"
     sizes="sizes"
@@ -221,6 +226,7 @@ exports[`SimpleImg should render out as image data 1`] = `
 >
   <img
     alt="alt"
+    data-from-server="no"
     data-src="src"
     data-srcset="srcSet"
     sizes="sizes"
@@ -267,6 +273,7 @@ exports[`SimpleImg should render out placeholder as image 1`] = `
 >
   <img
     alt="alt"
+    data-from-server="no"
     data-src="src"
     data-srcset="srcSet"
     sizes="sizes"
