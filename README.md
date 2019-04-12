@@ -6,7 +6,7 @@
 
 [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=React+Lazy+load+images+with+Intersection+Observer+API&url=https://github.com/bluebill1049/react-simple-img)&nbsp;[![CircleCI](https://circleci.com/gh/bluebill1049/react-simple-img.svg?style=svg)](https://circleci.com/gh/bluebill1049/react-simple-img) [![Coverage Status](https://coveralls.io/repos/github/bluebill1049/react-simple-img/badge.svg?branch=master)](https://coveralls.io/github/bluebill1049/react-simple-img?branch=master) [![npm downloads](https://img.shields.io/npm/dm/react-simple-img.svg?style=flat-square)](https://www.npmjs.com/package/react-simple-img)
 [![npm](https://img.shields.io/npm/dt/react-simple-img.svg?style=flat-square)](https://www.npmjs.com/package/react-simple-img)
-[![npm](https://img.shields.io/npm/l/react-simple-img.svg?style=flat-square)](https://www.npmjs.com/package/react-lazyload-image)
+[![npm](https://badgen.net/bundlephobia/minzip/react-simple-img)](https://badgen.net/bundlephobia/minzip/react-simple-img)
 
 > **Smart react lazy load image with IntersectionObserver API, Priority Hints and animations** :clap:
 
@@ -14,7 +14,7 @@
 - Responsive with placeholders and animations
 - Support [Priority Hints](https://developers.google.com/web/updates/2019/02/priority-hints) with importance attribute
 - Smart download logic using [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)
-- Simple usage and tiny size 5.7 kB includes polyfill (minified + gzipped)
+- Simple usage and tiny size includes polyfill (minified + gzipped)
 
 ## Install
 
