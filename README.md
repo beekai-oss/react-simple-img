@@ -1,5 +1,5 @@
 <p align="center">
-    <a href="https://react-simple-img.now.sh"><img width="150" src="https://raw.githubusercontent.com/bluebill1049/react-simple-img/master/example/src/logo.png" alt="React Simple Img Logo - Animated lazy loading - on demand" /></a>
+    <a href="https://react-simple-img.now.sh"><img width="180" src="https://raw.githubusercontent.com/bluebill1049/react-simple-img/master/example/src/logo.png" alt="React Simple Img Logo - Animated lazy loading - on demand" /></a>
 </p>
 
 # [React Simple Img](https://react-simple-img.now.sh)
