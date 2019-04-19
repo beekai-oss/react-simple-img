@@ -10,7 +10,7 @@ export default function getAspectRatio({
   applyAspectRatio?: boolean,
 }) {
   const aspectRatio = parseInt(height, 10) / parseInt(width, 10);
-  const shouldUseAspectRatio = applyAspectRatio && typeof aspectRatio === 'number';
+  const shouldUseAspectRatio = applyAspectRatio && !isNaN(aspectRatio); // eslint-disable-line
   const aspectRatioStyle = {
     position: 'relative',
     display: 'block',
