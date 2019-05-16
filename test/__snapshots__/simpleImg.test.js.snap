@@ -18,6 +18,7 @@ exports[`SimpleImg should apply aspect ratio when height and width is supplied 1
 >
   <img
     alt="alt"
+    data-from-server="no"
     data-src="src"
     data-srcset="srcSet"
     sizes="sizes"
@@ -38,11 +39,17 @@ exports[`SimpleImg should apply aspect ratio when height and width is supplied 1
         "left": 0,
         "position": "absolute",
         "top": 0,
-        "transition": "1s all",
+        "transition": "1s opacity",
         "width": "100%",
       }
     }
   />
+  <noscript>
+    <img
+      alt="alt"
+      src="src"
+    />
+  </noscript>
 </div>
 `;
 
@@ -64,6 +71,7 @@ exports[`SimpleImg should render background color 1`] = `
 >
   <img
     alt="alt"
+    data-from-server="no"
     data-src="src"
     data-srcset="srcSet"
     sizes="sizes"
@@ -84,11 +92,17 @@ exports[`SimpleImg should render background color 1`] = `
         "left": 0,
         "position": "absolute",
         "top": 0,
-        "transition": "1s all",
+        "transition": "1s opacity",
         "width": "100%",
       }
     }
   />
+  <noscript>
+    <img
+      alt="alt"
+      src="src"
+    />
+  </noscript>
 </div>
 `;
 
@@ -110,6 +124,7 @@ exports[`SimpleImg should render correctly 1`] = `
 >
   <img
     alt="alt"
+    data-from-server="no"
     data-src="src"
     data-srcset="srcSet"
     sizes="sizes"
@@ -130,31 +145,46 @@ exports[`SimpleImg should render correctly 1`] = `
         "left": 0,
         "position": "absolute",
         "top": 0,
-        "transition": "1s all",
+        "transition": "1s opacity",
         "width": "100%",
       }
     }
   />
+  <noscript>
+    <img
+      alt="alt"
+      src="src"
+    />
+  </noscript>
 </div>
 `;
 
 exports[`SimpleImg should render correctly when placeholder set to false 1`] = `
-<img
-  alt="alt"
-  className="className"
-  data-placeholder="false"
-  data-src="src"
-  data-srcset="srcSet"
-  sizes="sizes"
-  src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-  srcSet=""
-  style={
-    Object {
-      "opacity": 0,
-      "transition": "1s all",
+Array [
+  <img
+    alt="alt"
+    className="className"
+    data-from-server="no"
+    data-placeholder="false"
+    data-src="src"
+    data-srcset="srcSet"
+    sizes="sizes"
+    src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+    srcSet=""
+    style={
+      Object {
+        "opacity": 0,
+        "transition": "1s opacity",
+      }
     }
-  }
-/>
+  />,
+  <noscript>
+    <img
+      alt="alt"
+      src="src"
+    />
+  </noscript>,
+]
 `;
 
 exports[`SimpleImg should render only span when place holder src is not supplied 1`] = `
@@ -175,6 +205,7 @@ exports[`SimpleImg should render only span when place holder src is not supplied
 >
   <img
     alt="alt"
+    data-from-server="no"
     data-src="src"
     data-srcset="srcSet"
     sizes="sizes"
@@ -195,11 +226,17 @@ exports[`SimpleImg should render only span when place holder src is not supplied
         "left": 0,
         "position": "absolute",
         "top": 0,
-        "transition": "1s all",
+        "transition": "1s opacity",
         "width": "100%",
       }
     }
   />
+  <noscript>
+    <img
+      alt="alt"
+      src="src"
+    />
+  </noscript>
 </div>
 `;
 
@@ -221,6 +258,7 @@ exports[`SimpleImg should render out as image data 1`] = `
 >
   <img
     alt="alt"
+    data-from-server="no"
     data-src="src"
     data-srcset="srcSet"
     sizes="sizes"
@@ -241,11 +279,17 @@ exports[`SimpleImg should render out as image data 1`] = `
         "left": 0,
         "position": "absolute",
         "top": 0,
-        "transition": "1s all",
+        "transition": "1s opacity",
         "width": "100%",
       }
     }
   />
+  <noscript>
+    <img
+      alt="alt"
+      src="src"
+    />
+  </noscript>
 </div>
 `;
 
@@ -267,6 +311,7 @@ exports[`SimpleImg should render out placeholder as image 1`] = `
 >
   <img
     alt="alt"
+    data-from-server="no"
     data-src="src"
     data-srcset="srcSet"
     sizes="sizes"
@@ -287,10 +332,16 @@ exports[`SimpleImg should render out placeholder as image 1`] = `
         "left": 0,
         "position": "absolute",
         "top": 0,
-        "transition": "1s all",
+        "transition": "1s opacity",
         "width": "100%",
       }
     }
   />
+  <noscript>
+    <img
+      alt="alt"
+      src="src"
+    />
+  </noscript>
 </div>
 `;

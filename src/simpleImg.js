@@ -130,7 +130,7 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
     const inlineStyle = {
       ...commonStyle,
       ...(!isValidImgSrc ? { background: placeholder } : null),
-      transition: `${animationDuration}s all`,
+      transition: `${animationDuration}s opacity`,
     };
     const imgPlaceholder = isValidImgSrc ? placeholder : defaultImgPlaceholder;
     const isSrcSetFulfilled = this.element.current && this.element.current.src !== imgPlaceholder;
@@ -160,23 +160,31 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
           }),
       ...restImgProps,
     };
+    const noScript = (
+      <noscript>
+        <img src={src} alt={alt} />
+      </noscript>
+    );
 
     if (disablePlaceholder && !applyAspectRatio) {
       return (
-        <img
-          style={{
-            ...style,
-            ...(isCached
-              ? null
-              : {
-                  transition: `${animationDuration}s all`,
-                  opacity: 0,
-                }),
-          }}
-          className={className}
-          {...heightWidth}
-          {...imageProps}
-        />
+        <>
+          <img
+            style={{
+              ...style,
+              ...(isCached
+                ? null
+                : {
+                    transition: `${animationDuration}s opacity`,
+                    opacity: 0,
+                  }),
+            }}
+            className={className}
+            {...heightWidth}
+            {...imageProps}
+          />
+          {noScript}
+        </>
       );
     }
     const placeholderComponent = isValidImgSrc ? (
@@ -206,6 +214,7 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
             }}
             {...imageProps}
           />
+          {noScript}
         </div>
       );
     }
@@ -230,7 +239,7 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
             ...(shouldUseAspectRatio ? aspectRatioChildStyle : null),
             ...(disablePlaceholder
               ? {
-                  transition: `${animationDuration}s all`,
+                  transition: `${animationDuration}s opacity`,
                   opacity: 0,
                 }
               : null),
@@ -238,6 +247,7 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
           {...imageProps}
         />
         {!disablePlaceholder && placeholderComponent}
+        {noScript}
       </div>
     );
   }
