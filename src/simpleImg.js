@@ -168,7 +168,7 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
 
     if (disablePlaceholder && !applyAspectRatio) {
       return (
-        <>
+        <React.Fragment>
           <img
             style={{
               ...style,
@@ -184,7 +184,7 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
             {...imageProps}
           />
           {noScript}
-        </>
+        </React.Fragment>
       );
     }
     const placeholderComponent = isValidImgSrc ? (

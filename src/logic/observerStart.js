@@ -1,6 +1,5 @@
 // @flow
 import imageLoader from './imageLoader';
-import type { Config } from '../initSimpleImg';
 
 export const defaultConfig = {
   rootMargin: '0px 0px',
@@ -16,7 +15,15 @@ export function onIntersection(entries: Array<{ intersectionRatio: number, targe
   }
 }
 
-export default function observerStart(config: Config = defaultConfig, disableAnimateCachedImg: boolean = false, logConsoleError: boolean) {
+export default function observerStart(
+  config: {
+    root?: HTMLElement,
+    rootMargin?: string,
+    threshold?: number | Array<number>,
+  } = defaultConfig,
+  disableAnimateCachedImg: boolean = false,
+  logConsoleError: boolean,
+) {
   if (!window.IntersectionObserver) require('intersection-observer');
   // $FlowIgnoreLine:
   const observer = new IntersectionObserver(entries => onIntersection(entries), config);
