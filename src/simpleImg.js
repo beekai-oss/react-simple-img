@@ -122,7 +122,6 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
       animationDuration = 0.3,
       placeholder = defaultPlaceholderColor,
       style = {},
-      imgStyle,
       ...restProps
     } = this.props;
     const { isCached } = this.state;
@@ -135,7 +134,7 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
     };
     const imgPlaceholder = isValidImgSrc ? placeholder : defaultImgPlaceholder;
     const isSrcSetFulfilled = this.element.current && this.element.current.src !== imgPlaceholder;
-    const { importance, onComplete, ...restImgProps } = restProps;
+    const { importance, onComplete, imgStyle, ...restImgProps } = restProps;
     const heightWidth = {
       ...(height ? { height: style.height || height } : null),
       ...(width ? { width: style.width || width } : null),
