@@ -20,4 +20,5 @@ export type Props = {
   animationDuration?: number,
   importance?: 'low' | 'high',
   onComplete?: () => void,
+  imgStyle: Style,
 };

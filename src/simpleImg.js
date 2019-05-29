@@ -122,6 +122,7 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
       animationDuration = 0.3,
       placeholder = defaultPlaceholderColor,
       style = {},
+      imgStyle,
       ...restProps
     } = this.props;
     const { isCached } = this.state;
@@ -178,6 +179,7 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
                     transition: `${animationDuration}s opacity`,
                     opacity: 0,
                   }),
+              ...imgStyle,
             }}
             className={className}
             {...heightWidth}
@@ -211,6 +213,7 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
             style={{
               ...(isHeightAndWidthNotSet ? expendWidth : heightWidth),
               ...(shouldUseAspectRatio ? aspectRatioChildStyle : null),
+              ...imgStyle,
             }}
             {...imageProps}
           />
@@ -243,6 +246,7 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
                   opacity: 0,
                 }
               : null),
+            ...imgStyle,
           }}
           {...imageProps}
         />
