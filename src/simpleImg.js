@@ -162,13 +162,14 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
     };
     const noScript = (
       <noscript>
-        <img src={src} alt={alt} />
+        <img src={src} alt={alt} style={imgStyle} />
       </noscript>
     );
 
     if (disablePlaceholder && !applyAspectRatio) {
       return (
         <React.Fragment>
+          {noScript}
           <img
             style={{
               ...style,
@@ -184,7 +185,6 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
             {...heightWidth}
             {...imageProps}
           />
-          {noScript}
         </React.Fragment>
       );
     }
@@ -234,6 +234,7 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
         }}
         className={className}
       >
+        {noScript}
         <img
           style={{
             ...(isHeightAndWidthNotSet ? expendWidth : heightWidth),
@@ -250,7 +251,6 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
           {...imageProps}
         />
         {!disablePlaceholder && placeholderComponent}
-        {noScript}
       </div>
     );
   }
