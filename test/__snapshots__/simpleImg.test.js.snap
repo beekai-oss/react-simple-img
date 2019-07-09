@@ -19,6 +19,7 @@ exports[`SimpleImg should apply aspect ratio when height and width is supplied 1
   <noscript>
     <img
       alt="alt"
+      className="className"
       src="src"
     />
   </noscript>
@@ -71,6 +72,7 @@ exports[`SimpleImg should render background color 1`] = `
   <noscript>
     <img
       alt="alt"
+      className="className"
       src="src"
     />
   </noscript>
@@ -123,6 +125,7 @@ exports[`SimpleImg should render correctly 1`] = `
   <noscript>
     <img
       alt="alt"
+      className="className"
       src="src"
     />
   </noscript>
@@ -161,6 +164,7 @@ Array [
   <noscript>
     <img
       alt="alt"
+      className="className"
       src="src"
     />
   </noscript>,
@@ -202,6 +206,7 @@ exports[`SimpleImg should render only span when place holder src is not supplied
   <noscript>
     <img
       alt="alt"
+      className="className"
       src="src"
     />
   </noscript>
@@ -254,6 +259,7 @@ exports[`SimpleImg should render out as image data 1`] = `
   <noscript>
     <img
       alt="alt"
+      className="className"
       src="src"
     />
   </noscript>
@@ -306,6 +312,7 @@ exports[`SimpleImg should render out placeholder as image 1`] = `
   <noscript>
     <img
       alt="alt"
+      className="className"
       src="src"
     />
   </noscript>
