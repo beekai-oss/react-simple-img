@@ -16,6 +16,12 @@ exports[`SimpleImg should apply aspect ratio when height and width is supplied 1
     }
   }
 >
+  <noscript>
+    <img
+      alt="alt"
+      src="src"
+    />
+  </noscript>
   <img
     alt="alt"
     data-src="src"
@@ -43,12 +49,6 @@ exports[`SimpleImg should apply aspect ratio when height and width is supplied 1
       }
     }
   />
-  <noscript>
-    <img
-      alt="alt"
-      src="src"
-    />
-  </noscript>
 </div>
 `;
 
@@ -68,6 +68,12 @@ exports[`SimpleImg should render background color 1`] = `
     }
   }
 >
+  <noscript>
+    <img
+      alt="alt"
+      src="src"
+    />
+  </noscript>
   <img
     alt="alt"
     data-src="src"
@@ -95,12 +101,6 @@ exports[`SimpleImg should render background color 1`] = `
       }
     }
   />
-  <noscript>
-    <img
-      alt="alt"
-      src="src"
-    />
-  </noscript>
 </div>
 `;
 
@@ -120,6 +120,12 @@ exports[`SimpleImg should render correctly 1`] = `
     }
   }
 >
+  <noscript>
+    <img
+      alt="alt"
+      src="src"
+    />
+  </noscript>
   <img
     alt="alt"
     data-src="src"
@@ -147,17 +153,17 @@ exports[`SimpleImg should render correctly 1`] = `
       }
     }
   />
-  <noscript>
-    <img
-      alt="alt"
-      src="src"
-    />
-  </noscript>
 </div>
 `;
 
 exports[`SimpleImg should render correctly when placeholder set to false 1`] = `
 Array [
+  <noscript>
+    <img
+      alt="alt"
+      src="src"
+    />
+  </noscript>,
   <img
     alt="alt"
     className="className"
@@ -174,12 +180,6 @@ Array [
       }
     }
   />,
-  <noscript>
-    <img
-      alt="alt"
-      src="src"
-    />
-  </noscript>,
 ]
 `;
 
@@ -199,6 +199,12 @@ exports[`SimpleImg should render only span when place holder src is not supplied
     }
   }
 >
+  <noscript>
+    <img
+      alt="alt"
+      src="src"
+    />
+  </noscript>
   <img
     alt="alt"
     data-src="src"
@@ -226,12 +232,6 @@ exports[`SimpleImg should render only span when place holder src is not supplied
       }
     }
   />
-  <noscript>
-    <img
-      alt="alt"
-      src="src"
-    />
-  </noscript>
 </div>
 `;
 
@@ -251,6 +251,12 @@ exports[`SimpleImg should render out as image data 1`] = `
     }
   }
 >
+  <noscript>
+    <img
+      alt="alt"
+      src="src"
+    />
+  </noscript>
   <img
     alt="alt"
     data-src="src"
@@ -278,12 +284,6 @@ exports[`SimpleImg should render out as image data 1`] = `
       }
     }
   />
-  <noscript>
-    <img
-      alt="alt"
-      src="src"
-    />
-  </noscript>
 </div>
 `;
 
@@ -303,6 +303,12 @@ exports[`SimpleImg should render out placeholder as image 1`] = `
     }
   }
 >
+  <noscript>
+    <img
+      alt="alt"
+      src="src"
+    />
+  </noscript>
   <img
     alt="alt"
     data-src="src"
@@ -330,11 +336,5 @@ exports[`SimpleImg should render out placeholder as image 1`] = `
       }
     }
   />
-  <noscript>
-    <img
-      alt="alt"
-      src="src"
-    />
-  </noscript>
 </div>
 `;
