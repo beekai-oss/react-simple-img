@@ -162,7 +162,7 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
     };
     const noScript = (
       <noscript>
-        <img src={src} alt={alt} style={imgStyle} />
+        <img src={src} alt={alt} style={imgStyle} className={className} />
       </noscript>
     );
 
