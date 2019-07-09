@@ -83,3 +83,17 @@ Arguments
 
 
      - if you want to log errors in browser console when image fetch failed, then set the value to true.
+
+## Contributors 
+Thanks goes to these wonderful people:
+
+<p float="left">
+    <a href="https://github.com/elrumordelaluz"><img src="https://avatars3.githubusercontent.com/u/784056?s=460&v=4" width="50" height="50" /></a>
+    <a href="https://github.com/millette"><img src="https://avatars2.githubusercontent.com/u/50741?s=460&v=4" width="50" height="50" /></a>
+    <a href="https://github.com/revskill10"><img src="https://avatars1.githubusercontent.com/u/1390196?s=460&v=4" width="50" height="50" /></a>
+    <a href="https://github.com/infernalmaster"><img src="https://avatars3.githubusercontent.com/u/1155618?s=460&v=4" width="50" height="50" /></a>
+    <a href="https://github.com/five-zero-four-zero"><img src="https://avatars3.githubusercontent.com/u/6634204?s=460&v=4" width="50" height="50" /></a>
+    <a href="https://github.com/DeBaum"><img src="https://avatars0.githubusercontent.com/u/11390506?s=460&v=4" width="50" height="50" /></a>
+    <a href="https://github.com/0xflotus"><img src="https://avatars2.githubusercontent.com/u/26602940?s=460&v=4" width="50" height="50" /></a>
+    <a href="https://github.com/yusinto"><img src="https://avatars1.githubusercontent.com/u/1593077?s=460&v=4" width="50" height="50" /></a>
+</p>
