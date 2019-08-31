@@ -16,6 +16,8 @@
 
 </div>
 
+## Features
+
 - Speed up initial page loads by loading only images above the fold
 - Responsive with placeholders and animations
 - Support [Priority Hints](https://developers.google.com/web/updates/2019/02/priority-hints) with importance attribute
