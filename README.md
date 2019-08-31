@@ -4,6 +4,8 @@
 
 <h1 align="center"><a href="https://react-simple-img.now.sh">React Simple Img</a></h1>
 
+Smart react lazy load image with IntersectionObserver API, Priority Hints and animations
+
 </p>
 
 <div align="center">
@@ -13,8 +15,6 @@
 [![npm](https://badgen.net/bundlephobia/minzip/react-simple-img)](https://badgen.net/bundlephobia/minzip/react-simple-img)
 
 </div>
-
-> **Smart react lazy load image with IntersectionObserver API, Priority Hints and animations** :clap:
 
 - Speed up initial page loads by loading only images above the fold
 - Responsive with placeholders and animations
