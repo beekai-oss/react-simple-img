@@ -12,7 +12,7 @@
 [![npm](https://img.shields.io/npm/dt/react-simple-img.svg?style=flat-square)](https://www.npmjs.com/package/react-simple-img)
 [![npm](https://badgen.net/bundlephobia/minzip/react-simple-img)](https://badgen.net/bundlephobia/minzip/react-simple-img)
 
-    </div>
+</div>
 
 > **Smart react lazy load image with IntersectionObserver API, Priority Hints and animations** :clap:
 
