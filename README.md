@@ -40,7 +40,7 @@ Image component working similar with standard `img` tag and with the following p
 | `srcSet`            | string  |          | eg: `large.jpg 2x, small.jpg` <br /><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images" target="_blank">Reference for examples</a>                            |
 | `sizes`             | string  |          | eg: `(max-width: 320px) 280px, (max-width: 480px) 440px` <br /><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images" target="_blank">Reference for examples</a> |
 | `importance`        | string  |          | Priority Hints with "low" or "auto": set to "auto" will load image after <b>load</b> event, otherwise "low" will load images after <b>load</b> event and lazy load with <b>intersection observer</b>               |
-| `placeholder`       | string  |          | Placeholder image source (svg, jpg, png...) or css color value (`white, linear-gradient(blue, pink)`), set to `false` will remove placeholder.       |
+| `placeholder`       | string  |          | Placeholder image source (svg, jpg, png...) or css color value (`white, linear-gradient(blue, pink)`), set to `false` will remove placeholder.                                                                     |
 | `applyAspectRatio`  | boolean |          | Image will scale automatically with aspect ratio. Note: width and height will need to be supplied                                                                                                                  |
 | `animationDuration` | number  |          | animation duration in seconds                                                                                                                                                                                      |
 
@@ -84,10 +84,12 @@ Arguments
 
      - if you want to log errors in browser console when image fetch failed, then set the value to true.
 
-## Contributors 
+## Contributors
+
 Thanks goes to these wonderful people:
 
 <p float="left">
+    <a href="https://github.com/mcansh"><img src="https://avatars1.githubusercontent.com/u/11698668?s=400&v=4" width="50" height="50" /></a>
     <a href="https://github.com/elrumordelaluz"><img src="https://avatars3.githubusercontent.com/u/784056?s=460&v=4" width="50" height="50" /></a>
     <a href="https://github.com/millette"><img src="https://avatars2.githubusercontent.com/u/50741?s=460&v=4" width="50" height="50" /></a>
     <a href="https://github.com/revskill10"><img src="https://avatars1.githubusercontent.com/u/1390196?s=460&v=4" width="50" height="50" /></a>
