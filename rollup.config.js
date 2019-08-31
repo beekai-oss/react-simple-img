@@ -1,5 +1,6 @@
 import flow from 'rollup-plugin-flow';
 import babel from 'rollup-plugin-babel';
+import copy from 'rollup-plugin-copy';
 
 const plugins = [
   flow({
@@ -7,6 +8,9 @@ const plugins = [
   }),
   babel({
     exclude: 'node_modules/**',
+  }),
+  copy({
+    targets: [{ src: 'src/index.d.ts', dest: 'lib' }],
   }),
 ];
 
