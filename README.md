@@ -2,7 +2,7 @@
     <a href="https://react-simple-img.now.sh"><img width="140" src="https://raw.githubusercontent.com/bluebill1049/react-simple-img/master/example/src/logo.png" alt="React Simple Img Logo - Animated lazy loading - on demand" /></a>
     
 
-<h1 align="center"><a href="https://react-simple-img.now.sh">React Simple Img</a></h1>
+<h1 align="center">React Simple Img</h1>
 
 <p align="center">Smart react lazy load image with IntersectionObserver API, Priority Hints and animations</p>
 
