@@ -4,7 +4,7 @@
 
 <h1 align="center"><a href="https://react-simple-img.now.sh">React Simple Img</a></h1>
 
-Smart react lazy load image with IntersectionObserver API, Priority Hints and animations
+<p align="center">Smart react lazy load image with IntersectionObserver API, Priority Hints and animations</p>
 
 </p>
 
