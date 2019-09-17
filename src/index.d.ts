@@ -10,8 +10,8 @@ export interface Props {
   placeholder?: string | boolean;
   applyAspectRatio?: boolean;
   className?: string;
-  width?: number;
-  height?: number;
+  width?: number | string;
+  height?: number | string;
   alt?: string;
   sizes?: string;
   srcSet?: string;
