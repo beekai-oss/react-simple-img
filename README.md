@@ -51,6 +51,7 @@ Image component working similar with standard `img` tag and with the following p
 | `placeholder`       | string  |          | Placeholder image source (svg, jpg, png...) or css color value (`white, linear-gradient(blue, pink)`), set to `false` will remove placeholder.                                                                     |
 | `applyAspectRatio`  | boolean |          | Image will scale automatically with aspect ratio. Note: width and height will need to be supplied                                                                                                                  |
 | `animationDuration` | number  |          | animation duration in seconds                                                                                                                                                                                      |
+| `imgStyle`  | object |          | Inline styles for the `<img>` element.                                                                                 |
 
 ##### 🔗 `initSimpleImg([config], disableAnimationAfterCache = false, logConsoleError = false)` optional
 
