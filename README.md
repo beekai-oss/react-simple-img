@@ -98,6 +98,7 @@ Arguments
 Thanks goes to these wonderful people:
 
 <p float="left">
+    <a href="https://github.com/oquirozm"><img src="https://avatars0.githubusercontent.com/u/5298895?s=460&v=4" width="50" height="50" /></a>
     <a href="https://github.com/mcansh"><img src="https://avatars1.githubusercontent.com/u/11698668?s=400&v=4" width="50" height="50" /></a>
     <a href="https://github.com/ScriptedAlchemy"><img src="https://avatars3.githubusercontent.com/u/25274700?s=400&v=4" width="50" height="50" /></a>
     <a href="https://github.com/elrumordelaluz"><img src="https://avatars3.githubusercontent.com/u/784056?s=460&v=4" width="50" height="50" /></a>
