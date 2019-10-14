@@ -38,19 +38,20 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
   }
 
   componentDidMount() {
-    const cachedImagesRefString = window.sessionStorage.getItem('__REACT_SIMPLE_IMG__');
     const { src } = this.props;
     const element = this.element.current;
 
     if (
-      cachedImagesRefString &&
       window.__REACT_SIMPLE_IMG__.disableAnimateCachedImg &&
       element
       // && element.getAttribute('data-from-server') === 'no'
     ) {
       try {
-        const cachedImagesRef = JSON.parse(cachedImagesRefString);
+        // Browsers with strict privacy settings could throw an error when
+        // attempting to use localStorage and sessionStorage.
+        const cachedImagesRefString = window.sessionStorage.getItem('__REACT_SIMPLE_IMG__');
 
+        const cachedImagesRef = JSON.parse(cachedImagesRefString) || {};
         if (cachedImagesRef[src]) {
           this.setState({
             isCached: true,
@@ -58,7 +59,7 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
           return;
         }
       } catch (e) {
-        logError(`JSON parsing is broken ${e}`);
+        logError(`Error retrieving cached images ${e}`);
       }
     }
 
