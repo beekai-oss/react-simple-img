@@ -87,6 +87,11 @@ Arguments
 
 
      - if you want to disable the reveal animation after image have been cached
+     - Determining whether images have been cached is achieved using `sessionStorage`.
+       Setting this to true will have no effect for users with privacy settings enabled 
+       in their browsers that block the use of `sessionStorage`.
+        
+     
 
 - **logConsoleError**: (boolean) this argument is <b>optional</b>
 
