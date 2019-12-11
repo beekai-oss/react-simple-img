@@ -29,7 +29,6 @@ exports[`SimpleImg should apply aspect ratio when height and width is supplied 1
     data-srcset="srcSet"
     sizes="sizes"
     src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-    srcSet=""
     style={
       Object {
         "visibility": "hidden",
@@ -82,7 +81,6 @@ exports[`SimpleImg should render background color 1`] = `
     data-srcset="srcSet"
     sizes="sizes"
     src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-    srcSet=""
     style={
       Object {
         "visibility": "hidden",
@@ -135,7 +133,6 @@ exports[`SimpleImg should render correctly 1`] = `
     data-srcset="srcSet"
     sizes="sizes"
     src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-    srcSet=""
     style={
       Object {
         "visibility": "hidden",
@@ -176,7 +173,6 @@ Array [
     data-srcset="srcSet"
     sizes="sizes"
     src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-    srcSet=""
     style={
       Object {
         "opacity": 0,
@@ -216,7 +212,6 @@ exports[`SimpleImg should render only span when place holder src is not supplied
     data-srcset="srcSet"
     sizes="sizes"
     src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-    srcSet=""
     style={
       Object {
         "visibility": "hidden",
@@ -269,7 +264,6 @@ exports[`SimpleImg should render out as image data 1`] = `
     data-srcset="srcSet"
     sizes="sizes"
     src="data:image//test"
-    srcSet=""
     style={
       Object {
         "width": "100%",
@@ -322,7 +316,6 @@ exports[`SimpleImg should render out placeholder as image 1`] = `
     data-srcset="srcSet"
     sizes="sizes"
     src="/test/image.jpg"
-    srcSet=""
     style={
       Object {
         "width": "100%",
