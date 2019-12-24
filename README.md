@@ -53,7 +53,7 @@ Image component working similar with standard `img` tag and with the following p
 | `animationDuration` | number  |          | animation duration in seconds                                                                                                                                                                                      |
 | `imgStyle`  | object |          | Inline styles for the `<img>` element.                                                                                 |
 
-##### 🔗 `initSimpleImg([config], disableAnimationAfterCache = false, logConsoleError = false)` optional
+##### 🔗 `initSimpleImg([config], disableAnimateCachedImg = false, logConsoleError = false)` optional
 
 This function is only required, when you want to customise intersection observer configuration.
 
@@ -83,7 +83,7 @@ Arguments
        run). A value of 1.0 means that the threshold isn't considered passed
        until every pixel is visible.
 
-- **disableAnimationAfterCache**: (boolean) this argument is <b>optional</b>
+- **disableAnimateCachedImg**: (boolean) this argument is <b>optional</b>
 
 
      - if you want to disable the reveal animation after image have been cached
