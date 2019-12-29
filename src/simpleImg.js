@@ -190,7 +190,7 @@ export default class SimpleImg extends React.PureComponent<Props, State> {
       );
     }
     const placeholderComponent = isValidImgSrc ? (
-      <img style={inlineStyle} src={placeholder} {...restImgProps} />
+      <img style={inlineStyle} src={placeholder} alt={alt} {...restImgProps} />
     ) : (
       <div style={inlineStyle} />
     );

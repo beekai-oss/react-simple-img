@@ -277,6 +277,7 @@ exports[`SimpleImg should render out as image data 1`] = `
     }
   />
   <img
+    alt="alt"
     sizes="sizes"
     src="data:image//test"
     style={
@@ -330,6 +331,7 @@ exports[`SimpleImg should render out placeholder as image 1`] = `
     }
   />
   <img
+    alt="alt"
     sizes="sizes"
     src="/test/image.jpg"
     style={
