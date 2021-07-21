@@ -18,7 +18,7 @@ export type Props = {
   srcSet?: string,
   style?: Style,
   animationDuration?: number,
-  importance?: 'low' | 'high',
+  importance?: 'low' | 'auto',
   onComplete?: () => void,
   imgStyle: Style,
 };
