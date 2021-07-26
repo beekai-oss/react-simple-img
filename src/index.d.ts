@@ -17,7 +17,7 @@ export interface Props {
   srcSet?: string;
   style?: React.CSSProperties;
   animationDuration?: number;
-  importance?: "low" | "high";
+  importance?: "low" | "auto";
   onComplete?: VoidFunction;
   imgStyle?: React.CSSProperties;
 }
