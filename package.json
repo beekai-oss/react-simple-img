@@ -20,7 +20,7 @@
     "testw": "yarn test -- --watchAll",
     "coverage": "jest --config ./jestConfig.json --coverage --coverageReporters=text-lcov | coveralls",
     "build": "rollup -c",
-    "lint": "eslint ./src",
+    "lint": "eslint ./src --fix",
     "prepublish": "yarn test && yarn flow && yarn lint && yarn run clean && yarn build",
     "flow": "flow"
   },
