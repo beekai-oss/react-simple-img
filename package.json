@@ -84,8 +84,5 @@
   "peerDependencies": {
     "react": ">= 16.3.0",
     "react-dom": ">= 16.3.0"
-  },
-  "dependencies": {
-    "intersection-observer": "^0.5.1"
   }
 }
