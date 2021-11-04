@@ -24,7 +24,6 @@ export default function observerStart(
   disableAnimateCachedImg: boolean = false,
   logConsoleError: boolean,
 ) {
-  if (!window.IntersectionObserver) require('intersection-observer');
   // $FlowIgnoreLine:
   const observer = new IntersectionObserver(entries => onIntersection(entries), config);
 
