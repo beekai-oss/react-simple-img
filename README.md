@@ -97,3 +97,7 @@ Arguments
 
      - if you want to log errors in browser console when image fetch failed, then set the value to true.
      
+
+## By the makers of BEEKAI
+
+We also make [BEEKAI](https://www.beekai.com/). Build the next-generation forms with modern technology and best in class user experience and accessibility.
